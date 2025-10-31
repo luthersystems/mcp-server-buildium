@@ -1,0 +1,1050 @@
+# coding: utf-8
+
+# flake8: noqa
+
+"""
+    Open API, powered by Buildium
+
+      # Introduction  ### Welcome!    Welcome to Buildium’s API—a powerful, RESTful programming interface that lets you leverage valuable Buildium data.    Using HTTP requests, you can create integrations with applications that specialize in accounting, lead tracking, and more. Enjoy greater flexibility, transparency, and control over your business!      ### What's in this Guide?    This guide is full of simple, easy-to-follow instructions that’ll help you use Buildium’s API like a pro.    Topics include:    * choosing the right resources for your use case  * making HTTP requests to any resource  * understanding data and response codes    <br />    # Getting Started  Excited to get going? We’ll walk you through the setup process.  >  **Note:** To take advantage of the Buildium Open API you must have a <a target=\"_blank\" href=\"https://www.buildium.com/pricing/\">**Premium Subscription**</a>.    ## Account Configuration  Before you can use Buildium’s API, you’ll need to make some tweaks to your account settings.    <br />    ### Enabling the API  In order to start creating your keys and making requests, you’ll need to enable the API.      >  **Tip:** You’ll need an administrator user role with access to ***Application settings*** to set things up properly.    <br />    ​ **Let's Begin!**    1. Sign in to your [Buildium](https://signin.managebuilding.com/manager/public/authentication/login?ReturnUrl=%2Fmanager%2F) account from your browser.    2. Open the ***Settings*** menu and click ***Application settings***.    3. Under ***System preferences***, click ***Api settings***. A modal will appear.    4. Click the ***Open API*** toggle to turn it on. Then click ***Save***.    <video width=\"100%\" autoplay loop muted>    <source src=\"enable_open_api.mp4\" type=\"video/mp4\" />  </video>      Congratulations! Your account's enabled. Now, you’re ready to start managing API keys.  <br />  <br />  If you are having issues enabling the API within your account you can submit a [Support](#section/API-Overview/Support) request for assistance.    <br />      ## API Keys  Account-level API keys authenticate every request and keep things secure.    API keys have two components: a “client ID” and a “secret”.    * **Client IDs** are similar to usernames. They’re used to identify your Buildium account and are safe to share.  * **Secrets** are similar to passwords. They must be kept confidential.    Whenever you make a request, you’ll need the API key’s client ID and secret. If you forget it, make a mistake, or try to use information that’s linked to a deleted key, the API will return a `401` response code.    >  **Tip:** We compiled a list of best practices that detail how securely store API keys. [Give it a read](#section/Getting-Started/Keeping-API-Keys-Safe)!    ## Creating API Keys  Now that the Open APi is enabled, you’ll be able to create API keys. You’re almost there!    >  **Tip:** You’ll need an administrator user role to complete this step, too.    <br />    **How to create an API key**    1. Sign in to your [Buildium](https://signin.managebuilding.com/manager/public/authentication/login?ReturnUrl=%2Fmanager%2F) account from your browser.    2. Open the ***Settings*** menu and click ***Developer Tools***. The page will open automatically.    3. Click the ***Create API Key*** button. A modal will appear.    4. Enter a clear, memorable name and description for your API key. It’ll make it easier to locate the right key when you make a request. Once finished, click **Next**.    5. Now, choose which pieces of Buildium data you want this API key to have access to by marking the corresponding checkboxes. Once finished, click **Next**.    6. You successfully created an API key!    > **Important:** This is your only chance to record the secret. Make sure it’s stored somewhere secure! If it’s forgotten, you’ll need to delete this key and start from scratch.    <br />    <video width=\"100%\" autoplay loop muted>    <source src=\"generate_open_api_key.mp4\" type=\"video/mp4\" />  </video>    <br />    You have now successfully created an API key and have everything you need to  send requests to the Buildium API!    Before moving on to [making your first request](#section/Getting-Started/How-to-Make-a-Request) please review [Keeping your Keys Safe](#section/Getting-Started/Keeping-your-Keys-Safe) for an overview on securely storing your API keys.    <br />  If you are having issues creating API keys you can submit a [Support](#section/API-Overview/Support) request for assistance.  <br />      ## Keeping API Keys Safe    Based on their permissions, API keys could have full access to your account’s Buildium data. It’s important that you only grant access to trusted applications, securely record secrets, and consider a password manager to stay organized.      ### Recommended Practices    - Avoid hard-coding client IDs and secrets inside source files.  - Avoid storing client IDs and secrets in any files that may be committed to source control, particularly cloud-based source control platforms.  - Apply restrictions to client IDs and secrets shared with your staff. You can restrict a key to particular Buildium entities or to read-only access (GET resources only).  - Avoid sharing client IDs and secrets across public, insecure platforms.  - Establish a process to regularly recreate your client IDs and secrets from your Buildium account.    <br />    <br />    ## How to Make a Request    You’ve done a great job setting up your account, Now, we’ll walk you through how to access your data. It’s very straightforward and should only take a few minutes!      > **Tip:** Looking for the right HTTP client? If you’re just getting started, we recommend Postman.      <br />    ### Let's Get Started!    #### Step 1: Get Your API Key    If you haven't yet done so, obtain your API key client ID and secret from your Buildium account. Your API key is how the Buildium API authenticates requests and ensures only you can access your data.    See [Getting Started](#section/Getting-Started) for a deeper dive into enabling the API and creating keys.    #### Step 2: Install a HTTP client  The Buildium API supports any standard HTTP client. If you're looking for a user-friendly HTTP client application, we recommend [Postman](https://www.postman.com/product/api-client) – it allows you to access the Buildium API without writing code. We’ll use Postman for our example below to demonstrate sending an API request.      #### Step 3: Make a Sample Request    Let's dive in and make a simple request to get all the [Rental Properties](#operation/RentalsExternalApi_GetAllRentals) in your account. This will confirm your connectivity to our platform and validate the keys you created on our website. Simply follow the instructions below.      1. Open the Postman application.  2. Open the *verb* menu and select **GET**.  3. Enter the request endpoint in the field next to GET.    - Here’s the endpoint to get all rentals: https://api.buildium.com/v1/rentals.  4. To authenticate the request, enter your `client ID` and `secret`  respectively in these request headers:    - `x-buildium-client-id`    - `x-buildium-client-secret`    - Your full request should look similar to the image below.<kbd><img src=\"request_example.png\" /></kbd>    <br />    5. Review the parameters of your request on last time. Once finished, click **Send**.    6. If successful, you should see a JSON response and a `200` HTTP status code. Voilà! You've connected to the Buildium API.<kbd><img src=\"response_example.png\" /></kbd>    <br />  You now have the knowledge required to make requests for any of our resources.    If you've received an error response please review the JSON response message for a description of how to resolve the issue. You can also see more information about HTTP status codes in the [Response Codes](#section/API-Overview/Response-Codes) section. If you are still having trouble making a request after reviewing these sections please submit a [Support](#section/API-Overview/Support) request.    <br />    # API Overview  The Buildium API is built upon standard REST conventions. It's designed to use consistent resource-oriented URLs, accept and return JSON-encoded messages, and use standard HTTP status codes and verbs.    ## Base URL  The base URL for production environment API requests is: `https://api.buildium.com/`    The base URL for sandbox environment API requests is: `https://apisandbox.buildium.com/`    In order to ensure all requests and responses are secure between the API consumer and Buildium servers, requests must be made using the `https` protocol. Any requests not made with the `https` protocol will be refused by the Buildium API platform.    > **Note:** URL paths are case-sensitive to stay consistent with common REST standards. If your request doesn’t align with the documented URL path, you’ll receive a `404` response code reminding you of this constraint.    ## API Versioning  The Buildium API is version controlled. Versioning ensures backwards-incompatible changes to the API don’t impact any existing integrations.    Buildium uses only a major version nomenclature to manage changes. The current version of the Buildium API is version 1. By specifying a version in the resource request URL, you'll get expected responses regardless of future changes to the API. Here's an example of calling version 1 of the retrieve all rentals resource:    `https://api.buildium.com/v1/rentals`    Any request submitted without the version in the URL path will result in a `404` error response code.    ### Releasing Changes to the API  The Buildium API will continue to evolve to ensure it meets the needs of our customers. Changes will be defined as either backwards-compatible or backwards-incompatible.    We’ll always provide advance notice for all API releases–regardless of the type of modifications being made.    #### Backward-compatible Changes  Backward-compatible changes are modifications to the API that shouldn't impact existing integrations. They'll apply to the current version of the API. Simply put: you won’t need to change the version to consume new changes like these.    It's important as you develop against the Buildium API that you ensure  these types of changes don't impact your integration. Here's are examples of backward-compatible modifications.    * Adding new API resources and/or endpoints.  * Adding new optional request parameters to existing API methods.  * Adding new properties to existing API responses and non-required properties for request messages.  * Changing property order in existing API responses.    All backward-compatible changes to the API will be documented in the [Changelog](#section/Changelog).    #### Backwards-incompatible Changes    When backwards-incompatible changes to the API occur, a new version of the API will be released. You’ll need to update the URL path  to consume resources under the new API version.    Backwards-incompatible changes include:    * Removing a property from a request and/or response message.  * Changing the name of a property in a message.  * Adding a required parameter to a request message.  * Changing existing enumeration values.    New versions of the API will have full reference documentation and an upgrade guide.    <br />        ## Authentication  The Buildium API uses API key’s client IDs and secrets to authenticate requests.    An API key client ID and secret must be passed in every request header using the following parameters:    - `x-buildium-client-id`  - `x-buildium-client-secret`    Failing to provide both of them in the request header will cause the API to return a `401` HTTP status code.    > **Note:** We currently do not support enabling CORS to access the Buildium API due to the security and authentication mechanisms we have in place to protect your data. Buildium supports authentication through API keys passed in the headers of a request versus a more CORS supported authentication mechanism like oAuth. Our recommendation is to access the Buildium API using server to server communication versus browser to server communication for the safest implementation.    ## Rate Limiting  Rate limits help us ensure consistent and reliable performance for all users, even during peak loads. That’s why we limit clients to **10 concurrent requests per second**.    If your request rate violates that limit, a response code of `429` is returned. Simply retry the request after a short interval (~200ms).    ## Request Size Limits  The query string for a request is limited to a maximum length of `4096` characters. If the query string exceeds this length, the API will return a `500` HTTP status code.    ## Bulk Request Options  All top-level API resources support bulk fetches. For instance, you can retrieve all [Associations](#operation/AssociationsExternalApi_GetAssociations). These resources also allow for filtering criteria. Each resource has descriptions of the filter criteria available.    In addition to filtering, our API gives you the ability to control the returned data’s pagination and the sort order.    ### Pagination  Endpoints that return result sets allow for pagination using `limit` and `offset` request parameters to reduce the amount of data returned.    The `limit` request parameter will cap the number of results that come back in the response. If you don't specify a `limit` value, a **default of 50 results** are returned. The maximum `limit` value is 1000. If a `limit` value is specified greater than 1000, it will be overridden to the default to 1000.    The `offset` request parameter indicates the record position within the resultset to start at when returning the results. The `offset` is zero-based and is inclusive. If no `offset` value is submitted it will default to 0.    The total resultset count is returned in the HTTP Header `X-Total-Count`    <br />    #### Pagination Example    As an example, let's say we make a request to retrieve all rental properties with no paging parameters. Our response indicates in the `X-Total-Count` header that there are 150 total rental properties. We want to get only the last 50 results so we would submit a request with the `offset` set to 100 and the `limit` set to 50.    > **Note:** The `limit` and `offset` parameter names are case-sensitive. If they aren't formatted correctly, the API will return a `404` HTTP status code.      <br />    ### Sorting Results  You can specify the sort order of returned data by assigning any property from the returned object to the `orderby` parameter in the querystring. For example:  ```  orderby=LeaseType  ```  By default, the sort is performed in ascending order. To specify sort order, use \"asc\" for ascending or \"desc\" for descending. For example:  ```  orderby=LeaseType desc  ```  Additionally, you can sort by multiple properties by comma separating the properties. For example:  ```  orderby=Rent desc,City asc  ```  In order to avoid potentially getting inconsistent results or missing data when paging, you must sort on a unique property such as `Id`. If sorting by properties that may not  be unique such as `Date` or `Name`, a secondary sort on a unique property is necessary to preserve sort order between pages. An example of  sorting this way would be:  ```  orderby=Date desc,Id asc  ```  <br/>    > **Note:** While the `orderby` parameter is case-sensitive, the properties specified in the `orderby` value aren't.    ## Response Codes  The Buildium API supports standard HTTP status codes.    | Response Code                 | Description                                                                                                                                                                                           |  |-------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|  | 200 OK                        | Everything worked as expected.                                                                                                                                                                        |  | 201 Created                   | Everything worked as expected.                                                                                                                                                                        |  | 202 Accepted                  | Everything worked as expected.                                                                                                                                                                        |  | 204 No Content                | Everything worked as expected.                                                                                                                                                                        |  | 400 Bad Request               | The request was unacceptable, often due to missing a required parameter.                                                                                                                              |  | 401 Unauthorized              | The API client ID and secret weren’t provided or they’re no longer valid. Be sure that the client ID and secret combination are correct and they are still active.                                    |  | 403 Forbidden                 | The API key doesn't have permission to perform the request. This could be due to authorization for the given endpoint or an inability to access given entities within the platform (e.g. properties). |  | 404 Not Found                 | The requested resource doesn't exist.                                                                                                                                                                 |  | 409 Conflict                  | The request cannot be completed due to an issue that cannot be resolved by changing the input of the request. Resolve the error before trying again.                                                  |  | 415 Unsupported Media Type    | Ensure you have the appropriate content-type header value set on your request. Each resource is documented with media type(s) that are accepted.                                                      |  | 429 Too Many Requests         | Too many requests against the API too quickly. We recommend an exponential backoff of your requests. See more information in  [Rate Limiting](#section/API-Overview/Rate-Limiting).                   |  | 500 and above - Server Errors | Something went wrong on Buildium's end. Review the JSON response message for more details about the error. These are rare. Excludes 503 responses.                                                    |  | 503 Service Unavailable       | A service you are trying to use is currently either down for maintenance or not functioning correctly, and your request will need to be resubmitted when functionality is restored.                   |    ## Support  If you are unable to resolve your issue after reviewing the API documentation our support team can assist you. Please fill out the form below and let us know how we can help.    <script>   function getUrlParameter(name) {    name = name.replace(/[\\[]/, '\\\\[').replace(/[\\]]/, '\\\\]');    var regex = new RegExp('[\\\\?&]' + name + '=([^&#]*)');    var results = regex.exec(location.search);    return results === null ? '' : decodeURIComponent(results[1].replace(/\\+/g, ' '));   };        document.addEventListener(\"DOMContentLoaded\", function(){     if(getUrlParameter('supportsuccess') === \"true\")    {     document.getElementById(\"message\").style.display = \"block\";    }   });   </script>    <script src=\"https://www.google.com/recaptcha/api.js\"></script>  <script>   function timestamp() { var response = document.getElementById(\"g-recaptcha-response\"); if (response == null || response.value.trim() == \"\") {var elems = JSON.parse(document.getElementsByName(\"captcha_settings\")[0].value);elems[\"ts\"] = JSON.stringify(new Date().getTime());document.getElementsByName(\"captcha_settings\")[0].value = JSON.stringify(elems); } } setInterval(timestamp, 500);  </script>      <div id=\"message\" class=\"bukGhL\" style=\"display:none;cursor:auto;\">Your support request has been received</div>    <form id=\"supportRequestForm\" action=\"https://webto.salesforce.com/servlet/servlet.WebToCase?encoding=UTF-8&orgId=00D80000000b51V\" method=\"POST\">    <input type=\"hidden\" name=\"orgid\" value=\"00D80000000b51V\">  <input type=\"hidden\" id=\"00N4X00000C72OW\" name=\"00N4X00000C72OW\" value=\"General Product\">  <input type=\"hidden\" id=\"00N0y000006b675\" name=\"00N0y000006b675\" value=\"Open API\">  <input type=\"hidden\" id=\"00N4X00000C72OM\" name=\"00N4X00000C72OM\" value=\"Buildium\">  <input type=\"hidden\" id=\"recordType\" name=\"recordType\" value=\"0120y000000GWkP\">  <input type=\"hidden\" id=\"retURL\" name=\"retURL\" value=\"https://developer.buildium.com/?supportsuccess=true#section/API-Overview/Support\" />            <input type=\"hidden\" name=\"captcha_settings\" value='{\"keyname\":\"reCaptchaV2\",\"fallback\":\"true\",\"orgId\":\"00D80000000b51V\",\"ts\":\"\"}'>     <table>   <tr>    <td width=\"50%\">     <label for=\"company\"><strong>Buildium Account Name</strong></label>    </td>    <td>     <input  id=\"company\" maxlength=\"80\" name=\"company\" size=\"40\" type=\"text\" class=\"supportInput\" />    </td>   </tr>   <tr>    <td width=\"50%\">     <label for=\"name\"><strong>Contact Name</strong></label>    </td>    <td>     <input  id=\"name\" maxlength=\"80\" name=\"name\" size=\"40\" type=\"text\" class=\"supportInput\" />    </td>   </tr>   <tr>    <td width=\"50%\">     <label for=\"email\"><strong>Email</strong></label>    </td>    <td>     <input  id=\"email\" maxlength=\"80\" name=\"email\" size=\"40\" type=\"text\" class=\"supportInput\" />    </td>   </tr>   <tr>    <td width=\"50%\">     <strong>Select your issue</strong>    </td>    <td>     <select id=\"00N0y000006jWr6\" name=\"00N0y000006jWr6\" title=\"Developer Support Issue:\" class=\"supportInput\">      <option value=\"\">--None--</option><option value=\"I am having issues logging into my Buildium account\">I am having issues logging into my Buildium account</option>      <option value=\"I am having issues enabling the API for my Buildium account\">I am having issues enabling the API for my Buildium account</option>      <option value=\"I am having issues generating API keys\">I am having issues generating API keys</option>      <option value=\"I am having issues making an API Request (provide details below)\">I am having issues making an API Request (provide details below)</option>     </select>    </td>   </tr>   <tr>    <td width=\"50%\" valign=\"top\">     <label for=\"description\"><strong>Description of your issue</strong></label>     <br />     <br />     Please include the following information when applicable to your issue:     <br />      <ul>      <li>Date & time of API request</li>      <li>Full URL used in making the request along with any querystring and/or post parameters</li>      <li>HTTP status code (e.g. 500)</li>      <li>Response body</li>     </ul>    </td>    <td valign=\"top\">     <textarea name=\"description\" cols=\"42\" rows=\"15\" class=\"supportInput\"></textarea>    </td>   </tr>   <tr>    <td colspan=\"2\">              <br />              <div class=\"g-recaptcha\" data-sitekey=\"6LfyzxMcAAAAANT7cPXSitEodMd635qPeGIdiVei\"></div>              <br />     <input type=\"submit\" name=\"submit\" class=\"supportInput\" />    </td>   </tr>  </table>    </form>    # API Sandbox  To assist your development efforts Buildium offers a free Sandbox account with your Premium subscription. A sandbox is a development environment that is separate from your production account. Sandboxes duplicate much of the same property management functionality available in your production account and all of the resources available in the Open API. The benefit of the sandbox is that it's isolated from your primary account. This separation ensures that API operations you perform against the sandbox account during development of your integration do not corrupt the data in your production account.    ## Mock Data  To help you hit the ground running with your development efforts sandbox accounts are provisioned with realistic sample data. This ensures you have data to work with immediately and won’t have to spend time doing data entry. You always have the ability to add more data through the application and the Buildium Open API.    ## Getting Started  To create a sandbox account follow the steps below.    1. Sign in to your [Buildium](https://signin.managebuilding.com/manager/public/authentication/login?ReturnUrl=%2Fmanager%2F) account from your browser.    2. Open the ***Settings*** menu and click ***Developer Tools***.    3. Click the ***API Sandbox*** tab.    4. Click the ***Create sandbox*** button. A modal will appear.    5. Enter the name and email of the person that will be administering the sandbox account. When the sandbox creation process has completed an email will be sent to the email address submitted. This email will provide a link to the sandbox. After all fields have been filled out, click **Create**.    6. The provisioning process will now execute. It can take 2 - 3 minutes for the sandbox to be created. The page will automatically refresh with the provisioning status. When it completes you will see the sandbox status is **Active** along with details about the sandbox including the URL to the account. You can browse back to this page at any time if you need to look up the URL to the sandbox.     <br />     <kbd><img src=\"sandbox_provisioning.gif\" class=\"example_screen\" /></kbd>    7. Once the sandbox has been created an email will be sent to the address you entered in the \"Create sandbox\" modal. To complete the activation of the sandbox open the email and click on the \"Activate Account\". This will allow you to create a password for your account and log into the sandbox.    8. You are now ready to begin making API requests to your sandbox! Please see [Accessing the Sandbox](#section/API-Sandbox/Accessing-the-Sandbox) for next steps on how to start making API requests.      ## Accessing the Sandbox  Once your sandbox is created you can begin to access it through the Open API. Requests are made following all the same versioning, authentication, messages, etc that are used in the production environment with the exception of the base URL. The base URL for the sandbox is:  <br />  `https://apisandbox.buildium.com/`    You can read more about connecting to the API in the [API Overview](#section/API-Overview) section.    Once you have completed your development and testing against the sandbox and you're ready to start using the integration in your production account simply change the base URL in your integration to the [production API URL](#section/API-Overview/Base-URL).      ## Sandbox Account Restrictions  The core Buildium functionality is available in the sandbox environment, however there are some restrictions which include:    1. Add-on services, ePay and other paid services will not be available.  2. A maximum of 1500 units (rentals and associations) can be created within the sandbox.  3. A maximum of 50 rental tenants per lease can be created within the sandbox.  4. Communication emails will not be sent out. This protects you from inadvertently sending emails to your test accounts.      ## FAQs  **How many sandboxes can I create?**    The Premium subscription plan allows you to create one sandbox.    **Can I use my production keys to access my sandbox?**    No. To ensure you are accessing the correct environment the API keys are restricted to the environment they were created in.    **What is the throttle limit on requests to the sandbox?**    A sandbox account is limited to **10 concurrent requests per second**.    **Can I reset sandbox data to its original state?**    Resetting sandbox data is not supported at this time.    **Can I delete a sandbox?**    You cannot delete a sandbox at this time. Closing your account or changing subscription plans will delete your sandbox and it will be no longer accessible.    **Can I delete the sandbox data?**    Yes, you can manually delete records by logging into the web application.    **Why do I see an error when I try to access add-on functionality like ePayments?**    Certain functionality is restricted in the sandbox environment. Please see [Sandbox Account Restrictions](#section/API-Sandbox/Sandbox-Account-Restrictions) for an overview of these limitations.    # Webhooks  Buildium webhooks allow your remote applications to listen for events within your Buildium account and react to those events in near real-time!    To implement webhooks you need to register a callback URL to your web server for the events you want to capture. Then Builidum will send notifications to that URL when the events occur making syncing data and automating workflows a breeze.    As an example, let’s say you’ve registered a callback to your application to receive “Lease Created” events. When a user within your Buildium account creates a new lease then a webhook callback from Buildium informs your app about this new lease. After your application receives the event it can then execute actions such as creating tasks to clean the apartment and change the locks.    Another advantage of using webhooks is that they allow your applications to respond to events in Buildium in near real time. Having events pushed to your platform as they happen is like calling the API every second to ask “Was a lease created”?    The diagram below illustrates how your application would integrate with Buildium webhooks.    <img src=\"webhook-architecture.png\" />    ## Webhook Events Overview  Event notifications are Buildium’s way of letting you know when something interesting happens in your account. When a subscribed event occurs a new Event object is created and sent to your endpoint as part of a HTTPS POST request.    Event objects are simple data structures with fields that describe the entity and the event that occurred. The object will have the following fields:    | Field | Description |  | ---- | ---- |  | EventName | This value indicates the entity and operation that occurred. |  | EventDateTime| The date and time that the operation occurred. The value is in UTC and formatted as YYYY-MM-DDTHH:MM:SSSSSSSZ. |  | AccountId | Your Buildium account identifier. This is used to distinguish between accounts if you have configured webhook callbacks across multiple Buildium accounts to the same endpoint. |  | Entity Identifier(s) | These field(s) constitute the identifier of the entity. Use these values to query the Buildium Open API for the full entity data. |    Here is an example of an Event object, serialized as JSON, when a rental property has been updated:  ```json  {  \"EventName\": \"Rental.Updated\",  \"EventDateTime\": \"2022-05-10T15:12:46.2317653Z\",  \"AccountId\": 123456,  \"PropertyId\": 23  }  ```    Note that the EventName is a constant value that can be used to determine the entity and the operation that triggered the event. This value is concatenation of the entity name and operation separated by a period. For example, if a rental property was updated the EventName value would be: `Rental.Updated`.    The event identifiers included in the Event object will provide the data necessary to query the Buildium Open API and retrieve the full entity.    The [Webhook Events section](#section/Webhooks/Webhook-Events) below lists all of the available entities and their corresponding events that can be subscribed to. The grid also includes the EventName constants and sample JSON for each entity.    ## Receiving Callbacks  To take advantage of webhooks you’ll need to establish an endpoint that our Buildium servers can make a request to whenever the data you’re interested in changes. You can use one endpoint to handle several different event types at once or set up individual endpoints for specific events.    Your endpoint must be implemented to support the following:   * HTTPS protocol   * Be publicly available   * POST requests that consist of a JSON formatted payload sent as raw body type and a Content-Type of application/json.    When receiving webhook callbacks it is important that your endpoint responds promptly. If Buildium doesn’t receive a response within 10 seconds the callback is considered unsuccessful. As a best practice your endpoint should return a response prior to executing any complex logic to ensure a response within the 10 second duration. Any HTTP response code from your endpoint other than a 2XX is also considered an unsuccessful request. Buildium will retry unsuccessful events on the following intervals:   1. 1 minute   2. 10 minutes   3. 1 hour    If a callback for an event is unsuccessful after all three attempts Buildium will stop attempting to send the event message.    The webhook subscription will be suspended if there 20 consecutive failed attempts to send events to the URL. Upon suspension an email will be sent notifying you that the subscription has been paused. You can troubleshoot issues and enable the webhook by browsing to  [Settings > Developer Tools > Webhooks](https://signin.managebuilding.com/manager/app/settings/developer-tools/webhooks). The email is sent to the contact email address that is set when the webhook subscription is created or updated.    As you develop the callback endpoint you can use the JSON examples found in the webhook event grid to generate the mock payloads for testing. Once you are able to successfully receive the event callback you should implement a signature check to ensure the authenticity of of the request.    ### Signature Checks  It is *strongly recommended* that you validate webhook event signatures in your application to ensure that the request came from Buildium and not a bad actor attempting to impersonate Buildium, alter event messages after they have been sent, or perform replay attacks. While validating the request isn’t required to read the payload, it is *strongly recommended* to ensure the authenticity of the request and ensure the overall security and data integrity of your application.    All webhook callback requests include the signature and a timestamp in the HTTP headers.    | HTTP Header | Description |  | ---- | ---- |  | buildium-webhook-timestamp | A UNIX timestamp of when the message was sent. NOTE: This is not the time the event occurred within the system, but rather the time the event was sent.|  | buildium-webhook-signature | A computed signature using the secret key that can be used to verify that the request came from Buildium. The secret key is generated when the webhook subscription is created.|    The signature is a concatenation of the timestamp value and the event message hashed by a secret key. The secret key is generated for you when creating webhook subscriptions. It is important to keep this key stored safely as you would with any other credentials.    The following steps outline how to use the secret key, the event message and the HTTP header values to verify the request:     1. Concatenate the value of the buildium-webhook-timestamp header with the body of the event with a period character in between the two values. The body of the event must have all newlines removed and not contain spaces after the colon between property names and values. For example  ```json  {    \"EventName\": \"Rental.Created\",    \"EventDateTime\": \"2022-12-22T16:18:20.876772Z\",    \"AccountId\": 123456,    \"PropertyId\": 78910  }  ```  would be passed into your verification method as:  ```json  {\"EventName\":\"Rental.Created\",\"EventDateTime\":\"2022-12-22T16:18:20.876772Z\",\"AccountId\":123456,\"PropertyId\":78910}  ```   2. Hash the concatenated string using the HMACSHA256 algorithm setting the webhook secret key as the algorithm key.   3. Convert the resulting hash bytes to a base64 string.   4. Compare the base64 string to the value of the buildium-webhook-signature header. If the values match with a case sensitive comparison, the message has been validated to have come from Buildium.    ### Sample Validation Code (C#)  ```c#  private static bool ClientSideValidate(  string eventNotificationMessage,   string timestamp,   string signature)  {     var signedPayload = $\"{timestamp}.{eventNotificationMessage}\";     var hasher = new HMACSHA256(Encoding.UTF8.GetBytes(m_secretKey));     var computedHash = hasher.ComputeHash(Encoding.UTF8.GetBytes(signedPayload));     var computedHashString = Convert.ToBase64String(computedHash);       return computedHashString.Equals(signature);  }  ```  Once you’ve successfully validated the message you can begin to process it with confidence it came from the Buildium platform and has not been altered after it has been sent.    To test your validation logic you can generate requests to your URL with headers you generate using the similar logic you created for validating the values.    ## Webhook Creation  Once your endpoint is ready to be tested end to end you will need to create a webhook subscription in your Buildium account. The subscription can be created by browsing to [Settings > Developer Tools > Webhooks](https://signin.managebuilding.com/manager/app/settings/developer-tools/webhooks) and then clicking the “Add webhook” button.    Once you’ve configured a new webhook, events will be sent to your endpoint as they are triggered within the account. So all you have to do is execute the action you want to test. You can expect webhook callbacks to your endpoint to fire within a few seconds to a few minutes from the event occurring in the Buildium platform. To determine if the events have been sent and/or see the resulting response from your platform you can view the webhook subscription event history page.    We strongly suggest you test your webhooks in your Buildium API sandbox account to ensure you don’t corrupt data in your production account. Once the integration is fully tested you can register the webhook in your production account.    > NOTE: Due to our current security policies we do not support webhook callbacks to the Ngrok platform. We understand Ngrok can be useful for testing local webhook development and we hope to be able to support that platform safely and securely soon. In the meantime, we recommend using other websites and tools that can capture the webhook event HTTP request payload and headers and replay it manually on your local machine with a tool such as Postman.    ## Best Practices  * Be sure to validate the signature on all incoming requests and consider rolling your secret keys on a regular basis. A new secret key can be generated by clicking the \"Generate key\" link next to the current secret key value when updating the webhook subscription.  * Your webhook endpoints should be configured to receive only the types of events required by your integration. Listening for extra events (or all events) will put undue strain on your server and is not recommended.  * Be sure your platform can handle duplicate events correctly. We do our best to ensure an event is only sent one time, but due to the distributed nature of the process we can not make any guarantees. We advise you to guard against duplicated event receipts by making your event processing idempotent. One way of doing this is logging the events you’ve processed, and then not processing already-logged events.  * Buildium does not guarantee delivery of events in the order in which they are generated within the platform. For example, creating a lease might generate the following events - `Lease.Created`, `Tenant.Created`. Your endpoint shouldn’t expect delivery of these events in this order and should handle this accordingly. You can use the API to fetch any missing data. For example, you can fetch the lease resource using the information from tenant if you happen to receive that event first.    ## Webhook Events  The grid below details the available webhooks events along with their EventName and JSON message schema.    <table>  <tr>      <td valign=\"top\">        Applicants      </td>      <td valign=\"top\">        Applicant.Created        <br />        Applicant.Updated        <br />        Applicant.Deleted      </td>      <td>        <span style=\"background:none;font-family:courier,serif;font-size:12px;\">          {          <br/>&nbsp;&nbsp;EventName: [string],          <br/>&nbsp;&nbsp;EventDateTime: [datetime],           <br/>&nbsp;&nbsp;AccountId: [integer],          <br/>&nbsp;&nbsp;ApplicantId: [integer]          <br/>          }        </span>      </td>    </tr>   <tr>      <td valign=\"top\">        Applicant Applications      </td>      <td valign=\"top\">        ApplicantApplication.Created        <br />        ApplicantApplication.Updated      </td>      <td>        <span style=\"background:none;font-family:courier,serif;font-size:12px;\">          {          <br/>&nbsp;&nbsp;EventName: [string],          <br/>&nbsp;&nbsp;EventDateTime: [datetime],           <br/>&nbsp;&nbsp;AccountId: [integer],          <br/>&nbsp;&nbsp;ApplicantId: [integer]          <br/>&nbsp;&nbsp;ApplicationId: [integer]          <br/>          }        </span>      </td>    </tr>    <tr>  <tr>      <td valign=\"top\">        Application Transactions      </td>      <td valign=\"top\">        Application.Transaction.Created        <br />        Application.Transaction.Updated      </td>      <td>        <span style=\"background:none;font-family:courier,serif;font-size:12px;\">          {          <br/>&nbsp;&nbsp;EventName: [string],          <br/>&nbsp;&nbsp;EventDateTime: [datetime],           <br/>&nbsp;&nbsp;AccountId: [integer],                  <br/>&nbsp;&nbsp;ApplicationId: [integer],          <br/>&nbsp;&nbsp;TransactionId: [integer],          <br/>&nbsp;&nbsp;TransactionType: [string],          <br/>          }        </span>      </td>    </tr>    <tr>      <td valign=\"top\">        Association Board Members      </td>      <td valign=\"top\">        AssociationBoardMember.Created         <br />        AssociationBoardMember.Updated        <br />        AssociationBoardMember.Deleted      </td>      <td>        <span style=\"background:none;font-family:courier,serif;font-size:12px;\">          {          <br/>&nbsp;&nbsp;EventName: [string],          <br/>&nbsp;&nbsp;EventDateTime: [datetime],           <br/>&nbsp;&nbsp;AccountId: [integer],          <br/>&nbsp;&nbsp;BoardMemberId: [integer]          <br/>          }        </span>      </td>    </tr>  <tr>      <td valign=\"top\">        Associations      </td>      <td valign=\"top\">        Association.Created         <br />        Association.Updated        <br />        Association.Deleted      </td>      <td>        <span style=\"background:none;font-family:courier,serif;font-size:12px;\">          {          <br/>&nbsp;&nbsp;EventName: [string],          <br/>&nbsp;&nbsp;EventDateTime: [datetime],           <br/>&nbsp;&nbsp;AccountId: [integer],          <br/>&nbsp;&nbsp;PropertyId: [integer]          <br/>          }        </span>      </td>    </tr>  <tr>      <td valign=\"top\">        Association Meter Readings      </td>      <td valign=\"top\">        Association.MeterReading.Created         <br />        Association.MeterReading.Updated        <br />        Association.MeterReading.Deleted      </td>      <td>        <span style=\"background:none;font-family:courier,serif;font-size:12px;\">          {          <br/>&nbsp;&nbsp;EventName: [string],          <br/>&nbsp;&nbsp;EventDateTime: [datetime],           <br/>&nbsp;&nbsp;AccountId: [integer],          <br/>&nbsp;&nbsp;PropertyId: [integer],          <br/>&nbsp;&nbsp;ReadingDate: [date],          <br/>&nbsp;&nbsp;MeterType: [string]            <br/>          }        </span>      </td>  </tr>  <tr>      <td valign=\"top\">        Association Owners      </td>      <td valign=\"top\">        AssociationOwner.Created         <br />        AssociationOwner.Updated        <br />        AssociationOwner.Deleted      </td>      <td>        <span style=\"background:none;font-family:courier,serif;font-size:12px;\">          {          <br/>&nbsp;&nbsp;EventName: [string],          <br/>&nbsp;&nbsp;EventDateTime: [datetime],           <br/>&nbsp;&nbsp;AccountId: [integer],          <br/>&nbsp;&nbsp;OwnerId: [integer]          <br/>          }        </span>      </td>    </tr>  <tr>      <td valign=\"top\">        Association Ownership Account Transactions      </td>      <td valign=\"top\">        OwnershipAccountTransaction.Created         <br />        OwnershipAccountTransaction.Updated        <br />        OwnershipAccountTransaction.Deleted      </td>      <td>        <span style=\"background:none;font-family:courier,serif;font-size:12px;\">          {          <br/>&nbsp;&nbsp;EventName: [string],          <br/>&nbsp;&nbsp;EventDateTime: [datetime],           <br/>&nbsp;&nbsp;AccountId: [integer],          <br/>&nbsp;&nbsp;TransactionId: [integer],          <br/>&nbsp;&nbsp;TransactionType: [string]          <br/>          }        </span>      </td>    </tr>  <tr>      <td valign=\"top\">        Association Ownership Accounts      </td>      <td valign=\"top\">        OwnershipAccount.Created         <br />        OwnershipAccount.Updated        <br />        OwnershipAccount.Deleted      </td>      <td>        <span style=\"background:none;font-family:courier,serif;font-size:12px;\">          {          <br/>&nbsp;&nbsp;EventName: [string],          <br/>&nbsp;&nbsp;EventDateTime: [datetime],           <br/>&nbsp;&nbsp;AccountId: [integer],          <br/>&nbsp;&nbsp;OwnershipAccountId: [integer]          <br/>          }        </span>      </td>    </tr>  <tr>      <td valign=\"top\">        Association Tenants      </td>      <td valign=\"top\">        AssociationTenant.Created         <br />        AssociationTenant.Updated        <br />        AssociationTenant.Deleted      </td>      <td>        <span style=\"background:none;font-family:courier,serif;font-size:12px;\">          {          <br/>&nbsp;&nbsp;EventName: [string],          <br/>&nbsp;&nbsp;EventDateTime: [datetime],           <br/>&nbsp;&nbsp;AccountId: [integer],          <br/>&nbsp;&nbsp;TenantId: [integer]          <br/>          }        </span>      </td>    </tr>  <tr>      <td valign=\"top\">        Association Units      </td>      <td valign=\"top\">        AssociationUnit.Created         <br />        AssociationUnit.Updated        <br />        AssociationUnit.Deleted      </td>      <td>        <span style=\"background:none;font-family:courier,serif;font-size:12px;\">          {          <br/>&nbsp;&nbsp;EventName: [string],          <br/>&nbsp;&nbsp;EventDateTime: [datetime],           <br/>&nbsp;&nbsp;AccountId: [integer],          <br/>&nbsp;&nbsp;UnitId: [integer]          <br/>          }        </span>      </td>    </tr>  <tr>      <td valign=\"top\">        Bank Accounts      </td>      <td valign=\"top\">        BankAccount.Created         <br />        BankAccount.Updated        <br />        BankAccount.Deleted      </td>      <td>        <span style=\"background:none;font-family:courier,serif;font-size:12px;\">          {          <br/>&nbsp;&nbsp;EventName: [string],          <br/>&nbsp;&nbsp;EventDateTime: [datetime],           <br/>&nbsp;&nbsp;AccountId: [integer],          <br/>&nbsp;&nbsp;BankAccountId: [integer]          <br/>          }        </span>      </td>    </tr>  <tr>      <td valign=\"top\">        Bank Account Transactions      </td>      <td valign=\"top\">        BankAccount.Transaction.Created         <br />        BankAccount.Transaction.Updated        <br />        BankAccount.Transaction.Deleted      </td>      <td>        <span style=\"background:none;font-family:courier,serif;font-size:12px;\">          {          <br/>&nbsp;&nbsp;EventName: [string],          <br/>&nbsp;&nbsp;EventDateTime: [datetime],           <br/>&nbsp;&nbsp;AccountId: [integer],          <br/>&nbsp;&nbsp;BankAccountId: [integer],          <br/>&nbsp;&nbsp;TransactionId: [integer],          <br/>&nbsp;&nbsp;TransactionType: [string]          <br/>          }        </span>      </td>    </tr>  <tr>      <td valign=\"top\">        Bills      </td>      <td valign=\"top\">        Bill.Created         <br />        Bill.Updated        <br />        Bill.Deleted      </td>      <td>        <span style=\"background:none;font-family:courier,serif;font-size:12px;\">          {          <br/>&nbsp;&nbsp;EventName: [string],          <br/>&nbsp;&nbsp;EventDateTime: [datetime],           <br/>&nbsp;&nbsp;AccountId: [integer],          <br/>&nbsp;&nbsp;BillId: [integer]          <br/>          }        </span>      </td>    </tr>  <tr>      <td valign=\"top\">        Bill Payments      </td>      <td valign=\"top\">        Bill.Payment.Created         <br />        Bill.Payment.Updated        <br />        Bill.Payment.Deleted      </td>      <td>        <span style=\"background:none;font-family:courier,serif;font-size:12px;\">          {          <br/>&nbsp;&nbsp;EventName: [string],          <br/>&nbsp;&nbsp;EventDateTime: [datetime],           <br/>&nbsp;&nbsp;AccountId: [integer],          <br/>&nbsp;&nbsp;PaymentId: [integer]          <br/>&nbsp;&nbsp;BillIds: [          <br/>&nbsp;&nbsp;  [integer]          <br/>&nbsp;&nbsp;]          <br/>          }        </span>      </td>    </tr>  <tr>      <td valign=\"top\">        Budgets      </td>      <td valign=\"top\">        Budget.Created         <br />        Budget.Updated        <br />        Budget.Deleted      </td>      <td>        <span style=\"background:none;font-family:courier,serif;font-size:12px;\">          {          <br/>&nbsp;&nbsp;EventName: [string],          <br/>&nbsp;&nbsp;EventDateTime: [datetime],           <br/>&nbsp;&nbsp;AccountId: [integer],          <br/>&nbsp;&nbsp;BudgetId: [integer]          <br/>          }        </span>      </td>    </tr>  <tr>      <td valign=\"top\">        General Ledger Accounts      </td>      <td valign=\"top\">        GLAccount.Created         <br />        GLAccount.Updated        <br />        GLAccount.Deleted      </td>      <td>        <span style=\"background:none;font-family:courier,serif;font-size:12px;\">          {          <br/>&nbsp;&nbsp;EventName: [string],          <br/>&nbsp;&nbsp;EventDateTime: [datetime],           <br/>&nbsp;&nbsp;AccountId: [integer],          <br/>&nbsp;&nbsp;GLAccountId: [integer]          <br/>          }        </span>      </td>    </tr>  <tr>  <tr>      <td valign=\"top\">        Integrations      </td>      <td valign=\"top\">        Installation.Created         <br />        Installation.Updated        <br />        Installation.Deleted      </td>      <td>        <span style=\"background:none;font-family:courier,serif;font-size:12px;\">          {          <br/>&nbsp;&nbsp;EventName: [string],          <br/>&nbsp;&nbsp;EventDateTime: [datetime],           <br/>&nbsp;&nbsp;AccountId: [integer],          <br/>&nbsp;&nbsp;IntegrationName: [string]          <br/>          }        </span>      </td>    </tr>  <tr valign=\"top\">      <td valign=\"top\">          Lease Move Outs      </td>      <td valign=\"top\">          Lease.MoveOut.Created      </td>      <td>         <span style=\"background:none;font-family:courier,serif;font-size:12px;\">          {          <br/>&nbsp;&nbsp;EventName: [string],          <br/>&nbsp;&nbsp;EventDateTime: [datetime],           <br/>&nbsp;&nbsp;AccountId: [integer],          <br/>&nbsp;&nbsp;LeaseId: [integer],          <br/>&nbsp;&nbsp;TenantId: [integer]          <br/>          }        </span>       </td>  </tr>  <tr>      <td valign=\"top\">        Lease Tenants      </td>      <td valign=\"top\">        LeaseTenant.Created         <br />        LeaseTenant.Updated        <br />        LeaseTenant.Deleted      </td>      <td>        <span style=\"background:none;font-family:courier,serif;font-size:12px;\">          {          <br/>&nbsp;&nbsp;EventName: [string],          <br/>&nbsp;&nbsp;EventDateTime: [datetime],           <br/>&nbsp;&nbsp;AccountId: [integer],          <br/>&nbsp;&nbsp;TenantId: [integer]          <br/>          }        </span>      </td>    </tr>  <tr>      <td valign=\"top\">        Lease Transactions      </td>      <td valign=\"top\">        LeaseTransaction.Created         <br />        LeaseTransaction.Updated        <br />        LeaseTransaction.Deleted      </td>      <td>        <span style=\"background:none;font-family:courier,serif;font-size:12px;\">          {          <br/>&nbsp;&nbsp;EventName: [string],          <br/>&nbsp;&nbsp;EventDateTime: [datetime],           <br/>&nbsp;&nbsp;AccountId: [integer],          <br/>&nbsp;&nbsp;TransactionId: [integer],          <br/>&nbsp;&nbsp;TransactionType: [string]          <br/>          }        </span>      </td>    </tr>  <tr>      <td valign=\"top\">        Leases      </td>      <td valign=\"top\">        Lease.Created         <br />        Lease.Updated        <br />        Lease.Deleted      </td>      <td>        <span style=\"background:none;font-family:courier,serif;font-size:12px;\">          {          <br/>&nbsp;&nbsp;EventName: [string],          <br/>&nbsp;&nbsp;EventDateTime: [datetime],           <br/>&nbsp;&nbsp;AccountId: [integer],          <br/>&nbsp;&nbsp;LeaseId: [integer]          <br/>          }        </span>      </td>    </tr>  <tr>      <td valign=\"top\">        Listings      </td>      <td valign=\"top\">        Listing.Created         <br />        Listing.Updated        <br />        Listing.Deleted      </td>      <td>        <span style=\"background:none;font-family:courier,serif;font-size:12px;\">          {          <br/>&nbsp;&nbsp;EventName: [string],          <br/>&nbsp;&nbsp;EventDateTime: [datetime],           <br/>&nbsp;&nbsp;AccountId: [integer],          <br/>&nbsp;&nbsp;UnitId: [integer]          <br/>          }        </span>      </td>    </tr>  <tr>      <td valign=\"top\">        Phone Logs      </td>      <td valign=\"top\">        PhoneLog.Created         <br />        PhoneLog.Updated        <br />        PhoneLog.Deleted      </td>      <td>        <span style=\"background:none;font-family:courier,serif;font-size:12px;\">          {          <br/>&nbsp;&nbsp;EventName: [string],          <br/>&nbsp;&nbsp;EventDateTime: [datetime],           <br/>&nbsp;&nbsp;AccountId: [integer],          <br/>&nbsp;&nbsp;PhoneLogId: [integer]          <br/>          }        </span>      </td>    </tr>  <tr>      <td valign=\"top\">        Rental Meter Readings      </td>      <td valign=\"top\">        Rental.MeterReading.Created         <br />        Rental.MeterReading.Updated        <br />        Rental.MeterReading.Deleted      </td>      <td>        <span style=\"background:none;font-family:courier,serif;font-size:12px;\">          {          <br/>&nbsp;&nbsp;EventName: [string],          <br/>&nbsp;&nbsp;EventDateTime: [datetime],           <br/>&nbsp;&nbsp;AccountId: [integer],          <br/>&nbsp;&nbsp;PropertyId: [integer],          <br/>&nbsp;&nbsp;ReadingDate: [date],          <br/>&nbsp;&nbsp;MeterType: [string]            <br/>          }        </span>      </td>  </tr>    <tr>      <td valign=\"top\">        Rental Properties      </td>      <td valign=\"top\">        Rental.Created        <br />        Rental.Updated        <br />        Rental.Deleted      </td>      <td>        <span style=\"background:none;font-family:courier,serif;font-size:12px;\">{<br/>&nbsp;&nbsp;EventName: [string],<br/>&nbsp;&nbsp;EventDateTime: [datetime],<br/>&nbsp;&nbsp;AccountId: [integer],<br/>&nbsp;&nbsp;PropertyId: [integer]<br/>}</span>      </td>    </tr>  <tr>      <td valign=\"top\">        Rental Units      </td>      <td valign=\"top\">        RentalUnit.Created         <br />        RentalUnit.Updated        <br />        RentalUnit.Deleted      </td>      <td>        <span style=\"background:none;font-family:courier,serif;font-size:12px;\">          {          <br/>&nbsp;&nbsp;EventName: [string],          <br/>&nbsp;&nbsp;EventDateTime: [datetime],           <br/>&nbsp;&nbsp;AccountId: [integer],          <br/>&nbsp;&nbsp;UnitId: [integer]          <br/>          }        </span>      </td>    </tr>  <tr>      <td valign=\"top\">        Task Categories      </td>      <td valign=\"top\">        TaskCategory.Created         <br />        TaskCategory.Updated        <br />        TaskCategory.Deleted      </td>      <td>        <span style=\"background:none;font-family:courier,serif;font-size:12px;\">          {          <br/>&nbsp;&nbsp;EventName: [string],          <br/>&nbsp;&nbsp;EventDateTime: [datetime],           <br/>&nbsp;&nbsp;AccountId: [integer],          <br/>&nbsp;&nbsp;TaskCategoryId: [integer]          <br/>          }        </span>      </td>  </tr>  <tr>      <td valign=\"top\">        Task History      </td>      <td valign=\"top\">        Task.History.Created         <br />        Task.History.Updated        <br />        Task.History.Deleted      </td>      <td>        <span style=\"background:none;font-family:courier,serif;font-size:12px;\">          {          <br/>&nbsp;&nbsp;EventName: [string],          <br/>&nbsp;&nbsp;EventDateTime: [datetime],           <br/>&nbsp;&nbsp;AccountId: [integer],          <br/>&nbsp;&nbsp;TaskId: [integer],          <br/>&nbsp;&nbsp;TaskHistoryId: [integer],          <br/>          }        </span>      </td>  </tr>  <tr>      <td valign=\"top\">        Tasks      </td>      <td valign=\"top\">        Task.Created         <br />        Task.Updated        <br />        Task.Deleted      </td>      <td>        <span style=\"background:none;font-family:courier,serif;font-size:12px;\">          {          <br/>&nbsp;&nbsp;EventName: [string],          <br/>&nbsp;&nbsp;EventDateTime: [datetime],           <br/>&nbsp;&nbsp;AccountId: [integer],          <br/>&nbsp;&nbsp;TaskId: [integer],          <br/>&nbsp;&nbsp;TaskType: [string]          <br/>          }        </span>      </td>    </tr>  <tr>      <td valign=\"top\">        Vendor Categories      </td>      <td valign=\"top\">        VendorCategory.Created         <br />        VendorCategory.Updated        <br />        VendorCategory.Deleted      </td>      <td>        <span style=\"background:none;font-family:courier,serif;font-size:12px;\">          {          <br/>&nbsp;&nbsp;EventName: [string],          <br/>&nbsp;&nbsp;EventDateTime: [datetime],           <br/>&nbsp;&nbsp;AccountId: [integer],          <br/>&nbsp;&nbsp;VendorCategoryId: [integer]          <br/>          }        </span>      </td>    </tr>  <tr>      <td valign=\"top\">        Vendors      </td>      <td valign=\"top\">        Vendor.Created         <br />        Vendor.Updated        <br />        Vendor.Deleted      </td>      <td>        <span style=\"background:none;font-family:courier,serif;font-size:12px;\">          {          <br/>&nbsp;&nbsp;EventName: [string],          <br/>&nbsp;&nbsp;EventDateTime: [datetime],           <br/>&nbsp;&nbsp;AccountId: [integer],          <br/>&nbsp;&nbsp;VendorId: [integer]          <br/>          }        </span>      </td>    </tr>  <tr>  <tr>      <td valign=\"top\">        Vendor Transactions      </td>      <td valign=\"top\">        Vendor.Transaction.Created         <br />        Vendor.Transaction.Updated        <br />        Vendor.Transaction.Deleted      </td>      <td>        <span style=\"background:none;font-family:courier,serif;font-size:12px;\">          {          <br/>&nbsp;&nbsp;EventName: [string],          <br/>&nbsp;&nbsp;EventDateTime: [datetime],           <br/>&nbsp;&nbsp;AccountId: [integer],          <br/>&nbsp;&nbsp;TransactionId: [integer]          <br/>&nbsp;&nbsp;TransactionType: [string]          <br/>&nbsp;&nbsp;VendorId: [integer]          <br/>          }        </span>      </td>    </tr>  <tr>  <tr>      <td valign=\"top\">        Work Orders      </td>      <td valign=\"top\">        WorkOrder.Created        <br />        WorkOrder.Updated        <br />        WorkOrder.Deleted      </td>      <td>        <span style=\"background:none;font-family:courier,serif;font-size:12px;\">          {          <br/>&nbsp;&nbsp;EventName: [string],          <br/>&nbsp;&nbsp;EventDateTime: [datetime],           <br/>&nbsp;&nbsp;AccountId: [integer],          <br/>&nbsp;&nbsp;WorkOrderId: [integer]          <br/>          }        </span>      </td>    </tr>      </table>      # Changelog  ### 2025-07-15  #### API Updates  * Added `Unknown` to the email recipient types that can be returned as part of [retrieve all email recipients](#tag/Communications/operation/ExternalApiEmailRecipients_GetEmailRecipients)    ### 2025-05-20  #### API Updates  * Endpoints to retrieve lease and ownership data without requiring a specific `leaseId` or `owernshipAccountId` have been released:    * [Retrieve all lease renewal history](#tag/Leases/operation/ExternalApiLeaseRenewalsRead_GetLeaseRenewalHistory)    * [Retrieve all recurring transactions for all leases](#tag/Lease-Transactions/operation/ExternalApiLeaseRecurringTransactions_GetRecurringTransactionsForAllLeases)    * [Retrieve all recurring transactions for all ownership accounts](#tag/Ownership-Account-Transactions/operation/ExternalApiOwnershipAccountRecurringTransactions_GetRecurringTransactionsForAllOwnershipAccounts)    * [Retrieve all rent schedules](#tag/Leases/operation/ExternalApiLeaseRent_GetRentPaged)      * Please note that `LastUpdatedDateTime` on rent resources returned by this endpoint will be `null` unless the rent was modified after the date of this release.  * The general ledger transactions response will now include a new property `Application` that contains the `Id` and the resource path `Href` of the application associated with the transaction. This will be available for the following endpoints:      * [Retrieve a general ledger transaction](#tag/General-Ledger/operation/ExternalApiGeneralLedgerTransactions_GetTransactionById)      * [Retrieve all general ledger transactions](#tag/General-Ledger/operation/ExternalApiGeneralLedgerTransactions_GetAllTransactions)  * The following general ledger transactions endpoints now support application transactions:      * [Retrieve a general ledger transaction](#tag/General-Ledger/operation/ExternalApiGeneralLedgerTransactions_GetTransactionById)      * [Retrieve all general ledger transactions](#tag/General-Ledger/operation/ExternalApiGeneralLedgerTransactions_GetAllTransactions)    ### 2025-04-17  #### API Updates  * The ability to retrieve application transactions has been released:      * [Retrieve all application transactions](#tag/Application-Transactions/operation/ExternalApiApplicationLedgerTransactions_GetApplicationTransactions)      * [Retrieve an application transaction](#tag/Application-Transactions/operation/ExternalApiApplicationLedgerTransactions_GetLeaseLedgerTransactionById)  * The ability to retrieve application outstanding balances has been released:      * [Retrieve all outstanding balances](#tag/Application-Transactions/operation/ExternalApiApplicationOutstandingBalances_GetApplicationOutstandingBalances)  * The ability to retrieve, create, and update application charges has been released:      * [Retrieve all charges](#tag/Application-Transactions/operation/ExternalApiApplicationLedgerCharges_GetApplicationCharges)      * [Retrieve a charge](#tag/Application-Transactions/operation/ExternalApiApplicationLedgerCharges_GetApplicationLedgerChargeById)      * [Create a charge](#tag/Application-Transactions/operation/ExternalApiApplicationLedgerCharges_CreateApplicationLedgerCharge)      * [Update a charge](#tag/Application-Transactions/operation/ExternalApiApplicationLedgerCharges_UpdateApplicationLedgerCharge)  * The ability to create and update application payments has been released:      * [Create a payment](#tag/Application-Transactions/operation/ExternalApiApplicationLedgerPayments_CreateApplicationLedgerPayment)      * [Update a payment](#tag/Application-Transactions/operation/ExternalApiApplicationLedgerPayments_UpdateApplicationLedgerPayment)  * The ability to create application auto allocated payments has been released:      * [Create a payment (auto allocated)](#tag/Application-Transactions/operation/ExternalApiApplicationLedgerAutoAllocatedPayments_CreateApplicationAutoAllocatedPayment)  * The ability to create application payment reversals payments has been released:      * [Create a payment reversal](#tag/Application-Transactions/operation/ExternalApiApplicationLedgerPaymentReversals_CreateApplicationLedgerReversePayment)  * The ability to retrieve and create application refunds has been released:      * [Retrieve a refund](#tag/Application-Transactions/operation/ExternalApiApplicationLedgerRefunds_GetApplicationLedgerRefundById)      * [Create a refund](#tag/Application-Transactions/operation/ExternalApiApplicationLedgerRefunds_CreateApplicationLedgerRefund)  * The applicant response from the following applicant endpoints will now include a collection of objects under a new property named `UnsubmittedApplications` that includes the identifiers of applications that haven't been submitted:      * [Retrieve all applicants](#tag/Applicants/operation/ExternalApiApplicants_GetApplicants)      * [Retrieve an applicant](#tag/Applicants/operation/ExternalApiApplicants_GetApplicantById)      * [Create an applicant](#tag/Applicants/operation/ExternalApiApplicants_CreateApplicant)      * [Update an applicant](#tag/Applicants/operation/ExternalApiApplicants_UpdateApplicant)    #### Webhook Updates  * New [webhook events](#section/Webhooks/Webhook-Events) have been added for the following resources:      - Application transactions (created and updated).    ### 2025-02-24  #### API Updates  * Added `Unknown` to the entity types that can be returned as part of [retrieve all files](#tag/Files/operation/ExternalApiFiles_GetFiles) and [retrieve a file](#tag/Files/operation/ExternalApiFiles_GetFileById).    ### 2025-02-18  #### API Updates  * `VendorCreditIds` has been added as an optional property to allow using vendor credits when [creating a bill payment](#tag/Bills/operation/ExternalApiBillPaymentsWrite_CreateBillPayment).  * `PaymentAllocations` has been added as an optional property to allow partially paying bill line items when [creating a payment for multiple bills with one check](#tag/Bills/operation/ExternalApiBillPaymentsWrite_CreateMultipleBillPayments).    ### 2025-01-21  * Added guidance on including secondary sorts on unique properties to preserve sort order when paginating to the [bulk request options](#section/API-Overview/Bulk-Request-Options) section.    ### 2024-12-17  #### API Updates  * Multiple bills per work order are now returned by the `BillTransactionIds` field from the following endpoints:    - [Create a work order](#tag/Work-Orders/operation/ExternalApiWorkOrders_CreateWorkOrder)    - [Update a work order](#tag/Work-Orders/operation/ExternalApiWorkOrders_UpdateWorkOrder)    - [Retrieve a work order](#tag/Work-Orders/operation/ExternalApiWorkOrders_GetWorkOrderById)    ### 2024-11-19  #### API Updates  * Partial payment setting resources have been released:    * [Retrieve the partial payment settings for residents](#tag/Administration/operation/ExternalApiPartialPaymentGlobalSettings_GetGlobalPartialPaymentSettings)    * [Retrieve all partial payment settings for a lease](#tag/Leases/operation/ExternalApiLeasePartialPaymentSettings_GetLeasePartialPaymentSettings)    * [Retrieve all partial payment settings for an ownership account](#tag/Ownership-Accounts/operation/ExternalApiOwnershipAccountsPartialPaymentSettings_GetOwnershipAccountPartialPaymentSettings)    * [Update the partial payment settings for residents](#tag/Administration/operation/ExternalApiPartialPaymentGlobalSettings_PatchGlobalPartialPaymentSettings)    * [Update partial payment settings for a lease](#tag/Leases/operation/ExternalApiLeaseUpdatePartialPaymentSettings_PatchLeasePartialPaymentSettings)    * [Update partial payment settings for an ownership account](#tag/Ownership-Accounts/operation/ExternalApiOwnershipAccountUpdatePartialPaymentSettings_PatchOwnershipAccountPartialPayment)  * Multiple work orders can now be created for the same task, when [creating a work order](#tag/Work-Orders/operation/ExternalApiWorkOrders_CreateWorkOrder)  * `Title`, `DueDate`, `Priority`, and `Status` are now supported fields for work orders. These values can be retrieved, created, or updated for the following endpoints:    - [Retrieve all work orders](#tag/Work-Orders/operation/ExternalApiWorkOrders_GetAllWorkOrders)    - [Create a work order](#tag/Work-Orders/operation/ExternalApiWorkOrders_CreateWorkOrder)    - [Update a work order](#tag/Work-Orders/operation/ExternalApiWorkOrders_UpdateWorkOrder)    - [Retrieve a work order](#tag/Work-Orders/operation/ExternalApiWorkOrders_GetWorkOrderById)  * Multiple entry contact users are now retrieved, created, or updated via the `EntryContacts` property for the following endpoints:    - [Create a work order](#tag/Work-Orders/operation/ExternalApiWorkOrders_CreateWorkOrder)    - [Update a work order](#tag/Work-Orders/operation/ExternalApiWorkOrders_UpdateWorkOrder)    - [Retrieve a work order](#tag/Work-Orders/operation/ExternalApiWorkOrders_GetWorkOrderById)  * When [retrieving work orders](#tag/Work-Orders/operation/ExternalApiWorkOrders_GetAllWorkOrders), using the `statuses`, `duedatefrom`, `duedateto`, `priorities`, or `title` query parameters will now search against the new work order fields, rather than the task fields.  * `FirstOccurrenceDate` has been added to recurring transaction resources:    * [Retrieve all recurring transactions for a lease](#tag/Lease-Transactions/operation/ExternalApiLeaseRecurringTransactions_GetLeaseRecurringTransactions)    * [Retrieve all recurring transactions for an ownership account](#tag/Ownership-Account-Transactions/operation/ExternalApiOwnershipAccountRecurringTransactions_GetAssociationRecurringTransaction)    ### 2024-09-17  #### API Updates  * `BillId` can optionally be provided to the [Lease Ledger's Create a charge](#tag/Lease-Transactions/operation/ExternalApiLeaseLedgerChargesWrite_CreateCharge)    or the [Ownership Account's Ledger](#tag/Ownership-Account-Transactions/operation/ExternalApiOwnershipAccountLedgerCharges_CreateCharge)    to tie a charge to a bill.  * Read endpoints for lease and ownership account ledger charges have been released:      - [Lease Ledger's Retrieve all charges](#tag/Lease-Transactions/operation/ExternalApiLeaseLedgerChargesRead_GetAllCharges)      - [Lease Ledger's Retrieve a charge](#tag/Lease-Transactions/operation/ExternalApiLeaseLedgerChargesRead_GetChargeById)      - [Ownership Account Ledger's Retrieve all charges](#tag/Ownership-Account-Transactions/operation/ExternalApiOwnershipAccountLedgerCharges_GetAllOwnershipAccountCharges)      - [Ownership Account Ledger's Retrieve a charge](#tag/Ownership-Account-Transactions/operation/ExternalApiOwnershipAccountLedgerCharges_GetOwnershipAccountChargeById)    ### 2024-08-20  #### API Updates  * Accounts receivable, accounts payable, undeposited funds, and bank account ids can no longer be used in lines when [creating](#tag/Bank-Accounts/operation/ExternalApiBankAccountChecks_CreateBankAccountCheck) or [updating](#tag/Bank-Accounts/operation/ExternalApiBankAccountChecks_UpdateCheckForBankAccount) checks. Doing so will result in a 422 Unprocessible Entity result.  * The following template ids can no longer be used when [sending an email](#tag/Communications/operation/ExternalApiEmailsWrite_CreateEmail). Doing so will result in a 422 Unprocessible Entity result.      * 1 (Tenant Statement)      * 2 (Homeowner Statement)      * 3 (Rental Owner Statement)      * 123 (Association Tenant Invoice)      * 124 (Rental Tenant Invoice)  * `UnitIds` is available as a filter option for [retrieving all tenants](#tag/Rental-Tenants/operation/ExternalApiRentalTenants_GetAllTenants).  * `LastUpdatedDateTime` has been added to applicant resources.  * `LastUpdatedFrom` and `LastUpdatedTo` are available as filter options for [retrieving all applicants](#tag/Applicants/operation/ExternalApiApplicants_GetApplicants).  * `PrimaryAddress`, `AlternateAddress`, and `MailingPreference` have been added to association owner resources when [retrieving all association lockbox data](#tag/Associations/operation/ExternalApiAssociationBankLockBoxData_GetBankLockBoxData).      ### 2024-07-16  #### API Updates  * The ability to retrieve and create architectural requests for associations has been released:      * [Retrieve all architectural requests](#tag/Architectural-Requests/operation/ExternalApiAssociationArchitecturalRequests_GetArchitecturalRequests)      * [Create an architectural request](#tag/Architectural-Requests/operation/ExternalApiAssociationArchitecturalRequests_CreateArchitecturalRequestAsync)      * [Retrieve an architectural request](#tag/Architectural-Requests/operation/ExternalApiAssociationArchitecturalRequests_GetArchitecturalRequestById)      * [Retrieve all files for an architectural request](#tag/Architectural-Requests/operation/ExternalApiAssociationArchitecturalRequests_GetArchitecturalRequestFilesHistoryPagedAsync)      * [Upload an architectural request file](#tag/Architectural-Requests/operation/ExternalApiAssociationArchitecturalRequests_CreateUploadFileRequest)      * [Retrieve an architectural request file](#tag/Architectural-Requests/operation/ExternalApiAssociationArchitecturalRequests_GetArchitecturalRequestFileAsync)      * [Download an architectural request file](#tag/Architectural-Requests/operation/ExternalApiAssociationArchitecturalRequests_DownloadArchitecturalRequestFileAsync)    ### 2024-06-18  #### API Updates  * `AggregateBalancesByUnitId` has been added to the request parameters on the [retrieve all general ledger account balances](#tag/General-Ledger/operation/ExternalApiGLAccountBalances_GetGlAccountBalances) to breakdown balances per unit.    ### 2024-05-21  #### Webhook Updates  * New [webhook events](#section/Webhooks/Webhook-Events) have been added for the following resource:      - Task history    ### 2024-04-23  #### API Updates  * `UserType` has been added to the `CreatedByUser` and `LastUpdatedByUser` properties for task history resources.    ### 2024-04-16  #### API Updates  * General ledger transaction resources can now be filtered by `LastUpdatedFrom` and `LastUpdatedTo`.  * `LastUpdatedDateTime` has been added to general ledger transaction resources.  * The ability to update a deposit withholding has been released.    * [Update a deposit withholding for a lease](#tag/Lease-Transactions/operation/ExternalApiLeaseLedgerDepositWithholding_UpdateDepositWithholding)    * [Update a deposit withholding for an ownership account](#tag/Ownership-Account-Transactions/operation/ExternalApiOwnershipAccountDepositWithholding_UpdateOwnershipAccountDepositWithholding)  * We have released our first PATCH endpoint! PATCH allows for partial updates of resources without having to provide an entire resource representation in a PUT.     * Our first PATCH endpoint provides the ability to [Update a bill](#tag/Bills/operation/ExternalApiBills_PatchBill).    ### 2024-03-19  #### API Updates  * The ability to create and update rent schedules been released:    * [Create a rent schedule](#tag/Leases/operation/ExternalApiLeaseRent_CreateRentSchedule)    * [Update a rent schedule](#tag/Leases/operation/ExternalApiLeaseRent_UpdateRentSchedule)  * Reconciliation resources have been released:    * [Retrieve all reconciliations](#tag/Bank-Accounts/operation/ExternalApiBankAccountReconciliationsRead_GetReconciliations)    * [Retrieve a reconciliation](#tag/Bank-Accounts/operation/ExternalApiBankAccountReconciliationsRead_GetReconciliationById)    * [Retrieve all transactions for a reconciliation](#tag/Bank-Accounts/operation/ExternalApiBankAccountReconciliationsRead_GetBankAccountReconciliationTransactions)    * [Retrieve a reconciliation's balance](#tag/Bank-Accounts/operation/ExternalApiBankAccountReconciliationsRead_GetReconciliationBalanceById)    * [Create a reconciliation](#tag/Bank-Accounts/operation/ExternalApiBankAccountPendingReconciliations_CreatePendingReconciliations)    * [Update a reconciliation](#tag/Bank-Accounts/operation/ExternalApiBankAccountReconciliationsWrite_UpdateReconciliation)    * [Update a reconciliation's balance](#tag/Bank-Accounts/operation/ExternalApiBankAccountReconciliationsWrite_UpdateReconciliationBalances)    * [Finalize a manual reconciliation](#tag/Bank-Accounts/operation/ExternalApiBankAccountReconciliationFinalize_FinalizeReconciliation)    * [Clear transactions for a reconciliation](#tag/Bank-Accounts/operation/ExternalApiBankAccountReconciliationsWrite_ClearTransactions)    * [Un-clear transactions for a reconciliation](#tag/Bank-Accounts/operation/ExternalApiBankAccountReconciliationsWrite_UnclearTransactions)  * General ledger transactions results can now be filtered by unit through the `selectionentityunitid` field:    * [Retrieve all general ledger transactions](#tag/General-Ledger/operation/ExternalApiGeneralLedgerTransactions_GetAllTransactions)    ### 2024-02-20  #### API Updates  * Meter reading resources and webhook events have been released:      * [Delete meter reading details for an association and date](#tag/Association-Meter-Readings/operation/ExternalApiAssociationDeleteMeterReadingDetails_DeleteMeterReadingDetailsForAssociation)      * [Delete meter reading details for a rental and date](#tag/Rental-Meter-Readings/operation/ExternalApiRentalDeleteMeterReadingDetails_DeleteMeterReadingDetailsForRental)      * [Retrieve all meter reading details for an association](#tag/Association-Meter-Readings/operation/ExternalApiAssociationMeterReadingDetails_GetAssociationMeterReadingDetailsAsync)      * [Retrieve all meter reading details for a rental](#tag/Rental-Meter-Readings/operation/ExternalApiRentalMeterReadingDetails_GetMeterReadingDetailsForRentalAsync)      * [Retrieve all meter readings for an association](#tag/Association-Meter-Readings/operation/ExternalApiAssociationMeterReadingsRead_GetMeterReadingsForAssociation)      * [Retrieve all meter readings for a rental](#tag/Rental-Meter-Readings/operation/ExternalApiRentalMeterReadingsRead_GetMeterReadingsForRental)      * [Create/Update meter reading details for a rental](#tag/Rental-Meter-Readings/operation/ExternalApiRentalMeterReadingDetailsUpsert_UpsertMeterReadingDetailsForRentalAsync)      * [Create/Update meter reading details for an association](#tag/Association-Meter-Readings/operation/ExternalApiAssociationMeterReadingDetailsUpsert_UpsertAssociationMeterReadingDetailsAsync)    ### 2024-01-23  #### API Updates  * Unit level accounting changes have been released:    * `UnitId` has been added, as optional, to the `AccountingEntity` property for accounting transactions request resources.     * `Unit` has been added to the `AccountingEntity` property for accounting transactions response resources.    * As part of those changes listed above, the following endpoints have been updated:        * [Create a check](#tag/Bank-Accounts/operation/ExternalApiBankAccountChecks_CreateBankAccountCheck)        * [Update a check](#tag/Bank-Accounts/operation/ExternalApiBankAccountChecks_UpdateCheckForBankAccount)        * [Retrieve a check](#tag/Bank-Accounts/operation/ExternalApiBankAccountChecks_GetCheckForBankAccount)        * [Retrieve all checks](#tag/Bank-Accounts/operation/ExternalApiBankAccountChecks_GetBankAccountChecks)        * [Create a deposit](#tag/Bank-Accounts/operation/ExternalApiBankAccountDeposits_CreateBankAccountDeposit)        * [Update a deposit](#tag/Bank-Accounts/operation/ExternalApiBankAccountDeposits_UpdateBankAccountDeposit)        * [Retrieve a deposit](#tag/Bank-Accounts/operation/ExternalApiBankAccountDeposits_GetBankAccountDepositById)        * [Retrieve all deposits](#tag/Bank-Accounts/operation/ExternalApiBankAccountDeposits_GetBankAccountDeposits)        * [Create a quick deposit](#tag/Bank-Accounts/operation/ExternalApiBankAccountQuickDeposits_CreateQuickDeposit)        * [Update a quick deposit](#tag/Bank-Accounts/operation/ExternalApiBankAccountQuickDeposits_UpdateQuickDeposit)        * [Retrieve a quick deposit](#tag/Bank-Accounts/operation/ExternalApiBankAccountQuickDeposits_GetQuickDepositById)        * [Retrieve all quick deposits](#tag/Bank-Accounts/operation/ExternalApiBankAccountQuickDeposits_GetAllQuickDeposits)        * [Create a bill](#tag/Bills/operation/ExternalApiBills_CreateBill)        * [Update a bill](#tag/Bills/operation/ExternalApiBills_UpdateBill)        * [Retrieve a bill](#tag/Bills/operation/ExternalApiBills_GetBillById)        * [Retrieve all bills](#tag/Bills/operation/ExternalApiBills_GetBillsAsync)        * [Create a bill payment](#tag/Bills/operation/ExternalApiBillPaymentsWrite_CreateBillPayment)        * [Retrieve a bill payment](#tag/Bills/operation/ExternalApiBillPaymentsRead_GetBillPaymentById)        * [Retrieve all bill payments](#tag/Bills/operation/ExternalApiBillPaymentsRead_GetBillPayments)        * [Create a withdrawal](#tag/Bank-Accounts/operation/ExternalApiBankAccountWithdrawals_CreateWithdrawalForBankAccount)        * [Update a withdrawal](#tag/Bank-Accounts/operation/ExternalApiBankAccountWithdrawals_UpdateBankAccountWithdrawal)        * [Retrieve a withdrawal](#tag/Bank-Accounts/operation/ExternalApiBankAccountWithdrawals_UpdateBankAccountWithdrawal)        * [Retrieve all withdrawals](#tag/Bank-Accounts/operation/ExternalApiBankAccountWithdrawals_GetBankAccountWithdrawals)        * [Create a transfer](#tag/Bank-Accounts/operation/ExternalApiBankAccountTransfers_CreateBankAccountTransfer)        * [Update a transfer](#tag/Bank-Accounts/operation/ExternalApiBankAccountTransfers_UpdateBankAccountTransfer)        * [Retrieve a transfer](#tag/Bank-Accounts/operation/ExternalApiBankAccountTransfers_GetBankAccountTransferById)        * [Retrieve all transfers](#tag/Bank-Accounts/operation/ExternalApiBankAccountTransfers_GetBankAccountTransfers)        * [Create a credit](#tag/Vendors/operation/ExternalApiVendorCreditsWrite_CreateVendorCredit)        * [Retrieve a credit](#tag/Vendors/operation/ExternalApiVendorCredits_GetVendorCredit)        * [Create a refund](#tag/Vendors/operation/ExternalApiVendorRefundsWrite_CreateVendorRefund)        * [Retrieve a refund](#tag/Vendors/operation/ExternalApiVendorRefunds_GetVendorRefund)        * [Create a general journal entry](#tag/General-Ledger/operation/ExternalApiGeneralLedgerJournalEntries_CreateGeneralJournalEntry)        * [Update a general journal entry](#tag/General-Ledger/operation/ExternalApiGeneralLedgerJournalEntries_UpdateGeneralJournalEntry)        * [Retrieve a general ledger transaction](#tag/General-Ledger/operation/ExternalApiGeneralLedgerTransactions_GetTransactionById)        * [Retrieve all general ledger transactions](/#tag/General-Ledger/operation/ExternalApiGeneralLedgerTransactions_GetAllTransactions)        * [Retrieve all general ledger entries](#tag/General-Ledger/operation/ExternalApiGeneralLedger_GetGeneralLedgerEntries)    * `UnitId` has been added to the `Lines` property for lease accounting transactions response resources.        * [Retrieve all lease transactions](#tag/Lease-Transactions/operation/ExternalApiLeaseLedgerTransactions_GetLeaseLedgers)        * [Retrieve a lease transaction](#tag/Lease-Transactions/operation/ExternalApiLeaseLedgerTransactions_GetLeaseLedgerTransactionById)        * [Create a charge](#tag/Lease-Transactions/operation/ExternalApiLeaseLedgerChargesWrite_CreateCharge)        * [Update a charge](#tag/Lease-Transactions/operation/ExternalApiLeaseLedgerChargesWrite_UpdateLeaseCharge)        * [Create a payment](#tag/Lease-Transactions/operation/ExternalApiLeaseLedgerPaymentsWrite_CreatePayment)        * [Create a payment (auto allocated)](#tag/Lease-Transactions/operation/ExternalApiLeaseAutoAllocatedPayment_CreateLeaseAutoAllocatedPayment)        * [Create a payment reversal](#tag/Lease-Transactions/operation/ExternalApiLeaseLedgerPaymentReversalsWrite_CreateLeaseReversePayment)        * [Create a credit](#tag/Lease-Transactions/operation/ExternalApiLeaseLedgerCreditsWrite_CreateLeaseCredit)        * [Create a deposit withholding](#tag/Lease-Transactions/operation/ExternalApiLeaseLedgerDepositWithholding_CreateLeaseLedgerDepositWithholding)  * Requests to [create a deposit](#tag/Bank-Accounts/operation/ExternalApiBankAccountDeposits_CreateBankAccountDeposit) that contain payment ids that do not exist or have already been deposited will include those payment ids in the error response.  * The ability to update a ledger payment has been released for [leases](#tag/Lease-Transactions/operation/ExternalApiLeaseLedgerPaymentsWrite_UpdateLeaseLedgerPayment) and [ownership accounts](#tag/Ownership-Account-Transactions/operation/ExternalApiOwnershipAccountLedgerPayments_UpdateOwnershipAccountLedgerPayment).    ### 2023-12-12  #### API Updates  * File sharing resources have been released:    * [Retrieve a file's share settings](#tag/Files/operation/ExternalApiFileSharing_GetFileShareSettingsById)    * [Update a file's share settings](#tag/Files/operation/ExternalApiFileSharing_UpdateFileSharingSetting)  * `TransactionTypeEnum` has been added as a property to lease and ownership account transaction response resources.  * `MoveInDate` has been added as a property to each resource in the `Tenants` property of a lease resource.      ### 2023-11-14  #### API Updates  * The ability to set sharing options while [creating a resident request task](#tag/Resident-Requests/operation/ExternalApiResidentRequestTasks_CreateResource) has been released.  * `AccountNumberUnmasked` has been added as a property to bank account response resources.  * `DelinquencyStatus` has been added as a property to each Ownership Account in the response for association lockbox data response resources.    ### 2023-10-17  #### API Updates  * Check files endpoints have been released:    * [Retrieve all files for a check](#tag/Bank-Accounts/operation/ExternalApiBankAccountCheckFiles_GetFilesForBankAccountCheck)    * [Retrieve a file for a check](#tag/Bank-Accounts/operation/ExternalApiBankAccountCheckFiles_GetBankAccountCheckFileById)    * [Download a file for a check](#tag/Bank-Accounts/operation/ExternalApiBankAccountCheckFileDownloadRequests_DownloadCheckFile)    * [Upload a file for a check](#tag/Bank-Accounts/operation/ExternalApiBankAccountCheckFileUploads_CreateCheckUploadFileRequest)    * [Delete a file for a check](#tag/Bank-Accounts/operation/ExternalApiBankAccountCheckFiles_DeleteBankAccountCheckFile)  * The ability to [create a payment for multiple bills with one check](#tag/Bills/operation/ExternalApiBillPaymentsWrite_CreateMultipleBillPayments) has been released.    ### 2023-09-19  #### API Updates  * Lease ePay settings endpoints have been released:    * [Retrieve ePay settings for a lease](#operation/ExternalApiLeaseEpaySettings_GetLeaseEpaySettingsById)    * [Update ePay settings for a lease](#operation/ExternalApiLeaseEpaySettings_UpdateLeaseEpaySettings)  * The ability to filter [ownership accounts](#operation/ExternalApiOwnershipAccounts_GetAllOwnershipAccounts) and [associations](#operation/ExternalApiAssociations_GetAssociations) by ids has been released.    ### 2023-08-16  #### API Updates  * Rental owner contribution request endpoints have been released:    * [Retrieve contribution details included for a rental owner contribution request](#operation/ExternalApiRentalOwnerRequestTasks_GetRentalOwnerRequestTaskContributionData)    * [Update contribution details included for a rental owner contribution request](#operation/ExternalApiRentalOwnerRequestTasks_UpdateRentalOwnerRequestTaskContributionData)  * The ability to [retrieve all association bank lockbox data](#operation/ExternalApiAssociationBankLockBoxData_GetBankLockBoxData) has been released.  * The ability to create payments using configured allocation settings have been released:    * [Create a lease ledger payment with automatic allocations](#operation/ExternalApiLeaseAutoAllocatedPayment_CreateLeaseAutoAllocatedPayment)    * [Create an ownership account ledger payment with automatic allocations](#operation/ExternalApiOwnershipAccountAutoAllocatedPayment_CreateOwnershipAccountAutoAllocatedPayment)  * Budget resources will now round values within the `MonthlyAmounts` collection to two decimal places.      ### 2023-07-18  #### API Updates  * The ability to [retrieve all general ledger entries](#operation/ExternalApiGeneralLedger_GetGeneralLedgerEntries) has been released.  * Retail cash user endpoints have been released:    * [Retrieve all retail cash users](#operation/ExternalApiRetailCashRead_GetRetailCashUsers)    * [Retrieve a retail cash user](#operation/ExternalApiRetailCashRead_GetRetailCashUser)    * [Update a retail cash user](#operation/ExternalApiRetailCashWrite_UpdateRetailCashUser)  * `TaxInformation` has been added as a property to Association response resources.  * `TaxInformation` has been added as an optional property when [creating an association](#operation/ExternalApiAssociations_CreateAssociation).    #### Webhook Updates  * New [webhook events](#section/Webhooks/Webhook-Events) have been added for the following resources:      - Vendor transactions      ### 2023-06-20  #### API Updates  * The ability to [retrieve all lease renewals](#operation/ExternalApiLeaseRenewalsRead_GetAllLeaseRenewalsForAllProperties) has been released.  * Image management endpoints have been released:    * Retrieve images for [rentals](#operation/ExternalApiRentalImages_GetRentalImages) and [rental units](#operation/ExternalApiRentalUnitImages_GetRentalUnitImages)    * Retrieve an image for [rentals](#operation/ExternalApiRentalImages_GetRentalImageById) and [rental units](#operation/ExternalApiRentalUnitImages_GetRentalUnitImageById)    * Update an image for [rentals](#operation/ExternalApiRentalImages_UpdateRentalImage) and [rental units](#operation/ExternalApiRentalUnitImages_UpdateRentalUnitImage)    * Delete an image for [rentals](#operation/ExternalApiRentalImages_DeleteRentalImage) and [rental units](#operation/ExternalApiRentalUnitImages_DeleteRentalUnitImage)    * Reorder images for [rentals](#operation/ExternalApiRentalImageOrder_ReorderRentalImages) and [rental units](#operation/ExternalApiRentalUnitImageOrder_ReorderRentalUnitImages)     * Upload photos for [rentals](#operation/ExternalApiRentalImageUploadRequests_CreateUploadFileRequestAsync) and [rental units](#operation/ExternalApiRentalUnitImageUploadRequests_CreateUploadFileRequestAsync)    * Create images using video links for [rentals](#operation/ExternalApiRentalImageVideoLinkRequests_CreateVideoLinkRequest) and [rental units](#operation/ExternalApiRentalUnitImageVideoLinkRequests_CreateUnitVideoLinkRequest)    * Download an image for [rentals](#operation/ExternalApiRentalImageDownloadRequests_GetRentalImageDownloadUrlById) and [rental units](#operation/ExternalApiRentalUnitImageDownloadRequests_GetRentalUnitImageDownloadUrlById)    ### 2023-05-16  #### API Updates  * `TenantIds` and `ApplicantIds` can optionally be provided to the [create a lease](#operation/LeasesExternalApi_CreateLease) endpoint.  * The `Lines` property for recurring charge transactions is now populated on the following endpoints:    * [Retrieve all recurring transactions for a lease](#operation/LeaseRecurringTransactionsExternalApi_GetLeaseRecurringTransactions)    * [Retrieve all recurring transactions for an ownership account](#operation/OwnershipAccountRecurringTransactionsExternalApi_GetAssociationRecurringTransaction)  * EPay settings endpoints have been released:    * [Retrieve EPay settings for a rental](#operation/RentalEpaySettingsExternalApi_GetEPaySettingsForRentalProperty)    * [Update EPay settings for a rental](#operation/RentalEpaySettingsExternalApi_UpdateEPaySettingsForRental)    * [Retrieve EPay settings for an association](#operation/AssociationsEPaySettingsExternalApi_GetEPaySettingsForAssociationById)    * [Update EPay settings for an association](#operation/AssociationsEPaySettingsExternalApi_UpdateEPaySettingsForAssociation)  * The ability to inactivate or reactivate rentals and associations have been released:    * [Inactivate a rental](#operation/ExternalApiRentalsActiveStatus_InactivateRentalProperty)    * [Reactivate a rental](#operation/ExternalApiRentalsActiveStatus_ReactivateRentalProperty)    * [Inactivate an association](#operation/ExternalApiAssociationActiveStatus_InactivateAssociation)    * [Reactivate an association](#operation/ExternalApiAssociationActiveStatus_ReactivateAssociation)  * Renters insurance endpoints have been released:    * [Retrieve all renters insurance policies](#operation/RentersInsuranceExternalApi_GetRentersInsurancePolicies)    * [Retrieve a renters insurance policy](#operation/RentersInsuranceExternalApi_GetRentersInsurancePolicyById)  * Applicant `Status` has been added to the response for the following endpoints:    * [Retrieve all applicants](#operation/ApplicantsExternalApi_GetApplicants)    * [Retrieve an applicant](#operation/ApplicantsExternalApi_GetApplicantById)    * [Create an applicant](#operation/ApplicantsExternalApi_CreateApplicant)    ### 2023-04-18  #### API Updates  * The ability to retrieve accounting lock periods has been released:    - [Retrieve accounting lock periods](#operation/AccountingLockPeriodExternalApi_GetAccountingLockPeriodSettings)  * Email related endpoints have been released:    - [Retrieve all emails](#operation/EmailsExternalApi_GetEmails)    - [Retrieve an email](#operation/EmailsExternalApi_GetEmailById)    - [Create an email](#operation/EmailsExternalApiWrite_CreateEmail)    - [Retrieve all email recipients](#operation/EmailsExternalApi_GetEmailRecipients)    - [Retrieve all communication templates](#operation/MailingTemplatesExternalApi_GetMailingTemplates)    - [Retrieve a communication template](#operation/MailingTemplatesExternalApi_GetMailingTemplatesById)  * The ability to retrieve resident center users has been released:    - [Retrieve all resident center users](#operation/ResidentCenterUsersExternalApi_GetResidentCenterUsers)  * Vendor transaction related endpoints have been released:    - [Create a credit](#operation/VendorCreditsWriteExternalApi_CreateVendorCredit)    - [Retrieve a credit](#operation/VendorCreditsExternalApi_GetVendorCredit)    - [Create a refund](#operation/VendorRefundsWriteExternalApi_CreateVendorRefund)    - [Retrieve a refund](#operation/VendorRefundsExternalApi_GetVendorRefund)  * Lease and ownership account deposit and charge related endpoints have been released:    - [Create an ownership account deposit withholding](#operation/OwnershipAccountDepositWithholdingExternalApi_CreateOwnershipAccountDepositWithholding)    - [Update an ownership account charge](#operation/OwnershipAccountsLedgerExternalApi_UpdateOwnershipAccountCharge)    - [Create a lease deposit withholding](#operation/LeaseLedgerDepositWithholdingExternalApi_CreateLeaseLedgerDepositWithholding)    - [Update a lease charge](#operation/LeaseLedgerTransactionsExternalApi_UpdateLeaseCharge)  * The [create a lease](#operation/LeasesExternalApi_CreateLease) endpoint now includes the ability to provide amounts for `ProratedFirstMonthRent` and `ProratedLastMonthRent`.    ### 2023-03-21  #### API Updates  * Property groups related endpoints have been released:      - [Retrieve all property groups](#operation/PropertyGroupsExternalApi_GetPropertyGroups)      - [Retrieve a property group](#operation/PropertyGroupsExternalApi_GetPropertyGroupById)      - [Create a property group](#operation/PropertyGroupsExternalApi_CreatePropertyGroup)      - [Update a property group](#operation/PropertyGroupsExternalApi_UpdatePropertyGroup)  * Bill files related endpoints have been released:      - [Retrieve all files for a bill](#operation/BillsFilesExternalApi_GetAllFilesForBill)      - [Retrieve a file for a bill](#operation/BillsFilesExternalApi_GetBillFileById)      - [Upload a bill file](#operation/BillFileUploadsExternalApi_CreateUploadFileRequest)      - [Download a bill file](#operation/BillsFilesExternalApi_DownloadBillFile)      - [Delete a bill file](#operation/BillsFilesExternalApi_DeleteBillFile)  * Bill payment creation has been released:      - [Create a bill payment](#operation/BillPaymentsWriteExternalApi_CreateBillPayment)  * Bills can now be filtered by approval statuses:      - [Retrieve all bills](#operation/BillsExternalApi_GetBillsAsync)  * The bill message now includes an `ApprovalStatus` field.  * The lease message now includes a `Tenants` collection, which includes the `Id` and `Status` of all tenants that have ever been associated with the lease.  * The [create a property](#operation/RentalsExternalApi_CreateRentalProperty) now includes an optional `Units` field for providing unit information for the rental property being created.    ### 2023-02-21  #### API Updates  * Lease renewal related endpoints have been released:      - [Retrieve all lease renewals](#operation/LeaseRenewalsExternalApiRead_GetAllLeaseRenewals)      - [Retrieve a lease renewal](#operation/LeaseRenewalsExternalApiRead_GetLeaseRenewalById)      - [Create a lease renewal](#operation/LeaseRenewalsExternalApiWrite_CreateLeaseRenewal)    ### 2022-12-13  #### API Updates  * Accounting related endpoints have been released:      - [Create a general ledger account](#operation/GeneralLedgerAccountsExternalApi_CreateGeneralLedgerAccount)      - [Update a general ledger account](#operation/GeneralLedgerAccountsExternalApi_UpdateGLAccount)  * The general ledger account message will now include `DefaultAccountName` and `ParentGLAccountId`.  * Filtering by last updated date and time capabilities have been released for the following endpoint:      - [Retrieve all leases](#operation/LeasesExternalApi_GetLeases)  * The lease message will now include `LastUpdatedDateTime`.    ### 2022-11-15  #### API Updates  * Endpoints for announcements have been released:      - [Retrieve all announcements](#operation/AnnouncementsExternalApi_GetAllAnnouncements)      - [Retrieve an announcement](#operation/AnnouncementsExternalApi_GetAnnouncementById)      - [Retrieve all announcement properties](#operation/AnnouncementsExternalApi_GetAnnouncementProperties)      - [Create an announcement](#operation/AnnouncementsExternalApi_CreateAnnouncement)      - [Expire an announcement](#operation/AnnouncementsExpirationExternalApi_ExpireAnnouncement)  * The [create an owner](#operation/RentalOwnersExternalApi_CreateRentalOwner) endpoint now accepts optional tax information.  * The [retrieve all owners](#operation/RentalOwnersExternalApi_GetRentalOwners) and [retrieve an owner](#operation/RentalOwnersExternalApi_GetRentalOwnerById) endpoints now return tax information.    ### 2022-10-18  #### API Updates  * Task history related endpoints have been released! You can now retrieve and update task history notes as well as upload and download task history file attachments.      - [Retrieve all task history](#operation/TaskHistoryExternalApi_GetTaskHistories)      - [Retrieve a task history](#operation/TaskHistoryExternalApi_GetTaskHistoryById)      - [Update a task history](#operation/TaskHistoryExternalApi_UpdateTaskHistory)      - [Retrieve task history file meta data](#operation/TaskHistoryFilesExternalApi_GetAllTaskHistoryFiles)      - [Upload a task history file](#operation/TaskHistoryFileUploadsExternalApi_CreateUploadFileRequestAsync)      - [Download a task history file](#operation/TaskHistoryFileDownloadsExternalApi_GetFileDownloadRequest)      - [Delete a task history file](#operation/TaskHistoryFilesExternalApi_DeleteTaskHistoryFile)    #### Webhook Updates  * New [webhook events](#section/Webhooks/Webhook-Events) have been added for the following resources:       - Bank Accounts      - Bank Account Transactions      - Bills      - Bill Payments      - Budgets      - General Ledger Accounts      - Phone logs    ### 2022-09-20  #### API Updates  * Accounting related endpoints have been released:      - [Create a general journal entry](#operation/GeneralJournalEntriesExternalApi_CreateGeneralJournalEntry)      - [Update a general journal entry](#operation/GeneralJournalEntriesExternalApi_UpdateGeneralJournalEntry)      - [Retrieve a lease ledger refund](#operation/LeaseLedgerRefundsExternalApi_GetLeaseLedgerRefundById)      - [Create a lease ledger refund](#operation/LeaseLedgerRefundsExternalApi_CreateLeaseLedgerRefund)      - [Retrieve an ownership account refund](#operation/OwnershipAccountRefundExternalApi_GetOwnershipAccountRefundById)      - [Create and ownership account refund](#operation/OwnershipAccountRefundExternalApi_CreateOwnershipAccountRefund)    #### Webhook Updates  * Webhooks have been released! Please refer to the [Webhooks](#section/Webhooks) section of the documentation for more details.    ### 2022-08-16  #### API Updates  * The [retrieve account info](#operation/AdministrationExternalApi_GetAccountInfo) endpoint now includes `Id` and `Url` fields.   * Endpoints for recurring transactions have been released for leases:    - [Retrieve all recurring transactions](#operation/LeaseRecurringTransactionsExternalApi_GetLeaseRecurringTransactions)     - [Retrieve a recurring charge](#operation/LeaseChargeRecurringTransactionsExternalApi_GetLeaseChargeRecurringTransactionById)    - [Create a recurring charge](#operation/LeaseChargeRecurringTransactionsExternalApi_CreateLeaseChargeRecurringTransaction)    - [Retrieve a recurring payment](#operation/LeaseRecurringPaymentsExternalApi_GetRecurringLeasePaymentsById)    - [Create a recurring payment](#operation/LeaseRecurringPaymentsExternalApi_CreateLeaseRecurringPayment)    - [Retrieve a recurring credit](#operation/LeaseRecurringCreditsExternalApi_GetLeaseRecurringCreditById)    - [Create a recurring credit](#operation/LeaseRecurringCreditsExternalApi_CreateLeaseCreditRecurringTransaction)  * Endpoints for recurring transactions have been released for ownership accounts:    - [Retrieve all recurring transactions](#operation/OwnershipAccountRecurringTransactionsExternalApi_GetAssociationRecurringTransaction)    - [Retrieve a recurring charge](#operation/OwnershipAccountChargeRecurringTransactionsExternalApi_GetOwnershipAccountsChargeRecurringTransactionById)    - [Create a recurring charge](#operation/OwnershipAccountChargeRecurringTransactionsExternalApi_CreateOwnershipAccountsChargeRecurringTransaction)    - [Retrieve a recurring payment](#operation/OwnershipAccountRecurringPaymentsExternalApi_GetRecurringOwnershipAccountPaymentsById)    - [Create a recurring payment](#operation/OwnershipAccountRecurringPaymentsExternalApi_CreateOwnershipAccountRecurringPayment)    - [Retrieve a recurring credit](#operation/OwnershipAccountRecurringCreditsExternalApi_GetOwnershipAccountRecurringCreditById)    - [Create a recurring credit](#operation/OwnershipAccountRecurringCreditsExternalApi_CreateOwnershipAccountCreditRecurringTransaction)  * The [Create Resident Requests](#operation/ResidentRequestTasksExternalApi_CreateResource) endpoint now supports `IsEntryPermittedByResident`, `DoesResidentHavePets`, and `ResidentEntryNotes` as optional inputs.    ### 2022-07-19   #### API Updates  * The general ledger account message will now include the account's status. This value comes back in a property named `IsActive` on the following endpoints:    - [Retrieve all bills](#operation/BillsExternalApi_GetBillsAsync)    - [Create a bill](#operation/BillsExternalApi_CreateBill)    - [Retrieve a bill](#operation/BillsExternalApi_GetBillById)    - [Update a bill](#operation/BillsExternalApi_UpdateBill)    - [Retrieve all general ledger transactions](#operation/GeneralLedgerExternalApi_GetAllTransactions)    - [Retrieve a general ledger transaction](#operation/GeneralLedgerExternalApi_GetTransactionById)    - [Retrieve all general ledger accounts](#operation/AccountingExternalApi_GetAllGLAccounts)    - [Retrieve a general ledger account](#operation/AccountingExternalApi_GetGlAccountById)    - [Retrieve all general ledger account balances](#operation/GLAccountBalancesExternalApi_GetGlAccountBalances)    - [Retrieve all bank accounts](#operation/BankAccountsExternalApi_GetAllBankAccounts)    - [Create a bank account](#operation/BankAccountsExternalApi_CreateBankAccount)    - [Retrieve a bank account](#operation/BankAccountsExternalApi_GetBankAccount)    - [Update a bank account](#operation/BankAccountsExternalApi_UpdateBankAccount)    - [Retrieve a transfer](#operation/BankAccountTransfersExternalApi_GetBankAccountTransferById)    - [Create a ledger charge](#operation/OwnershipAccountsLedgerExternalApi_CreateCharge)    - [Create a ledger credit](#operation/OwnershipAccountsLedgerExternalApi_CreateOwnershipAccountCredit)    - [Create a ledger payment](#operation/OwnershipAccountsLedgerExternalApi_CreateOwnershipAccountLedgerPayment)    - [Retrieve ownership account transactions](#operation/OwnershipAccountsLedgerExternalApi_GetOwnershipAccountLedger)    - [Retrieve an ownership account transaction](#operation/OwnershipAccountsLedgerExternalApi_GetOwnershipAccountTransactionById)    - [Create a charge](#operation/LeaseLedgerTransactionsExternalApi_CreateCharge)    - [Create a credit](#operation/LeaseLedgerTransactionsExternalApi_CreateLeaseCredit)    - [Create a payment](#operation/LeaseLedgerTransactionsExternalApi_CreatePayment)    - [Create a payment reversal](#operation/LeaseLedgerTransactionsExternalApi_CreateLeaseReversePayment)    - [Retrieve all lease transactions](#operation/LeaseLedgerTransactionsExternalApi_CreateLeaseReversePayment)    - [Retrieve a lease transaction](#operation/LeaseLedgerTransactionsExternalApi_GetLeaseLedgers)  * Filtering by last updated date and time capabilities have been released for the following endpoint:    - [Retrieve all vendors](#operation/VendorsExternalApi_GetAllVendors)    ### 2022-06-14  #### API Updates  * Budgets capabilities have been released including:    - The ability to [retrieve all budgets](#operation/BudgetsExternalApi_GetBudgets)    - The ability to [retrieve a budget](#operation/BudgetsExternalApi_GetBudgetById)    - The ability to [create a budget](#operation/BudgetsExternalApi_CreateBudget)    - The ability to [update a budget](#operation/BudgetsExternalApi_UpdateBudget)    ### 2022-05-24  #### API Updates  * When [creating a resident request](#operation/ResidentRequestTasksExternalApi_CreateResource), if AssignedToUserId is not provided, assignment rules in the resident center settings (if configured) will be used for assignment.  * Filtering by last updated date and time capabilities have been released for the following endpoints:    - [Associations](#operation/AssociationsExternalApi_GetAssociations)     - [Association units](#operation/AssociationUnitsExternalApi_GetAllAssociationUnits)    - [Association owners](#operation/AssociationOwnersExternalApi_GetAllAssociationOwners)    - [Association tenants](#operation/AssociationTenantsExternalApi_GetAssociationTenants)    - [Rental properties](#operation/RentalsExternalApi_GetAllRentals)    - [Rental units](#operation/RentalUnitsExternalApi_GetAllRentalUnits)    - [Rental owners](#operation/RentalOwnersExternalApi_GetRentalOwners)    - [Rental tenants](#operation/RentalTenantsExternalApi_GetAllTenants)    ### 2022-04-19  #### API Updates  * Preferred vendor capabilities have been released including:    - The ability to [retrieve](#operation/AssociationPreferredVendorsExternalApi_GetAssociationPreferredVendors) and [update](#operation/AssociationPreferredVendorsExternalApi_UpdateAssociationPreferredVendors) preferred vendors for associations.    - The ability to [retrieve](#operation/RentalPreferredVendorsExternalApi_GetRentalPreferredVendors) and [update](#operation/RentalPreferredVendorsExternalApi_UpdateRentalPreferredVendors) preferred vendors for rental properties.    ### 2022-03-22  #### API Updates  * [Association owners](#operation/AssociationOwnersExternalApi_GetAllAssociationOwners), [association tenants](#operation/AssociationTenantsExternalApi_GetAssociationTenants) and [board members](#operation/AssociationBoardMembersExternalApi_GetAllAssociationBoardMembers) are now filterable by their created date and time.  * Appliance information and service history is now available for [associations](#tag/Association-Appliances) and [rental properties](#tag/Rental-Appliances).  * [Lease rent schedules](#operation/LeaseRentExternalApi_GetRent) are now available.      ### 2022-02-15  #### API Updates  * Additional rental data is now available including:    - The ability to retrieve and update rental amenities for properties and units.    - The ability to [retrieve](#operation/LeasesExternalApi_GetLeaseMoveOutInformationById), [create](#operation/LeasesExternalApi_CreateMoveOutData) and [delete](#operation/LeasesExternalApi_UndoTenantMoveout) lease move out dates.    - The ability to [create a payment reversal](#operation/LeaseLedgerTransactionsExternalApi_CreateLeaseReversePayment).  * Additional applicant capabilities are available including:    - The ability to [retrieve](#operation/ApplicantNotesExternalApi_GetAllApplicantNotes) and [create](#operation/ApplicantNotesExternalApi_CreateApplicantNote) applicant notes.    - When an applicant is converted to a tenant a new `TenantId` field on the applicant message will link the two resources.    - The ability to filter the [Retrieve all Applicants](#operation/ApplicantsExternalApi_GetApplicants) endpoint by email address.  * The ability to [retrieve file metadata](#operation/FilesExternalApi_GetFiles) as well as [upload](#operation/FilesUploadsExternalApi_CreateUploadFileRequestAsync) and [download](#operation/FileDownloadExternalApi_GetFileDownloadUrlAsync) files related to the following resources - Accounts, Associations, Association Owners, Association Units, Leases, Ownership Accounts, Public Assets, Rentals, Rental Owners, RentalUnits, Tenants and Vendors.      ### 2022-01-18  #### API Updates  * Additional association data is now available including:    - The ability [retrieve](#operation/AssociationBoardMembersExternalApi_GetAllAssociationBoardMembers), [create](#operation/AssociationBoardMembersExternalApi_CreateBoardMember) and [delete](#operation/AssociationBoardMembersExternalApi_DeleteBoardMember) association board members.    - Association fiscal month and day can now be retrieved and updated as part of the Association endpoints.    - Staff members can now be assigned as the association manager for a given association.  * Additional association owner data is now available including:    - Association owner occupancy status can be [retrieved](#operation/AssociationOwnersExternalApi_GetUnitOccupancyStatusesForAssociationOwner) and [updated](#operation/AssociationOwnersExternalApi_UpdateAssociationOwnerOccupancyStatus).    - Association owner tax payer identification number can be retrieved and updated as part of the association owner endpoints.    - The date and time the association owner record was created is now being returned in the response payload.  * Additional association tenant features are now available including:    - The ability to set the move out date.    - The date and time the association tenant record was created is now being returned in the response payload.  * [Updating bills](#operation/BillsExternalApi_UpdateBill) now includes the ability to edit line items.  * The ability to retrieve [client leads](#tag/Client-Leads) has been introduced. Note, this data is only available if you have an [All Property Management](https://www.allpropertymanagement.com/) account.    ### 2021-12-14  #### API Updates  * Additional bank account endpoints have been added to retrieve, create and update bank accounts and bank account transactions.    ### 2021-11-16  #### API Updates  * The URL to the rental application for listings is now being returned in a new property called `RentalApplicationUrl`. This new property is included in the following endpoints:    - [Retrieve all listings](#operation/ListingsExternalApi_GetListingsAsync)    - [Retrieve a listing](#operation/ListingsExternalApi_GetListingForUnitAsync)    - [Create a listing](#operation/ListingsExternalApi_UpsertListingsAsync)  * `AssignedToUserId` is no longer required as input for the following endpoints:    - [Create a rental owner request](#operation/RentalOwnerRequestTasksExternalApi_CreateRentalOwnerRequestTask)    - [Update a rental owner request](#operation/RentalOwnerRequestTasksExternalApi_UpdateRentalOwnerRequestTask)    - [Create a resident request](#operation/ResidentRequestTasksExternalApi_CreateResource)    - [Update a resident request](#operation/ResidentRequestTasksExternalApi_UpdateResource)  * Ability to retrieve a single association ownership account transaction has been released:    - [Retrieve a single ownership account transaction](#operation/OwnershipAccountsLedgerExternalApi_GetOwnershipAccountTransactionById)    ### 2021-10-19  #### API Updates  * The taxpayer identifier for rental tenants is now being returned in a new property named `TaxId`. This new property is included in the following endpoints:    - [Retrieve all tenants](#operation/TenantsExternalApi_GetAllTenants)    - [Retrieve a tenant](#operation/TenantsExternalApi_GetTenantById)    - [Create a rental tenant](#operation/TenantsExternalApi_CreateRentalTenant)    - [Update a rental tenant](#operation/TenantsExternalApi_UpdateRentalTenant)    - [Retrieve all leases](#operation/LeasesExternalApi_GetLeases)    - [Retrieve a lease](#operation/LeasesExternalApi_GetLeaseById)    - [Create a lease](#operation/LeasesExternalApi_CreateLease)    - [Update a lease](#operation/LeasesExternalApi_UpdateLease)  * The lease message has been updated to include the day of the month the tenant payments are due. This value comes back in a property named `PaymentDueDay` on the following the following endpoints:    - [Retrieve all leases](#operation/LeasesExternalApi_GetLeases)    - [Retrieve a lease](#operation/LeasesExternalApi_GetLeaseById)    - [Create a lease](#operation/LeasesExternalApi_CreateLease)    - [Update a lease](#operation/LeasesExternalApi_UpdateLease)  * Rental and association messages will now include the operating bank account identifier. This value comes back in a new property named `OperatingBankAccountId` on the following endpoints:    - [Retrieve all associations](#operation/AssociationsExternalApi_GetAssociations)    - [Retrieve an association](#operation/AssociationsExternalApi_GetAssociationById)    - [Create an association](#operation/AssociationsExternalApi_CreateAssociation)    - [Update an association](#operation/AssociationsExternalApi_UpdateAssociation)    - [Retrieve all rental properties](#operation/RentalsExternalApi_GetAllRentals)    - [Retrieve a rental property](#operation/RentalsExternalApi_GetRentalById)    - [Create a rental property](#operation/RentalsExternalApi_CreateRentalProperty)    - [Update a rental property](#operation/RentalsExternalApi_UpdateRentalProperty)    ### 2021-09-21  #### API Updates  * Outstanding balance resource capabilities have been released. Outstanding balances can be retrieved for the following resources:    - [Leases](#operation/LeasesExternalApi_GetLeaseOutstandingBalances)    - [Ownership Accounts](#operation/OwnershipAccountsExternalApi_GetOwnershipAccountOutstandingBalances)  * Work order id will be returned on bills, and is an optional input for creating a bill:    - [Retrieve all bills](#operation/BillsExternalApi_GetBillsAsync)    - [Retrieve a bill](#operation/BillsExternalApi_GetBillById)    - [Create a bill](#operation/BillsExternalApi_CreateBill)      ### 2021-08-24  #### API Updates  * Note read and write capabilities have been released. Notes can be retrieved, created, updated for the following resources:    - Rentals - [properties](#operation/RentalsExternalApi_GetRentalNotes), [units](#operation/RentalsExternalApi_GetRentalUnitNotes), [owners](#operation/RentalsExternalApi_GetRentalOwnerNotes), [leases](#operation/LeasesExternalApi_GetLeaseNotes) and [tenants](#operation/TenantsExternalApi_GetAllTenantNotes)    - Associations - [properties](#operation/AssociationsExternalApi_GetAssociationNotes), [units](#operation/AssociationsExternalApi_GetAssociationUnitNotes), [owners](#operation/AssociationOwnersExternalApi_GetAssociationOwnerNotes), [ownership accounts](#operation/OwnershipAccountsExternalApi_GetAssociationOwnershipAccountNotes) and [tenants](#operation/AssociationTenantsExternalApi_GetAssociationTenantNotes)    - [Vendors](#operation/VendorExternalApi_GetVendorNotes)    - [Applicant Groups](#operation/ApplicantGroupsExternalApi_GetApplicantGroupNotes)        ### 2021-07-20  #### API Updates  * Rental applicant, applicant groups and application write capabilities have been released. These new endpoints will support creating and updating rental applicants and applicant groups as well as enabling the updating of rental application statuses.    - [Create an Applicant Group](#operation/ApplicantGroupsExternalApi_CreateApplicantGroup)    - [Update an Applicant Group](#operation/ApplicantGroupsExternalApi_UpdateApplicantGroup)    - [Create an Applicant](#operation/ApplicantsExternalApi_CreateApplicant)    - [Update an Applicant](#operation/ApplicantsExternalApi_UpdateApplicant)    - [Update an Application](#operation/ApplicantsExternalApi_UpdateApplication)      ### 2021-06-22  #### API Updates  * Bill and bill payment resources have been released. These new endpoints will support retrieve, create and update functionality for bills and retrieve functionality for bill payments. Creating and updating bill payments will be available in a future release.    - [Retrieve bills](#operation/BillsExternalApi_GetBillsAsync)    - [Create a bill](#operation/BillsExternalApi_CreateBill)    - [Update a bill](#operation/BillsExternalApi_UpdateBill)    - [Retrieve bill payments](#operation/BillsExternalApi_GetBillPayments)  * Rental applicant, applicant groups and application read capabilities have been released. These new endpoints will support retrieving rental applicants, applicant groups and their rental applications. Creating and updating applicants and applicant groups will be available in a future release.    - [Retrieve Applicant Groups](#operation/ApplicantGroupsExternalApi_GetApplicantGroups)    - [Retrieve Applicants](#operation/ApplicantsExternalApi_GetApplicants)    - [Retrieve Applications](#operation/ApplicantsExternalApi_GetApplicationsForApplicant)  * Rental leases can now be filtered by the date and time they were created. The lease created date and time are also being returned as part of the lease response message.    - [Retrieve all leases](#operation/LeasesExternalApi_GetLeases)        ### 2021-05-18  #### API Updates  * Work order resources have been released. These new endpoints will support retrieve, create and update functionality for work orders. Review the [Work Order](#tag/Work-Orders) documentation for more information.  * Create capabilities have been released for association ownership account and rental lease ledger transactions. These new endpoints will allow for the creation of ledger charges, payments and credits.    - [Create Rental Lease Ledger Payments](#operation/LeaseLedgerTransactionsExternalApi_CreatePayment)    - [Create Rental Lease Ledger Credits](#operation/LeaseLedgerTransactionsExternalApi_CreateLeaseCredit)    - [Create Association Ownership Account Ledger Charges](#operation/OwnershipAccountsLedgerExternalApi_CreateCharge)    - [Create Association Ownership Account Ledger Payments](#operation/OwnershipAccountsLedgerExternalApi_CreateOwnershipAccountLedgerPayment)    - [Create Association Ownership Account Ledger Credits](#operation/OwnershipAccountsLedgerExternalApi_CreateOwnershipAccountCredit)      ### 2021-04-20  #### API Updates  * Task resources have been released. These new endpoints will support retrieve, create and update functionality for all task request types. Review the [Tasks](#tag/Tasks) documentation for more information.  * Vendor create and update capabilities have been released. These new endpoints will support creating and updating vendors.    - [Create Vendors](#operation/VendorExternalApi_CreateVendor)    - [Update Vendors](#operation/VendorExternalApi_UpdateVendor)    ### 2021-02-16  #### API Updates  * Phone log resources have been released. These new endpoints will support create, update and retrieve functionality for [phone logs](#operation/PhoneLogsExternalApi_GetPhoneLogs).  * Enhancements to the leases resource have been released. These new endpoints will support create and update functionality for [leases](#operation/LeasesExternalApi_CreateLease).  * Ability to filter by phone has been released for the following:    - [Rental Owners](#operation/RentalsExternalApi_GetRentalOwners)    - [Vendors](#operation/VendorExternalApi_GetAllVendors)    ### 2020-12-15  #### API Updates  * Rental listing resources have been released. These new endpoints will support create and retrieve functionality for:    - [Listing Contacts](#operation/ListingContactsExternalApi_GetAllListingContacts)    - [Listings](#operation/ListingsExternalApi_GetListingsAsync)    ### 2020-11-17  #### API Updates  * Create capabilities have been released for the following resources:    - [Rental Tenants](#operation/TenantsExternalApi_CreateRentalTenant)    - [Association Ownership Accounts](#operation/OwnershipAccountsExternalApi_CreateAssociationOwnershipAccount)    - [Association Owners](#operation/AssociationOwnersExternalApi_CreateAssociationOwner)  * Update capabilities have been released for the following resources:    - [Rental Tenants](#operation/TenantsExternalApi_UpdateRentalTenant)    - [Association Owners](#operation/AssociationOwnersExternalApi_UpdateAssociationOwner)  * Retrieve all [Association Owners](#operation/AssociationOwnersExternalApi_GetAllAssociationOwners) and [Association Tenants](#operation/AssociationTenantsExternalApi_GetAssociationTenants) can now be filtered by statuses: `Active`, `Past` and `Future`.  * The [rental tenant](#operation/TenantsExternalApi_CreateRentalTenant) message now returns the following properties:    - `AlternateEmail`    - `Comment`    - `MailingPreference`  * The [rental property](#operation/RentalsExternalApi_GetRentalById) message now includes the following properties:    - `OperatingBankAccountId`    - `Reserve`  * The [Association Ownership Account](#operation/OwnershipAccountsExternalApi_GetOwnershipAccountById) message now includes `AssociationOwnerIds` which is a list of all of the association owner identifiers that belong to the ownership account.    ### 2020-10-20  #### API Updates  * Create capabilities have been released for the following resources:    - [Rental Properties](#operation/RentalsExternalApi_CreateRentalProperty)    - [Rental Owners](#operation/RentalsExternalApi_CreateRentalOwner)    - [Rental Units](#operation/RentalsExternalApi_CreateRentalUnit)    - [Asssociation Properties](#operation/AssociationsExternalApi_CreateAssociation)    - [Asssociation Units](#operation/AssociationsExternalApi_CreateAssociationUnit)    - [Asssociation Tenants](#operation/AssociationTenantsExternalApi_CreateAssociationTenant)  * Update capabilities have been released for the following resources:    - [Rental Properties](#operation/RentalsExternalApi_UpdateRentalProperty)    - [Rental Owners](#operation/RentalsExternalApi_UpdateRentalOwner)    - [Rental Units](#operation/RentalsExternalApi_UpdateRentalUnit)    - [Asssociation Properties](#operation/AssociationsExternalApi_UpdateAssociation)    - [Asssociation Units](#operation/AssociationsExternalApi_UpdateAssociationUnit)    - [Asssociation Tenants](#operation/AssociationTenantsExternalApi_UpdateAssociation)    #### Feature Enhancements  * Sandbox environments can now be created for developing and testing your integrations. Learn more about how to take advantage of this new capability in the [API Sandbox](#section/API-Sandbox) section of the documentation.    ### 2020-09-15  #### API Updates  * General ledger account balances are now available through the [Retrieve all general ledger account balances](#operation/GLAccountBalancesExternalApi_GetGlAccountBalances) endpoint. This new endpoint provides the ability to retrieve the general ledger account balances as of a given date.    ### 2020-08-18  #### API Updates  * General ledger transactions are now available through the [Retrieve all general ledger transactions](#operation/GeneralLedgerExternalApi_GetAllTransactions) endpoint. These new endpoints provide the ability to retrieve all transactions or use a set of filters including specific rental/association properties, rental owners, date ranges, and others to find specific transactions.    ### 2020-07-21  #### API Updates  * [Association Owners](#operation/AssociationOwnersExternalApi_GetAllAssociationOwners) response message now returns board member terms including the start date, end date and position.  * Two new resources were added to retrieve [Users](#operation/UsersExternalApi_GetAllUsers) and [User Roles](#operation/UserRolesExternalApi_GetAllUserRoles).  * The [general ledger](#operation/AccountingExternalApi_GetAllGLAccounts) response message now includes the property `IsBankAccount`. This is a boolean property that indicates whether the general ledger account is also a bank account.  * A `Country` property has been added to all Address messages. This property contains an enumeration indicating the country of the address.   
+
+    The version of the OpenAPI document: v1
+    Generated by OpenAPI Generator (https://openapi-generator.tech)
+
+    Do not edit the class manually.
+"""  # noqa: E501
+
+
+__version__ = "0.1.0"
+
+# Define package exports
+__all__ = [
+    "AdministrationApi",
+    "AppliancesApi",
+    "ApplicantsApi",
+    "ApplicationTransactionsApi",
+    "ArchitecturalRequestsApi",
+    "AssociationMeterReadingsApi",
+    "AssociationOwnersApi",
+    "AssociationTenantsApi",
+    "AssociationUnitsApi",
+    "AssociationsApi",
+    "BankAccountsApi",
+    "BillsApi",
+    "BoardMembersApi",
+    "BudgetsApi",
+    "ClientLeadsApi",
+    "CommunicationsApi",
+    "ContactRequestsApi",
+    "CreditCardAccountsApi",
+    "FilesApi",
+    "GeneralLedgerApi",
+    "LeaseTransactionsApi",
+    "LeasesApi",
+    "ListingsApi",
+    "OwnershipAccountTransactionsApi",
+    "OwnershipAccountsApi",
+    "PropertyGroupsApi",
+    "RentalAppliancesApi",
+    "RentalMeterReadingsApi",
+    "RentalOwnerRequestsApi",
+    "RentalOwnersApi",
+    "RentalPropertiesApi",
+    "RentalTenantsApi",
+    "RentalUnitsApi",
+    "ResidentCenterApi",
+    "ResidentRequestsApi",
+    "TasksApi",
+    "ToDoRequestsApi",
+    "VendorsApi",
+    "WorkOrdersApi",
+    "ApiResponse",
+    "ApiClient",
+    "Configuration",
+    "OpenApiException",
+    "ApiTypeError",
+    "ApiValueError",
+    "ApiKeyError",
+    "ApiAttributeError",
+    "ApiException",
+    "AccountInfoMessage",
+    "AccountingEntityMessage",
+    "AccountingEntityPatchMessage",
+    "AccountingEntitySaveMessage",
+    "AccountingLockPeriodMessage",
+    "AccountingSettingsMessage",
+    "AddressMessage",
+    "AllTasksMessage",
+    "AnnouncementMessage",
+    "AnnouncementPostMessage",
+    "AnnouncementSenderMessage",
+    "ApiError",
+    "ApiErrorResponse",
+    "ApplianceMessage",
+    "ApplicantApplicationMessage",
+    "ApplicantDetailsMessage",
+    "ApplicantGroupMessage",
+    "ApplicantGroupPostMessage",
+    "ApplicantGroupPutMessage",
+    "ApplicantMessage",
+    "ApplicantPayeeMessage",
+    "ApplicantPostMessage",
+    "ApplicantPutMessage",
+    "ApplicationAutoAllocatedPaymentPostMessage",
+    "ApplicationChargeLineSaveMessage",
+    "ApplicationChargeMessage",
+    "ApplicationChargePostMessage",
+    "ApplicationChargePutMessage",
+    "ApplicationMessage",
+    "ApplicationOutstandingBalanceMessage",
+    "ApplicationPaymentLineSaveMessage",
+    "ApplicationPaymentPostMessage",
+    "ApplicationPaymentPutMessage",
+    "ApplicationPutMessage",
+    "ApplicationReferenceMessage",
+    "ApplicationRefundLineMessage",
+    "ApplicationRefundLineSaveMessage",
+    "ApplicationRefundMessage",
+    "ApplicationRefundPostMessage",
+    "ApplicationResponseFieldMessage",
+    "ApplicationResponseMessage",
+    "ApplicationReversePaymentChargePostMessage",
+    "ApplicationReversePaymentOtherBankChargePostMessage",
+    "ApplicationReversePaymentPostMessage",
+    "ApplicationSectionResponseMessage",
+    "ApplicationTransactionMessage",
+    "AppliedVendorCreditMessage",
+    "ArchitecturalRequestsPostMessage",
+    "AssociationApplianceMessage",
+    "AssociationAppliancePostMessage",
+    "AssociationAppliancePutMessage",
+    "AssociationApplianceServiceHistoryMessage",
+    "AssociationApplianceServiceHistoryPostMessage",
+    "AssociationArchitecturalRequestFileMessage",
+    "AssociationArchitecturalRequestMessage",
+    "AssociationBoardMemberMessage",
+    "AssociationBoardMemberPostMessage",
+    "AssociationBoardMemberPutMessage",
+    "AssociationMessage",
+    "AssociationOwnerBoardTermMessage",
+    "AssociationOwnerBoardTermPostMessage",
+    "AssociationOwnerMessage",
+    "AssociationOwnerPostMessage",
+    "AssociationOwnerPutMessage",
+    "AssociationOwnerToExistingOwnershipAccountPostMessage",
+    "AssociationOwnerUnitOccupancyPutMessage",
+    "AssociationOwnerUnitOccupancyStatusMessage",
+    "AssociationOwnershipAccountMessage",
+    "AssociationOwnershipAccountPostMessage",
+    "AssociationOwnershipAccountPutMessage",
+    "AssociationPostMessage",
+    "AssociationPreferredVendorMessage",
+    "AssociationPreferredVendorPutMessage",
+    "AssociationPutMessage",
+    "AssociationTaxInformationMessage",
+    "AssociationTenantMessage",
+    "AssociationTenantPostMessage",
+    "AssociationTenantPutMessage",
+    "AssociationUnitMessage",
+    "AssociationUnitPutMessage",
+    "AssociationUnitsPostMessage",
+    "BankAccountCheckAccountingEntitySaveMessage",
+    "BankAccountCheckFileMessage",
+    "BankAccountCheckLineMessage",
+    "BankAccountCheckLineSaveMessage",
+    "BankAccountCheckMessage",
+    "BankAccountCheckPayeeMessage",
+    "BankAccountCheckPayeeSaveMessage",
+    "BankAccountCheckPostMessage",
+    "BankAccountCheckPutMessage",
+    "BankAccountDepositLineMessage",
+    "BankAccountDepositLineSaveMessage",
+    "BankAccountDepositMessage",
+    "BankAccountDepositPostMessage",
+    "BankAccountDepositPutMessage",
+    "BankAccountMessage",
+    "BankAccountPostMessage",
+    "BankAccountPutMessage",
+    "BankAccountQuickDepositMessage",
+    "BankAccountQuickDepositSaveMessage",
+    "BankAccountReconciliationBalanceMessage",
+    "BankAccountReconciliationBalancePutMessage",
+    "BankAccountReconciliationMessage",
+    "BankAccountReconciliationTransactionMessage",
+    "BankAccountTransactionMessage",
+    "BankAccountTransferAccountingEntitySaveMessage",
+    "BankAccountTransferMessage",
+    "BankAccountTransferSaveMessage",
+    "BankAccountWithdrawalMessage",
+    "BankAccountWithdrawalSaveMessage",
+    "BankLockboxDataAssociationMessage",
+    "BankLockboxDataAssociationOwnerMessage",
+    "BankLockboxDataMessage",
+    "BankLockboxDataOwnershipAccountMessage",
+    "BankPendingReconciliationPostMessage",
+    "BankReconciliationClearTransactionsPostMessage",
+    "BankReconciliationClearedBalanceMessage",
+    "BankReconciliationPutMessage",
+    "BankReconciliationStatementBalanceMessage",
+    "BankReconciliationUnclearTransactionsPostMessage",
+    "BillFileMessage",
+    "BillLineItemPatchMessage",
+    "BillLineMessage",
+    "BillLinePostMessage",
+    "BillLinePutMessage",
+    "BillMarkupMessage",
+    "BillMarkupPatchMessage",
+    "BillMarkupSaveMessage",
+    "BillMessage",
+    "BillPatchMessage",
+    "BillPaymentAccountingEntityMessage",
+    "BillPaymentLineMessage",
+    "BillPaymentLinePostMessage",
+    "BillPaymentMessage",
+    "BillPaymentPostMessage",
+    "BillPostMessage",
+    "BillPutMessage",
+    "BudgetDetailsMessage",
+    "BudgetDetailsSaveMessage",
+    "BudgetMessage",
+    "BudgetMonthlyAmountsMessage",
+    "BudgetMonthlyAmountsSaveMessage",
+    "BudgetPostMessage",
+    "BudgetPutMessage",
+    "BulkLeaseRecurringTransactionMessage",
+    "BulkOwnershipAccountRecurringTransactionMessage",
+    "CCPaymentsMessage",
+    "CCPaymentsPutMessage",
+    "ChargeLineMessage",
+    "ChargeRecurringTransactionPostMessage",
+    "ChargeRecurringTransactionPutMessage",
+    "CheckPrintingInfoMessage",
+    "CheckPrintingInfoPostMessage",
+    "CheckPrintingInfoPutMessage",
+    "ClientLeadCreditRequestMessage",
+    "ClientLeadMessage",
+    "ContactDetailMessage",
+    "ContactDetailPhoneMessage",
+    "ContactDetailSaveMessage",
+    "ContactDetailSavePhoneMessage",
+    "ContactInfoMessage",
+    "ContactRequestTaskMessage",
+    "ContactRequestTaskPostMessage",
+    "ContactRequestTaskPutMessage",
+    "CosignerMessage",
+    "CreatedByUserMessage",
+    "CreditCardAccountMessage",
+    "CreditCardAccountPutMessage",
+    "CreditRecurringTransactionPostMessage",
+    "DepositDetailMessage",
+    "EFTPaymentsMessage",
+    "EFTPaymentsPutMessage",
+    "EPaySettingsMessage",
+    "EPaySettingsPutMessage",
+    "ElectronicPaymentsMessage",
+    "EmailMessage",
+    "EmailPostMessage",
+    "EmailRecipientMessage",
+    "EmailSenderMessage",
+    "EmergencyContactMessage",
+    "FileCategoryMessage",
+    "FileCategoryPostMessage",
+    "FileCategoryPutMessage",
+    "FileDownloadMessage",
+    "FileEntityMessage",
+    "FileMessage",
+    "FileNamePostMessage",
+    "FilePutMessage",
+    "FileSharingAccountMessage",
+    "FileSharingAccountPutMessage",
+    "FileSharingAssociationMessage",
+    "FileSharingAssociationOwnerMessage",
+    "FileSharingAssociationOwnerPutMessage",
+    "FileSharingAssociationPutMessage",
+    "FileSharingAssociationUnitMessage",
+    "FileSharingAssociationUnitPutMessage",
+    "FileSharingCommitteeMessage",
+    "FileSharingCommitteePutMessage",
+    "FileSharingLeaseMessage",
+    "FileSharingLeasePutMessage",
+    "FileSharingMessage",
+    "FileSharingOwnershipAccountMessage",
+    "FileSharingOwnershipAccountPutMessage",
+    "FileSharingPutMessage",
+    "FileSharingRentalMessage",
+    "FileSharingRentalOwnerMessage",
+    "FileSharingRentalOwnerPutMessage",
+    "FileSharingRentalPutMessage",
+    "FileSharingRentalUnitMesage",
+    "FileSharingRentalUnitPutMesage",
+    "FileSharingTenantMessage",
+    "FileSharingTenantPutMessage",
+    "FileSharingVendorMessage",
+    "FileSharingVendorPutMessage",
+    "FileUploadPostMessage",
+    "FileUploadTicketMessage",
+    "GLAccountBalanceItemMessage",
+    "GLAccountBalanceMessage",
+    "GLAccountMessage",
+    "GLAccountPostMessage",
+    "GLAccountPutMessage",
+    "GLTransactionMessageV1",
+    "GeneralJournalEntryLineSaveMessage",
+    "GeneralJournalEntryPostMessage",
+    "GeneralJournalEntryPutMessage",
+    "GeneralLedgerEntryMessage",
+    "GeneralLedgerJournalLineMessage",
+    "GeneralLedgerJournalMessage",
+    "GeneralLedgerMessage",
+    "GeneralLedgerTransactionMessage",
+    "ImageReorderRequestPutMessage",
+    "InsuredTenantMessage",
+    "InternalTransactionStatusMessage",
+    "JavaScriptEncoder",
+    "JournalLineMessage",
+    "JournalMessage",
+    "JsonPatchOperation",
+    "LastUpdatedByUserMessage",
+    "LeaseAccountDetailMessage",
+    "LeaseAutoAllocatedPaymentPostMessage",
+    "LeaseChargeLineMessage",
+    "LeaseChargeLineSaveMessage",
+    "LeaseChargeMessage",
+    "LeaseChargePostMessage",
+    "LeaseChargePutMessage",
+    "LeaseChargeRecurringTransactionMessage",
+    "LeaseCosignerPostMessage",
+    "LeaseLedgerCreditLinePostMessage",
+    "LeaseLedgerCreditPostMessage",
+    "LeaseLedgerDepositWithholdingLinePostMessage",
+    "LeaseLedgerDepositWithholdingLinePutMessage",
+    "LeaseLedgerDepositWithholdingPostMessage",
+    "LeaseLedgerDepositWithholdingPutMessage",
+    "LeaseLedgerPaymentLineSaveMessage",
+    "LeaseLedgerPaymentPostMessage",
+    "LeaseLedgerPaymentPutMessage",
+    "LeaseLedgerRefundLineMessage",
+    "LeaseLedgerRefundLinePostMessage",
+    "LeaseLedgerRefundMessage",
+    "LeaseLedgerRefundPostMessage",
+    "LeaseLedgerReversePaymentNSFChargePostMessage",
+    "LeaseLedgerReversePaymentOtherBankChargePostMessage",
+    "LeaseLedgerReversePaymentPostMessage",
+    "LeaseMessage",
+    "LeaseMoveOutDataMessage",
+    "LeaseMoveOutDataPostMessage",
+    "LeaseOutstandingBalanceMessage",
+    "LeasePostMessage",
+    "LeasePutMessage",
+    "LeaseRecurringCreditMessage",
+    "LeaseRecurringPaymentMessage",
+    "LeaseRenewalHistoryMessage",
+    "LeaseRenewalMessage",
+    "LeaseRenewalPostMessage",
+    "LeaseRentChargeMessage",
+    "LeaseRentChargePostMessage",
+    "LeaseRentMessage",
+    "LeaseRentPostMessage",
+    "LeaseSecurityDepositPostMessage",
+    "LeaseTenantMessage",
+    "LeaseTransactionMessage",
+    "ListingContactMessage",
+    "ListingContactSaveMessage",
+    "ListingEntityFilePostMessage",
+    "ListingFileMessage",
+    "ListingMessage",
+    "ListingPropertyMessage",
+    "ListingPutMessage",
+    "ListingUnitMessage",
+    "LockPeriodSettingsGlobalMessage",
+    "LockPeriodSettingsOverridesMessage",
+    "LoggedByStaffUserMessage",
+    "LookupMessage",
+    "MailingTemplateMessage",
+    "MeterReadingDetailMessage",
+    "MeterReadingDetailPutMessage",
+    "MeterReadingDetailsMessage",
+    "MeterReadingDetailsPutMessage",
+    "MeterReadingMessage",
+    "MultipleBillPaymentAllocationLinePostMessage",
+    "MultipleBillPaymentsPostMessage",
+    "NoteMessage",
+    "NotePostMessage",
+    "NotePutMessage",
+    "OfflinePaymentsMessage",
+    "OfflinePaymentsPutMessage",
+    "OutstandingBalancesLineMessage",
+    "OwnershipAccountAutoAllocatedPaymentPostMessage",
+    "OwnershipAccountChargeRecurringTransactionMessage",
+    "OwnershipAccountCreditLinePostMessage",
+    "OwnershipAccountCreditPostMessage",
+    "OwnershipAccountDepositWithholdingLinePostMessage",
+    "OwnershipAccountDepositWithholdingLinePutMessage",
+    "OwnershipAccountDepositWithholdingPostMessage",
+    "OwnershipAccountDepositWithholdingPutMessage",
+    "OwnershipAccountLedgerChargeLineMessage",
+    "OwnershipAccountLedgerChargeLinesPutMessage",
+    "OwnershipAccountLedgerChargeLinesSaveMessage",
+    "OwnershipAccountLedgerChargeMessage",
+    "OwnershipAccountLedgerChargePostMessage",
+    "OwnershipAccountLedgerChargePutMessage",
+    "OwnershipAccountLedgerPaymentLineSaveMessage",
+    "OwnershipAccountLedgerPaymentPostMessage",
+    "OwnershipAccountLedgerPaymentPutMessage",
+    "OwnershipAccountOutstandingBalanceMessage",
+    "OwnershipAccountRecurringCreditMessage",
+    "OwnershipAccountRecurringPaymentMessage",
+    "OwnershipAccountRefundLineMessage",
+    "OwnershipAccountRefundLinesPostMessage",
+    "OwnershipAccountRefundMessage",
+    "OwnershipAccountRefundPostMessage",
+    "OwnershipAccountTransactionMessage",
+    "PaidByMessage",
+    "PartialPaymentSettingsMessage",
+    "PartialPaymentSettingsPatchMessage",
+    "ParticipantMessage",
+    "ParticipantResourceMessage",
+    "PayeeMessage",
+    "PaymentDetailMessage",
+    "PaymentRecurringTransactionPostMessage",
+    "PaymentTransactionsMessage",
+    "PhoneLogMessage",
+    "PhoneLogParticipantPostMessage",
+    "PhoneLogParticipantUnitAgreementPostMessage",
+    "PhoneLogPostMessage",
+    "PhoneLogPutMessage",
+    "PhoneNumberMessage",
+    "PhoneNumbersMessage",
+    "PropertyGroupMessage",
+    "PropertyGroupPostMessage",
+    "PropertyGroupPutMessage",
+    "PropertyManagerMessage",
+    "PropertyMessage",
+    "RecurringTransactionLineMessage",
+    "RecurringTransactionLinePostMessage",
+    "RecurringTransactionMessage",
+    "RentMessage",
+    "RentScheduleChargePostMessage",
+    "RentScheduleChargePutMessage",
+    "RentSchedulePostMessage",
+    "RentSchedulePutMessage",
+    "RentalApplianceMessage",
+    "RentalAppliancePostMessage",
+    "RentalAppliancePutMessage",
+    "RentalApplianceServiceHistoryMessage",
+    "RentalApplianceServiceHistoryPostMessage",
+    "RentalFeaturesMessage",
+    "RentalFeaturesPutMessage",
+    "RentalImageMessage",
+    "RentalImagePutMessage",
+    "RentalMessage",
+    "RentalOwnerContributionDataMessage",
+    "RentalOwnerContributionDataPutMessage",
+    "RentalOwnerContributionMessage",
+    "RentalOwnerContributionPutMessage",
+    "RentalOwnerContributionReminderMessage",
+    "RentalOwnerContributionReminderPutMessage",
+    "RentalOwnerMessage",
+    "RentalOwnerPostMessage",
+    "RentalOwnerPutMessage",
+    "RentalOwnerRequestTaskMessage",
+    "RentalOwnerRequestTaskPostMessage",
+    "RentalOwnerRequestTaskPutMessage",
+    "RentalOwnerTaxInformationMessage",
+    "RentalPreferredVendorMessage",
+    "RentalPreferredVendorPutMessage",
+    "RentalPropertyPostMessage",
+    "RentalPropertyPutMessage",
+    "RentalPropertyUnitPostMessage",
+    "RentalTenantPostMessage",
+    "RentalTenantPutMessage",
+    "RentalTenantRenewalPostMessage",
+    "RentalUnitFeaturesMessage",
+    "RentalUnitFeaturesPutMessage",
+    "RentalUnitImageMessage",
+    "RentalUnitImagePutMessage",
+    "RentalUnitMessage",
+    "RentalUnitPutMessage",
+    "RentalUnitsPostMessage",
+    "RentersInsurancePolicyMessage",
+    "RequestedByUserEntityMessage",
+    "ResidentCenterUserMessage",
+    "ResidentCenterUserReferenceMessage",
+    "ResidentRequestTaskMessage",
+    "ResidentRequestTaskPostMessage",
+    "ResidentRequestTaskPutMessage",
+    "RetailCashPropertyMessage",
+    "RetailCashUnitMessage",
+    "RetailCashUserDataMessage",
+    "RetailCashUserMessage",
+    "RetailCashUserPutMessage",
+    "SaveAddressMessage",
+    "SaveEmergencyContactMessage",
+    "TaskCategoryMessage",
+    "TaskCategoryPutMessage",
+    "TaskCategoryResponseMessage",
+    "TaskCategorySaveMessage",
+    "TaskHistoryFileMessage",
+    "TaskHistoryFileUploadPostMessage",
+    "TaskHistoryMessage",
+    "TaskHistoryPutMessage",
+    "TaskHistoryUserMessage",
+    "TaskSubCategoryMessage",
+    "TaxInformationPostMessage",
+    "TaxInformationSaveMessage",
+    "TenantMessage",
+    "ToDoTaskMessage",
+    "ToDoTaskPostMessage",
+    "ToDoTaskPutMessage",
+    "UndepositedFundsMessage",
+    "UnitAgreementMessage",
+    "UnitEntityMessage",
+    "UnsubmittedApplicationMessage",
+    "UserMessage",
+    "UserRoleMessage",
+    "VehicleMessage",
+    "VendorCategoryMessage",
+    "VendorCategorySaveMessage",
+    "VendorCreditLineItemMessage",
+    "VendorCreditLineItemPostMessage",
+    "VendorCreditMessage",
+    "VendorCreditPostMessage",
+    "VendorInsuranceMessage",
+    "VendorInsuranceSaveMessage",
+    "VendorMessage",
+    "VendorPostMessage",
+    "VendorPutMessage",
+    "VendorRefundLineMessage",
+    "VendorRefundLinePostMessage",
+    "VendorRefundMessage",
+    "VendorRefundPostMessage",
+    "VendorTaxInformationMessage",
+    "VendorTransactionMessage",
+    "VideoLinkRequestPostMessage",
+    "WorkOrderEntryContactMessage",
+    "WorkOrderEntryContactResourceMessage",
+    "WorkOrderLineItemMessage",
+    "WorkOrderLineItemSaveMessage",
+    "WorkOrderMessage",
+    "WorkOrderPostMessage",
+    "WorkOrderPutMessage",
+    "WorkOrderTaskMessage",
+    "WorkOrderTaskPostMessage",
+]
+
+# import apis into sdk package
+from buildium_sdk.api.administration_api import AdministrationApi as AdministrationApi
+from buildium_sdk.api.appliances_api import AppliancesApi as AppliancesApi
+from buildium_sdk.api.applicants_api import ApplicantsApi as ApplicantsApi
+from buildium_sdk.api.application_transactions_api import ApplicationTransactionsApi as ApplicationTransactionsApi
+from buildium_sdk.api.architectural_requests_api import ArchitecturalRequestsApi as ArchitecturalRequestsApi
+from buildium_sdk.api.association_meter_readings_api import AssociationMeterReadingsApi as AssociationMeterReadingsApi
+from buildium_sdk.api.association_owners_api import AssociationOwnersApi as AssociationOwnersApi
+from buildium_sdk.api.association_tenants_api import AssociationTenantsApi as AssociationTenantsApi
+from buildium_sdk.api.association_units_api import AssociationUnitsApi as AssociationUnitsApi
+from buildium_sdk.api.associations_api import AssociationsApi as AssociationsApi
+from buildium_sdk.api.bank_accounts_api import BankAccountsApi as BankAccountsApi
+from buildium_sdk.api.bills_api import BillsApi as BillsApi
+from buildium_sdk.api.board_members_api import BoardMembersApi as BoardMembersApi
+from buildium_sdk.api.budgets_api import BudgetsApi as BudgetsApi
+from buildium_sdk.api.client_leads_api import ClientLeadsApi as ClientLeadsApi
+from buildium_sdk.api.communications_api import CommunicationsApi as CommunicationsApi
+from buildium_sdk.api.contact_requests_api import ContactRequestsApi as ContactRequestsApi
+from buildium_sdk.api.credit_card_accounts_api import CreditCardAccountsApi as CreditCardAccountsApi
+from buildium_sdk.api.files_api import FilesApi as FilesApi
+from buildium_sdk.api.general_ledger_api import GeneralLedgerApi as GeneralLedgerApi
+from buildium_sdk.api.lease_transactions_api import LeaseTransactionsApi as LeaseTransactionsApi
+from buildium_sdk.api.leases_api import LeasesApi as LeasesApi
+from buildium_sdk.api.listings_api import ListingsApi as ListingsApi
+from buildium_sdk.api.ownership_account_transactions_api import OwnershipAccountTransactionsApi as OwnershipAccountTransactionsApi
+from buildium_sdk.api.ownership_accounts_api import OwnershipAccountsApi as OwnershipAccountsApi
+from buildium_sdk.api.property_groups_api import PropertyGroupsApi as PropertyGroupsApi
+from buildium_sdk.api.rental_appliances_api import RentalAppliancesApi as RentalAppliancesApi
+from buildium_sdk.api.rental_meter_readings_api import RentalMeterReadingsApi as RentalMeterReadingsApi
+from buildium_sdk.api.rental_owner_requests_api import RentalOwnerRequestsApi as RentalOwnerRequestsApi
+from buildium_sdk.api.rental_owners_api import RentalOwnersApi as RentalOwnersApi
+from buildium_sdk.api.rental_properties_api import RentalPropertiesApi as RentalPropertiesApi
+from buildium_sdk.api.rental_tenants_api import RentalTenantsApi as RentalTenantsApi
+from buildium_sdk.api.rental_units_api import RentalUnitsApi as RentalUnitsApi
+from buildium_sdk.api.resident_center_api import ResidentCenterApi as ResidentCenterApi
+from buildium_sdk.api.resident_requests_api import ResidentRequestsApi as ResidentRequestsApi
+from buildium_sdk.api.tasks_api import TasksApi as TasksApi
+from buildium_sdk.api.to_do_requests_api import ToDoRequestsApi as ToDoRequestsApi
+from buildium_sdk.api.vendors_api import VendorsApi as VendorsApi
+from buildium_sdk.api.work_orders_api import WorkOrdersApi as WorkOrdersApi
+
+# import ApiClient
+from buildium_sdk.api_response import ApiResponse as ApiResponse
+from buildium_sdk.api_client import ApiClient as ApiClient
+from buildium_sdk.configuration import Configuration as Configuration
+from buildium_sdk.exceptions import OpenApiException as OpenApiException
+from buildium_sdk.exceptions import ApiTypeError as ApiTypeError
+from buildium_sdk.exceptions import ApiValueError as ApiValueError
+from buildium_sdk.exceptions import ApiKeyError as ApiKeyError
+from buildium_sdk.exceptions import ApiAttributeError as ApiAttributeError
+from buildium_sdk.exceptions import ApiException as ApiException
+
+# import models into sdk package
+from buildium_sdk.models.account_info_message import AccountInfoMessage as AccountInfoMessage
+from buildium_sdk.models.accounting_entity_message import AccountingEntityMessage as AccountingEntityMessage
+from buildium_sdk.models.accounting_entity_patch_message import AccountingEntityPatchMessage as AccountingEntityPatchMessage
+from buildium_sdk.models.accounting_entity_save_message import AccountingEntitySaveMessage as AccountingEntitySaveMessage
+from buildium_sdk.models.accounting_lock_period_message import AccountingLockPeriodMessage as AccountingLockPeriodMessage
+from buildium_sdk.models.accounting_settings_message import AccountingSettingsMessage as AccountingSettingsMessage
+from buildium_sdk.models.address_message import AddressMessage as AddressMessage
+from buildium_sdk.models.all_tasks_message import AllTasksMessage as AllTasksMessage
+from buildium_sdk.models.announcement_message import AnnouncementMessage as AnnouncementMessage
+from buildium_sdk.models.announcement_post_message import AnnouncementPostMessage as AnnouncementPostMessage
+from buildium_sdk.models.announcement_sender_message import AnnouncementSenderMessage as AnnouncementSenderMessage
+from buildium_sdk.models.api_error import ApiError as ApiError
+from buildium_sdk.models.api_error_response import ApiErrorResponse as ApiErrorResponse
+from buildium_sdk.models.appliance_message import ApplianceMessage as ApplianceMessage
+from buildium_sdk.models.applicant_application_message import ApplicantApplicationMessage as ApplicantApplicationMessage
+from buildium_sdk.models.applicant_details_message import ApplicantDetailsMessage as ApplicantDetailsMessage
+from buildium_sdk.models.applicant_group_message import ApplicantGroupMessage as ApplicantGroupMessage
+from buildium_sdk.models.applicant_group_post_message import ApplicantGroupPostMessage as ApplicantGroupPostMessage
+from buildium_sdk.models.applicant_group_put_message import ApplicantGroupPutMessage as ApplicantGroupPutMessage
+from buildium_sdk.models.applicant_message import ApplicantMessage as ApplicantMessage
+from buildium_sdk.models.applicant_payee_message import ApplicantPayeeMessage as ApplicantPayeeMessage
+from buildium_sdk.models.applicant_post_message import ApplicantPostMessage as ApplicantPostMessage
+from buildium_sdk.models.applicant_put_message import ApplicantPutMessage as ApplicantPutMessage
+from buildium_sdk.models.application_auto_allocated_payment_post_message import ApplicationAutoAllocatedPaymentPostMessage as ApplicationAutoAllocatedPaymentPostMessage
+from buildium_sdk.models.application_charge_line_save_message import ApplicationChargeLineSaveMessage as ApplicationChargeLineSaveMessage
+from buildium_sdk.models.application_charge_message import ApplicationChargeMessage as ApplicationChargeMessage
+from buildium_sdk.models.application_charge_post_message import ApplicationChargePostMessage as ApplicationChargePostMessage
+from buildium_sdk.models.application_charge_put_message import ApplicationChargePutMessage as ApplicationChargePutMessage
+from buildium_sdk.models.application_message import ApplicationMessage as ApplicationMessage
+from buildium_sdk.models.application_outstanding_balance_message import ApplicationOutstandingBalanceMessage as ApplicationOutstandingBalanceMessage
+from buildium_sdk.models.application_payment_line_save_message import ApplicationPaymentLineSaveMessage as ApplicationPaymentLineSaveMessage
+from buildium_sdk.models.application_payment_post_message import ApplicationPaymentPostMessage as ApplicationPaymentPostMessage
+from buildium_sdk.models.application_payment_put_message import ApplicationPaymentPutMessage as ApplicationPaymentPutMessage
+from buildium_sdk.models.application_put_message import ApplicationPutMessage as ApplicationPutMessage
+from buildium_sdk.models.application_reference_message import ApplicationReferenceMessage as ApplicationReferenceMessage
+from buildium_sdk.models.application_refund_line_message import ApplicationRefundLineMessage as ApplicationRefundLineMessage
+from buildium_sdk.models.application_refund_line_save_message import ApplicationRefundLineSaveMessage as ApplicationRefundLineSaveMessage
+from buildium_sdk.models.application_refund_message import ApplicationRefundMessage as ApplicationRefundMessage
+from buildium_sdk.models.application_refund_post_message import ApplicationRefundPostMessage as ApplicationRefundPostMessage
+from buildium_sdk.models.application_response_field_message import ApplicationResponseFieldMessage as ApplicationResponseFieldMessage
+from buildium_sdk.models.application_response_message import ApplicationResponseMessage as ApplicationResponseMessage
+from buildium_sdk.models.application_reverse_payment_charge_post_message import ApplicationReversePaymentChargePostMessage as ApplicationReversePaymentChargePostMessage
+from buildium_sdk.models.application_reverse_payment_other_bank_charge_post_message import ApplicationReversePaymentOtherBankChargePostMessage as ApplicationReversePaymentOtherBankChargePostMessage
+from buildium_sdk.models.application_reverse_payment_post_message import ApplicationReversePaymentPostMessage as ApplicationReversePaymentPostMessage
+from buildium_sdk.models.application_section_response_message import ApplicationSectionResponseMessage as ApplicationSectionResponseMessage
+from buildium_sdk.models.application_transaction_message import ApplicationTransactionMessage as ApplicationTransactionMessage
+from buildium_sdk.models.applied_vendor_credit_message import AppliedVendorCreditMessage as AppliedVendorCreditMessage
+from buildium_sdk.models.architectural_requests_post_message import ArchitecturalRequestsPostMessage as ArchitecturalRequestsPostMessage
+from buildium_sdk.models.association_appliance_message import AssociationApplianceMessage as AssociationApplianceMessage
+from buildium_sdk.models.association_appliance_post_message import AssociationAppliancePostMessage as AssociationAppliancePostMessage
+from buildium_sdk.models.association_appliance_put_message import AssociationAppliancePutMessage as AssociationAppliancePutMessage
+from buildium_sdk.models.association_appliance_service_history_message import AssociationApplianceServiceHistoryMessage as AssociationApplianceServiceHistoryMessage
+from buildium_sdk.models.association_appliance_service_history_post_message import AssociationApplianceServiceHistoryPostMessage as AssociationApplianceServiceHistoryPostMessage
+from buildium_sdk.models.association_architectural_request_file_message import AssociationArchitecturalRequestFileMessage as AssociationArchitecturalRequestFileMessage
+from buildium_sdk.models.association_architectural_request_message import AssociationArchitecturalRequestMessage as AssociationArchitecturalRequestMessage
+from buildium_sdk.models.association_board_member_message import AssociationBoardMemberMessage as AssociationBoardMemberMessage
+from buildium_sdk.models.association_board_member_post_message import AssociationBoardMemberPostMessage as AssociationBoardMemberPostMessage
+from buildium_sdk.models.association_board_member_put_message import AssociationBoardMemberPutMessage as AssociationBoardMemberPutMessage
+from buildium_sdk.models.association_message import AssociationMessage as AssociationMessage
+from buildium_sdk.models.association_owner_board_term_message import AssociationOwnerBoardTermMessage as AssociationOwnerBoardTermMessage
+from buildium_sdk.models.association_owner_board_term_post_message import AssociationOwnerBoardTermPostMessage as AssociationOwnerBoardTermPostMessage
+from buildium_sdk.models.association_owner_message import AssociationOwnerMessage as AssociationOwnerMessage
+from buildium_sdk.models.association_owner_post_message import AssociationOwnerPostMessage as AssociationOwnerPostMessage
+from buildium_sdk.models.association_owner_put_message import AssociationOwnerPutMessage as AssociationOwnerPutMessage
+from buildium_sdk.models.association_owner_to_existing_ownership_account_post_message import AssociationOwnerToExistingOwnershipAccountPostMessage as AssociationOwnerToExistingOwnershipAccountPostMessage
+from buildium_sdk.models.association_owner_unit_occupancy_put_message import AssociationOwnerUnitOccupancyPutMessage as AssociationOwnerUnitOccupancyPutMessage
+from buildium_sdk.models.association_owner_unit_occupancy_status_message import AssociationOwnerUnitOccupancyStatusMessage as AssociationOwnerUnitOccupancyStatusMessage
+from buildium_sdk.models.association_ownership_account_message import AssociationOwnershipAccountMessage as AssociationOwnershipAccountMessage
+from buildium_sdk.models.association_ownership_account_post_message import AssociationOwnershipAccountPostMessage as AssociationOwnershipAccountPostMessage
+from buildium_sdk.models.association_ownership_account_put_message import AssociationOwnershipAccountPutMessage as AssociationOwnershipAccountPutMessage
+from buildium_sdk.models.association_post_message import AssociationPostMessage as AssociationPostMessage
+from buildium_sdk.models.association_preferred_vendor_message import AssociationPreferredVendorMessage as AssociationPreferredVendorMessage
+from buildium_sdk.models.association_preferred_vendor_put_message import AssociationPreferredVendorPutMessage as AssociationPreferredVendorPutMessage
+from buildium_sdk.models.association_put_message import AssociationPutMessage as AssociationPutMessage
+from buildium_sdk.models.association_tax_information_message import AssociationTaxInformationMessage as AssociationTaxInformationMessage
+from buildium_sdk.models.association_tenant_message import AssociationTenantMessage as AssociationTenantMessage
+from buildium_sdk.models.association_tenant_post_message import AssociationTenantPostMessage as AssociationTenantPostMessage
+from buildium_sdk.models.association_tenant_put_message import AssociationTenantPutMessage as AssociationTenantPutMessage
+from buildium_sdk.models.association_unit_message import AssociationUnitMessage as AssociationUnitMessage
+from buildium_sdk.models.association_unit_put_message import AssociationUnitPutMessage as AssociationUnitPutMessage
+from buildium_sdk.models.association_units_post_message import AssociationUnitsPostMessage as AssociationUnitsPostMessage
+from buildium_sdk.models.bank_account_check_accounting_entity_save_message import BankAccountCheckAccountingEntitySaveMessage as BankAccountCheckAccountingEntitySaveMessage
+from buildium_sdk.models.bank_account_check_file_message import BankAccountCheckFileMessage as BankAccountCheckFileMessage
+from buildium_sdk.models.bank_account_check_line_message import BankAccountCheckLineMessage as BankAccountCheckLineMessage
+from buildium_sdk.models.bank_account_check_line_save_message import BankAccountCheckLineSaveMessage as BankAccountCheckLineSaveMessage
+from buildium_sdk.models.bank_account_check_message import BankAccountCheckMessage as BankAccountCheckMessage
+from buildium_sdk.models.bank_account_check_payee_message import BankAccountCheckPayeeMessage as BankAccountCheckPayeeMessage
+from buildium_sdk.models.bank_account_check_payee_save_message import BankAccountCheckPayeeSaveMessage as BankAccountCheckPayeeSaveMessage
+from buildium_sdk.models.bank_account_check_post_message import BankAccountCheckPostMessage as BankAccountCheckPostMessage
+from buildium_sdk.models.bank_account_check_put_message import BankAccountCheckPutMessage as BankAccountCheckPutMessage
+from buildium_sdk.models.bank_account_deposit_line_message import BankAccountDepositLineMessage as BankAccountDepositLineMessage
+from buildium_sdk.models.bank_account_deposit_line_save_message import BankAccountDepositLineSaveMessage as BankAccountDepositLineSaveMessage
+from buildium_sdk.models.bank_account_deposit_message import BankAccountDepositMessage as BankAccountDepositMessage
+from buildium_sdk.models.bank_account_deposit_post_message import BankAccountDepositPostMessage as BankAccountDepositPostMessage
+from buildium_sdk.models.bank_account_deposit_put_message import BankAccountDepositPutMessage as BankAccountDepositPutMessage
+from buildium_sdk.models.bank_account_message import BankAccountMessage as BankAccountMessage
+from buildium_sdk.models.bank_account_post_message import BankAccountPostMessage as BankAccountPostMessage
+from buildium_sdk.models.bank_account_put_message import BankAccountPutMessage as BankAccountPutMessage
+from buildium_sdk.models.bank_account_quick_deposit_message import BankAccountQuickDepositMessage as BankAccountQuickDepositMessage
+from buildium_sdk.models.bank_account_quick_deposit_save_message import BankAccountQuickDepositSaveMessage as BankAccountQuickDepositSaveMessage
+from buildium_sdk.models.bank_account_reconciliation_balance_message import BankAccountReconciliationBalanceMessage as BankAccountReconciliationBalanceMessage
+from buildium_sdk.models.bank_account_reconciliation_balance_put_message import BankAccountReconciliationBalancePutMessage as BankAccountReconciliationBalancePutMessage
+from buildium_sdk.models.bank_account_reconciliation_message import BankAccountReconciliationMessage as BankAccountReconciliationMessage
+from buildium_sdk.models.bank_account_reconciliation_transaction_message import BankAccountReconciliationTransactionMessage as BankAccountReconciliationTransactionMessage
+from buildium_sdk.models.bank_account_transaction_message import BankAccountTransactionMessage as BankAccountTransactionMessage
+from buildium_sdk.models.bank_account_transfer_accounting_entity_save_message import BankAccountTransferAccountingEntitySaveMessage as BankAccountTransferAccountingEntitySaveMessage
+from buildium_sdk.models.bank_account_transfer_message import BankAccountTransferMessage as BankAccountTransferMessage
+from buildium_sdk.models.bank_account_transfer_save_message import BankAccountTransferSaveMessage as BankAccountTransferSaveMessage
+from buildium_sdk.models.bank_account_withdrawal_message import BankAccountWithdrawalMessage as BankAccountWithdrawalMessage
+from buildium_sdk.models.bank_account_withdrawal_save_message import BankAccountWithdrawalSaveMessage as BankAccountWithdrawalSaveMessage
+from buildium_sdk.models.bank_lockbox_data_association_message import BankLockboxDataAssociationMessage as BankLockboxDataAssociationMessage
+from buildium_sdk.models.bank_lockbox_data_association_owner_message import BankLockboxDataAssociationOwnerMessage as BankLockboxDataAssociationOwnerMessage
+from buildium_sdk.models.bank_lockbox_data_message import BankLockboxDataMessage as BankLockboxDataMessage
+from buildium_sdk.models.bank_lockbox_data_ownership_account_message import BankLockboxDataOwnershipAccountMessage as BankLockboxDataOwnershipAccountMessage
+from buildium_sdk.models.bank_pending_reconciliation_post_message import BankPendingReconciliationPostMessage as BankPendingReconciliationPostMessage
+from buildium_sdk.models.bank_reconciliation_clear_transactions_post_message import BankReconciliationClearTransactionsPostMessage as BankReconciliationClearTransactionsPostMessage
+from buildium_sdk.models.bank_reconciliation_cleared_balance_message import BankReconciliationClearedBalanceMessage as BankReconciliationClearedBalanceMessage
+from buildium_sdk.models.bank_reconciliation_put_message import BankReconciliationPutMessage as BankReconciliationPutMessage
+from buildium_sdk.models.bank_reconciliation_statement_balance_message import BankReconciliationStatementBalanceMessage as BankReconciliationStatementBalanceMessage
+from buildium_sdk.models.bank_reconciliation_unclear_transactions_post_message import BankReconciliationUnclearTransactionsPostMessage as BankReconciliationUnclearTransactionsPostMessage
+from buildium_sdk.models.bill_file_message import BillFileMessage as BillFileMessage
+from buildium_sdk.models.bill_line_item_patch_message import BillLineItemPatchMessage as BillLineItemPatchMessage
+from buildium_sdk.models.bill_line_message import BillLineMessage as BillLineMessage
+from buildium_sdk.models.bill_line_post_message import BillLinePostMessage as BillLinePostMessage
+from buildium_sdk.models.bill_line_put_message import BillLinePutMessage as BillLinePutMessage
+from buildium_sdk.models.bill_markup_message import BillMarkupMessage as BillMarkupMessage
+from buildium_sdk.models.bill_markup_patch_message import BillMarkupPatchMessage as BillMarkupPatchMessage
+from buildium_sdk.models.bill_markup_save_message import BillMarkupSaveMessage as BillMarkupSaveMessage
+from buildium_sdk.models.bill_message import BillMessage as BillMessage
+from buildium_sdk.models.bill_patch_message import BillPatchMessage as BillPatchMessage
+from buildium_sdk.models.bill_payment_accounting_entity_message import BillPaymentAccountingEntityMessage as BillPaymentAccountingEntityMessage
+from buildium_sdk.models.bill_payment_line_message import BillPaymentLineMessage as BillPaymentLineMessage
+from buildium_sdk.models.bill_payment_line_post_message import BillPaymentLinePostMessage as BillPaymentLinePostMessage
+from buildium_sdk.models.bill_payment_message import BillPaymentMessage as BillPaymentMessage
+from buildium_sdk.models.bill_payment_post_message import BillPaymentPostMessage as BillPaymentPostMessage
+from buildium_sdk.models.bill_post_message import BillPostMessage as BillPostMessage
+from buildium_sdk.models.bill_put_message import BillPutMessage as BillPutMessage
+from buildium_sdk.models.budget_details_message import BudgetDetailsMessage as BudgetDetailsMessage
+from buildium_sdk.models.budget_details_save_message import BudgetDetailsSaveMessage as BudgetDetailsSaveMessage
+from buildium_sdk.models.budget_message import BudgetMessage as BudgetMessage
+from buildium_sdk.models.budget_monthly_amounts_message import BudgetMonthlyAmountsMessage as BudgetMonthlyAmountsMessage
+from buildium_sdk.models.budget_monthly_amounts_save_message import BudgetMonthlyAmountsSaveMessage as BudgetMonthlyAmountsSaveMessage
+from buildium_sdk.models.budget_post_message import BudgetPostMessage as BudgetPostMessage
+from buildium_sdk.models.budget_put_message import BudgetPutMessage as BudgetPutMessage
+from buildium_sdk.models.bulk_lease_recurring_transaction_message import BulkLeaseRecurringTransactionMessage as BulkLeaseRecurringTransactionMessage
+from buildium_sdk.models.bulk_ownership_account_recurring_transaction_message import BulkOwnershipAccountRecurringTransactionMessage as BulkOwnershipAccountRecurringTransactionMessage
+from buildium_sdk.models.cc_payments_message import CCPaymentsMessage as CCPaymentsMessage
+from buildium_sdk.models.cc_payments_put_message import CCPaymentsPutMessage as CCPaymentsPutMessage
+from buildium_sdk.models.charge_line_message import ChargeLineMessage as ChargeLineMessage
+from buildium_sdk.models.charge_recurring_transaction_post_message import ChargeRecurringTransactionPostMessage as ChargeRecurringTransactionPostMessage
+from buildium_sdk.models.charge_recurring_transaction_put_message import ChargeRecurringTransactionPutMessage as ChargeRecurringTransactionPutMessage
+from buildium_sdk.models.check_printing_info_message import CheckPrintingInfoMessage as CheckPrintingInfoMessage
+from buildium_sdk.models.check_printing_info_post_message import CheckPrintingInfoPostMessage as CheckPrintingInfoPostMessage
+from buildium_sdk.models.check_printing_info_put_message import CheckPrintingInfoPutMessage as CheckPrintingInfoPutMessage
+from buildium_sdk.models.client_lead_credit_request_message import ClientLeadCreditRequestMessage as ClientLeadCreditRequestMessage
+from buildium_sdk.models.client_lead_message import ClientLeadMessage as ClientLeadMessage
+from buildium_sdk.models.contact_detail_message import ContactDetailMessage as ContactDetailMessage
+from buildium_sdk.models.contact_detail_phone_message import ContactDetailPhoneMessage as ContactDetailPhoneMessage
+from buildium_sdk.models.contact_detail_save_message import ContactDetailSaveMessage as ContactDetailSaveMessage
+from buildium_sdk.models.contact_detail_save_phone_message import ContactDetailSavePhoneMessage as ContactDetailSavePhoneMessage
+from buildium_sdk.models.contact_info_message import ContactInfoMessage as ContactInfoMessage
+from buildium_sdk.models.contact_request_task_message import ContactRequestTaskMessage as ContactRequestTaskMessage
+from buildium_sdk.models.contact_request_task_post_message import ContactRequestTaskPostMessage as ContactRequestTaskPostMessage
+from buildium_sdk.models.contact_request_task_put_message import ContactRequestTaskPutMessage as ContactRequestTaskPutMessage
+from buildium_sdk.models.cosigner_message import CosignerMessage as CosignerMessage
+from buildium_sdk.models.created_by_user_message import CreatedByUserMessage as CreatedByUserMessage
+from buildium_sdk.models.credit_card_account_message import CreditCardAccountMessage as CreditCardAccountMessage
+from buildium_sdk.models.credit_card_account_put_message import CreditCardAccountPutMessage as CreditCardAccountPutMessage
+from buildium_sdk.models.credit_recurring_transaction_post_message import CreditRecurringTransactionPostMessage as CreditRecurringTransactionPostMessage
+from buildium_sdk.models.deposit_detail_message import DepositDetailMessage as DepositDetailMessage
+from buildium_sdk.models.eft_payments_message import EFTPaymentsMessage as EFTPaymentsMessage
+from buildium_sdk.models.eft_payments_put_message import EFTPaymentsPutMessage as EFTPaymentsPutMessage
+from buildium_sdk.models.e_pay_settings_message import EPaySettingsMessage as EPaySettingsMessage
+from buildium_sdk.models.e_pay_settings_put_message import EPaySettingsPutMessage as EPaySettingsPutMessage
+from buildium_sdk.models.electronic_payments_message import ElectronicPaymentsMessage as ElectronicPaymentsMessage
+from buildium_sdk.models.email_message import EmailMessage as EmailMessage
+from buildium_sdk.models.email_post_message import EmailPostMessage as EmailPostMessage
+from buildium_sdk.models.email_recipient_message import EmailRecipientMessage as EmailRecipientMessage
+from buildium_sdk.models.email_sender_message import EmailSenderMessage as EmailSenderMessage
+from buildium_sdk.models.emergency_contact_message import EmergencyContactMessage as EmergencyContactMessage
+from buildium_sdk.models.file_category_message import FileCategoryMessage as FileCategoryMessage
+from buildium_sdk.models.file_category_post_message import FileCategoryPostMessage as FileCategoryPostMessage
+from buildium_sdk.models.file_category_put_message import FileCategoryPutMessage as FileCategoryPutMessage
+from buildium_sdk.models.file_download_message import FileDownloadMessage as FileDownloadMessage
+from buildium_sdk.models.file_entity_message import FileEntityMessage as FileEntityMessage
+from buildium_sdk.models.file_message import FileMessage as FileMessage
+from buildium_sdk.models.file_name_post_message import FileNamePostMessage as FileNamePostMessage
+from buildium_sdk.models.file_put_message import FilePutMessage as FilePutMessage
+from buildium_sdk.models.file_sharing_account_message import FileSharingAccountMessage as FileSharingAccountMessage
+from buildium_sdk.models.file_sharing_account_put_message import FileSharingAccountPutMessage as FileSharingAccountPutMessage
+from buildium_sdk.models.file_sharing_association_message import FileSharingAssociationMessage as FileSharingAssociationMessage
+from buildium_sdk.models.file_sharing_association_owner_message import FileSharingAssociationOwnerMessage as FileSharingAssociationOwnerMessage
+from buildium_sdk.models.file_sharing_association_owner_put_message import FileSharingAssociationOwnerPutMessage as FileSharingAssociationOwnerPutMessage
+from buildium_sdk.models.file_sharing_association_put_message import FileSharingAssociationPutMessage as FileSharingAssociationPutMessage
+from buildium_sdk.models.file_sharing_association_unit_message import FileSharingAssociationUnitMessage as FileSharingAssociationUnitMessage
+from buildium_sdk.models.file_sharing_association_unit_put_message import FileSharingAssociationUnitPutMessage as FileSharingAssociationUnitPutMessage
+from buildium_sdk.models.file_sharing_committee_message import FileSharingCommitteeMessage as FileSharingCommitteeMessage
+from buildium_sdk.models.file_sharing_committee_put_message import FileSharingCommitteePutMessage as FileSharingCommitteePutMessage
+from buildium_sdk.models.file_sharing_lease_message import FileSharingLeaseMessage as FileSharingLeaseMessage
+from buildium_sdk.models.file_sharing_lease_put_message import FileSharingLeasePutMessage as FileSharingLeasePutMessage
+from buildium_sdk.models.file_sharing_message import FileSharingMessage as FileSharingMessage
+from buildium_sdk.models.file_sharing_ownership_account_message import FileSharingOwnershipAccountMessage as FileSharingOwnershipAccountMessage
+from buildium_sdk.models.file_sharing_ownership_account_put_message import FileSharingOwnershipAccountPutMessage as FileSharingOwnershipAccountPutMessage
+from buildium_sdk.models.file_sharing_put_message import FileSharingPutMessage as FileSharingPutMessage
+from buildium_sdk.models.file_sharing_rental_message import FileSharingRentalMessage as FileSharingRentalMessage
+from buildium_sdk.models.file_sharing_rental_owner_message import FileSharingRentalOwnerMessage as FileSharingRentalOwnerMessage
+from buildium_sdk.models.file_sharing_rental_owner_put_message import FileSharingRentalOwnerPutMessage as FileSharingRentalOwnerPutMessage
+from buildium_sdk.models.file_sharing_rental_put_message import FileSharingRentalPutMessage as FileSharingRentalPutMessage
+from buildium_sdk.models.file_sharing_rental_unit_mesage import FileSharingRentalUnitMesage as FileSharingRentalUnitMesage
+from buildium_sdk.models.file_sharing_rental_unit_put_mesage import FileSharingRentalUnitPutMesage as FileSharingRentalUnitPutMesage
+from buildium_sdk.models.file_sharing_tenant_message import FileSharingTenantMessage as FileSharingTenantMessage
+from buildium_sdk.models.file_sharing_tenant_put_message import FileSharingTenantPutMessage as FileSharingTenantPutMessage
+from buildium_sdk.models.file_sharing_vendor_message import FileSharingVendorMessage as FileSharingVendorMessage
+from buildium_sdk.models.file_sharing_vendor_put_message import FileSharingVendorPutMessage as FileSharingVendorPutMessage
+from buildium_sdk.models.file_upload_post_message import FileUploadPostMessage as FileUploadPostMessage
+from buildium_sdk.models.file_upload_ticket_message import FileUploadTicketMessage as FileUploadTicketMessage
+from buildium_sdk.models.gl_account_balance_item_message import GLAccountBalanceItemMessage as GLAccountBalanceItemMessage
+from buildium_sdk.models.gl_account_balance_message import GLAccountBalanceMessage as GLAccountBalanceMessage
+from buildium_sdk.models.gl_account_message import GLAccountMessage as GLAccountMessage
+from buildium_sdk.models.gl_account_post_message import GLAccountPostMessage as GLAccountPostMessage
+from buildium_sdk.models.gl_account_put_message import GLAccountPutMessage as GLAccountPutMessage
+from buildium_sdk.models.gl_transaction_message_v1 import GLTransactionMessageV1 as GLTransactionMessageV1
+from buildium_sdk.models.general_journal_entry_line_save_message import GeneralJournalEntryLineSaveMessage as GeneralJournalEntryLineSaveMessage
+from buildium_sdk.models.general_journal_entry_post_message import GeneralJournalEntryPostMessage as GeneralJournalEntryPostMessage
+from buildium_sdk.models.general_journal_entry_put_message import GeneralJournalEntryPutMessage as GeneralJournalEntryPutMessage
+from buildium_sdk.models.general_ledger_entry_message import GeneralLedgerEntryMessage as GeneralLedgerEntryMessage
+from buildium_sdk.models.general_ledger_journal_line_message import GeneralLedgerJournalLineMessage as GeneralLedgerJournalLineMessage
+from buildium_sdk.models.general_ledger_journal_message import GeneralLedgerJournalMessage as GeneralLedgerJournalMessage
+from buildium_sdk.models.general_ledger_message import GeneralLedgerMessage as GeneralLedgerMessage
+from buildium_sdk.models.general_ledger_transaction_message import GeneralLedgerTransactionMessage as GeneralLedgerTransactionMessage
+from buildium_sdk.models.image_reorder_request_put_message import ImageReorderRequestPutMessage as ImageReorderRequestPutMessage
+from buildium_sdk.models.insured_tenant_message import InsuredTenantMessage as InsuredTenantMessage
+from buildium_sdk.models.internal_transaction_status_message import InternalTransactionStatusMessage as InternalTransactionStatusMessage
+from buildium_sdk.models.java_script_encoder import JavaScriptEncoder as JavaScriptEncoder
+from buildium_sdk.models.journal_line_message import JournalLineMessage as JournalLineMessage
+from buildium_sdk.models.journal_message import JournalMessage as JournalMessage
+from buildium_sdk.models.json_patch_operation import JsonPatchOperation as JsonPatchOperation
+from buildium_sdk.models.last_updated_by_user_message import LastUpdatedByUserMessage as LastUpdatedByUserMessage
+from buildium_sdk.models.lease_account_detail_message import LeaseAccountDetailMessage as LeaseAccountDetailMessage
+from buildium_sdk.models.lease_auto_allocated_payment_post_message import LeaseAutoAllocatedPaymentPostMessage as LeaseAutoAllocatedPaymentPostMessage
+from buildium_sdk.models.lease_charge_line_message import LeaseChargeLineMessage as LeaseChargeLineMessage
+from buildium_sdk.models.lease_charge_line_save_message import LeaseChargeLineSaveMessage as LeaseChargeLineSaveMessage
+from buildium_sdk.models.lease_charge_message import LeaseChargeMessage as LeaseChargeMessage
+from buildium_sdk.models.lease_charge_post_message import LeaseChargePostMessage as LeaseChargePostMessage
+from buildium_sdk.models.lease_charge_put_message import LeaseChargePutMessage as LeaseChargePutMessage
+from buildium_sdk.models.lease_charge_recurring_transaction_message import LeaseChargeRecurringTransactionMessage as LeaseChargeRecurringTransactionMessage
+from buildium_sdk.models.lease_cosigner_post_message import LeaseCosignerPostMessage as LeaseCosignerPostMessage
+from buildium_sdk.models.lease_ledger_credit_line_post_message import LeaseLedgerCreditLinePostMessage as LeaseLedgerCreditLinePostMessage
+from buildium_sdk.models.lease_ledger_credit_post_message import LeaseLedgerCreditPostMessage as LeaseLedgerCreditPostMessage
+from buildium_sdk.models.lease_ledger_deposit_withholding_line_post_message import LeaseLedgerDepositWithholdingLinePostMessage as LeaseLedgerDepositWithholdingLinePostMessage
+from buildium_sdk.models.lease_ledger_deposit_withholding_line_put_message import LeaseLedgerDepositWithholdingLinePutMessage as LeaseLedgerDepositWithholdingLinePutMessage
+from buildium_sdk.models.lease_ledger_deposit_withholding_post_message import LeaseLedgerDepositWithholdingPostMessage as LeaseLedgerDepositWithholdingPostMessage
+from buildium_sdk.models.lease_ledger_deposit_withholding_put_message import LeaseLedgerDepositWithholdingPutMessage as LeaseLedgerDepositWithholdingPutMessage
+from buildium_sdk.models.lease_ledger_payment_line_save_message import LeaseLedgerPaymentLineSaveMessage as LeaseLedgerPaymentLineSaveMessage
+from buildium_sdk.models.lease_ledger_payment_post_message import LeaseLedgerPaymentPostMessage as LeaseLedgerPaymentPostMessage
+from buildium_sdk.models.lease_ledger_payment_put_message import LeaseLedgerPaymentPutMessage as LeaseLedgerPaymentPutMessage
+from buildium_sdk.models.lease_ledger_refund_line_message import LeaseLedgerRefundLineMessage as LeaseLedgerRefundLineMessage
+from buildium_sdk.models.lease_ledger_refund_line_post_message import LeaseLedgerRefundLinePostMessage as LeaseLedgerRefundLinePostMessage
+from buildium_sdk.models.lease_ledger_refund_message import LeaseLedgerRefundMessage as LeaseLedgerRefundMessage
+from buildium_sdk.models.lease_ledger_refund_post_message import LeaseLedgerRefundPostMessage as LeaseLedgerRefundPostMessage
+from buildium_sdk.models.lease_ledger_reverse_payment_nsf_charge_post_message import LeaseLedgerReversePaymentNSFChargePostMessage as LeaseLedgerReversePaymentNSFChargePostMessage
+from buildium_sdk.models.lease_ledger_reverse_payment_other_bank_charge_post_message import LeaseLedgerReversePaymentOtherBankChargePostMessage as LeaseLedgerReversePaymentOtherBankChargePostMessage
+from buildium_sdk.models.lease_ledger_reverse_payment_post_message import LeaseLedgerReversePaymentPostMessage as LeaseLedgerReversePaymentPostMessage
+from buildium_sdk.models.lease_message import LeaseMessage as LeaseMessage
+from buildium_sdk.models.lease_move_out_data_message import LeaseMoveOutDataMessage as LeaseMoveOutDataMessage
+from buildium_sdk.models.lease_move_out_data_post_message import LeaseMoveOutDataPostMessage as LeaseMoveOutDataPostMessage
+from buildium_sdk.models.lease_outstanding_balance_message import LeaseOutstandingBalanceMessage as LeaseOutstandingBalanceMessage
+from buildium_sdk.models.lease_post_message import LeasePostMessage as LeasePostMessage
+from buildium_sdk.models.lease_put_message import LeasePutMessage as LeasePutMessage
+from buildium_sdk.models.lease_recurring_credit_message import LeaseRecurringCreditMessage as LeaseRecurringCreditMessage
+from buildium_sdk.models.lease_recurring_payment_message import LeaseRecurringPaymentMessage as LeaseRecurringPaymentMessage
+from buildium_sdk.models.lease_renewal_history_message import LeaseRenewalHistoryMessage as LeaseRenewalHistoryMessage
+from buildium_sdk.models.lease_renewal_message import LeaseRenewalMessage as LeaseRenewalMessage
+from buildium_sdk.models.lease_renewal_post_message import LeaseRenewalPostMessage as LeaseRenewalPostMessage
+from buildium_sdk.models.lease_rent_charge_message import LeaseRentChargeMessage as LeaseRentChargeMessage
+from buildium_sdk.models.lease_rent_charge_post_message import LeaseRentChargePostMessage as LeaseRentChargePostMessage
+from buildium_sdk.models.lease_rent_message import LeaseRentMessage as LeaseRentMessage
+from buildium_sdk.models.lease_rent_post_message import LeaseRentPostMessage as LeaseRentPostMessage
+from buildium_sdk.models.lease_security_deposit_post_message import LeaseSecurityDepositPostMessage as LeaseSecurityDepositPostMessage
+from buildium_sdk.models.lease_tenant_message import LeaseTenantMessage as LeaseTenantMessage
+from buildium_sdk.models.lease_transaction_message import LeaseTransactionMessage as LeaseTransactionMessage
+from buildium_sdk.models.listing_contact_message import ListingContactMessage as ListingContactMessage
+from buildium_sdk.models.listing_contact_save_message import ListingContactSaveMessage as ListingContactSaveMessage
+from buildium_sdk.models.listing_entity_file_post_message import ListingEntityFilePostMessage as ListingEntityFilePostMessage
+from buildium_sdk.models.listing_file_message import ListingFileMessage as ListingFileMessage
+from buildium_sdk.models.listing_message import ListingMessage as ListingMessage
+from buildium_sdk.models.listing_property_message import ListingPropertyMessage as ListingPropertyMessage
+from buildium_sdk.models.listing_put_message import ListingPutMessage as ListingPutMessage
+from buildium_sdk.models.listing_unit_message import ListingUnitMessage as ListingUnitMessage
+from buildium_sdk.models.lock_period_settings_global_message import LockPeriodSettingsGlobalMessage as LockPeriodSettingsGlobalMessage
+from buildium_sdk.models.lock_period_settings_overrides_message import LockPeriodSettingsOverridesMessage as LockPeriodSettingsOverridesMessage
+from buildium_sdk.models.logged_by_staff_user_message import LoggedByStaffUserMessage as LoggedByStaffUserMessage
+from buildium_sdk.models.lookup_message import LookupMessage as LookupMessage
+from buildium_sdk.models.mailing_template_message import MailingTemplateMessage as MailingTemplateMessage
+from buildium_sdk.models.meter_reading_detail_message import MeterReadingDetailMessage as MeterReadingDetailMessage
+from buildium_sdk.models.meter_reading_detail_put_message import MeterReadingDetailPutMessage as MeterReadingDetailPutMessage
+from buildium_sdk.models.meter_reading_details_message import MeterReadingDetailsMessage as MeterReadingDetailsMessage
+from buildium_sdk.models.meter_reading_details_put_message import MeterReadingDetailsPutMessage as MeterReadingDetailsPutMessage
+from buildium_sdk.models.meter_reading_message import MeterReadingMessage as MeterReadingMessage
+from buildium_sdk.models.multiple_bill_payment_allocation_line_post_message import MultipleBillPaymentAllocationLinePostMessage as MultipleBillPaymentAllocationLinePostMessage
+from buildium_sdk.models.multiple_bill_payments_post_message import MultipleBillPaymentsPostMessage as MultipleBillPaymentsPostMessage
+from buildium_sdk.models.note_message import NoteMessage as NoteMessage
+from buildium_sdk.models.note_post_message import NotePostMessage as NotePostMessage
+from buildium_sdk.models.note_put_message import NotePutMessage as NotePutMessage
+from buildium_sdk.models.offline_payments_message import OfflinePaymentsMessage as OfflinePaymentsMessage
+from buildium_sdk.models.offline_payments_put_message import OfflinePaymentsPutMessage as OfflinePaymentsPutMessage
+from buildium_sdk.models.outstanding_balances_line_message import OutstandingBalancesLineMessage as OutstandingBalancesLineMessage
+from buildium_sdk.models.ownership_account_auto_allocated_payment_post_message import OwnershipAccountAutoAllocatedPaymentPostMessage as OwnershipAccountAutoAllocatedPaymentPostMessage
+from buildium_sdk.models.ownership_account_charge_recurring_transaction_message import OwnershipAccountChargeRecurringTransactionMessage as OwnershipAccountChargeRecurringTransactionMessage
+from buildium_sdk.models.ownership_account_credit_line_post_message import OwnershipAccountCreditLinePostMessage as OwnershipAccountCreditLinePostMessage
+from buildium_sdk.models.ownership_account_credit_post_message import OwnershipAccountCreditPostMessage as OwnershipAccountCreditPostMessage
+from buildium_sdk.models.ownership_account_deposit_withholding_line_post_message import OwnershipAccountDepositWithholdingLinePostMessage as OwnershipAccountDepositWithholdingLinePostMessage
+from buildium_sdk.models.ownership_account_deposit_withholding_line_put_message import OwnershipAccountDepositWithholdingLinePutMessage as OwnershipAccountDepositWithholdingLinePutMessage
+from buildium_sdk.models.ownership_account_deposit_withholding_post_message import OwnershipAccountDepositWithholdingPostMessage as OwnershipAccountDepositWithholdingPostMessage
+from buildium_sdk.models.ownership_account_deposit_withholding_put_message import OwnershipAccountDepositWithholdingPutMessage as OwnershipAccountDepositWithholdingPutMessage
+from buildium_sdk.models.ownership_account_ledger_charge_line_message import OwnershipAccountLedgerChargeLineMessage as OwnershipAccountLedgerChargeLineMessage
+from buildium_sdk.models.ownership_account_ledger_charge_lines_put_message import OwnershipAccountLedgerChargeLinesPutMessage as OwnershipAccountLedgerChargeLinesPutMessage
+from buildium_sdk.models.ownership_account_ledger_charge_lines_save_message import OwnershipAccountLedgerChargeLinesSaveMessage as OwnershipAccountLedgerChargeLinesSaveMessage
+from buildium_sdk.models.ownership_account_ledger_charge_message import OwnershipAccountLedgerChargeMessage as OwnershipAccountLedgerChargeMessage
+from buildium_sdk.models.ownership_account_ledger_charge_post_message import OwnershipAccountLedgerChargePostMessage as OwnershipAccountLedgerChargePostMessage
+from buildium_sdk.models.ownership_account_ledger_charge_put_message import OwnershipAccountLedgerChargePutMessage as OwnershipAccountLedgerChargePutMessage
+from buildium_sdk.models.ownership_account_ledger_payment_line_save_message import OwnershipAccountLedgerPaymentLineSaveMessage as OwnershipAccountLedgerPaymentLineSaveMessage
+from buildium_sdk.models.ownership_account_ledger_payment_post_message import OwnershipAccountLedgerPaymentPostMessage as OwnershipAccountLedgerPaymentPostMessage
+from buildium_sdk.models.ownership_account_ledger_payment_put_message import OwnershipAccountLedgerPaymentPutMessage as OwnershipAccountLedgerPaymentPutMessage
+from buildium_sdk.models.ownership_account_outstanding_balance_message import OwnershipAccountOutstandingBalanceMessage as OwnershipAccountOutstandingBalanceMessage
+from buildium_sdk.models.ownership_account_recurring_credit_message import OwnershipAccountRecurringCreditMessage as OwnershipAccountRecurringCreditMessage
+from buildium_sdk.models.ownership_account_recurring_payment_message import OwnershipAccountRecurringPaymentMessage as OwnershipAccountRecurringPaymentMessage
+from buildium_sdk.models.ownership_account_refund_line_message import OwnershipAccountRefundLineMessage as OwnershipAccountRefundLineMessage
+from buildium_sdk.models.ownership_account_refund_lines_post_message import OwnershipAccountRefundLinesPostMessage as OwnershipAccountRefundLinesPostMessage
+from buildium_sdk.models.ownership_account_refund_message import OwnershipAccountRefundMessage as OwnershipAccountRefundMessage
+from buildium_sdk.models.ownership_account_refund_post_message import OwnershipAccountRefundPostMessage as OwnershipAccountRefundPostMessage
+from buildium_sdk.models.ownership_account_transaction_message import OwnershipAccountTransactionMessage as OwnershipAccountTransactionMessage
+from buildium_sdk.models.paid_by_message import PaidByMessage as PaidByMessage
+from buildium_sdk.models.partial_payment_settings_message import PartialPaymentSettingsMessage as PartialPaymentSettingsMessage
+from buildium_sdk.models.partial_payment_settings_patch_message import PartialPaymentSettingsPatchMessage as PartialPaymentSettingsPatchMessage
+from buildium_sdk.models.participant_message import ParticipantMessage as ParticipantMessage
+from buildium_sdk.models.participant_resource_message import ParticipantResourceMessage as ParticipantResourceMessage
+from buildium_sdk.models.payee_message import PayeeMessage as PayeeMessage
+from buildium_sdk.models.payment_detail_message import PaymentDetailMessage as PaymentDetailMessage
+from buildium_sdk.models.payment_recurring_transaction_post_message import PaymentRecurringTransactionPostMessage as PaymentRecurringTransactionPostMessage
+from buildium_sdk.models.payment_transactions_message import PaymentTransactionsMessage as PaymentTransactionsMessage
+from buildium_sdk.models.phone_log_message import PhoneLogMessage as PhoneLogMessage
+from buildium_sdk.models.phone_log_participant_post_message import PhoneLogParticipantPostMessage as PhoneLogParticipantPostMessage
+from buildium_sdk.models.phone_log_participant_unit_agreement_post_message import PhoneLogParticipantUnitAgreementPostMessage as PhoneLogParticipantUnitAgreementPostMessage
+from buildium_sdk.models.phone_log_post_message import PhoneLogPostMessage as PhoneLogPostMessage
+from buildium_sdk.models.phone_log_put_message import PhoneLogPutMessage as PhoneLogPutMessage
+from buildium_sdk.models.phone_number_message import PhoneNumberMessage as PhoneNumberMessage
+from buildium_sdk.models.phone_numbers_message import PhoneNumbersMessage as PhoneNumbersMessage
+from buildium_sdk.models.property_group_message import PropertyGroupMessage as PropertyGroupMessage
+from buildium_sdk.models.property_group_post_message import PropertyGroupPostMessage as PropertyGroupPostMessage
+from buildium_sdk.models.property_group_put_message import PropertyGroupPutMessage as PropertyGroupPutMessage
+from buildium_sdk.models.property_manager_message import PropertyManagerMessage as PropertyManagerMessage
+from buildium_sdk.models.property_message import PropertyMessage as PropertyMessage
+from buildium_sdk.models.recurring_transaction_line_message import RecurringTransactionLineMessage as RecurringTransactionLineMessage
+from buildium_sdk.models.recurring_transaction_line_post_message import RecurringTransactionLinePostMessage as RecurringTransactionLinePostMessage
+from buildium_sdk.models.recurring_transaction_message import RecurringTransactionMessage as RecurringTransactionMessage
+from buildium_sdk.models.rent_message import RentMessage as RentMessage
+from buildium_sdk.models.rent_schedule_charge_post_message import RentScheduleChargePostMessage as RentScheduleChargePostMessage
+from buildium_sdk.models.rent_schedule_charge_put_message import RentScheduleChargePutMessage as RentScheduleChargePutMessage
+from buildium_sdk.models.rent_schedule_post_message import RentSchedulePostMessage as RentSchedulePostMessage
+from buildium_sdk.models.rent_schedule_put_message import RentSchedulePutMessage as RentSchedulePutMessage
+from buildium_sdk.models.rental_appliance_message import RentalApplianceMessage as RentalApplianceMessage
+from buildium_sdk.models.rental_appliance_post_message import RentalAppliancePostMessage as RentalAppliancePostMessage
+from buildium_sdk.models.rental_appliance_put_message import RentalAppliancePutMessage as RentalAppliancePutMessage
+from buildium_sdk.models.rental_appliance_service_history_message import RentalApplianceServiceHistoryMessage as RentalApplianceServiceHistoryMessage
+from buildium_sdk.models.rental_appliance_service_history_post_message import RentalApplianceServiceHistoryPostMessage as RentalApplianceServiceHistoryPostMessage
+from buildium_sdk.models.rental_features_message import RentalFeaturesMessage as RentalFeaturesMessage
+from buildium_sdk.models.rental_features_put_message import RentalFeaturesPutMessage as RentalFeaturesPutMessage
+from buildium_sdk.models.rental_image_message import RentalImageMessage as RentalImageMessage
+from buildium_sdk.models.rental_image_put_message import RentalImagePutMessage as RentalImagePutMessage
+from buildium_sdk.models.rental_message import RentalMessage as RentalMessage
+from buildium_sdk.models.rental_owner_contribution_data_message import RentalOwnerContributionDataMessage as RentalOwnerContributionDataMessage
+from buildium_sdk.models.rental_owner_contribution_data_put_message import RentalOwnerContributionDataPutMessage as RentalOwnerContributionDataPutMessage
+from buildium_sdk.models.rental_owner_contribution_message import RentalOwnerContributionMessage as RentalOwnerContributionMessage
+from buildium_sdk.models.rental_owner_contribution_put_message import RentalOwnerContributionPutMessage as RentalOwnerContributionPutMessage
+from buildium_sdk.models.rental_owner_contribution_reminder_message import RentalOwnerContributionReminderMessage as RentalOwnerContributionReminderMessage
+from buildium_sdk.models.rental_owner_contribution_reminder_put_message import RentalOwnerContributionReminderPutMessage as RentalOwnerContributionReminderPutMessage
+from buildium_sdk.models.rental_owner_message import RentalOwnerMessage as RentalOwnerMessage
+from buildium_sdk.models.rental_owner_post_message import RentalOwnerPostMessage as RentalOwnerPostMessage
+from buildium_sdk.models.rental_owner_put_message import RentalOwnerPutMessage as RentalOwnerPutMessage
+from buildium_sdk.models.rental_owner_request_task_message import RentalOwnerRequestTaskMessage as RentalOwnerRequestTaskMessage
+from buildium_sdk.models.rental_owner_request_task_post_message import RentalOwnerRequestTaskPostMessage as RentalOwnerRequestTaskPostMessage
+from buildium_sdk.models.rental_owner_request_task_put_message import RentalOwnerRequestTaskPutMessage as RentalOwnerRequestTaskPutMessage
+from buildium_sdk.models.rental_owner_tax_information_message import RentalOwnerTaxInformationMessage as RentalOwnerTaxInformationMessage
+from buildium_sdk.models.rental_preferred_vendor_message import RentalPreferredVendorMessage as RentalPreferredVendorMessage
+from buildium_sdk.models.rental_preferred_vendor_put_message import RentalPreferredVendorPutMessage as RentalPreferredVendorPutMessage
+from buildium_sdk.models.rental_property_post_message import RentalPropertyPostMessage as RentalPropertyPostMessage
+from buildium_sdk.models.rental_property_put_message import RentalPropertyPutMessage as RentalPropertyPutMessage
+from buildium_sdk.models.rental_property_unit_post_message import RentalPropertyUnitPostMessage as RentalPropertyUnitPostMessage
+from buildium_sdk.models.rental_tenant_post_message import RentalTenantPostMessage as RentalTenantPostMessage
+from buildium_sdk.models.rental_tenant_put_message import RentalTenantPutMessage as RentalTenantPutMessage
+from buildium_sdk.models.rental_tenant_renewal_post_message import RentalTenantRenewalPostMessage as RentalTenantRenewalPostMessage
+from buildium_sdk.models.rental_unit_features_message import RentalUnitFeaturesMessage as RentalUnitFeaturesMessage
+from buildium_sdk.models.rental_unit_features_put_message import RentalUnitFeaturesPutMessage as RentalUnitFeaturesPutMessage
+from buildium_sdk.models.rental_unit_image_message import RentalUnitImageMessage as RentalUnitImageMessage
+from buildium_sdk.models.rental_unit_image_put_message import RentalUnitImagePutMessage as RentalUnitImagePutMessage
+from buildium_sdk.models.rental_unit_message import RentalUnitMessage as RentalUnitMessage
+from buildium_sdk.models.rental_unit_put_message import RentalUnitPutMessage as RentalUnitPutMessage
+from buildium_sdk.models.rental_units_post_message import RentalUnitsPostMessage as RentalUnitsPostMessage
+from buildium_sdk.models.renters_insurance_policy_message import RentersInsurancePolicyMessage as RentersInsurancePolicyMessage
+from buildium_sdk.models.requested_by_user_entity_message import RequestedByUserEntityMessage as RequestedByUserEntityMessage
+from buildium_sdk.models.resident_center_user_message import ResidentCenterUserMessage as ResidentCenterUserMessage
+from buildium_sdk.models.resident_center_user_reference_message import ResidentCenterUserReferenceMessage as ResidentCenterUserReferenceMessage
+from buildium_sdk.models.resident_request_task_message import ResidentRequestTaskMessage as ResidentRequestTaskMessage
+from buildium_sdk.models.resident_request_task_post_message import ResidentRequestTaskPostMessage as ResidentRequestTaskPostMessage
+from buildium_sdk.models.resident_request_task_put_message import ResidentRequestTaskPutMessage as ResidentRequestTaskPutMessage
+from buildium_sdk.models.retail_cash_property_message import RetailCashPropertyMessage as RetailCashPropertyMessage
+from buildium_sdk.models.retail_cash_unit_message import RetailCashUnitMessage as RetailCashUnitMessage
+from buildium_sdk.models.retail_cash_user_data_message import RetailCashUserDataMessage as RetailCashUserDataMessage
+from buildium_sdk.models.retail_cash_user_message import RetailCashUserMessage as RetailCashUserMessage
+from buildium_sdk.models.retail_cash_user_put_message import RetailCashUserPutMessage as RetailCashUserPutMessage
+from buildium_sdk.models.save_address_message import SaveAddressMessage as SaveAddressMessage
+from buildium_sdk.models.save_emergency_contact_message import SaveEmergencyContactMessage as SaveEmergencyContactMessage
+from buildium_sdk.models.task_category_message import TaskCategoryMessage as TaskCategoryMessage
+from buildium_sdk.models.task_category_put_message import TaskCategoryPutMessage as TaskCategoryPutMessage
+from buildium_sdk.models.task_category_response_message import TaskCategoryResponseMessage as TaskCategoryResponseMessage
+from buildium_sdk.models.task_category_save_message import TaskCategorySaveMessage as TaskCategorySaveMessage
+from buildium_sdk.models.task_history_file_message import TaskHistoryFileMessage as TaskHistoryFileMessage
+from buildium_sdk.models.task_history_file_upload_post_message import TaskHistoryFileUploadPostMessage as TaskHistoryFileUploadPostMessage
+from buildium_sdk.models.task_history_message import TaskHistoryMessage as TaskHistoryMessage
+from buildium_sdk.models.task_history_put_message import TaskHistoryPutMessage as TaskHistoryPutMessage
+from buildium_sdk.models.task_history_user_message import TaskHistoryUserMessage as TaskHistoryUserMessage
+from buildium_sdk.models.task_sub_category_message import TaskSubCategoryMessage as TaskSubCategoryMessage
+from buildium_sdk.models.tax_information_post_message import TaxInformationPostMessage as TaxInformationPostMessage
+from buildium_sdk.models.tax_information_save_message import TaxInformationSaveMessage as TaxInformationSaveMessage
+from buildium_sdk.models.tenant_message import TenantMessage as TenantMessage
+from buildium_sdk.models.to_do_task_message import ToDoTaskMessage as ToDoTaskMessage
+from buildium_sdk.models.to_do_task_post_message import ToDoTaskPostMessage as ToDoTaskPostMessage
+from buildium_sdk.models.to_do_task_put_message import ToDoTaskPutMessage as ToDoTaskPutMessage
+from buildium_sdk.models.undeposited_funds_message import UndepositedFundsMessage as UndepositedFundsMessage
+from buildium_sdk.models.unit_agreement_message import UnitAgreementMessage as UnitAgreementMessage
+from buildium_sdk.models.unit_entity_message import UnitEntityMessage as UnitEntityMessage
+from buildium_sdk.models.unsubmitted_application_message import UnsubmittedApplicationMessage as UnsubmittedApplicationMessage
+from buildium_sdk.models.user_message import UserMessage as UserMessage
+from buildium_sdk.models.user_role_message import UserRoleMessage as UserRoleMessage
+from buildium_sdk.models.vehicle_message import VehicleMessage as VehicleMessage
+from buildium_sdk.models.vendor_category_message import VendorCategoryMessage as VendorCategoryMessage
+from buildium_sdk.models.vendor_category_save_message import VendorCategorySaveMessage as VendorCategorySaveMessage
+from buildium_sdk.models.vendor_credit_line_item_message import VendorCreditLineItemMessage as VendorCreditLineItemMessage
+from buildium_sdk.models.vendor_credit_line_item_post_message import VendorCreditLineItemPostMessage as VendorCreditLineItemPostMessage
+from buildium_sdk.models.vendor_credit_message import VendorCreditMessage as VendorCreditMessage
+from buildium_sdk.models.vendor_credit_post_message import VendorCreditPostMessage as VendorCreditPostMessage
+from buildium_sdk.models.vendor_insurance_message import VendorInsuranceMessage as VendorInsuranceMessage
+from buildium_sdk.models.vendor_insurance_save_message import VendorInsuranceSaveMessage as VendorInsuranceSaveMessage
+from buildium_sdk.models.vendor_message import VendorMessage as VendorMessage
+from buildium_sdk.models.vendor_post_message import VendorPostMessage as VendorPostMessage
+from buildium_sdk.models.vendor_put_message import VendorPutMessage as VendorPutMessage
+from buildium_sdk.models.vendor_refund_line_message import VendorRefundLineMessage as VendorRefundLineMessage
+from buildium_sdk.models.vendor_refund_line_post_message import VendorRefundLinePostMessage as VendorRefundLinePostMessage
+from buildium_sdk.models.vendor_refund_message import VendorRefundMessage as VendorRefundMessage
+from buildium_sdk.models.vendor_refund_post_message import VendorRefundPostMessage as VendorRefundPostMessage
+from buildium_sdk.models.vendor_tax_information_message import VendorTaxInformationMessage as VendorTaxInformationMessage
+from buildium_sdk.models.vendor_transaction_message import VendorTransactionMessage as VendorTransactionMessage
+from buildium_sdk.models.video_link_request_post_message import VideoLinkRequestPostMessage as VideoLinkRequestPostMessage
+from buildium_sdk.models.work_order_entry_contact_message import WorkOrderEntryContactMessage as WorkOrderEntryContactMessage
+from buildium_sdk.models.work_order_entry_contact_resource_message import WorkOrderEntryContactResourceMessage as WorkOrderEntryContactResourceMessage
+from buildium_sdk.models.work_order_line_item_message import WorkOrderLineItemMessage as WorkOrderLineItemMessage
+from buildium_sdk.models.work_order_line_item_save_message import WorkOrderLineItemSaveMessage as WorkOrderLineItemSaveMessage
+from buildium_sdk.models.work_order_message import WorkOrderMessage as WorkOrderMessage
+from buildium_sdk.models.work_order_post_message import WorkOrderPostMessage as WorkOrderPostMessage
+from buildium_sdk.models.work_order_put_message import WorkOrderPutMessage as WorkOrderPutMessage
+from buildium_sdk.models.work_order_task_message import WorkOrderTaskMessage as WorkOrderTaskMessage
+from buildium_sdk.models.work_order_task_post_message import WorkOrderTaskPostMessage as WorkOrderTaskPostMessage
+

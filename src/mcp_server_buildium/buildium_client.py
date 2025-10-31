@@ -69,10 +69,9 @@ class BuildiumClient:
         # Set API key headers as default headers (Buildium uses headers, not OAuth)
         self._api_client.set_default_header("x-buildium-client-id", self.config.client_id)
         self._api_client.set_default_header("x-buildium-client-secret", self.config.client_secret)
-
+        
         # Log initialization details
         import logging
-
         logger = logging.getLogger(__name__)
         logger.debug("Initialized Buildium client:")
         logger.debug("  Base URL: %s", base_url)

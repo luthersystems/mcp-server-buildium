@@ -1,0 +1,35 @@
+# BillPutMessage
+
+This object represents a bill.
+
+## Properties
+
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**var_date** | **date** | The date that an invoice was received. This date typically corresponds with a Bill Received Date, Invoice Date, or Invoice Received Date from an invoice. The date must be formatted as YYYY-MM-DD. | 
+**due_date** | **date** | The date that payment for a bill is due to the vendor. The date must be formatted as YYYY-MM-DD. | 
+**memo** | **str** | A description of what the invoice was for. The value cannot exceed 245 characters. | [optional] 
+**vendor_id** | **int** | The unique identifier of the vendor or supplier who sent you an invoice. | 
+**reference_number** | **str** | The reference or invoice number that the vendor assigned to the invoice. The value cannot exceed 40 characters. | [optional] 
+**lines** | [**List[BillLinePutMessage]**](BillLinePutMessage.md) | A collection of line items associated with the bill. | [optional] 
+
+## Example
+
+```python
+from buildium_sdk.models.bill_put_message import BillPutMessage
+
+# TODO update the JSON string below
+json = "{}"
+# create an instance of BillPutMessage from a JSON string
+bill_put_message_instance = BillPutMessage.from_json(json)
+# print the JSON string representation of the object
+print(BillPutMessage.to_json())
+
+# convert the object into a dict
+bill_put_message_dict = bill_put_message_instance.to_dict()
+# create an instance of BillPutMessage from a dict
+bill_put_message_from_dict = BillPutMessage.from_dict(bill_put_message_dict)
+```
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+

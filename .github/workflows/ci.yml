@@ -42,23 +42,13 @@ jobs:
             echo "Warning: Could not find or download OpenAPI spec. SDK generation will be skipped."
           fi
 
-      - name: Generate SDK from OpenAPI spec
-        if: success() || failure()  # Run even if download fails (to show better error)
-        continue-on-error: true
+      - name: Install Buildium SDK
         run: |
-          if [ ! -f /tmp/buildium-openapi.json ]; then
-            echo "Error: OpenAPI spec not found. Cannot generate SDK."
-            echo "Skipping SDK generation. Unit tests will be skipped."
-            exit 0
-          fi
-          docker run --rm -v "${PWD}:/local" -v /tmp:/tmp openapitools/openapi-generator-cli:latest generate \
-            -i /tmp/buildium-openapi.json \
-            -g python \
-            -o /local/buildium_sdk \
-            -p packageName=buildium_sdk,projectName=buildium-sdk,packageVersion=0.1.0,library=httpx \
-            --skip-validate-spec
+          # SDK is checked into the repo, just install it
           if [ -d buildium_sdk ]; then
             cd buildium_sdk && uv pip install -e .
+          else
+            echo "Warning: buildium_sdk directory not found"
           fi
 
       - name: Install dependencies
