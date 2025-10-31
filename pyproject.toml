@@ -26,6 +26,8 @@ dependencies = [
     "python-dotenv>=1.0.0",
     "python-dateutil>=2.8.2",
     "urllib3>=1.25.3",
+    # Generated Buildium SDK (local path)
+    "buildium_sdk @ file:///${PROJECT_ROOT}/buildium_sdk#egg=buildium_sdk",
 ]
 
 [project.optional-dependencies]

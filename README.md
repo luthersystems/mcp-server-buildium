@@ -1,6 +1,6 @@
 # Buildium MCP Server
 
-**Experimental** Model Context Protocol (MCP) server for Buildium Property Management API, built with Python + FastMCP. Uses OAuth 2.0 client credentials flow for server-to-server authentication.
+**Experimental** Model Context Protocol (MCP) server for Buildium Property Management API, built with Python + FastMCP. Uses API key authentication for server-to-server communication.
 
 ## ⚠️ Status & Disclaimers
 
@@ -10,10 +10,10 @@
 
 ## Features
 
-* 🔐 **OAuth 2.0 client credentials authentication** - Server-to-server authentication
-* 🏘️ **Rental property management** - List and manage rental properties
-* 🏢 **Association management** - Manage homeowner associations
-* 📄 **Lease management** - Create, list, and manage leases
+* 🔐 **API Key Authentication** - Secure server-to-server authentication via headers
+* 🏘️ **81 Tools Across 12 Categories** - Comprehensive property management coverage
+* 📋 **Selective Tool Loading** - Enable only the categories you need
+* 🏢 **Multi-Property Types** - Rentals, associations, and units
 * 🔌 **MCP Protocol** - Compatible with Claude Desktop, Cursor, and other MCP clients
 
 ## Requirements
@@ -45,20 +45,41 @@ pip install git+https://github.com/luthersystems/mcp-server-buildium.git
 Configure the server using environment variables:
 
 ```bash
-# API Base URL
-BUILDIUM_BASE_URL=https://apisandbox.buildium.com/  # Sandbox
-# BUILDIUM_BASE_URL=https://api.buildium.com/       # Production
+# API Base URL (no /v1 suffix - SDK adds it automatically)
+BUILDIUM_BASE_URL=https://api.buildium.com  # Production
+# BUILDIUM_BASE_URL=https://apisandbox.buildium.com  # Sandbox
 
-# OAuth Credentials
+# API Key Credentials
 BUILDIUM_CLIENT_ID=your-client-id
 BUILDIUM_CLIENT_SECRET=your-client-secret
 
-# Optional: Token URL (defaults to {base_url}/identity/connect/token)
-BUILDIUM_TOKEN_URL=https://apisandbox.buildium.com/identity/connect/token
-
-# Optional: OAuth Scopes
-BUILDIUM_SCOPE=buildiumapi.read buildiumapi.write
+# Optional: Selective Tool Categories (comma-separated)
+# If not specified, all categories are enabled
+BUILDIUM_CATEGORIES=associations,leases,rentals
 ```
+
+### Tool Categories
+
+Control which tool categories are enabled using the `BUILDIUM_CATEGORIES` environment variable:
+
+| Category | Tools | Description |
+|----------|-------|-------------|
+| `associations` | 6 | Homeowner association management |
+| `leases` | 5 | Lease agreements and transactions |
+| `rentals` | 5 | Rental properties and listings |
+| `applicants` | 10 | Rental applicants and applications |
+| `tenants` | 7 | Tenant management (rental & association) |
+| `owners` | 8 | Property owner management |
+| `units` | 7 | Individual unit management |
+| `vendors` | 7 | Vendor and service provider management |
+| `tasks` | 5 | Task and to-do management |
+| `bills` | 7 | Bill and payment management |
+| `files` | 8 | Document and file management |
+| `bank_accounts` | 6 | Bank account and transaction management |
+
+**Total: 81 tools**
+
+If `BUILDIUM_CATEGORIES` is not set, all 81 tools across all 12 categories are enabled.
 
 ### Environment File
 
@@ -105,27 +126,112 @@ Add to your Claude Desktop config (`~/Library/Application Support/Claude/claude_
 }
 ```
 
-## Available Tools
+## Available Tools (81 total)
 
-### Association Tools
-
+### Associations (6 tools)
 * `list_associations` - List all associations
 * `get_association` - Get association details by ID
 * `create_association` - Create a new association
+* `update_association` - Update an existing association
+* `list_association_board_members` - List board members for an association
+* `list_association_ownership_accounts` - List ownership accounts for an association
 
-### Lease Tools
-
+### Leases (5 tools)
 * `list_leases` - List leases with optional filters
 * `get_lease` - Get lease details by ID
 * `create_lease` - Create a new lease
+* `update_lease` - Update an existing lease
 * `list_lease_transactions` - List transactions for a lease
 
-### Rental Tools
-
+### Rentals (5 tools)
 * `list_rentals` - List rental properties
 * `get_rental` - Get rental property details by ID
 * `create_rental` - Create a new rental property
-* `list_unit_listings` - List unit listings
+* `update_rental` - Update an existing rental property
+* `list_unit_listings` - List unit listings for rentals
+
+### Applicants (10 tools)
+* `list_applicants` - List rental applicants
+* `get_applicant` - Get applicant details by ID
+* `create_applicant` - Create a new applicant
+* `update_applicant` - Update an existing applicant
+* `list_applicant_applications` - List applications for an applicant
+* `get_application` - Get application details by ID
+* `update_application` - Update an application
+* `list_applicant_groups` - List applicant groups
+* `create_applicant_group` - Create a new applicant group
+* `update_applicant_group` - Update an applicant group
+
+### Tenants (7 tools)
+* `list_rental_tenants` - List rental tenants
+* `get_rental_tenant` - Get rental tenant details by ID
+* `create_rental_tenant` - Create a new rental tenant
+* `update_rental_tenant` - Update a rental tenant
+* `list_association_tenants` - List association tenants
+* `create_association_tenant` - Create a new association tenant
+* `update_association_tenant` - Update an association tenant
+
+### Owners (8 tools)
+* `list_rental_owners` - List rental property owners
+* `get_rental_owner` - Get rental owner details by ID
+* `create_rental_owner` - Create a new rental owner
+* `update_rental_owner` - Update a rental owner
+* `list_association_owners` - List association owners
+* `get_association_owner` - Get association owner details by ID
+* `create_association_owner` - Create a new association owner
+* `update_association_owner` - Update an association owner
+
+### Units (7 tools)
+* `list_rental_units` - List rental units
+* `get_rental_unit` - Get rental unit details by ID
+* `create_rental_unit` - Create a new rental unit
+* `update_rental_unit` - Update a rental unit
+* `list_association_units` - List association units
+* `create_association_unit` - Create a new association unit
+* `update_association_unit` - Update an association unit
+
+### Vendors (7 tools)
+* `list_vendors` - List vendors
+* `get_vendor` - Get vendor details by ID
+* `create_vendor` - Create a new vendor
+* `update_vendor` - Update an existing vendor
+* `list_vendor_categories` - List vendor categories
+* `create_vendor_category` - Create a new vendor category
+* `update_vendor_category` - Update a vendor category
+
+### Tasks (5 tools)
+* `list_tasks` - List tasks
+* `get_task` - Get task details by ID
+* `list_task_categories` - List task categories
+* `create_task_category` - Create a new task category
+* `update_task_category` - Update a task category
+
+### Bills (7 tools)
+* `list_bills` - List bills
+* `get_bill` - Get bill details by ID
+* `create_bill` - Create a new bill
+* `update_bill` - Update an existing bill
+* `list_bill_payments` - List payments for bills
+* `get_bill_payment` - Get bill payment details by ID
+* `create_bill_payment` - Create a new bill payment
+
+### Files (8 tools)
+* `list_files` - List files
+* `get_file` - Get file details by ID
+* `update_file` - Update file metadata
+* `create_file_upload_request` - Create a file upload request
+* `create_file_download_request` - Create a file download request
+* `list_file_categories` - List file categories
+* `create_file_category` - Create a new file category
+* `update_file_category` - Update a file category
+
+### Bank Accounts (6 tools)
+* `list_bank_accounts` - List bank accounts
+* `get_bank_account` - Get bank account details by ID
+* `create_bank_account` - Create a new bank account
+* `update_bank_account` - Update a bank account
+* `list_bank_account_transactions` - List transactions for a bank account
+* `get_bank_account_transaction` - Get bank account transaction details by ID
 
 ## Example Usage
 

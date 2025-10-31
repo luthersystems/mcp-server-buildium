@@ -43,8 +43,8 @@ htmlcov/
 .env
 .env.local
 
-# Generated SDK
-buildium_sdk/
+# Generated SDK (now checked into repo for uvx compatibility)
+# buildium_sdk/
 
 # OpenAPI generator
 .openapi-generator/
