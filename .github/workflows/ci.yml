@@ -55,7 +55,7 @@ jobs:
             -i /tmp/buildium-openapi.json \
             -g python \
             -o /local/buildium_sdk \
-            -p packageName=buildium_sdk,projectName=buildium-sdk,packageVersion=0.1.0,library=httpx,generateSourceCodeOnly=true \
+            -p packageName=buildium_sdk,projectName=buildium-sdk,packageVersion=0.1.0,library=httpx \
             --skip-validate-spec
           if [ -d buildium_sdk ]; then
             cd buildium_sdk && uv pip install -e .
@@ -74,9 +74,14 @@ jobs:
           uv run ruff format --check .
 
       - name: Run unit tests with pytest
+        continue-on-error: true
         run: |
           # Unit tests may require SDK - skip them gracefully if SDK not generated
-          uv run pytest tests/ --ignore=tests/test_integration.py --cov=mcp_server_buildium --cov-report=xml --cov-report=term -x || echo "Some unit tests failed (may require SDK)"
+          if [ ! -d buildium_sdk ] || ! uv run python -c "import buildium_sdk" 2>/dev/null; then
+            echo "Warning: SDK not available. Skipping unit tests that require it."
+            exit 0
+          fi
+          uv run pytest tests/ --ignore=tests/test_integration.py --cov=mcp_server_buildium --cov-report=xml --cov-report=term
 
       - name: Run integration tests (if secrets available)
         if: env.BUILDIUM_CLIENT_ID != ''
@@ -88,11 +93,14 @@ jobs:
           uv run pytest tests/test_integration.py -v
 
       - name: Upload coverage to Codecov
+        if: matrix.python-version == '3.11' && (success() || failure())
+        continue-on-error: true
         uses: codecov/codecov-action@v4
-        if: matrix.python-version == '3.11'
         with:
           file: ./coverage.xml
           fail_ci_if_error: false
+          token: ${{ secrets.CODECOV_TOKEN }}
+          flags: unittests
 
   build:
     runs-on: ubuntu-latest
