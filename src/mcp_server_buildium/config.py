@@ -15,8 +15,12 @@ class BuildiumConfig(BaseSettings):
         default="https://api.buildium.com",
         description="Buildium API base URL without /v1 (prod: https://api.buildium.com, sandbox: https://apisandbox.buildium.com). The SDK adds /v1 to paths automatically.",
     )
-    client_id: str = Field(..., description="Buildium API client ID (used as x-buildium-client-id header)")
-    client_secret: str = Field(..., description="Buildium API client secret (used as x-buildium-client-secret header)")
+    client_id: str = Field(
+        ..., description="Buildium API client ID (used as x-buildium-client-id header)"
+    )
+    client_secret: str = Field(
+        ..., description="Buildium API client secret (used as x-buildium-client-secret header)"
+    )
     categories: str | None = Field(
         default=None,
         description="Comma-separated list of tool categories to enable (e.g., 'associations,leases,rentals'). If not specified, all categories are enabled.",
