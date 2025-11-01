@@ -42,7 +42,7 @@ def register_bill_tools(mcp: FastMCP, client: BuildiumClient) -> None:
     async def create_bill(bill_data: dict[str, Any]) -> dict[str, Any]:
         """Create a new bill."""
         try:
-            from buildium_sdk.models.bill_post_message import BillPostMessage
+            from mcp_server_buildium.buildium_sdk.models.bill_post_message import BillPostMessage
 
             bill_message = BillPostMessage(**bill_data)
         except ImportError:
@@ -59,7 +59,7 @@ def register_bill_tools(mcp: FastMCP, client: BuildiumClient) -> None:
     async def update_bill(bill_id: int, bill_data: dict[str, Any]) -> dict[str, Any]:
         """Update an existing bill."""
         try:
-            from buildium_sdk.models.bill_put_message import BillPutMessage
+            from mcp_server_buildium.buildium_sdk.models.bill_put_message import BillPutMessage
 
             bill_message = BillPutMessage(**bill_data)
         except ImportError:
@@ -96,7 +96,7 @@ def register_bill_tools(mcp: FastMCP, client: BuildiumClient) -> None:
     async def create_bill_payment(bill_id: int, payment_data: dict[str, Any]) -> dict[str, Any]:
         """Create a payment for a bill."""
         try:
-            from buildium_sdk.models.bill_payment_post_message import BillPaymentPostMessage
+            from mcp_server_buildium.buildium_sdk.models.bill_payment_post_message import BillPaymentPostMessage
 
             payment_message = BillPaymentPostMessage(**payment_data)
         except ImportError:

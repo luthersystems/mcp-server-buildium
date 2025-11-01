@@ -72,7 +72,7 @@ def register_lease_tools(mcp: FastMCP, client: BuildiumClient) -> None:
             Created lease details.
         """
         try:
-            from buildium_sdk.models.lease_post_message import LeasePostMessage
+            from mcp_server_buildium.buildium_sdk.models.lease_post_message import LeasePostMessage
 
             lease_message = LeasePostMessage(**lease_data)
         except ImportError:
@@ -97,7 +97,7 @@ def register_lease_tools(mcp: FastMCP, client: BuildiumClient) -> None:
             Updated lease details.
         """
         try:
-            from buildium_sdk.models.lease_put_message import LeasePutMessage
+            from mcp_server_buildium.buildium_sdk.models.lease_put_message import LeasePutMessage
 
             lease_message = LeasePutMessage(**lease_data)
         except ImportError:
@@ -125,7 +125,7 @@ def register_lease_tools(mcp: FastMCP, client: BuildiumClient) -> None:
             Dictionary with transactions list.
         """
         # Use LeaseTransactionsApi from client
-        from buildium_sdk.api.lease_transactions_api import LeaseTransactionsApi
+        from mcp_server_buildium.buildium_sdk.api.lease_transactions_api import LeaseTransactionsApi
 
         transactions_api = LeaseTransactionsApi(client._api_client)
         result = await transactions_api.external_api_lease_transactions_get_lease_transactions(

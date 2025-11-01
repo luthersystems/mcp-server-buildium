@@ -47,7 +47,7 @@ def register_file_tools(mcp: FastMCP, client: BuildiumClient) -> None:
     async def update_file(file_id: int, file_data: dict[str, Any]) -> dict[str, Any]:
         """Update file metadata."""
         try:
-            from buildium_sdk.models.file_put_message import FilePutMessage
+            from mcp_server_buildium.buildium_sdk.models.file_put_message import FilePutMessage
 
             file_message = FilePutMessage(**file_data)
         except ImportError:
@@ -64,7 +64,7 @@ def register_file_tools(mcp: FastMCP, client: BuildiumClient) -> None:
     async def create_file_upload_request(upload_request: dict[str, Any]) -> dict[str, Any]:
         """Create a file upload request to get an upload URL."""
         try:
-            from buildium_sdk.models.file_upload_request_post_message import (
+            from mcp_server_buildium.buildium_sdk.models.file_upload_request_post_message import (
                 FileUploadRequestPostMessage,
             )
 
@@ -101,7 +101,7 @@ def register_file_tools(mcp: FastMCP, client: BuildiumClient) -> None:
     async def create_file_category(category_data: dict[str, Any]) -> dict[str, Any]:
         """Create a new file category."""
         try:
-            from buildium_sdk.models.file_category_post_message import FileCategoryPostMessage
+            from mcp_server_buildium.buildium_sdk.models.file_category_post_message import FileCategoryPostMessage
 
             category_message = FileCategoryPostMessage(**category_data)
         except ImportError:
@@ -120,7 +120,7 @@ def register_file_tools(mcp: FastMCP, client: BuildiumClient) -> None:
     ) -> dict[str, Any]:
         """Update a file category."""
         try:
-            from buildium_sdk.models.file_category_put_message import FileCategoryPutMessage
+            from mcp_server_buildium.buildium_sdk.models.file_category_put_message import FileCategoryPutMessage
 
             category_message = FileCategoryPutMessage(**category_data)
         except ImportError:

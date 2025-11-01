@@ -37,7 +37,7 @@ def register_vendor_tools(mcp: FastMCP, client: BuildiumClient) -> None:
     async def create_vendor(vendor_data: dict[str, Any]) -> dict[str, Any]:
         """Create a new vendor."""
         try:
-            from buildium_sdk.models.vendor_post_message import VendorPostMessage
+            from mcp_server_buildium.buildium_sdk.models.vendor_post_message import VendorPostMessage
 
             vendor_message = VendorPostMessage(**vendor_data)
         except ImportError:
@@ -54,7 +54,7 @@ def register_vendor_tools(mcp: FastMCP, client: BuildiumClient) -> None:
     async def update_vendor(vendor_id: int, vendor_data: dict[str, Any]) -> dict[str, Any]:
         """Update an existing vendor."""
         try:
-            from buildium_sdk.models.vendor_put_message import VendorPutMessage
+            from mcp_server_buildium.buildium_sdk.models.vendor_put_message import VendorPutMessage
 
             vendor_message = VendorPutMessage(**vendor_data)
         except ImportError:
@@ -79,7 +79,7 @@ def register_vendor_tools(mcp: FastMCP, client: BuildiumClient) -> None:
     async def create_vendor_category(category_data: dict[str, Any]) -> dict[str, Any]:
         """Create a new vendor category."""
         try:
-            from buildium_sdk.models.vendor_category_post_message import (
+            from mcp_server_buildium.buildium_sdk.models.vendor_category_post_message import (
                 VendorCategoryPostMessage,
             )
 
@@ -100,7 +100,7 @@ def register_vendor_tools(mcp: FastMCP, client: BuildiumClient) -> None:
     ) -> dict[str, Any]:
         """Update a vendor category."""
         try:
-            from buildium_sdk.models.vendor_category_put_message import VendorCategoryPutMessage
+            from mcp_server_buildium.buildium_sdk.models.vendor_category_put_message import VendorCategoryPutMessage
 
             category_message = VendorCategoryPutMessage(**category_data)
         except ImportError:
