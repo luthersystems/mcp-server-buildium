@@ -61,13 +61,13 @@ def register_rental_tools(mcp: FastMCP, client: BuildiumClient) -> None:
             Created rental property details.
         """
         try:
-            from buildium_sdk.models.rental_property_post_message import RentalPropertyPostMessage
+            from mcp_server_buildium.buildium_sdk.models.rental_property_post_message import RentalPropertyPostMessage
 
             rental_message = RentalPropertyPostMessage(**rental_data)
         except ImportError:
             rental_message = rental_data
 
-        result = await client.rentals_api.external_api_rental_properties_create_rental_property(
+        result = await client.rentals_api.external_api_rentals_create_rental_property(
             rental_property_post_message=rental_message
         )
         if hasattr(result, "to_dict"):
@@ -86,14 +86,14 @@ def register_rental_tools(mcp: FastMCP, client: BuildiumClient) -> None:
             Updated rental property details.
         """
         try:
-            from buildium_sdk.models.rental_property_put_message import RentalPropertyPutMessage
+            from mcp_server_buildium.buildium_sdk.models.rental_property_put_message import RentalPropertyPutMessage
 
             rental_message = RentalPropertyPutMessage(**rental_data)
         except ImportError:
             rental_message = rental_data
 
-        result = await client.rentals_api.external_api_rental_properties_update_rental_property(
-            rental_property_id=property_id, rental_property_put_message=rental_message
+        result = await client.rentals_api.external_api_rentals_update_rental_property(
+            property_id=property_id, rental_property_put_message=rental_message
         )
         if hasattr(result, "to_dict"):
             return result.to_dict()
@@ -110,7 +110,7 @@ def register_rental_tools(mcp: FastMCP, client: BuildiumClient) -> None:
         Returns:
             Dictionary with listings list.
         """
-        from buildium_sdk.api.listings_api import ListingsApi
+        from mcp_server_buildium.buildium_sdk.api.listings_api import ListingsApi
 
         listings_api = ListingsApi(client._api_client)
         result = await listings_api.external_api_listings_get_unit_listings(
