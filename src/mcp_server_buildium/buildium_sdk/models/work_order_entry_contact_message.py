@@ -19,7 +19,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictInt
 from typing import Any, ClassVar, Dict, List, Optional
-from buildium_sdk.models.work_order_entry_contact_resource_message import WorkOrderEntryContactResourceMessage
+from mcp_server_buildium.buildium_sdk.models.work_order_entry_contact_resource_message import WorkOrderEntryContactResourceMessage
 from typing import Optional, Set
 from typing_extensions import Self
 

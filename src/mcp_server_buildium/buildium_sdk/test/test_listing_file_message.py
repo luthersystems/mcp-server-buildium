@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.listing_file_message import ListingFileMessage
+from mcp_server_buildium.buildium_sdk.models.listing_file_message import ListingFileMessage
 
 class TestListingFileMessage(unittest.TestCase):
     """ListingFileMessage unit test stubs"""

@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.bank_pending_reconciliation_post_message import BankPendingReconciliationPostMessage
+from mcp_server_buildium.buildium_sdk.models.bank_pending_reconciliation_post_message import BankPendingReconciliationPostMessage
 
 class TestBankPendingReconciliationPostMessage(unittest.TestCase):
     """BankPendingReconciliationPostMessage unit test stubs"""

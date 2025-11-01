@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.api.budgets_api import BudgetsApi
+from mcp_server_buildium.buildium_sdk.api.budgets_api import BudgetsApi
 
 
 class TestBudgetsApi(unittest.IsolatedAsyncioTestCase):

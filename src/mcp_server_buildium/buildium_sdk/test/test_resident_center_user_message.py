@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.resident_center_user_message import ResidentCenterUserMessage
+from mcp_server_buildium.buildium_sdk.models.resident_center_user_message import ResidentCenterUserMessage
 
 class TestResidentCenterUserMessage(unittest.TestCase):
     """ResidentCenterUserMessage unit test stubs"""

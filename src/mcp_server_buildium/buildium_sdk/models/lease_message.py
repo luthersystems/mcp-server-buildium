@@ -20,10 +20,10 @@ import json
 from datetime import date, datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
-from buildium_sdk.models.cosigner_message import CosignerMessage
-from buildium_sdk.models.lease_account_detail_message import LeaseAccountDetailMessage
-from buildium_sdk.models.lease_move_out_data_message import LeaseMoveOutDataMessage
-from buildium_sdk.models.lease_tenant_message import LeaseTenantMessage
+from mcp_server_buildium.buildium_sdk.models.cosigner_message import CosignerMessage
+from mcp_server_buildium.buildium_sdk.models.lease_account_detail_message import LeaseAccountDetailMessage
+from mcp_server_buildium.buildium_sdk.models.lease_move_out_data_message import LeaseMoveOutDataMessage
+from mcp_server_buildium.buildium_sdk.models.lease_tenant_message import LeaseTenantMessage
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -250,7 +250,7 @@ class LeaseMessage(BaseModel):
         })
         return _obj
 
-from buildium_sdk.models.tenant_message import TenantMessage
+from mcp_server_buildium.buildium_sdk.models.tenant_message import TenantMessage
 # TODO: Rewrite to not use raise_errors
 LeaseMessage.model_rebuild(raise_errors=False)
 

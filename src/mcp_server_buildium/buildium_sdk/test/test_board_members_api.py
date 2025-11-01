@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.api.board_members_api import BoardMembersApi
+from mcp_server_buildium.buildium_sdk.api.board_members_api import BoardMembersApi
 
 
 class TestBoardMembersApi(unittest.IsolatedAsyncioTestCase):

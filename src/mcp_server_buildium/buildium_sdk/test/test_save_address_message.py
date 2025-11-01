@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.save_address_message import SaveAddressMessage
+from mcp_server_buildium.buildium_sdk.models.save_address_message import SaveAddressMessage
 
 class TestSaveAddressMessage(unittest.TestCase):
     """SaveAddressMessage unit test stubs"""

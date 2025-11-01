@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.charge_line_message import ChargeLineMessage
+from mcp_server_buildium.buildium_sdk.models.charge_line_message import ChargeLineMessage
 
 class TestChargeLineMessage(unittest.TestCase):
     """ChargeLineMessage unit test stubs"""

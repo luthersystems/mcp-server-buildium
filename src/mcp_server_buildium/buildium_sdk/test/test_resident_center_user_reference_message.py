@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.resident_center_user_reference_message import ResidentCenterUserReferenceMessage
+from mcp_server_buildium.buildium_sdk.models.resident_center_user_reference_message import ResidentCenterUserReferenceMessage
 
 class TestResidentCenterUserReferenceMessage(unittest.TestCase):
     """ResidentCenterUserReferenceMessage unit test stubs"""

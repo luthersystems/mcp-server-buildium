@@ -20,9 +20,9 @@ import json
 from datetime import date
 from pydantic import BaseModel, ConfigDict, Field, StrictFloat, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional, Union
-from buildium_sdk.models.address_message import AddressMessage
-from buildium_sdk.models.applicant_payee_message import ApplicantPayeeMessage
-from buildium_sdk.models.application_refund_line_message import ApplicationRefundLineMessage
+from mcp_server_buildium.buildium_sdk.models.address_message import AddressMessage
+from mcp_server_buildium.buildium_sdk.models.applicant_payee_message import ApplicantPayeeMessage
+from mcp_server_buildium.buildium_sdk.models.application_refund_line_message import ApplicationRefundLineMessage
 from typing import Optional, Set
 from typing_extensions import Self
 

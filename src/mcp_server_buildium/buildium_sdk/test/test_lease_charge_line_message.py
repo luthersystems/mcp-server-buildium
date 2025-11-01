@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.lease_charge_line_message import LeaseChargeLineMessage
+from mcp_server_buildium.buildium_sdk.models.lease_charge_line_message import LeaseChargeLineMessage
 
 class TestLeaseChargeLineMessage(unittest.TestCase):
     """LeaseChargeLineMessage unit test stubs"""

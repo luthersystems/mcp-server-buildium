@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.application_transaction_message import ApplicationTransactionMessage
+from mcp_server_buildium.buildium_sdk.models.application_transaction_message import ApplicationTransactionMessage
 
 class TestApplicationTransactionMessage(unittest.TestCase):
     """ApplicationTransactionMessage unit test stubs"""

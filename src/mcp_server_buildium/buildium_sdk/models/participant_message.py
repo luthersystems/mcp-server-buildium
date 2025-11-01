@@ -19,8 +19,8 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictInt
 from typing import Any, ClassVar, Dict, List, Optional
-from buildium_sdk.models.participant_resource_message import ParticipantResourceMessage
-from buildium_sdk.models.unit_agreement_message import UnitAgreementMessage
+from mcp_server_buildium.buildium_sdk.models.participant_resource_message import ParticipantResourceMessage
+from mcp_server_buildium.buildium_sdk.models.unit_agreement_message import UnitAgreementMessage
 from typing import Optional, Set
 from typing_extensions import Self
 

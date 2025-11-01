@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.file_put_message import FilePutMessage
+from mcp_server_buildium.buildium_sdk.models.file_put_message import FilePutMessage
 
 class TestFilePutMessage(unittest.TestCase):
     """FilePutMessage unit test stubs"""

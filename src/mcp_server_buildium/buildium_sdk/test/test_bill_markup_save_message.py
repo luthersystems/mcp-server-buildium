@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.bill_markup_save_message import BillMarkupSaveMessage
+from mcp_server_buildium.buildium_sdk.models.bill_markup_save_message import BillMarkupSaveMessage
 
 class TestBillMarkupSaveMessage(unittest.TestCase):
     """BillMarkupSaveMessage unit test stubs"""

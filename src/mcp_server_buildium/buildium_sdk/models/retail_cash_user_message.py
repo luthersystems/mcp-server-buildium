@@ -19,10 +19,10 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictBool
 from typing import Any, ClassVar, Dict, List, Optional
-from buildium_sdk.models.retail_cash_property_message import RetailCashPropertyMessage
-from buildium_sdk.models.retail_cash_unit_message import RetailCashUnitMessage
-from buildium_sdk.models.retail_cash_user_data_message import RetailCashUserDataMessage
-from buildium_sdk.models.unit_agreement_message import UnitAgreementMessage
+from mcp_server_buildium.buildium_sdk.models.retail_cash_property_message import RetailCashPropertyMessage
+from mcp_server_buildium.buildium_sdk.models.retail_cash_unit_message import RetailCashUnitMessage
+from mcp_server_buildium.buildium_sdk.models.retail_cash_user_data_message import RetailCashUserDataMessage
+from mcp_server_buildium.buildium_sdk.models.unit_agreement_message import UnitAgreementMessage
 from typing import Optional, Set
 from typing_extensions import Self
 

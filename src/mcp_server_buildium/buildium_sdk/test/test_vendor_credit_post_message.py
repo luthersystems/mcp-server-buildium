@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.vendor_credit_post_message import VendorCreditPostMessage
+from mcp_server_buildium.buildium_sdk.models.vendor_credit_post_message import VendorCreditPostMessage
 
 class TestVendorCreditPostMessage(unittest.TestCase):
     """VendorCreditPostMessage unit test stubs"""

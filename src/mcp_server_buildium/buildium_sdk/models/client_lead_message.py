@@ -20,8 +20,8 @@ import json
 from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictFloat, StrictInt, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional, Union
-from buildium_sdk.models.address_message import AddressMessage
-from buildium_sdk.models.client_lead_credit_request_message import ClientLeadCreditRequestMessage
+from mcp_server_buildium.buildium_sdk.models.address_message import AddressMessage
+from mcp_server_buildium.buildium_sdk.models.client_lead_credit_request_message import ClientLeadCreditRequestMessage
 from typing import Optional, Set
 from typing_extensions import Self
 

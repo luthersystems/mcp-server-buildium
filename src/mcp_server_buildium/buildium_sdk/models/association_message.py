@@ -19,9 +19,9 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictFloat, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional, Union
-from buildium_sdk.models.address_message import AddressMessage
-from buildium_sdk.models.association_tax_information_message import AssociationTaxInformationMessage
-from buildium_sdk.models.property_manager_message import PropertyManagerMessage
+from mcp_server_buildium.buildium_sdk.models.address_message import AddressMessage
+from mcp_server_buildium.buildium_sdk.models.association_tax_information_message import AssociationTaxInformationMessage
+from mcp_server_buildium.buildium_sdk.models.property_manager_message import PropertyManagerMessage
 from typing import Optional, Set
 from typing_extensions import Self
 

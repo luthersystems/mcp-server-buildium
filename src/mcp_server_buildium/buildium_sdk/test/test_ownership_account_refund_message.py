@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.ownership_account_refund_message import OwnershipAccountRefundMessage
+from mcp_server_buildium.buildium_sdk.models.ownership_account_refund_message import OwnershipAccountRefundMessage
 
 class TestOwnershipAccountRefundMessage(unittest.TestCase):
     """OwnershipAccountRefundMessage unit test stubs"""

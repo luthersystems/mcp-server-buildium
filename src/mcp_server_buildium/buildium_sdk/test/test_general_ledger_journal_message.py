@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.general_ledger_journal_message import GeneralLedgerJournalMessage
+from mcp_server_buildium.buildium_sdk.models.general_ledger_journal_message import GeneralLedgerJournalMessage
 
 class TestGeneralLedgerJournalMessage(unittest.TestCase):
     """GeneralLedgerJournalMessage unit test stubs"""

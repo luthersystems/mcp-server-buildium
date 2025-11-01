@@ -20,7 +20,7 @@ from typing import Optional, Union
 
 import httpx
 
-from buildium_sdk.exceptions import ApiException, ApiValueError
+from mcp_server_buildium.buildium_sdk.exceptions import ApiException, ApiValueError
 
 RESTResponseType = httpx.Response
 

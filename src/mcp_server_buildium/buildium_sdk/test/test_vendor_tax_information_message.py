@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.vendor_tax_information_message import VendorTaxInformationMessage
+from mcp_server_buildium.buildium_sdk.models.vendor_tax_information_message import VendorTaxInformationMessage
 
 class TestVendorTaxInformationMessage(unittest.TestCase):
     """VendorTaxInformationMessage unit test stubs"""

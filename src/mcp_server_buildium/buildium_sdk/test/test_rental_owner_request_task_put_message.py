@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.rental_owner_request_task_put_message import RentalOwnerRequestTaskPutMessage
+from mcp_server_buildium.buildium_sdk.models.rental_owner_request_task_put_message import RentalOwnerRequestTaskPutMessage
 
 class TestRentalOwnerRequestTaskPutMessage(unittest.TestCase):
     """RentalOwnerRequestTaskPutMessage unit test stubs"""

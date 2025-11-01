@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.api.bills_api import BillsApi
+from mcp_server_buildium.buildium_sdk.api.bills_api import BillsApi
 
 
 class TestBillsApi(unittest.IsolatedAsyncioTestCase):

@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.association_owner_board_term_message import AssociationOwnerBoardTermMessage
+from mcp_server_buildium.buildium_sdk.models.association_owner_board_term_message import AssociationOwnerBoardTermMessage
 
 class TestAssociationOwnerBoardTermMessage(unittest.TestCase):
     """AssociationOwnerBoardTermMessage unit test stubs"""

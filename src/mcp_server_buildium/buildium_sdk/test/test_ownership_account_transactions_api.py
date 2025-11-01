@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.api.ownership_account_transactions_api import OwnershipAccountTransactionsApi
+from mcp_server_buildium.buildium_sdk.api.ownership_account_transactions_api import OwnershipAccountTransactionsApi
 
 
 class TestOwnershipAccountTransactionsApi(unittest.IsolatedAsyncioTestCase):

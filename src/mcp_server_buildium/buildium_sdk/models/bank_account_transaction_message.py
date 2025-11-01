@@ -20,8 +20,8 @@ import json
 from datetime import date
 from pydantic import BaseModel, ConfigDict, Field, StrictFloat, StrictInt, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional, Union
-from buildium_sdk.models.paid_by_message import PaidByMessage
-from buildium_sdk.models.payee_message import PayeeMessage
+from mcp_server_buildium.buildium_sdk.models.paid_by_message import PaidByMessage
+from mcp_server_buildium.buildium_sdk.models.payee_message import PayeeMessage
 from typing import Optional, Set
 from typing_extensions import Self
 

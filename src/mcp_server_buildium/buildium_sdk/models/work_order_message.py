@@ -20,9 +20,9 @@ import json
 from datetime import date
 from pydantic import BaseModel, ConfigDict, Field, StrictFloat, StrictInt, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional, Union
-from buildium_sdk.models.work_order_entry_contact_message import WorkOrderEntryContactMessage
-from buildium_sdk.models.work_order_line_item_message import WorkOrderLineItemMessage
-from buildium_sdk.models.work_order_task_message import WorkOrderTaskMessage
+from mcp_server_buildium.buildium_sdk.models.work_order_entry_contact_message import WorkOrderEntryContactMessage
+from mcp_server_buildium.buildium_sdk.models.work_order_line_item_message import WorkOrderLineItemMessage
+from mcp_server_buildium.buildium_sdk.models.work_order_task_message import WorkOrderTaskMessage
 from typing import Optional, Set
 from typing_extensions import Self
 

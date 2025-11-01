@@ -19,16 +19,16 @@ from typing_extensions import Annotated
 from pydantic import Field, StrictInt, StrictStr, field_validator
 from typing import List, Optional
 from typing_extensions import Annotated
-from buildium_sdk.models.account_info_message import AccountInfoMessage
-from buildium_sdk.models.accounting_lock_period_message import AccountingLockPeriodMessage
-from buildium_sdk.models.partial_payment_settings_message import PartialPaymentSettingsMessage
-from buildium_sdk.models.partial_payment_settings_patch_message import PartialPaymentSettingsPatchMessage
-from buildium_sdk.models.user_message import UserMessage
-from buildium_sdk.models.user_role_message import UserRoleMessage
+from mcp_server_buildium.buildium_sdk.models.account_info_message import AccountInfoMessage
+from mcp_server_buildium.buildium_sdk.models.accounting_lock_period_message import AccountingLockPeriodMessage
+from mcp_server_buildium.buildium_sdk.models.partial_payment_settings_message import PartialPaymentSettingsMessage
+from mcp_server_buildium.buildium_sdk.models.partial_payment_settings_patch_message import PartialPaymentSettingsPatchMessage
+from mcp_server_buildium.buildium_sdk.models.user_message import UserMessage
+from mcp_server_buildium.buildium_sdk.models.user_role_message import UserRoleMessage
 
-from buildium_sdk.api_client import ApiClient, RequestSerialized
-from buildium_sdk.api_response import ApiResponse
-from buildium_sdk.rest import RESTResponseType
+from mcp_server_buildium.buildium_sdk.api_client import ApiClient, RequestSerialized
+from mcp_server_buildium.buildium_sdk.api_response import ApiResponse
+from mcp_server_buildium.buildium_sdk.rest import RESTResponseType
 
 
 class AdministrationApi:

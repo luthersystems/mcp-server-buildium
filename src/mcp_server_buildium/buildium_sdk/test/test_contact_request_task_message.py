@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.contact_request_task_message import ContactRequestTaskMessage
+from mcp_server_buildium.buildium_sdk.models.contact_request_task_message import ContactRequestTaskMessage
 
 class TestContactRequestTaskMessage(unittest.TestCase):
     """ContactRequestTaskMessage unit test stubs"""

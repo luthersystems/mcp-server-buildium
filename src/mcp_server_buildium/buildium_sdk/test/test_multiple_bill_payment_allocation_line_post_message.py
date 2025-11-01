@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.multiple_bill_payment_allocation_line_post_message import MultipleBillPaymentAllocationLinePostMessage
+from mcp_server_buildium.buildium_sdk.models.multiple_bill_payment_allocation_line_post_message import MultipleBillPaymentAllocationLinePostMessage
 
 class TestMultipleBillPaymentAllocationLinePostMessage(unittest.TestCase):
     """MultipleBillPaymentAllocationLinePostMessage unit test stubs"""

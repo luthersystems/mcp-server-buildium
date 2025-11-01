@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.association_appliance_message import AssociationApplianceMessage
+from mcp_server_buildium.buildium_sdk.models.association_appliance_message import AssociationApplianceMessage
 
 class TestAssociationApplianceMessage(unittest.TestCase):
     """AssociationApplianceMessage unit test stubs"""

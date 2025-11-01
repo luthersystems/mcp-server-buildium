@@ -19,9 +19,9 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictFloat, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional, Union
-from buildium_sdk.models.accounting_entity_message import AccountingEntityMessage
-from buildium_sdk.models.bill_markup_message import BillMarkupMessage
-from buildium_sdk.models.gl_account_message import GLAccountMessage
+from mcp_server_buildium.buildium_sdk.models.accounting_entity_message import AccountingEntityMessage
+from mcp_server_buildium.buildium_sdk.models.bill_markup_message import BillMarkupMessage
+from mcp_server_buildium.buildium_sdk.models.gl_account_message import GLAccountMessage
 from typing import Optional, Set
 from typing_extensions import Self
 

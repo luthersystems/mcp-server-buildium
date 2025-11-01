@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.rental_unit_image_message import RentalUnitImageMessage
+from mcp_server_buildium.buildium_sdk.models.rental_unit_image_message import RentalUnitImageMessage
 
 class TestRentalUnitImageMessage(unittest.TestCase):
     """RentalUnitImageMessage unit test stubs"""

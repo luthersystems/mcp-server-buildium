@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.accounting_entity_save_message import AccountingEntitySaveMessage
+from mcp_server_buildium.buildium_sdk.models.accounting_entity_save_message import AccountingEntitySaveMessage
 
 class TestAccountingEntitySaveMessage(unittest.TestCase):
     """AccountingEntitySaveMessage unit test stubs"""

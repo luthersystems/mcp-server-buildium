@@ -21,9 +21,9 @@ from datetime import date
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
-from buildium_sdk.models.phone_numbers_message import PhoneNumbersMessage
-from buildium_sdk.models.save_address_message import SaveAddressMessage
-from buildium_sdk.models.save_emergency_contact_message import SaveEmergencyContactMessage
+from mcp_server_buildium.buildium_sdk.models.phone_numbers_message import PhoneNumbersMessage
+from mcp_server_buildium.buildium_sdk.models.save_address_message import SaveAddressMessage
+from mcp_server_buildium.buildium_sdk.models.save_emergency_contact_message import SaveEmergencyContactMessage
 from typing import Optional, Set
 from typing_extensions import Self
 

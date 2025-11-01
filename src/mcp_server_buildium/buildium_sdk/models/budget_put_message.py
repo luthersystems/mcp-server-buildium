@@ -20,7 +20,7 @@ import json
 from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List
 from typing_extensions import Annotated
-from buildium_sdk.models.budget_details_save_message import BudgetDetailsSaveMessage
+from mcp_server_buildium.buildium_sdk.models.budget_details_save_message import BudgetDetailsSaveMessage
 from typing import Optional, Set
 from typing_extensions import Self
 

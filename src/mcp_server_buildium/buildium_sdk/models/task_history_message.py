@@ -20,7 +20,7 @@ import json
 from datetime import date, datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
-from buildium_sdk.models.task_history_user_message import TaskHistoryUserMessage
+from mcp_server_buildium.buildium_sdk.models.task_history_user_message import TaskHistoryUserMessage
 from typing import Optional, Set
 from typing_extensions import Self
 

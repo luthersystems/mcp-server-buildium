@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.task_history_file_upload_post_message import TaskHistoryFileUploadPostMessage
+from mcp_server_buildium.buildium_sdk.models.task_history_file_upload_post_message import TaskHistoryFileUploadPostMessage
 
 class TestTaskHistoryFileUploadPostMessage(unittest.TestCase):
     """TaskHistoryFileUploadPostMessage unit test stubs"""

@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.lease_auto_allocated_payment_post_message import LeaseAutoAllocatedPaymentPostMessage
+from mcp_server_buildium.buildium_sdk.models.lease_auto_allocated_payment_post_message import LeaseAutoAllocatedPaymentPostMessage
 
 class TestLeaseAutoAllocatedPaymentPostMessage(unittest.TestCase):
     """LeaseAutoAllocatedPaymentPostMessage unit test stubs"""

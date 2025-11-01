@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.ownership_account_charge_recurring_transaction_message import OwnershipAccountChargeRecurringTransactionMessage
+from mcp_server_buildium.buildium_sdk.models.ownership_account_charge_recurring_transaction_message import OwnershipAccountChargeRecurringTransactionMessage
 
 class TestOwnershipAccountChargeRecurringTransactionMessage(unittest.TestCase):
     """OwnershipAccountChargeRecurringTransactionMessage unit test stubs"""

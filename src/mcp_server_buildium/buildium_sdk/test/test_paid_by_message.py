@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.paid_by_message import PaidByMessage
+from mcp_server_buildium.buildium_sdk.models.paid_by_message import PaidByMessage
 
 class TestPaidByMessage(unittest.TestCase):
     """PaidByMessage unit test stubs"""

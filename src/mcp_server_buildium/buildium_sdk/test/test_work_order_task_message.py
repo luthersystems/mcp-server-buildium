@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.work_order_task_message import WorkOrderTaskMessage
+from mcp_server_buildium.buildium_sdk.models.work_order_task_message import WorkOrderTaskMessage
 
 class TestWorkOrderTaskMessage(unittest.TestCase):
     """WorkOrderTaskMessage unit test stubs"""

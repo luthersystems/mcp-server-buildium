@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.vehicle_message import VehicleMessage
+from mcp_server_buildium.buildium_sdk.models.vehicle_message import VehicleMessage
 
 class TestVehicleMessage(unittest.TestCase):
     """VehicleMessage unit test stubs"""

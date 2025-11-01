@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.listing_entity_file_post_message import ListingEntityFilePostMessage
+from mcp_server_buildium.buildium_sdk.models.listing_entity_file_post_message import ListingEntityFilePostMessage
 
 class TestListingEntityFilePostMessage(unittest.TestCase):
     """ListingEntityFilePostMessage unit test stubs"""

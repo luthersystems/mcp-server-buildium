@@ -19,7 +19,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictFloat, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional, Union
-from buildium_sdk.models.accounting_entity_message import AccountingEntityMessage
+from mcp_server_buildium.buildium_sdk.models.accounting_entity_message import AccountingEntityMessage
 from typing import Optional, Set
 from typing_extensions import Self
 

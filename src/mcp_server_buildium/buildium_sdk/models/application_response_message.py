@@ -19,7 +19,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
-from buildium_sdk.models.application_section_response_message import ApplicationSectionResponseMessage
+from mcp_server_buildium.buildium_sdk.models.application_section_response_message import ApplicationSectionResponseMessage
 from typing import Optional, Set
 from typing_extensions import Self
 

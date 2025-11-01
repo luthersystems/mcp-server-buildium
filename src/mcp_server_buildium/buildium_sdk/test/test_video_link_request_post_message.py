@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.video_link_request_post_message import VideoLinkRequestPostMessage
+from mcp_server_buildium.buildium_sdk.models.video_link_request_post_message import VideoLinkRequestPostMessage
 
 class TestVideoLinkRequestPostMessage(unittest.TestCase):
     """VideoLinkRequestPostMessage unit test stubs"""

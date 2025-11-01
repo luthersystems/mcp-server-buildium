@@ -20,7 +20,7 @@ import json
 from datetime import date
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
-from buildium_sdk.models.application_charge_line_save_message import ApplicationChargeLineSaveMessage
+from mcp_server_buildium.buildium_sdk.models.application_charge_line_save_message import ApplicationChargeLineSaveMessage
 from typing import Optional, Set
 from typing_extensions import Self
 

@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.renters_insurance_policy_message import RentersInsurancePolicyMessage
+from mcp_server_buildium.buildium_sdk.models.renters_insurance_policy_message import RentersInsurancePolicyMessage
 
 class TestRentersInsurancePolicyMessage(unittest.TestCase):
     """RentersInsurancePolicyMessage unit test stubs"""

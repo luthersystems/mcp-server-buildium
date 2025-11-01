@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.association_owner_unit_occupancy_put_message import AssociationOwnerUnitOccupancyPutMessage
+from mcp_server_buildium.buildium_sdk.models.association_owner_unit_occupancy_put_message import AssociationOwnerUnitOccupancyPutMessage
 
 class TestAssociationOwnerUnitOccupancyPutMessage(unittest.TestCase):
     """AssociationOwnerUnitOccupancyPutMessage unit test stubs"""

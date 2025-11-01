@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.e_pay_settings_message import EPaySettingsMessage
+from mcp_server_buildium.buildium_sdk.models.e_pay_settings_message import EPaySettingsMessage
 
 class TestEPaySettingsMessage(unittest.TestCase):
     """EPaySettingsMessage unit test stubs"""

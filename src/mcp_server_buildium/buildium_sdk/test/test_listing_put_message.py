@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.listing_put_message import ListingPutMessage
+from mcp_server_buildium.buildium_sdk.models.listing_put_message import ListingPutMessage
 
 class TestListingPutMessage(unittest.TestCase):
     """ListingPutMessage unit test stubs"""

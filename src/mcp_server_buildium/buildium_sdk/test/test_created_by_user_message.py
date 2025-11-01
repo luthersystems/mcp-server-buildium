@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.created_by_user_message import CreatedByUserMessage
+from mcp_server_buildium.buildium_sdk.models.created_by_user_message import CreatedByUserMessage
 
 class TestCreatedByUserMessage(unittest.TestCase):
     """CreatedByUserMessage unit test stubs"""

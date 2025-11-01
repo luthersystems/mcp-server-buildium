@@ -20,11 +20,11 @@ import json
 from datetime import date
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
-from buildium_sdk.models.charge_recurring_transaction_post_message import ChargeRecurringTransactionPostMessage
-from buildium_sdk.models.charge_recurring_transaction_put_message import ChargeRecurringTransactionPutMessage
-from buildium_sdk.models.lease_cosigner_post_message import LeaseCosignerPostMessage
-from buildium_sdk.models.lease_rent_post_message import LeaseRentPostMessage
-from buildium_sdk.models.rental_tenant_renewal_post_message import RentalTenantRenewalPostMessage
+from mcp_server_buildium.buildium_sdk.models.charge_recurring_transaction_post_message import ChargeRecurringTransactionPostMessage
+from mcp_server_buildium.buildium_sdk.models.charge_recurring_transaction_put_message import ChargeRecurringTransactionPutMessage
+from mcp_server_buildium.buildium_sdk.models.lease_cosigner_post_message import LeaseCosignerPostMessage
+from mcp_server_buildium.buildium_sdk.models.lease_rent_post_message import LeaseRentPostMessage
+from mcp_server_buildium.buildium_sdk.models.rental_tenant_renewal_post_message import RentalTenantRenewalPostMessage
 from typing import Optional, Set
 from typing_extensions import Self
 

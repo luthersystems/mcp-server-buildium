@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.bank_lockbox_data_ownership_account_message import BankLockboxDataOwnershipAccountMessage
+from mcp_server_buildium.buildium_sdk.models.bank_lockbox_data_ownership_account_message import BankLockboxDataOwnershipAccountMessage
 
 class TestBankLockboxDataOwnershipAccountMessage(unittest.TestCase):
     """BankLockboxDataOwnershipAccountMessage unit test stubs"""

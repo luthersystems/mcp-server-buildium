@@ -20,7 +20,7 @@ import json
 from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
-from buildium_sdk.models.email_sender_message import EmailSenderMessage
+from mcp_server_buildium.buildium_sdk.models.email_sender_message import EmailSenderMessage
 from typing import Optional, Set
 from typing_extensions import Self
 

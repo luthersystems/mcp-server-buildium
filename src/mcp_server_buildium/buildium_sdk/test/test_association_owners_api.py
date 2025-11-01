@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.api.association_owners_api import AssociationOwnersApi
+from mcp_server_buildium.buildium_sdk.api.association_owners_api import AssociationOwnersApi
 
 
 class TestAssociationOwnersApi(unittest.IsolatedAsyncioTestCase):

@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.file_name_post_message import FileNamePostMessage
+from mcp_server_buildium.buildium_sdk.models.file_name_post_message import FileNamePostMessage
 
 class TestFileNamePostMessage(unittest.TestCase):
     """FileNamePostMessage unit test stubs"""

@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.api.application_transactions_api import ApplicationTransactionsApi
+from mcp_server_buildium.buildium_sdk.api.application_transactions_api import ApplicationTransactionsApi
 
 
 class TestApplicationTransactionsApi(unittest.IsolatedAsyncioTestCase):

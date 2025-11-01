@@ -19,13 +19,13 @@ from typing_extensions import Annotated
 from pydantic import Field, StrictBool, StrictInt, StrictStr, field_validator
 from typing import List, Optional
 from typing_extensions import Annotated
-from buildium_sdk.models.resident_center_user_message import ResidentCenterUserMessage
-from buildium_sdk.models.retail_cash_user_message import RetailCashUserMessage
-from buildium_sdk.models.retail_cash_user_put_message import RetailCashUserPutMessage
+from mcp_server_buildium.buildium_sdk.models.resident_center_user_message import ResidentCenterUserMessage
+from mcp_server_buildium.buildium_sdk.models.retail_cash_user_message import RetailCashUserMessage
+from mcp_server_buildium.buildium_sdk.models.retail_cash_user_put_message import RetailCashUserPutMessage
 
-from buildium_sdk.api_client import ApiClient, RequestSerialized
-from buildium_sdk.api_response import ApiResponse
-from buildium_sdk.rest import RESTResponseType
+from mcp_server_buildium.buildium_sdk.api_client import ApiClient, RequestSerialized
+from mcp_server_buildium.buildium_sdk.api_response import ApiResponse
+from mcp_server_buildium.buildium_sdk.rest import RESTResponseType
 
 
 class ResidentCenterApi:

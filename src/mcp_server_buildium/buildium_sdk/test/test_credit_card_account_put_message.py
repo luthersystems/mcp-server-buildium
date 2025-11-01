@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.credit_card_account_put_message import CreditCardAccountPutMessage
+from mcp_server_buildium.buildium_sdk.models.credit_card_account_put_message import CreditCardAccountPutMessage
 
 class TestCreditCardAccountPutMessage(unittest.TestCase):
     """CreditCardAccountPutMessage unit test stubs"""

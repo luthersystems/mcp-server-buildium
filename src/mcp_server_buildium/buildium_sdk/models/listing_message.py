@@ -20,9 +20,9 @@ import json
 from datetime import date
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictFloat, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional, Union
-from buildium_sdk.models.listing_contact_message import ListingContactMessage
-from buildium_sdk.models.listing_property_message import ListingPropertyMessage
-from buildium_sdk.models.listing_unit_message import ListingUnitMessage
+from mcp_server_buildium.buildium_sdk.models.listing_contact_message import ListingContactMessage
+from mcp_server_buildium.buildium_sdk.models.listing_property_message import ListingPropertyMessage
+from mcp_server_buildium.buildium_sdk.models.listing_unit_message import ListingUnitMessage
 from typing import Optional, Set
 from typing_extensions import Self
 

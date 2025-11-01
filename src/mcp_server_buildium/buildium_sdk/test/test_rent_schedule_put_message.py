@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.rent_schedule_put_message import RentSchedulePutMessage
+from mcp_server_buildium.buildium_sdk.models.rent_schedule_put_message import RentSchedulePutMessage
 
 class TestRentSchedulePutMessage(unittest.TestCase):
     """RentSchedulePutMessage unit test stubs"""

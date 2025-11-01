@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.journal_line_message import JournalLineMessage
+from mcp_server_buildium.buildium_sdk.models.journal_line_message import JournalLineMessage
 
 class TestJournalLineMessage(unittest.TestCase):
     """JournalLineMessage unit test stubs"""

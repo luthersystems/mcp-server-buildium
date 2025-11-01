@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.charge_recurring_transaction_post_message import ChargeRecurringTransactionPostMessage
+from mcp_server_buildium.buildium_sdk.models.charge_recurring_transaction_post_message import ChargeRecurringTransactionPostMessage
 
 class TestChargeRecurringTransactionPostMessage(unittest.TestCase):
     """ChargeRecurringTransactionPostMessage unit test stubs"""

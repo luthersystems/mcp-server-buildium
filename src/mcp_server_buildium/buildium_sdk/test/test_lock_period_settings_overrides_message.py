@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.lock_period_settings_overrides_message import LockPeriodSettingsOverridesMessage
+from mcp_server_buildium.buildium_sdk.models.lock_period_settings_overrides_message import LockPeriodSettingsOverridesMessage
 
 class TestLockPeriodSettingsOverridesMessage(unittest.TestCase):
     """LockPeriodSettingsOverridesMessage unit test stubs"""

@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.client_lead_message import ClientLeadMessage
+from mcp_server_buildium.buildium_sdk.models.client_lead_message import ClientLeadMessage
 
 class TestClientLeadMessage(unittest.TestCase):
     """ClientLeadMessage unit test stubs"""

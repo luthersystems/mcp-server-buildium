@@ -20,13 +20,13 @@ from datetime import date
 from pydantic import Field, StrictBool, StrictFloat, StrictInt, StrictStr, field_validator
 from typing import List, Optional, Union
 from typing_extensions import Annotated
-from buildium_sdk.models.work_order_message import WorkOrderMessage
-from buildium_sdk.models.work_order_post_message import WorkOrderPostMessage
-from buildium_sdk.models.work_order_put_message import WorkOrderPutMessage
+from mcp_server_buildium.buildium_sdk.models.work_order_message import WorkOrderMessage
+from mcp_server_buildium.buildium_sdk.models.work_order_post_message import WorkOrderPostMessage
+from mcp_server_buildium.buildium_sdk.models.work_order_put_message import WorkOrderPutMessage
 
-from buildium_sdk.api_client import ApiClient, RequestSerialized
-from buildium_sdk.api_response import ApiResponse
-from buildium_sdk.rest import RESTResponseType
+from mcp_server_buildium.buildium_sdk.api_client import ApiClient, RequestSerialized
+from mcp_server_buildium.buildium_sdk.api_response import ApiResponse
+from mcp_server_buildium.buildium_sdk.rest import RESTResponseType
 
 
 class WorkOrdersApi:

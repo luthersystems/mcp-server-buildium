@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.api.vendors_api import VendorsApi
+from mcp_server_buildium.buildium_sdk.api.vendors_api import VendorsApi
 
 
 class TestVendorsApi(unittest.IsolatedAsyncioTestCase):

@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.undeposited_funds_message import UndepositedFundsMessage
+from mcp_server_buildium.buildium_sdk.models.undeposited_funds_message import UndepositedFundsMessage
 
 class TestUndepositedFundsMessage(unittest.TestCase):
     """UndepositedFundsMessage unit test stubs"""

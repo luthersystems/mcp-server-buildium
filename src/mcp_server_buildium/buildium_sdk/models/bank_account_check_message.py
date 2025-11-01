@@ -20,8 +20,8 @@ import json
 from datetime import date
 from pydantic import BaseModel, ConfigDict, Field, StrictFloat, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional, Union
-from buildium_sdk.models.bank_account_check_line_message import BankAccountCheckLineMessage
-from buildium_sdk.models.bank_account_check_payee_message import BankAccountCheckPayeeMessage
+from mcp_server_buildium.buildium_sdk.models.bank_account_check_line_message import BankAccountCheckLineMessage
+from mcp_server_buildium.buildium_sdk.models.bank_account_check_payee_message import BankAccountCheckPayeeMessage
 from typing import Optional, Set
 from typing_extensions import Self
 

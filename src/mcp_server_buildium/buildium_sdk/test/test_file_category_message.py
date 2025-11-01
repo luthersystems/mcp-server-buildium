@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.file_category_message import FileCategoryMessage
+from mcp_server_buildium.buildium_sdk.models.file_category_message import FileCategoryMessage
 
 class TestFileCategoryMessage(unittest.TestCase):
     """FileCategoryMessage unit test stubs"""

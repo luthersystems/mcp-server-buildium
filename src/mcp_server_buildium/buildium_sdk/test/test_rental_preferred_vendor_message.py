@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.rental_preferred_vendor_message import RentalPreferredVendorMessage
+from mcp_server_buildium.buildium_sdk.models.rental_preferred_vendor_message import RentalPreferredVendorMessage
 
 class TestRentalPreferredVendorMessage(unittest.TestCase):
     """RentalPreferredVendorMessage unit test stubs"""

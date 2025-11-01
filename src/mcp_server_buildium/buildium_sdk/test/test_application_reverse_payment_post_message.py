@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.application_reverse_payment_post_message import ApplicationReversePaymentPostMessage
+from mcp_server_buildium.buildium_sdk.models.application_reverse_payment_post_message import ApplicationReversePaymentPostMessage
 
 class TestApplicationReversePaymentPostMessage(unittest.TestCase):
     """ApplicationReversePaymentPostMessage unit test stubs"""

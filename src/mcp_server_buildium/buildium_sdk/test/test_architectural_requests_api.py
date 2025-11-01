@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.api.architectural_requests_api import ArchitecturalRequestsApi
+from mcp_server_buildium.buildium_sdk.api.architectural_requests_api import ArchitecturalRequestsApi
 
 
 class TestArchitecturalRequestsApi(unittest.IsolatedAsyncioTestCase):

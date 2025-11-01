@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.bulk_lease_recurring_transaction_message import BulkLeaseRecurringTransactionMessage
+from mcp_server_buildium.buildium_sdk.models.bulk_lease_recurring_transaction_message import BulkLeaseRecurringTransactionMessage
 
 class TestBulkLeaseRecurringTransactionMessage(unittest.TestCase):
     """BulkLeaseRecurringTransactionMessage unit test stubs"""

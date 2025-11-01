@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.api.administration_api import AdministrationApi
+from mcp_server_buildium.buildium_sdk.api.administration_api import AdministrationApi
 
 
 class TestAdministrationApi(unittest.IsolatedAsyncioTestCase):

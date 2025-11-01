@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.ownership_account_ledger_payment_line_save_message import OwnershipAccountLedgerPaymentLineSaveMessage
+from mcp_server_buildium.buildium_sdk.models.ownership_account_ledger_payment_line_save_message import OwnershipAccountLedgerPaymentLineSaveMessage
 
 class TestOwnershipAccountLedgerPaymentLineSaveMessage(unittest.TestCase):
     """OwnershipAccountLedgerPaymentLineSaveMessage unit test stubs"""

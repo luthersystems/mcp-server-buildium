@@ -20,20 +20,20 @@ from datetime import date
 from pydantic import Field, StrictInt, StrictStr, field_validator
 from typing import List, Optional
 from typing_extensions import Annotated
-from buildium_sdk.models.file_category_message import FileCategoryMessage
-from buildium_sdk.models.file_category_post_message import FileCategoryPostMessage
-from buildium_sdk.models.file_category_put_message import FileCategoryPutMessage
-from buildium_sdk.models.file_download_message import FileDownloadMessage
-from buildium_sdk.models.file_message import FileMessage
-from buildium_sdk.models.file_put_message import FilePutMessage
-from buildium_sdk.models.file_sharing_message import FileSharingMessage
-from buildium_sdk.models.file_sharing_put_message import FileSharingPutMessage
-from buildium_sdk.models.file_upload_post_message import FileUploadPostMessage
-from buildium_sdk.models.file_upload_ticket_message import FileUploadTicketMessage
+from mcp_server_buildium.buildium_sdk.models.file_category_message import FileCategoryMessage
+from mcp_server_buildium.buildium_sdk.models.file_category_post_message import FileCategoryPostMessage
+from mcp_server_buildium.buildium_sdk.models.file_category_put_message import FileCategoryPutMessage
+from mcp_server_buildium.buildium_sdk.models.file_download_message import FileDownloadMessage
+from mcp_server_buildium.buildium_sdk.models.file_message import FileMessage
+from mcp_server_buildium.buildium_sdk.models.file_put_message import FilePutMessage
+from mcp_server_buildium.buildium_sdk.models.file_sharing_message import FileSharingMessage
+from mcp_server_buildium.buildium_sdk.models.file_sharing_put_message import FileSharingPutMessage
+from mcp_server_buildium.buildium_sdk.models.file_upload_post_message import FileUploadPostMessage
+from mcp_server_buildium.buildium_sdk.models.file_upload_ticket_message import FileUploadTicketMessage
 
-from buildium_sdk.api_client import ApiClient, RequestSerialized
-from buildium_sdk.api_response import ApiResponse
-from buildium_sdk.rest import RESTResponseType
+from mcp_server_buildium.buildium_sdk.api_client import ApiClient, RequestSerialized
+from mcp_server_buildium.buildium_sdk.api_response import ApiResponse
+from mcp_server_buildium.buildium_sdk.rest import RESTResponseType
 
 
 class FilesApi:

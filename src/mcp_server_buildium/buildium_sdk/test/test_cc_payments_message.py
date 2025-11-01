@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.cc_payments_message import CCPaymentsMessage
+from mcp_server_buildium.buildium_sdk.models.cc_payments_message import CCPaymentsMessage
 
 class TestCCPaymentsMessage(unittest.TestCase):
     """CCPaymentsMessage unit test stubs"""

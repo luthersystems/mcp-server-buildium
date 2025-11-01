@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.work_order_line_item_message import WorkOrderLineItemMessage
+from mcp_server_buildium.buildium_sdk.models.work_order_line_item_message import WorkOrderLineItemMessage
 
 class TestWorkOrderLineItemMessage(unittest.TestCase):
     """WorkOrderLineItemMessage unit test stubs"""

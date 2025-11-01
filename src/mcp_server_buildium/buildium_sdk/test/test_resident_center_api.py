@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.api.resident_center_api import ResidentCenterApi
+from mcp_server_buildium.buildium_sdk.api.resident_center_api import ResidentCenterApi
 
 
 class TestResidentCenterApi(unittest.IsolatedAsyncioTestCase):

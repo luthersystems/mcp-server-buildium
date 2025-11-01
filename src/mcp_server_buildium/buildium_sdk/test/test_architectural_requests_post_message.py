@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.architectural_requests_post_message import ArchitecturalRequestsPostMessage
+from mcp_server_buildium.buildium_sdk.models.architectural_requests_post_message import ArchitecturalRequestsPostMessage
 
 class TestArchitecturalRequestsPostMessage(unittest.TestCase):
     """ArchitecturalRequestsPostMessage unit test stubs"""

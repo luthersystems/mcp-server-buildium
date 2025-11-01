@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.lookup_message import LookupMessage
+from mcp_server_buildium.buildium_sdk.models.lookup_message import LookupMessage
 
 class TestLookupMessage(unittest.TestCase):
     """LookupMessage unit test stubs"""

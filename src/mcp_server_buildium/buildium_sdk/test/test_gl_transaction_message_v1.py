@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.gl_transaction_message_v1 import GLTransactionMessageV1
+from mcp_server_buildium.buildium_sdk.models.gl_transaction_message_v1 import GLTransactionMessageV1
 
 class TestGLTransactionMessageV1(unittest.TestCase):
     """GLTransactionMessageV1 unit test stubs"""

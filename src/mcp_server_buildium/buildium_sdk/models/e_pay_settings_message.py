@@ -19,9 +19,9 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
-from buildium_sdk.models.cc_payments_message import CCPaymentsMessage
-from buildium_sdk.models.eft_payments_message import EFTPaymentsMessage
-from buildium_sdk.models.offline_payments_message import OfflinePaymentsMessage
+from mcp_server_buildium.buildium_sdk.models.cc_payments_message import CCPaymentsMessage
+from mcp_server_buildium.buildium_sdk.models.eft_payments_message import EFTPaymentsMessage
+from mcp_server_buildium.buildium_sdk.models.offline_payments_message import OfflinePaymentsMessage
 from typing import Optional, Set
 from typing_extensions import Self
 

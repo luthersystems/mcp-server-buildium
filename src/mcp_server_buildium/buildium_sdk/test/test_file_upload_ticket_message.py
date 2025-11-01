@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.file_upload_ticket_message import FileUploadTicketMessage
+from mcp_server_buildium.buildium_sdk.models.file_upload_ticket_message import FileUploadTicketMessage
 
 class TestFileUploadTicketMessage(unittest.TestCase):
     """FileUploadTicketMessage unit test stubs"""

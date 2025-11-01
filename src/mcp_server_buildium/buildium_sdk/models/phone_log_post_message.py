@@ -21,7 +21,7 @@ from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List
 from typing_extensions import Annotated
-from buildium_sdk.models.phone_log_participant_post_message import PhoneLogParticipantPostMessage
+from mcp_server_buildium.buildium_sdk.models.phone_log_participant_post_message import PhoneLogParticipantPostMessage
 from typing import Optional, Set
 from typing_extensions import Self
 

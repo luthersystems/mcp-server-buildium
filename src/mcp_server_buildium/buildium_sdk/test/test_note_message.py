@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.note_message import NoteMessage
+from mcp_server_buildium.buildium_sdk.models.note_message import NoteMessage
 
 class TestNoteMessage(unittest.TestCase):
     """NoteMessage unit test stubs"""

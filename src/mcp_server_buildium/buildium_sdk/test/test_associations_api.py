@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.api.associations_api import AssociationsApi
+from mcp_server_buildium.buildium_sdk.api.associations_api import AssociationsApi
 
 
 class TestAssociationsApi(unittest.IsolatedAsyncioTestCase):

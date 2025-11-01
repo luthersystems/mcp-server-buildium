@@ -19,8 +19,8 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
-from buildium_sdk.models.internal_transaction_status_message import InternalTransactionStatusMessage
-from buildium_sdk.models.payee_message import PayeeMessage
+from mcp_server_buildium.buildium_sdk.models.internal_transaction_status_message import InternalTransactionStatusMessage
+from mcp_server_buildium.buildium_sdk.models.payee_message import PayeeMessage
 from typing import Optional, Set
 from typing_extensions import Self
 

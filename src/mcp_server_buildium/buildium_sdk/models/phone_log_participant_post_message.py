@@ -19,7 +19,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
-from buildium_sdk.models.phone_log_participant_unit_agreement_post_message import PhoneLogParticipantUnitAgreementPostMessage
+from mcp_server_buildium.buildium_sdk.models.phone_log_participant_unit_agreement_post_message import PhoneLogParticipantUnitAgreementPostMessage
 from typing import Optional, Set
 from typing_extensions import Self
 

@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.task_history_user_message import TaskHistoryUserMessage
+from mcp_server_buildium.buildium_sdk.models.task_history_user_message import TaskHistoryUserMessage
 
 class TestTaskHistoryUserMessage(unittest.TestCase):
     """TaskHistoryUserMessage unit test stubs"""

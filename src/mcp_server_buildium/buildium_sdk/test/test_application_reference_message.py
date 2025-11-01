@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.application_reference_message import ApplicationReferenceMessage
+from mcp_server_buildium.buildium_sdk.models.application_reference_message import ApplicationReferenceMessage
 
 class TestApplicationReferenceMessage(unittest.TestCase):
     """ApplicationReferenceMessage unit test stubs"""

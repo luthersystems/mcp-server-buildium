@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.api.rental_properties_api import RentalPropertiesApi
+from mcp_server_buildium.buildium_sdk.api.rental_properties_api import RentalPropertiesApi
 
 
 class TestRentalPropertiesApi(unittest.IsolatedAsyncioTestCase):

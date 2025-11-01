@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.bank_account_quick_deposit_save_message import BankAccountQuickDepositSaveMessage
+from mcp_server_buildium.buildium_sdk.models.bank_account_quick_deposit_save_message import BankAccountQuickDepositSaveMessage
 
 class TestBankAccountQuickDepositSaveMessage(unittest.TestCase):
     """BankAccountQuickDepositSaveMessage unit test stubs"""

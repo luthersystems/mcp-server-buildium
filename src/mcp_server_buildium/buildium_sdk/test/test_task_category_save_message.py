@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.task_category_save_message import TaskCategorySaveMessage
+from mcp_server_buildium.buildium_sdk.models.task_category_save_message import TaskCategorySaveMessage
 
 class TestTaskCategorySaveMessage(unittest.TestCase):
     """TaskCategorySaveMessage unit test stubs"""

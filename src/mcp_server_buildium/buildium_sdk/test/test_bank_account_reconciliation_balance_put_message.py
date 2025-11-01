@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.bank_account_reconciliation_balance_put_message import BankAccountReconciliationBalancePutMessage
+from mcp_server_buildium.buildium_sdk.models.bank_account_reconciliation_balance_put_message import BankAccountReconciliationBalancePutMessage
 
 class TestBankAccountReconciliationBalancePutMessage(unittest.TestCase):
     """BankAccountReconciliationBalancePutMessage unit test stubs"""

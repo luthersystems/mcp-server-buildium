@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.electronic_payments_message import ElectronicPaymentsMessage
+from mcp_server_buildium.buildium_sdk.models.electronic_payments_message import ElectronicPaymentsMessage
 
 class TestElectronicPaymentsMessage(unittest.TestCase):
     """ElectronicPaymentsMessage unit test stubs"""

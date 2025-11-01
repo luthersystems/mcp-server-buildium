@@ -19,13 +19,13 @@ from typing_extensions import Annotated
 from pydantic import Field, StrictInt, StrictStr
 from typing import List, Optional
 from typing_extensions import Annotated
-from buildium_sdk.models.property_group_message import PropertyGroupMessage
-from buildium_sdk.models.property_group_post_message import PropertyGroupPostMessage
-from buildium_sdk.models.property_group_put_message import PropertyGroupPutMessage
+from mcp_server_buildium.buildium_sdk.models.property_group_message import PropertyGroupMessage
+from mcp_server_buildium.buildium_sdk.models.property_group_post_message import PropertyGroupPostMessage
+from mcp_server_buildium.buildium_sdk.models.property_group_put_message import PropertyGroupPutMessage
 
-from buildium_sdk.api_client import ApiClient, RequestSerialized
-from buildium_sdk.api_response import ApiResponse
-from buildium_sdk.rest import RESTResponseType
+from mcp_server_buildium.buildium_sdk.api_client import ApiClient, RequestSerialized
+from mcp_server_buildium.buildium_sdk.api_response import ApiResponse
+from mcp_server_buildium.buildium_sdk.rest import RESTResponseType
 
 
 class PropertyGroupsApi:

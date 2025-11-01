@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.lease_ledger_payment_post_message import LeaseLedgerPaymentPostMessage
+from mcp_server_buildium.buildium_sdk.models.lease_ledger_payment_post_message import LeaseLedgerPaymentPostMessage
 
 class TestLeaseLedgerPaymentPostMessage(unittest.TestCase):
     """LeaseLedgerPaymentPostMessage unit test stubs"""

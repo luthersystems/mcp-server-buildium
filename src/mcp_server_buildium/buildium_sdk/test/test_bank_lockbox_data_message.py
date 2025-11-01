@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.bank_lockbox_data_message import BankLockboxDataMessage
+from mcp_server_buildium.buildium_sdk.models.bank_lockbox_data_message import BankLockboxDataMessage
 
 class TestBankLockboxDataMessage(unittest.TestCase):
     """BankLockboxDataMessage unit test stubs"""

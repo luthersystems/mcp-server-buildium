@@ -20,18 +20,18 @@ from datetime import date, datetime
 from pydantic import Field, StrictBool, StrictInt, StrictStr, field_validator
 from typing import List, Optional
 from typing_extensions import Annotated
-from buildium_sdk.models.gl_account_balance_message import GLAccountBalanceMessage
-from buildium_sdk.models.gl_account_message import GLAccountMessage
-from buildium_sdk.models.gl_account_post_message import GLAccountPostMessage
-from buildium_sdk.models.gl_account_put_message import GLAccountPutMessage
-from buildium_sdk.models.general_journal_entry_post_message import GeneralJournalEntryPostMessage
-from buildium_sdk.models.general_journal_entry_put_message import GeneralJournalEntryPutMessage
-from buildium_sdk.models.general_ledger_message import GeneralLedgerMessage
-from buildium_sdk.models.general_ledger_transaction_message import GeneralLedgerTransactionMessage
+from mcp_server_buildium.buildium_sdk.models.gl_account_balance_message import GLAccountBalanceMessage
+from mcp_server_buildium.buildium_sdk.models.gl_account_message import GLAccountMessage
+from mcp_server_buildium.buildium_sdk.models.gl_account_post_message import GLAccountPostMessage
+from mcp_server_buildium.buildium_sdk.models.gl_account_put_message import GLAccountPutMessage
+from mcp_server_buildium.buildium_sdk.models.general_journal_entry_post_message import GeneralJournalEntryPostMessage
+from mcp_server_buildium.buildium_sdk.models.general_journal_entry_put_message import GeneralJournalEntryPutMessage
+from mcp_server_buildium.buildium_sdk.models.general_ledger_message import GeneralLedgerMessage
+from mcp_server_buildium.buildium_sdk.models.general_ledger_transaction_message import GeneralLedgerTransactionMessage
 
-from buildium_sdk.api_client import ApiClient, RequestSerialized
-from buildium_sdk.api_response import ApiResponse
-from buildium_sdk.rest import RESTResponseType
+from mcp_server_buildium.buildium_sdk.api_client import ApiClient, RequestSerialized
+from mcp_server_buildium.buildium_sdk.api_response import ApiResponse
+from mcp_server_buildium.buildium_sdk.rest import RESTResponseType
 
 
 class GeneralLedgerApi:

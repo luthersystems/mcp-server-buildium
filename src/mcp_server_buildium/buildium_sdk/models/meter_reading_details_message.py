@@ -20,7 +20,7 @@ import json
 from datetime import date
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
-from buildium_sdk.models.meter_reading_detail_message import MeterReadingDetailMessage
+from mcp_server_buildium.buildium_sdk.models.meter_reading_detail_message import MeterReadingDetailMessage
 from typing import Optional, Set
 from typing_extensions import Self
 

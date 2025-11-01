@@ -20,20 +20,20 @@ from datetime import date
 from pydantic import Field, StrictInt, StrictStr, field_validator
 from typing import List, Optional
 from typing_extensions import Annotated
-from buildium_sdk.models.all_tasks_message import AllTasksMessage
-from buildium_sdk.models.file_download_message import FileDownloadMessage
-from buildium_sdk.models.file_upload_ticket_message import FileUploadTicketMessage
-from buildium_sdk.models.task_category_message import TaskCategoryMessage
-from buildium_sdk.models.task_category_put_message import TaskCategoryPutMessage
-from buildium_sdk.models.task_category_save_message import TaskCategorySaveMessage
-from buildium_sdk.models.task_history_file_message import TaskHistoryFileMessage
-from buildium_sdk.models.task_history_file_upload_post_message import TaskHistoryFileUploadPostMessage
-from buildium_sdk.models.task_history_message import TaskHistoryMessage
-from buildium_sdk.models.task_history_put_message import TaskHistoryPutMessage
+from mcp_server_buildium.buildium_sdk.models.all_tasks_message import AllTasksMessage
+from mcp_server_buildium.buildium_sdk.models.file_download_message import FileDownloadMessage
+from mcp_server_buildium.buildium_sdk.models.file_upload_ticket_message import FileUploadTicketMessage
+from mcp_server_buildium.buildium_sdk.models.task_category_message import TaskCategoryMessage
+from mcp_server_buildium.buildium_sdk.models.task_category_put_message import TaskCategoryPutMessage
+from mcp_server_buildium.buildium_sdk.models.task_category_save_message import TaskCategorySaveMessage
+from mcp_server_buildium.buildium_sdk.models.task_history_file_message import TaskHistoryFileMessage
+from mcp_server_buildium.buildium_sdk.models.task_history_file_upload_post_message import TaskHistoryFileUploadPostMessage
+from mcp_server_buildium.buildium_sdk.models.task_history_message import TaskHistoryMessage
+from mcp_server_buildium.buildium_sdk.models.task_history_put_message import TaskHistoryPutMessage
 
-from buildium_sdk.api_client import ApiClient, RequestSerialized
-from buildium_sdk.api_response import ApiResponse
-from buildium_sdk.rest import RESTResponseType
+from mcp_server_buildium.buildium_sdk.api_client import ApiClient, RequestSerialized
+from mcp_server_buildium.buildium_sdk.api_response import ApiResponse
+from mcp_server_buildium.buildium_sdk.rest import RESTResponseType
 
 
 class TasksApi:

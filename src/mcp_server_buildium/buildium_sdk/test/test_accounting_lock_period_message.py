@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.accounting_lock_period_message import AccountingLockPeriodMessage
+from mcp_server_buildium.buildium_sdk.models.accounting_lock_period_message import AccountingLockPeriodMessage
 
 class TestAccountingLockPeriodMessage(unittest.TestCase):
     """AccountingLockPeriodMessage unit test stubs"""

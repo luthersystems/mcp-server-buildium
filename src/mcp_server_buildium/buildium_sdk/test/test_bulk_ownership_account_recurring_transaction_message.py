@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.bulk_ownership_account_recurring_transaction_message import BulkOwnershipAccountRecurringTransactionMessage
+from mcp_server_buildium.buildium_sdk.models.bulk_ownership_account_recurring_transaction_message import BulkOwnershipAccountRecurringTransactionMessage
 
 class TestBulkOwnershipAccountRecurringTransactionMessage(unittest.TestCase):
     """BulkOwnershipAccountRecurringTransactionMessage unit test stubs"""

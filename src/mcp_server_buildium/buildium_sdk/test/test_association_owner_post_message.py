@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.association_owner_post_message import AssociationOwnerPostMessage
+from mcp_server_buildium.buildium_sdk.models.association_owner_post_message import AssociationOwnerPostMessage
 
 class TestAssociationOwnerPostMessage(unittest.TestCase):
     """AssociationOwnerPostMessage unit test stubs"""

@@ -19,10 +19,10 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
-from buildium_sdk.models.phone_numbers_message import PhoneNumbersMessage
-from buildium_sdk.models.save_address_message import SaveAddressMessage
-from buildium_sdk.models.tax_information_post_message import TaxInformationPostMessage
-from buildium_sdk.models.vendor_insurance_save_message import VendorInsuranceSaveMessage
+from mcp_server_buildium.buildium_sdk.models.phone_numbers_message import PhoneNumbersMessage
+from mcp_server_buildium.buildium_sdk.models.save_address_message import SaveAddressMessage
+from mcp_server_buildium.buildium_sdk.models.tax_information_post_message import TaxInformationPostMessage
+from mcp_server_buildium.buildium_sdk.models.vendor_insurance_save_message import VendorInsuranceSaveMessage
 from typing import Optional, Set
 from typing_extensions import Self
 

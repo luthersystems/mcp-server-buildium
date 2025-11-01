@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.api.client_leads_api import ClientLeadsApi
+from mcp_server_buildium.buildium_sdk.api.client_leads_api import ClientLeadsApi
 
 
 class TestClientLeadsApi(unittest.IsolatedAsyncioTestCase):

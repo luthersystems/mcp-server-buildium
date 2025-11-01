@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.lease_security_deposit_post_message import LeaseSecurityDepositPostMessage
+from mcp_server_buildium.buildium_sdk.models.lease_security_deposit_post_message import LeaseSecurityDepositPostMessage
 
 class TestLeaseSecurityDepositPostMessage(unittest.TestCase):
     """LeaseSecurityDepositPostMessage unit test stubs"""

@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.association_preferred_vendor_message import AssociationPreferredVendorMessage
+from mcp_server_buildium.buildium_sdk.models.association_preferred_vendor_message import AssociationPreferredVendorMessage
 
 class TestAssociationPreferredVendorMessage(unittest.TestCase):
     """AssociationPreferredVendorMessage unit test stubs"""

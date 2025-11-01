@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.ownership_account_auto_allocated_payment_post_message import OwnershipAccountAutoAllocatedPaymentPostMessage
+from mcp_server_buildium.buildium_sdk.models.ownership_account_auto_allocated_payment_post_message import OwnershipAccountAutoAllocatedPaymentPostMessage
 
 class TestOwnershipAccountAutoAllocatedPaymentPostMessage(unittest.TestCase):
     """OwnershipAccountAutoAllocatedPaymentPostMessage unit test stubs"""

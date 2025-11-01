@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.listing_contact_save_message import ListingContactSaveMessage
+from mcp_server_buildium.buildium_sdk.models.listing_contact_save_message import ListingContactSaveMessage
 
 class TestListingContactSaveMessage(unittest.TestCase):
     """ListingContactSaveMessage unit test stubs"""

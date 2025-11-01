@@ -20,8 +20,8 @@ import json
 from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
-from buildium_sdk.models.phone_number_message import PhoneNumberMessage
-from buildium_sdk.models.user_role_message import UserRoleMessage
+from mcp_server_buildium.buildium_sdk.models.phone_number_message import PhoneNumberMessage
+from mcp_server_buildium.buildium_sdk.models.user_role_message import UserRoleMessage
 from typing import Optional, Set
 from typing_extensions import Self
 

@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.outstanding_balances_line_message import OutstandingBalancesLineMessage
+from mcp_server_buildium.buildium_sdk.models.outstanding_balances_line_message import OutstandingBalancesLineMessage
 
 class TestOutstandingBalancesLineMessage(unittest.TestCase):
     """OutstandingBalancesLineMessage unit test stubs"""

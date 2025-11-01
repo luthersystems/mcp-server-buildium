@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.api.general_ledger_api import GeneralLedgerApi
+from mcp_server_buildium.buildium_sdk.api.general_ledger_api import GeneralLedgerApi
 
 
 class TestGeneralLedgerApi(unittest.IsolatedAsyncioTestCase):

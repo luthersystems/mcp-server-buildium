@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.logged_by_staff_user_message import LoggedByStaffUserMessage
+from mcp_server_buildium.buildium_sdk.models.logged_by_staff_user_message import LoggedByStaffUserMessage
 
 class TestLoggedByStaffUserMessage(unittest.TestCase):
     """LoggedByStaffUserMessage unit test stubs"""

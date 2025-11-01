@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.emergency_contact_message import EmergencyContactMessage
+from mcp_server_buildium.buildium_sdk.models.emergency_contact_message import EmergencyContactMessage
 
 class TestEmergencyContactMessage(unittest.TestCase):
     """EmergencyContactMessage unit test stubs"""

@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.account_info_message import AccountInfoMessage
+from mcp_server_buildium.buildium_sdk.models.account_info_message import AccountInfoMessage
 
 class TestAccountInfoMessage(unittest.TestCase):
     """AccountInfoMessage unit test stubs"""

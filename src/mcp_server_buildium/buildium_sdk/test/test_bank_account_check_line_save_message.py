@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.bank_account_check_line_save_message import BankAccountCheckLineSaveMessage
+from mcp_server_buildium.buildium_sdk.models.bank_account_check_line_save_message import BankAccountCheckLineSaveMessage
 
 class TestBankAccountCheckLineSaveMessage(unittest.TestCase):
     """BankAccountCheckLineSaveMessage unit test stubs"""

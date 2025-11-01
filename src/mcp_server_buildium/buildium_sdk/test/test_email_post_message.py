@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.email_post_message import EmailPostMessage
+from mcp_server_buildium.buildium_sdk.models.email_post_message import EmailPostMessage
 
 class TestEmailPostMessage(unittest.TestCase):
     """EmailPostMessage unit test stubs"""

@@ -19,8 +19,8 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
-from buildium_sdk.models.address_message import AddressMessage
-from buildium_sdk.models.phone_number_message import PhoneNumberMessage
+from mcp_server_buildium.buildium_sdk.models.address_message import AddressMessage
+from mcp_server_buildium.buildium_sdk.models.phone_number_message import PhoneNumberMessage
 from typing import Optional, Set
 from typing_extensions import Self
 

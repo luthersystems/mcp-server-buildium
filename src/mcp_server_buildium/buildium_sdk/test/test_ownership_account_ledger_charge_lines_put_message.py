@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.ownership_account_ledger_charge_lines_put_message import OwnershipAccountLedgerChargeLinesPutMessage
+from mcp_server_buildium.buildium_sdk.models.ownership_account_ledger_charge_lines_put_message import OwnershipAccountLedgerChargeLinesPutMessage
 
 class TestOwnershipAccountLedgerChargeLinesPutMessage(unittest.TestCase):
     """OwnershipAccountLedgerChargeLinesPutMessage unit test stubs"""

@@ -27,11 +27,11 @@ from urllib.parse import quote
 from typing import Tuple, Optional, List, Dict, Union
 from pydantic import SecretStr
 
-from buildium_sdk.configuration import Configuration
-from buildium_sdk.api_response import ApiResponse, T as ApiResponseT
-import buildium_sdk.models
-from buildium_sdk import rest
-from buildium_sdk.exceptions import (
+from mcp_server_buildium.buildium_sdk.configuration import Configuration
+from mcp_server_buildium.buildium_sdk.api_response import ApiResponse, T as ApiResponseT
+import mcp_server_buildium.buildium_sdk.models
+from mcp_server_buildium.buildium_sdk import rest
+from mcp_server_buildium.buildium_sdk.exceptions import (
     ApiValueError,
     ApiException,
     BadRequestException,

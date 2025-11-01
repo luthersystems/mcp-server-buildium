@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.applicant_post_message import ApplicantPostMessage
+from mcp_server_buildium.buildium_sdk.models.applicant_post_message import ApplicantPostMessage
 
 class TestApplicantPostMessage(unittest.TestCase):
     """ApplicantPostMessage unit test stubs"""

@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.lease_ledger_payment_line_save_message import LeaseLedgerPaymentLineSaveMessage
+from mcp_server_buildium.buildium_sdk.models.lease_ledger_payment_line_save_message import LeaseLedgerPaymentLineSaveMessage
 
 class TestLeaseLedgerPaymentLineSaveMessage(unittest.TestCase):
     """LeaseLedgerPaymentLineSaveMessage unit test stubs"""

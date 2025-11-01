@@ -20,8 +20,8 @@ import json
 from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
-from buildium_sdk.models.logged_by_staff_user_message import LoggedByStaffUserMessage
-from buildium_sdk.models.participant_message import ParticipantMessage
+from mcp_server_buildium.buildium_sdk.models.logged_by_staff_user_message import LoggedByStaffUserMessage
+from mcp_server_buildium.buildium_sdk.models.participant_message import ParticipantMessage
 from typing import Optional, Set
 from typing_extensions import Self
 

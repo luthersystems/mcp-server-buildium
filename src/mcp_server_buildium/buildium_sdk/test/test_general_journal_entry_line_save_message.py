@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.general_journal_entry_line_save_message import GeneralJournalEntryLineSaveMessage
+from mcp_server_buildium.buildium_sdk.models.general_journal_entry_line_save_message import GeneralJournalEntryLineSaveMessage
 
 class TestGeneralJournalEntryLineSaveMessage(unittest.TestCase):
     """GeneralJournalEntryLineSaveMessage unit test stubs"""

@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.vendor_refund_message import VendorRefundMessage
+from mcp_server_buildium.buildium_sdk.models.vendor_refund_message import VendorRefundMessage
 
 class TestVendorRefundMessage(unittest.TestCase):
     """VendorRefundMessage unit test stubs"""

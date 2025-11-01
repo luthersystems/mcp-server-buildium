@@ -20,7 +20,7 @@ import json
 from datetime import date
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictFloat, StrictInt, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional, Union
-from buildium_sdk.models.association_owner_post_message import AssociationOwnerPostMessage
+from mcp_server_buildium.buildium_sdk.models.association_owner_post_message import AssociationOwnerPostMessage
 from typing import Optional, Set
 from typing_extensions import Self
 

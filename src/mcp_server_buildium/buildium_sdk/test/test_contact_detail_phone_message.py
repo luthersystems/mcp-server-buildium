@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.contact_detail_phone_message import ContactDetailPhoneMessage
+from mcp_server_buildium.buildium_sdk.models.contact_detail_phone_message import ContactDetailPhoneMessage
 
 class TestContactDetailPhoneMessage(unittest.TestCase):
     """ContactDetailPhoneMessage unit test stubs"""

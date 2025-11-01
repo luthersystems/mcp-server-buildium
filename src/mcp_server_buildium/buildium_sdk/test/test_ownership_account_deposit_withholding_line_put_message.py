@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.ownership_account_deposit_withholding_line_put_message import OwnershipAccountDepositWithholdingLinePutMessage
+from mcp_server_buildium.buildium_sdk.models.ownership_account_deposit_withholding_line_put_message import OwnershipAccountDepositWithholdingLinePutMessage
 
 class TestOwnershipAccountDepositWithholdingLinePutMessage(unittest.TestCase):
     """OwnershipAccountDepositWithholdingLinePutMessage unit test stubs"""

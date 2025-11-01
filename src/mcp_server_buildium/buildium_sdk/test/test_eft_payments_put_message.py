@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.eft_payments_put_message import EFTPaymentsPutMessage
+from mcp_server_buildium.buildium_sdk.models.eft_payments_put_message import EFTPaymentsPutMessage
 
 class TestEFTPaymentsPutMessage(unittest.TestCase):
     """EFTPaymentsPutMessage unit test stubs"""

@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.ownership_account_outstanding_balance_message import OwnershipAccountOutstandingBalanceMessage
+from mcp_server_buildium.buildium_sdk.models.ownership_account_outstanding_balance_message import OwnershipAccountOutstandingBalanceMessage
 
 class TestOwnershipAccountOutstandingBalanceMessage(unittest.TestCase):
     """OwnershipAccountOutstandingBalanceMessage unit test stubs"""

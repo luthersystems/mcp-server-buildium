@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.all_tasks_message import AllTasksMessage
+from mcp_server_buildium.buildium_sdk.models.all_tasks_message import AllTasksMessage
 
 class TestAllTasksMessage(unittest.TestCase):
     """AllTasksMessage unit test stubs"""

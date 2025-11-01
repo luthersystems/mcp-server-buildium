@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.api.lease_transactions_api import LeaseTransactionsApi
+from mcp_server_buildium.buildium_sdk.api.lease_transactions_api import LeaseTransactionsApi
 
 
 class TestLeaseTransactionsApi(unittest.IsolatedAsyncioTestCase):

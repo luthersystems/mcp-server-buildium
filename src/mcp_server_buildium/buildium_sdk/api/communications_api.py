@@ -20,20 +20,20 @@ from datetime import date, datetime
 from pydantic import Field, StrictInt, StrictStr, field_validator
 from typing import List, Optional
 from typing_extensions import Annotated
-from buildium_sdk.models.announcement_message import AnnouncementMessage
-from buildium_sdk.models.announcement_post_message import AnnouncementPostMessage
-from buildium_sdk.models.email_message import EmailMessage
-from buildium_sdk.models.email_post_message import EmailPostMessage
-from buildium_sdk.models.email_recipient_message import EmailRecipientMessage
-from buildium_sdk.models.mailing_template_message import MailingTemplateMessage
-from buildium_sdk.models.phone_log_message import PhoneLogMessage
-from buildium_sdk.models.phone_log_post_message import PhoneLogPostMessage
-from buildium_sdk.models.phone_log_put_message import PhoneLogPutMessage
-from buildium_sdk.models.property_message import PropertyMessage
+from mcp_server_buildium.buildium_sdk.models.announcement_message import AnnouncementMessage
+from mcp_server_buildium.buildium_sdk.models.announcement_post_message import AnnouncementPostMessage
+from mcp_server_buildium.buildium_sdk.models.email_message import EmailMessage
+from mcp_server_buildium.buildium_sdk.models.email_post_message import EmailPostMessage
+from mcp_server_buildium.buildium_sdk.models.email_recipient_message import EmailRecipientMessage
+from mcp_server_buildium.buildium_sdk.models.mailing_template_message import MailingTemplateMessage
+from mcp_server_buildium.buildium_sdk.models.phone_log_message import PhoneLogMessage
+from mcp_server_buildium.buildium_sdk.models.phone_log_post_message import PhoneLogPostMessage
+from mcp_server_buildium.buildium_sdk.models.phone_log_put_message import PhoneLogPutMessage
+from mcp_server_buildium.buildium_sdk.models.property_message import PropertyMessage
 
-from buildium_sdk.api_client import ApiClient, RequestSerialized
-from buildium_sdk.api_response import ApiResponse
-from buildium_sdk.rest import RESTResponseType
+from mcp_server_buildium.buildium_sdk.api_client import ApiClient, RequestSerialized
+from mcp_server_buildium.buildium_sdk.api_response import ApiResponse
+from mcp_server_buildium.buildium_sdk.rest import RESTResponseType
 
 
 class CommunicationsApi:

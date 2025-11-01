@@ -19,8 +19,8 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
-from buildium_sdk.models.created_by_user_message import CreatedByUserMessage
-from buildium_sdk.models.property_message import PropertyMessage
+from mcp_server_buildium.buildium_sdk.models.created_by_user_message import CreatedByUserMessage
+from mcp_server_buildium.buildium_sdk.models.property_message import PropertyMessage
 from typing import Optional, Set
 from typing_extensions import Self
 

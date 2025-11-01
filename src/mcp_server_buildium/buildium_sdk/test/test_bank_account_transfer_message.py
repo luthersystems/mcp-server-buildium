@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.bank_account_transfer_message import BankAccountTransferMessage
+from mcp_server_buildium.buildium_sdk.models.bank_account_transfer_message import BankAccountTransferMessage
 
 class TestBankAccountTransferMessage(unittest.TestCase):
     """BankAccountTransferMessage unit test stubs"""

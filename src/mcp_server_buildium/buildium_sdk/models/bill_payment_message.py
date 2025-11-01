@@ -20,8 +20,8 @@ import json
 from datetime import date
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
-from buildium_sdk.models.applied_vendor_credit_message import AppliedVendorCreditMessage
-from buildium_sdk.models.bill_payment_line_message import BillPaymentLineMessage
+from mcp_server_buildium.buildium_sdk.models.applied_vendor_credit_message import AppliedVendorCreditMessage
+from mcp_server_buildium.buildium_sdk.models.bill_payment_line_message import BillPaymentLineMessage
 from typing import Optional, Set
 from typing_extensions import Self
 
