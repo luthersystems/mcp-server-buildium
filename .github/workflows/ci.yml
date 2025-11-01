@@ -27,35 +27,8 @@ jobs:
       - name: Create virtual environment
         run: uv venv --python ${{ matrix.python-version }}
 
-      - name: Setup Buildium OpenAPI spec
-        run: |
-          # Try to use spec from repo first, then download, then use /tmp if available
-          if [ -f specs/buildium-openapi.json ]; then
-            cp specs/buildium-openapi.json /tmp/buildium-openapi.json
-            echo "Using OpenAPI spec from repo"
-          elif [ -f /tmp/buildium-openapi.json ]; then
-            echo "Using OpenAPI spec from /tmp (for local testing)"
-          else
-            # Try to download from Buildium (may not be publicly available)
-            curl -f -o /tmp/buildium-openapi.json "https://developer.buildium.com/openapi.json" || \
-            curl -f -o /tmp/buildium-openapi.json "https://api.buildium.com/openapi.json" || \
-            echo "Warning: Could not find or download OpenAPI spec. SDK generation will be skipped."
-          fi
-
-      - name: Install Buildium SDK
-        run: |
-          # SDK is checked into the repo, just install it
-          echo "Checking for buildium_sdk directory..."
-          ls -la
-          if [ -d buildium_sdk ]; then
-            echo "Found buildium_sdk, installing..."
-            ls -la buildium_sdk/
-            cd buildium_sdk
-            uv pip install -e .
-          else
-            echo "ERROR: buildium_sdk directory not found"
-            exit 1
-          fi
+      # SDK is checked into repo and loaded via sys.path in sdk_imports.py
+      # No installation needed!
 
       - name: Install dependencies
         run: |
@@ -72,12 +45,8 @@ jobs:
       - name: Run unit tests with pytest
         continue-on-error: true
         run: |
-          # Unit tests may require SDK - skip them gracefully if SDK not generated
-          if [ ! -d buildium_sdk ] || ! uv run python -c "import buildium_sdk" 2>/dev/null; then
-            echo "Warning: SDK not available. Skipping unit tests that require it."
-            exit 0
-          fi
-          uv run pytest tests/ --ignore=tests/test_integration.py --cov=mcp_server_buildium --cov-report=xml --cov-report=term
+          # No unit tests currently (only integration tests)
+          echo "Skipping unit tests - only integration tests exist"
 
       - name: Run integration tests (if secrets available)
         if: env.BUILDIUM_CLIENT_ID != ''
