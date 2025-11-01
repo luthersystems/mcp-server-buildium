@@ -26,7 +26,7 @@ def register_rental_tools(mcp: FastMCP, client: BuildiumClient) -> None:
         Returns:
             Dictionary with rentals list and metadata.
         """
-        result = await client.rentals_api.external_api_rental_properties_get_rental_properties(
+        result = await client.rentals_api.external_api_rentals_get_all_rentals(
             limit=limit, offset=offset
         )
         if hasattr(result, "to_dict"):
@@ -43,8 +43,8 @@ def register_rental_tools(mcp: FastMCP, client: BuildiumClient) -> None:
         Returns:
             Rental property details as dictionary.
         """
-        result = await client.rentals_api.external_api_rental_properties_get_rental_property_by_id(
-            rental_property_id=property_id
+        result = await client.rentals_api.external_api_rentals_get_rental_by_id(
+            property_id=property_id
         )
         if hasattr(result, "to_dict"):
             return result.to_dict()
