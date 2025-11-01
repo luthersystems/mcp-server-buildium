@@ -40,32 +40,32 @@ class TestGeneralLedgerTransactionMessage(unittest.TestCase):
                 transaction_type = 'Bill',
                 total_amount = 1.337,
                 check_number = '',
-                unit_agreement = buildium_sdk.models.unit_agreement_message.UnitAgreementMessage(
+                unit_agreement = mcp_server_buildium.buildium_sdk.models.unit_agreement_message.UnitAgreementMessage(
                     id = 56, 
                     type = 'NotSet', 
                     href = '', ),
                 unit_id = 56,
                 unit_number = '',
-                payment_detail = buildium_sdk.models.payment_detail_message.PaymentDetailMessage(
+                payment_detail = mcp_server_buildium.buildium_sdk.models.payment_detail_message.PaymentDetailMessage(
                     payment_method = 'None', 
                     payee = null, 
                     is_internal_transaction = True, 
                     internal_transaction_status = null, ),
-                deposit_details = buildium_sdk.models.deposit_detail_message.DepositDetailMessage(
+                deposit_details = mcp_server_buildium.buildium_sdk.models.deposit_detail_message.DepositDetailMessage(
                     bank_gl_account_id = 56, 
                     payment_transactions = [
-                        buildium_sdk.models.payment_transactions_message.PaymentTransactionsMessage(
+                        mcp_server_buildium.buildium_sdk.models.payment_transactions_message.PaymentTransactionsMessage(
                             id = 56, 
                             accounting_entity = null, 
                             amount = 1.337, )
                         ], ),
-                application = buildium_sdk.models.application_reference_message.ApplicationReferenceMessage(
+                application = mcp_server_buildium.buildium_sdk.models.application_reference_message.ApplicationReferenceMessage(
                     id = 56, 
                     href = '', ),
-                journal = buildium_sdk.models.general_ledger_journal_message.GeneralLedgerJournalMessage(
+                journal = mcp_server_buildium.buildium_sdk.models.general_ledger_journal_message.GeneralLedgerJournalMessage(
                     memo = '', 
                     lines = [
-                        buildium_sdk.models.general_ledger_journal_line_message.GeneralLedgerJournalLineMessage(
+                        mcp_server_buildium.buildium_sdk.models.general_ledger_journal_line_message.GeneralLedgerJournalLineMessage(
                             gl_account = null, 
                             amount = 1.337, 
                             is_cash_posting = True, 

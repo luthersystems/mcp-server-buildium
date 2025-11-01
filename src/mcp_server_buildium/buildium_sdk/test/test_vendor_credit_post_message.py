@@ -39,7 +39,7 @@ class TestVendorCreditPostMessage(unittest.TestCase):
                 reference_number = '',
                 memo = '',
                 lines = [
-                    buildium_sdk.models.vendor_credit_line_item_post_message.VendorCreditLineItemPostMessage(
+                    mcp_server_buildium.buildium_sdk.models.vendor_credit_line_item_post_message.VendorCreditLineItemPostMessage(
                         gl_account_id = 56, 
                         amount = 1.337, 
                         memo = '', 
@@ -50,7 +50,7 @@ class TestVendorCreditPostMessage(unittest.TestCase):
             return VendorCreditPostMessage(
                 entry_date = datetime.datetime.strptime('1975-12-30', '%Y-%m-%d').date(),
                 lines = [
-                    buildium_sdk.models.vendor_credit_line_item_post_message.VendorCreditLineItemPostMessage(
+                    mcp_server_buildium.buildium_sdk.models.vendor_credit_line_item_post_message.VendorCreditLineItemPostMessage(
                         gl_account_id = 56, 
                         amount = 1.337, 
                         memo = '', 

@@ -39,7 +39,7 @@ class TestTaskCategoryMessage(unittest.TestCase):
                 name = '',
                 is_system_category = True,
                 sub_categories = [
-                    buildium_sdk.models.task_sub_category_message.TaskSubCategoryMessage(
+                    mcp_server_buildium.buildium_sdk.models.task_sub_category_message.TaskSubCategoryMessage(
                         id = 56, 
                         name = '', )
                     ]

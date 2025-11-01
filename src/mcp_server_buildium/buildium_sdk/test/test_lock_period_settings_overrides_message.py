@@ -35,7 +35,7 @@ class TestLockPeriodSettingsOverridesMessage(unittest.TestCase):
         model = LockPeriodSettingsOverridesMessage()
         if include_optional:
             return LockPeriodSettingsOverridesMessage(
-                var_property = buildium_sdk.models.property_message.PropertyMessage(
+                var_property = mcp_server_buildium.buildium_sdk.models.property_message.PropertyMessage(
                     id = 56, 
                     type = 'Association', 
                     href = '', ),

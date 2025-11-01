@@ -42,7 +42,7 @@ class TestRentalMessage(unittest.TestCase):
                 is_active = True,
                 operating_bank_account_id = 56,
                 reserve = 1.337,
-                address = buildium_sdk.models.address_message.AddressMessage(
+                address = mcp_server_buildium.buildium_sdk.models.address_message.AddressMessage(
                     address_line1 = '', 
                     address_line2 = '', 
                     address_line3 = '', 
@@ -53,7 +53,7 @@ class TestRentalMessage(unittest.TestCase):
                 year_built = 56,
                 rental_type = 'None',
                 rental_sub_type = 'CondoTownhome',
-                rental_manager = buildium_sdk.models.property_manager_message.PropertyManagerMessage(
+                rental_manager = mcp_server_buildium.buildium_sdk.models.property_manager_message.PropertyManagerMessage(
                     id = 56, 
                     first_name = '', 
                     last_name = '', 
@@ -62,7 +62,7 @@ class TestRentalMessage(unittest.TestCase):
                     profile_photo_url = '', 
                     email = '', 
                     phone_numbers = [
-                        buildium_sdk.models.phone_number_message.PhoneNumberMessage(
+                        mcp_server_buildium.buildium_sdk.models.phone_number_message.PhoneNumberMessage(
                             number = '', 
                             type = 'NotSet', )
                         ], )

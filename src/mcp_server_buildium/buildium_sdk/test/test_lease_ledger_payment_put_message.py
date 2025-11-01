@@ -41,7 +41,7 @@ class TestLeaseLedgerPaymentPutMessage(unittest.TestCase):
                 memo = '',
                 reference_number = '',
                 lines = [
-                    buildium_sdk.models.lease_ledger_payment_line_save_message.LeaseLedgerPaymentLineSaveMessage(
+                    mcp_server_buildium.buildium_sdk.models.lease_ledger_payment_line_save_message.LeaseLedgerPaymentLineSaveMessage(
                         amount = 1.337, 
                         gl_account_id = 56, )
                     ]
@@ -51,7 +51,7 @@ class TestLeaseLedgerPaymentPutMessage(unittest.TestCase):
                 var_date = datetime.datetime.strptime('1975-12-30', '%Y-%m-%d').date(),
                 payment_method = 'Check',
                 lines = [
-                    buildium_sdk.models.lease_ledger_payment_line_save_message.LeaseLedgerPaymentLineSaveMessage(
+                    mcp_server_buildium.buildium_sdk.models.lease_ledger_payment_line_save_message.LeaseLedgerPaymentLineSaveMessage(
                         amount = 1.337, 
                         gl_account_id = 56, )
                     ],

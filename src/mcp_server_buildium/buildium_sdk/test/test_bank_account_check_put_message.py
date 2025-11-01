@@ -35,14 +35,14 @@ class TestBankAccountCheckPutMessage(unittest.TestCase):
         model = BankAccountCheckPutMessage()
         if include_optional:
             return BankAccountCheckPutMessage(
-                payee = buildium_sdk.models.bank_account_check_payee_save_message.BankAccountCheckPayeeSaveMessage(
+                payee = mcp_server_buildium.buildium_sdk.models.bank_account_check_payee_save_message.BankAccountCheckPayeeSaveMessage(
                     id = 56, 
                     type = 'Vendor', ),
                 check_number = '',
                 entry_date = datetime.datetime.strptime('1975-12-30', '%Y-%m-%d').date(),
                 memo = '',
                 lines = [
-                    buildium_sdk.models.bank_account_check_line_save_message.BankAccountCheckLineSaveMessage(
+                    mcp_server_buildium.buildium_sdk.models.bank_account_check_line_save_message.BankAccountCheckLineSaveMessage(
                         gl_account_id = 56, 
                         accounting_entity = null, 
                         memo = '', 
@@ -52,12 +52,12 @@ class TestBankAccountCheckPutMessage(unittest.TestCase):
             )
         else:
             return BankAccountCheckPutMessage(
-                payee = buildium_sdk.models.bank_account_check_payee_save_message.BankAccountCheckPayeeSaveMessage(
+                payee = mcp_server_buildium.buildium_sdk.models.bank_account_check_payee_save_message.BankAccountCheckPayeeSaveMessage(
                     id = 56, 
                     type = 'Vendor', ),
                 entry_date = datetime.datetime.strptime('1975-12-30', '%Y-%m-%d').date(),
                 lines = [
-                    buildium_sdk.models.bank_account_check_line_save_message.BankAccountCheckLineSaveMessage(
+                    mcp_server_buildium.buildium_sdk.models.bank_account_check_line_save_message.BankAccountCheckLineSaveMessage(
                         gl_account_id = 56, 
                         accounting_entity = null, 
                         memo = '', 

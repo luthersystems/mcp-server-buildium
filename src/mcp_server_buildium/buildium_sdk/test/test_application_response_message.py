@@ -38,9 +38,9 @@ class TestApplicationResponseMessage(unittest.TestCase):
                 section_label = '',
                 section_type = 'ApplicantInformation',
                 section_responses = [
-                    buildium_sdk.models.application_section_response_message.ApplicationSectionResponseMessage(
+                    mcp_server_buildium.buildium_sdk.models.application_section_response_message.ApplicationSectionResponseMessage(
                         section_fields = [
-                            buildium_sdk.models.application_response_field_message.ApplicationResponseFieldMessage(
+                            mcp_server_buildium.buildium_sdk.models.application_response_field_message.ApplicationResponseFieldMessage(
                                 field_category_type = 'ApplicantName', 
                                 field_type = 'TextSingleLine', 
                                 field_label = '', 

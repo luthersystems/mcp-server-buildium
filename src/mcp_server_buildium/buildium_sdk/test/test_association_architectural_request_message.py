@@ -43,13 +43,13 @@ class TestAssociationArchitecturalRequestMessage(unittest.TestCase):
                 status = 'New',
                 decision = 'Pending',
                 created_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
-                created_by_user = buildium_sdk.models.created_by_user_message.CreatedByUserMessage(
+                created_by_user = mcp_server_buildium.buildium_sdk.models.created_by_user_message.CreatedByUserMessage(
                     id = 56, 
                     first_name = '', 
                     last_name = '', 
                     href = '', ),
                 last_updated_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
-                last_updated_by_user = buildium_sdk.models.last_updated_by_user_message.LastUpdatedByUserMessage(
+                last_updated_by_user = mcp_server_buildium.buildium_sdk.models.last_updated_by_user_message.LastUpdatedByUserMessage(
                     id = 56, 
                     first_name = '', 
                     last_name = '', 

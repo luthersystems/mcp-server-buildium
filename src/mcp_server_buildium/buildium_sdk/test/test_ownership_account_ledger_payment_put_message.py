@@ -41,7 +41,7 @@ class TestOwnershipAccountLedgerPaymentPutMessage(unittest.TestCase):
                 memo = '',
                 reference_number = '',
                 lines = [
-                    buildium_sdk.models.ownership_account_ledger_payment_line_save_message.OwnershipAccountLedgerPaymentLineSaveMessage(
+                    mcp_server_buildium.buildium_sdk.models.ownership_account_ledger_payment_line_save_message.OwnershipAccountLedgerPaymentLineSaveMessage(
                         amount = 1.337, 
                         gl_account_id = 56, )
                     ]
@@ -51,7 +51,7 @@ class TestOwnershipAccountLedgerPaymentPutMessage(unittest.TestCase):
                 var_date = datetime.datetime.strptime('1975-12-30', '%Y-%m-%d').date(),
                 payment_method = 'Check',
                 lines = [
-                    buildium_sdk.models.ownership_account_ledger_payment_line_save_message.OwnershipAccountLedgerPaymentLineSaveMessage(
+                    mcp_server_buildium.buildium_sdk.models.ownership_account_ledger_payment_line_save_message.OwnershipAccountLedgerPaymentLineSaveMessage(
                         amount = 1.337, 
                         gl_account_id = 56, )
                     ],

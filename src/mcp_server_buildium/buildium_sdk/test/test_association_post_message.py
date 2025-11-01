@@ -37,7 +37,7 @@ class TestAssociationPostMessage(unittest.TestCase):
             return AssociationPostMessage(
                 name = '0',
                 operating_bank_account_id = 56,
-                address = buildium_sdk.models.save_address_message.SaveAddressMessage(
+                address = mcp_server_buildium.buildium_sdk.models.save_address_message.SaveAddressMessage(
                     address_line1 = '0', 
                     address_line2 = '', 
                     address_line3 = '', 
@@ -50,7 +50,7 @@ class TestAssociationPostMessage(unittest.TestCase):
                 description = '',
                 year_built = 56,
                 property_manager_id = 56,
-                tax_information = buildium_sdk.models.tax_information_post_message.TaxInformationPostMessage(
+                tax_information = mcp_server_buildium.buildium_sdk.models.tax_information_post_message.TaxInformationPostMessage(
                     tax_payer_id = '', 
                     tax_payer_type = 'SSN', 
                     tax_payer_name1 = '', 
@@ -61,7 +61,7 @@ class TestAssociationPostMessage(unittest.TestCase):
             return AssociationPostMessage(
                 name = '0',
                 operating_bank_account_id = 56,
-                address = buildium_sdk.models.save_address_message.SaveAddressMessage(
+                address = mcp_server_buildium.buildium_sdk.models.save_address_message.SaveAddressMessage(
                     address_line1 = '0', 
                     address_line2 = '', 
                     address_line3 = '', 

@@ -37,23 +37,23 @@ class TestAllTasksMessage(unittest.TestCase):
             return AllTasksMessage(
                 id = 56,
                 task_type = 'ContactRequest',
-                category = buildium_sdk.models.task_category_response_message.TaskCategoryResponseMessage(
+                category = mcp_server_buildium.buildium_sdk.models.task_category_response_message.TaskCategoryResponseMessage(
                     id = 56, 
                     name = '', 
                     href = '', 
                     sub_category = null, ),
                 title = '',
                 description = '',
-                var_property = buildium_sdk.models.property_message.PropertyMessage(
+                var_property = mcp_server_buildium.buildium_sdk.models.property_message.PropertyMessage(
                     id = 56, 
                     type = 'Association', 
                     href = '', ),
                 unit_id = 56,
-                unit_agreement = buildium_sdk.models.unit_agreement_message.UnitAgreementMessage(
+                unit_agreement = mcp_server_buildium.buildium_sdk.models.unit_agreement_message.UnitAgreementMessage(
                     id = 56, 
                     type = 'NotSet', 
                     href = '', ),
-                requested_by_user_entity = buildium_sdk.models.requested_by_user_entity_message.RequestedByUserEntityMessage(
+                requested_by_user_entity = mcp_server_buildium.buildium_sdk.models.requested_by_user_entity_message.RequestedByUserEntityMessage(
                     type = 'ContactRequestor', 
                     id = 56, 
                     first_name = '', 

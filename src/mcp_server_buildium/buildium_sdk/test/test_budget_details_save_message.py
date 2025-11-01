@@ -36,7 +36,7 @@ class TestBudgetDetailsSaveMessage(unittest.TestCase):
         if include_optional:
             return BudgetDetailsSaveMessage(
                 gl_account_id = 56,
-                monthly_amounts = buildium_sdk.models.budget_monthly_amounts_save_message.BudgetMonthlyAmountsSaveMessage(
+                monthly_amounts = mcp_server_buildium.buildium_sdk.models.budget_monthly_amounts_save_message.BudgetMonthlyAmountsSaveMessage(
                     january = 1.337, 
                     february = 1.337, 
                     march = 1.337, 
@@ -53,7 +53,7 @@ class TestBudgetDetailsSaveMessage(unittest.TestCase):
         else:
             return BudgetDetailsSaveMessage(
                 gl_account_id = 56,
-                monthly_amounts = buildium_sdk.models.budget_monthly_amounts_save_message.BudgetMonthlyAmountsSaveMessage(
+                monthly_amounts = mcp_server_buildium.buildium_sdk.models.budget_monthly_amounts_save_message.BudgetMonthlyAmountsSaveMessage(
                     january = 1.337, 
                     february = 1.337, 
                     march = 1.337, 

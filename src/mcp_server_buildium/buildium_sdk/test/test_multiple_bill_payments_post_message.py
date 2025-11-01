@@ -45,10 +45,10 @@ class TestMultipleBillPaymentsPostMessage(unittest.TestCase):
                     56
                     ],
                 payment_allocations = [
-                    buildium_sdk.models.multiple_bill_payment_allocation_line_post_message.MultipleBillPaymentAllocationLinePostMessage(
+                    mcp_server_buildium.buildium_sdk.models.multiple_bill_payment_allocation_line_post_message.MultipleBillPaymentAllocationLinePostMessage(
                         bill_id = 56, 
                         lines = [
-                            buildium_sdk.models.bill_payment_line_post_message.BillPaymentLinePostMessage(
+                            mcp_server_buildium.buildium_sdk.models.bill_payment_line_post_message.BillPaymentLinePostMessage(
                                 bill_line_id = 56, 
                                 amount = 1.337, )
                             ], )

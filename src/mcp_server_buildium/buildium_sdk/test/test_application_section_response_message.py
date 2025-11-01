@@ -36,7 +36,7 @@ class TestApplicationSectionResponseMessage(unittest.TestCase):
         if include_optional:
             return ApplicationSectionResponseMessage(
                 section_fields = [
-                    buildium_sdk.models.application_response_field_message.ApplicationResponseFieldMessage(
+                    mcp_server_buildium.buildium_sdk.models.application_response_field_message.ApplicationResponseFieldMessage(
                         field_category_type = 'ApplicantName', 
                         field_type = 'TextSingleLine', 
                         field_label = '', 

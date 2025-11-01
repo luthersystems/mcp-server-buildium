@@ -38,7 +38,7 @@ class TestApplicationChargePutMessage(unittest.TestCase):
                 var_date = datetime.datetime.strptime('1975-12-30', '%Y-%m-%d').date(),
                 memo = '',
                 lines = [
-                    buildium_sdk.models.application_charge_line_save_message.ApplicationChargeLineSaveMessage(
+                    mcp_server_buildium.buildium_sdk.models.application_charge_line_save_message.ApplicationChargeLineSaveMessage(
                         amount = 1.337, 
                         gl_account_id = 56, 
                         memo = '', 

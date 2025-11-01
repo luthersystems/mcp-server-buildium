@@ -37,7 +37,7 @@ class TestAssociationOwnerToExistingOwnershipAccountPostMessage(unittest.TestCas
             return AssociationOwnerToExistingOwnershipAccountPostMessage(
                 ownership_account_id = 56,
                 send_welcome_email = True,
-                primary_address = buildium_sdk.models.save_address_message.SaveAddressMessage(
+                primary_address = mcp_server_buildium.buildium_sdk.models.save_address_message.SaveAddressMessage(
                     address_line1 = '0', 
                     address_line2 = '', 
                     address_line3 = '', 
@@ -45,7 +45,7 @@ class TestAssociationOwnerToExistingOwnershipAccountPostMessage(unittest.TestCas
                     state = '', 
                     postal_code = '0', 
                     country = 'Afghanistan', ),
-                alternate_address = buildium_sdk.models.save_address_message.SaveAddressMessage(
+                alternate_address = mcp_server_buildium.buildium_sdk.models.save_address_message.SaveAddressMessage(
                     address_line1 = '0', 
                     address_line2 = '', 
                     address_line3 = '', 
@@ -55,20 +55,20 @@ class TestAssociationOwnerToExistingOwnershipAccountPostMessage(unittest.TestCas
                     country = 'Afghanistan', ),
                 first_name = '0',
                 last_name = '0',
-                board_member_term = buildium_sdk.models.association_owner_board_term_post_message.AssociationOwnerBoardTermPostMessage(
+                board_member_term = mcp_server_buildium.buildium_sdk.models.association_owner_board_term_post_message.AssociationOwnerBoardTermPostMessage(
                     board_position_type = 'President', 
                     start_date = datetime.datetime.strptime('1975-12-30', '%Y-%m-%d').date(), 
                     end_date = datetime.datetime.strptime('1975-12-30', '%Y-%m-%d').date(), ),
                 is_owner_occupied = True,
                 email = '',
                 alternate_email = '',
-                phone_numbers = buildium_sdk.models.phone_numbers_message.PhoneNumbersMessage(
+                phone_numbers = mcp_server_buildium.buildium_sdk.models.phone_numbers_message.PhoneNumbersMessage(
                     home = '', 
                     work = '', 
                     mobile = '', 
                     fax = '', ),
                 date_of_birth = datetime.datetime.strptime('1975-12-30', '%Y-%m-%d').date(),
-                emergency_contact = buildium_sdk.models.save_emergency_contact_message.SaveEmergencyContactMessage(
+                emergency_contact = mcp_server_buildium.buildium_sdk.models.save_emergency_contact_message.SaveEmergencyContactMessage(
                     name = '', 
                     relationship_description = '', 
                     phone = '', 
@@ -81,7 +81,7 @@ class TestAssociationOwnerToExistingOwnershipAccountPostMessage(unittest.TestCas
             return AssociationOwnerToExistingOwnershipAccountPostMessage(
                 ownership_account_id = 56,
                 send_welcome_email = True,
-                primary_address = buildium_sdk.models.save_address_message.SaveAddressMessage(
+                primary_address = mcp_server_buildium.buildium_sdk.models.save_address_message.SaveAddressMessage(
                     address_line1 = '0', 
                     address_line2 = '', 
                     address_line3 = '', 

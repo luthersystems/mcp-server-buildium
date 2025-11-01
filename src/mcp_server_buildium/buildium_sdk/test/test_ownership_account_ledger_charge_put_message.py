@@ -38,7 +38,7 @@ class TestOwnershipAccountLedgerChargePutMessage(unittest.TestCase):
                 var_date = datetime.datetime.strptime('1975-12-30', '%Y-%m-%d').date(),
                 memo = '',
                 lines = [
-                    buildium_sdk.models.ownership_account_ledger_charge_lines_put_message.OwnershipAccountLedgerChargeLinesPutMessage(
+                    mcp_server_buildium.buildium_sdk.models.ownership_account_ledger_charge_lines_put_message.OwnershipAccountLedgerChargeLinesPutMessage(
                         amount = 1.337, 
                         gl_account_id = 56, 
                         reference_number = '', )
@@ -48,7 +48,7 @@ class TestOwnershipAccountLedgerChargePutMessage(unittest.TestCase):
             return OwnershipAccountLedgerChargePutMessage(
                 var_date = datetime.datetime.strptime('1975-12-30', '%Y-%m-%d').date(),
                 lines = [
-                    buildium_sdk.models.ownership_account_ledger_charge_lines_put_message.OwnershipAccountLedgerChargeLinesPutMessage(
+                    mcp_server_buildium.buildium_sdk.models.ownership_account_ledger_charge_lines_put_message.OwnershipAccountLedgerChargeLinesPutMessage(
                         amount = 1.337, 
                         gl_account_id = 56, 
                         reference_number = '', )

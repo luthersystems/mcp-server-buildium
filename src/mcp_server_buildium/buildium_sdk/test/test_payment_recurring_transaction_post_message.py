@@ -38,7 +38,7 @@ class TestPaymentRecurringTransactionPostMessage(unittest.TestCase):
                 payer_user_id = 56,
                 payment_method = 'Check',
                 lines = [
-                    buildium_sdk.models.recurring_transaction_line_post_message.RecurringTransactionLinePostMessage(
+                    mcp_server_buildium.buildium_sdk.models.recurring_transaction_line_post_message.RecurringTransactionLinePostMessage(
                         gl_account_id = 56, 
                         amount = 1.337, )
                     ],

@@ -37,7 +37,7 @@ class TestBankLockboxDataOwnershipAccountMessage(unittest.TestCase):
             return BankLockboxDataOwnershipAccountMessage(
                 id = 56,
                 unit_number = '',
-                unit_address = buildium_sdk.models.address_message.AddressMessage(
+                unit_address = mcp_server_buildium.buildium_sdk.models.address_message.AddressMessage(
                     address_line1 = '', 
                     address_line2 = '', 
                     address_line3 = '', 
@@ -47,14 +47,14 @@ class TestBankLockboxDataOwnershipAccountMessage(unittest.TestCase):
                     country = 'Afghanistan', ),
                 delinquency_status = 'NoDelinquency',
                 association_owners = [
-                    buildium_sdk.models.bank_lockbox_data_association_owner_message.BankLockboxDataAssociationOwnerMessage(
+                    mcp_server_buildium.buildium_sdk.models.bank_lockbox_data_association_owner_message.BankLockboxDataAssociationOwnerMessage(
                         id = 56, 
                         first_name = '', 
                         last_name = '', 
                         email = '', 
                         alternate_email = '', 
                         phone_numbers = [
-                            buildium_sdk.models.phone_number_message.PhoneNumberMessage(
+                            mcp_server_buildium.buildium_sdk.models.phone_number_message.PhoneNumberMessage(
                                 number = '', 
                                 type = 'NotSet', )
                             ], 

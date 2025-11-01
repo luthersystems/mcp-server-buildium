@@ -44,15 +44,15 @@ class TestVendorMessage(unittest.TestCase):
                 alternate_email = '',
                 company_name = '',
                 phone_numbers = [
-                    buildium_sdk.models.phone_number_message.PhoneNumberMessage(
+                    mcp_server_buildium.buildium_sdk.models.phone_number_message.PhoneNumberMessage(
                         number = '', 
                         type = 'NotSet', )
                     ],
                 website = '',
-                category = buildium_sdk.models.lookup_message.LookupMessage(
+                category = mcp_server_buildium.buildium_sdk.models.lookup_message.LookupMessage(
                     id = 56, 
                     name = '', ),
-                address = buildium_sdk.models.address_message.AddressMessage(
+                address = mcp_server_buildium.buildium_sdk.models.address_message.AddressMessage(
                     address_line1 = '', 
                     address_line2 = '', 
                     address_line3 = '', 
@@ -60,14 +60,14 @@ class TestVendorMessage(unittest.TestCase):
                     state = '', 
                     postal_code = '', 
                     country = 'Afghanistan', ),
-                vendor_insurance = buildium_sdk.models.vendor_insurance_message.VendorInsuranceMessage(
+                vendor_insurance = mcp_server_buildium.buildium_sdk.models.vendor_insurance_message.VendorInsuranceMessage(
                     provider = '', 
                     policy_number = '', 
                     expiration_date = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), ),
                 comments = '',
                 account_number = '',
                 expense_gl_account_id = 56,
-                tax_information = buildium_sdk.models.vendor_tax_information_message.VendorTaxInformationMessage(
+                tax_information = mcp_server_buildium.buildium_sdk.models.vendor_tax_information_message.VendorTaxInformationMessage(
                     tax_payer_id_type = 'SSN', 
                     tax_payer_id = '', 
                     tax_payer_name1 = '', 

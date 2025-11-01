@@ -41,7 +41,7 @@ class TestRentalUnitMessage(unittest.TestCase):
                 unit_number = '',
                 description = '',
                 market_rent = 1.337,
-                address = buildium_sdk.models.address_message.AddressMessage(
+                address = mcp_server_buildium.buildium_sdk.models.address_message.AddressMessage(
                     address_line1 = '', 
                     address_line2 = '', 
                     address_line3 = '', 

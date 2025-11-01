@@ -39,7 +39,7 @@ class TestLeaseChargePostMessage(unittest.TestCase):
                 memo = '',
                 bill_id = 56,
                 lines = [
-                    buildium_sdk.models.lease_charge_line_save_message.LeaseChargeLineSaveMessage(
+                    mcp_server_buildium.buildium_sdk.models.lease_charge_line_save_message.LeaseChargeLineSaveMessage(
                         amount = 1.337, 
                         gl_account_id = 56, 
                         reference_number = '', )

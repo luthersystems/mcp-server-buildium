@@ -35,25 +35,25 @@ class TestBankLockboxDataMessage(unittest.TestCase):
         model = BankLockboxDataMessage()
         if include_optional:
             return BankLockboxDataMessage(
-                association = buildium_sdk.models.bank_lockbox_data_association_message.BankLockboxDataAssociationMessage(
+                association = mcp_server_buildium.buildium_sdk.models.bank_lockbox_data_association_message.BankLockboxDataAssociationMessage(
                     id = 56, 
                     name = '', 
                     operating_bank_account_id = 56, ),
                 ownership_accounts = [
-                    buildium_sdk.models.bank_lockbox_data_ownership_account_message.BankLockboxDataOwnershipAccountMessage(
+                    mcp_server_buildium.buildium_sdk.models.bank_lockbox_data_ownership_account_message.BankLockboxDataOwnershipAccountMessage(
                         id = 56, 
                         unit_number = '', 
                         unit_address = null, 
                         delinquency_status = 'NoDelinquency', 
                         association_owners = [
-                            buildium_sdk.models.bank_lockbox_data_association_owner_message.BankLockboxDataAssociationOwnerMessage(
+                            mcp_server_buildium.buildium_sdk.models.bank_lockbox_data_association_owner_message.BankLockboxDataAssociationOwnerMessage(
                                 id = 56, 
                                 first_name = '', 
                                 last_name = '', 
                                 email = '', 
                                 alternate_email = '', 
                                 phone_numbers = [
-                                    buildium_sdk.models.phone_number_message.PhoneNumberMessage(
+                                    mcp_server_buildium.buildium_sdk.models.phone_number_message.PhoneNumberMessage(
                                         number = '', 
                                         type = 'NotSet', )
                                     ], 

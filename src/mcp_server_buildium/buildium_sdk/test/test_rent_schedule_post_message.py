@@ -39,7 +39,7 @@ class TestRentSchedulePostMessage(unittest.TestCase):
                 rent_cycle = 'Monthly',
                 backdate_charges = True,
                 charges = [
-                    buildium_sdk.models.rent_schedule_charge_post_message.RentScheduleChargePostMessage(
+                    mcp_server_buildium.buildium_sdk.models.rent_schedule_charge_post_message.RentScheduleChargePostMessage(
                         gl_account_id = 56, 
                         amount = 1.337, 
                         memo = '', 
@@ -52,7 +52,7 @@ class TestRentSchedulePostMessage(unittest.TestCase):
                 rent_cycle = 'Monthly',
                 backdate_charges = True,
                 charges = [
-                    buildium_sdk.models.rent_schedule_charge_post_message.RentScheduleChargePostMessage(
+                    mcp_server_buildium.buildium_sdk.models.rent_schedule_charge_post_message.RentScheduleChargePostMessage(
                         gl_account_id = 56, 
                         amount = 1.337, 
                         memo = '', 

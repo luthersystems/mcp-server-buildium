@@ -35,7 +35,7 @@ class TestPhoneLogPostMessage(unittest.TestCase):
         model = PhoneLogPostMessage()
         if include_optional:
             return PhoneLogPostMessage(
-                participant = buildium_sdk.models.phone_log_participant_post_message.PhoneLogParticipantPostMessage(
+                participant = mcp_server_buildium.buildium_sdk.models.phone_log_participant_post_message.PhoneLogParticipantPostMessage(
                     entity_type = 'Vendor', 
                     entity_id = 56, 
                     unit_agreement = null, ),
@@ -45,7 +45,7 @@ class TestPhoneLogPostMessage(unittest.TestCase):
             )
         else:
             return PhoneLogPostMessage(
-                participant = buildium_sdk.models.phone_log_participant_post_message.PhoneLogParticipantPostMessage(
+                participant = mcp_server_buildium.buildium_sdk.models.phone_log_participant_post_message.PhoneLogParticipantPostMessage(
                     entity_type = 'Vendor', 
                     entity_id = 56, 
                     unit_agreement = null, ),

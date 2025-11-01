@@ -42,7 +42,7 @@ class TestLeaseLedgerRefundPostMessage(unittest.TestCase):
                 memo = '',
                 check_number = '',
                 bank_account_id = 56,
-                address = buildium_sdk.models.save_address_message.SaveAddressMessage(
+                address = mcp_server_buildium.buildium_sdk.models.save_address_message.SaveAddressMessage(
                     address_line1 = '0', 
                     address_line2 = '', 
                     address_line3 = '', 
@@ -51,7 +51,7 @@ class TestLeaseLedgerRefundPostMessage(unittest.TestCase):
                     postal_code = '0', 
                     country = 'Afghanistan', ),
                 lines = [
-                    buildium_sdk.models.lease_ledger_refund_line_post_message.LeaseLedgerRefundLinePostMessage(
+                    mcp_server_buildium.buildium_sdk.models.lease_ledger_refund_line_post_message.LeaseLedgerRefundLinePostMessage(
                         amount = 1.337, 
                         gl_account_id = 56, )
                     ]
@@ -63,7 +63,7 @@ class TestLeaseLedgerRefundPostMessage(unittest.TestCase):
                     56
                     ],
                 bank_account_id = 56,
-                address = buildium_sdk.models.save_address_message.SaveAddressMessage(
+                address = mcp_server_buildium.buildium_sdk.models.save_address_message.SaveAddressMessage(
                     address_line1 = '0', 
                     address_line2 = '', 
                     address_line3 = '', 
@@ -72,7 +72,7 @@ class TestLeaseLedgerRefundPostMessage(unittest.TestCase):
                     postal_code = '0', 
                     country = 'Afghanistan', ),
                 lines = [
-                    buildium_sdk.models.lease_ledger_refund_line_post_message.LeaseLedgerRefundLinePostMessage(
+                    mcp_server_buildium.buildium_sdk.models.lease_ledger_refund_line_post_message.LeaseLedgerRefundLinePostMessage(
                         amount = 1.337, 
                         gl_account_id = 56, )
                     ],

@@ -39,7 +39,7 @@ class TestApplicantPostMessage(unittest.TestCase):
                 first_name = '0',
                 last_name = '0',
                 email = '',
-                phone_numbers = buildium_sdk.models.phone_numbers_message.PhoneNumbersMessage(
+                phone_numbers = mcp_server_buildium.buildium_sdk.models.phone_numbers_message.PhoneNumbersMessage(
                     home = '', 
                     work = '', 
                     mobile = '', 

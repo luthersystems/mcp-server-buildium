@@ -44,7 +44,7 @@ class TestApplicationOutstandingBalanceMessage(unittest.TestCase):
                 balance_over90_days = 1.337,
                 total_balance = 1.337,
                 balances = [
-                    buildium_sdk.models.outstanding_balances_line_message.OutstandingBalancesLineMessage(
+                    mcp_server_buildium.buildium_sdk.models.outstanding_balances_line_message.OutstandingBalancesLineMessage(
                         gl_account_id = 56, 
                         total_balance = 1.337, )
                     ]

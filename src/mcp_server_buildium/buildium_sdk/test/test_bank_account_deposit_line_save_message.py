@@ -36,7 +36,7 @@ class TestBankAccountDepositLineSaveMessage(unittest.TestCase):
         if include_optional:
             return BankAccountDepositLineSaveMessage(
                 gl_account_id = 56,
-                accounting_entity = buildium_sdk.models.accounting_entity_save_message.AccountingEntitySaveMessage(
+                accounting_entity = mcp_server_buildium.buildium_sdk.models.accounting_entity_save_message.AccountingEntitySaveMessage(
                     id = 56, 
                     accounting_entity_type = 'Association', 
                     unit_id = 56, ),

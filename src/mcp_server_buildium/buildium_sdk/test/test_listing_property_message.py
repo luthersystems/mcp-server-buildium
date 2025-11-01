@@ -37,7 +37,7 @@ class TestListingPropertyMessage(unittest.TestCase):
             return ListingPropertyMessage(
                 id = 56,
                 name = '',
-                address = buildium_sdk.models.address_message.AddressMessage(
+                address = mcp_server_buildium.buildium_sdk.models.address_message.AddressMessage(
                     address_line1 = '', 
                     address_line2 = '', 
                     address_line3 = '', 
@@ -55,7 +55,7 @@ class TestListingPropertyMessage(unittest.TestCase):
                     'Gas'
                     ],
                 files = [
-                    buildium_sdk.models.listing_file_message.ListingFileMessage(
+                    mcp_server_buildium.buildium_sdk.models.listing_file_message.ListingFileMessage(
                         type = 'Image', 
                         name = '', 
                         url = '', )

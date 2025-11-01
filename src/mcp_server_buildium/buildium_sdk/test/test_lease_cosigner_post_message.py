@@ -39,12 +39,12 @@ class TestLeaseCosignerPostMessage(unittest.TestCase):
                 last_name = '0',
                 email = '',
                 alternate_email = '',
-                phone_numbers = buildium_sdk.models.phone_numbers_message.PhoneNumbersMessage(
+                phone_numbers = mcp_server_buildium.buildium_sdk.models.phone_numbers_message.PhoneNumbersMessage(
                     home = '', 
                     work = '', 
                     mobile = '', 
                     fax = '', ),
-                address = buildium_sdk.models.save_address_message.SaveAddressMessage(
+                address = mcp_server_buildium.buildium_sdk.models.save_address_message.SaveAddressMessage(
                     address_line1 = '0', 
                     address_line2 = '', 
                     address_line3 = '', 
@@ -52,7 +52,7 @@ class TestLeaseCosignerPostMessage(unittest.TestCase):
                     state = '', 
                     postal_code = '0', 
                     country = 'Afghanistan', ),
-                alternate_address = buildium_sdk.models.save_address_message.SaveAddressMessage(
+                alternate_address = mcp_server_buildium.buildium_sdk.models.save_address_message.SaveAddressMessage(
                     address_line1 = '0', 
                     address_line2 = '', 
                     address_line3 = '', 

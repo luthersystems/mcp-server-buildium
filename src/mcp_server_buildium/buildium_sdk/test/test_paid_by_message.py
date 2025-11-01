@@ -35,7 +35,7 @@ class TestPaidByMessage(unittest.TestCase):
         model = PaidByMessage()
         if include_optional:
             return PaidByMessage(
-                accounting_entity = buildium_sdk.models.accounting_entity_message.AccountingEntityMessage(
+                accounting_entity = mcp_server_buildium.buildium_sdk.models.accounting_entity_message.AccountingEntityMessage(
                     id = 56, 
                     accounting_entity_type = 'Association', 
                     href = '', 

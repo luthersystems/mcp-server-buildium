@@ -39,7 +39,7 @@ class TestApplicationRefundPostMessage(unittest.TestCase):
                 memo = '',
                 check_number = '',
                 bank_account_id = 56,
-                address = buildium_sdk.models.save_address_message.SaveAddressMessage(
+                address = mcp_server_buildium.buildium_sdk.models.save_address_message.SaveAddressMessage(
                     address_line1 = '0', 
                     address_line2 = '', 
                     address_line3 = '', 
@@ -48,7 +48,7 @@ class TestApplicationRefundPostMessage(unittest.TestCase):
                     postal_code = '0', 
                     country = 'Afghanistan', ),
                 lines = [
-                    buildium_sdk.models.application_refund_line_save_message.ApplicationRefundLineSaveMessage(
+                    mcp_server_buildium.buildium_sdk.models.application_refund_line_save_message.ApplicationRefundLineSaveMessage(
                         amount = 1.337, 
                         gl_account_id = 56, )
                     ]
@@ -57,7 +57,7 @@ class TestApplicationRefundPostMessage(unittest.TestCase):
             return ApplicationRefundPostMessage(
                 var_date = datetime.datetime.strptime('1975-12-30', '%Y-%m-%d').date(),
                 bank_account_id = 56,
-                address = buildium_sdk.models.save_address_message.SaveAddressMessage(
+                address = mcp_server_buildium.buildium_sdk.models.save_address_message.SaveAddressMessage(
                     address_line1 = '0', 
                     address_line2 = '', 
                     address_line3 = '', 
@@ -66,7 +66,7 @@ class TestApplicationRefundPostMessage(unittest.TestCase):
                     postal_code = '0', 
                     country = 'Afghanistan', ),
                 lines = [
-                    buildium_sdk.models.application_refund_line_save_message.ApplicationRefundLineSaveMessage(
+                    mcp_server_buildium.buildium_sdk.models.application_refund_line_save_message.ApplicationRefundLineSaveMessage(
                         amount = 1.337, 
                         gl_account_id = 56, )
                     ],

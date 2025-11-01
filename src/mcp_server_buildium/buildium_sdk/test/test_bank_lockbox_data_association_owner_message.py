@@ -41,12 +41,12 @@ class TestBankLockboxDataAssociationOwnerMessage(unittest.TestCase):
                 email = '',
                 alternate_email = '',
                 phone_numbers = [
-                    buildium_sdk.models.phone_number_message.PhoneNumberMessage(
+                    mcp_server_buildium.buildium_sdk.models.phone_number_message.PhoneNumberMessage(
                         number = '', 
                         type = 'NotSet', )
                     ],
                 delinquency_status = 'NoDelinquency',
-                primary_address = buildium_sdk.models.address_message.AddressMessage(
+                primary_address = mcp_server_buildium.buildium_sdk.models.address_message.AddressMessage(
                     address_line1 = '', 
                     address_line2 = '', 
                     address_line3 = '', 
@@ -54,7 +54,7 @@ class TestBankLockboxDataAssociationOwnerMessage(unittest.TestCase):
                     state = '', 
                     postal_code = '', 
                     country = 'Afghanistan', ),
-                alternate_address = buildium_sdk.models.address_message.AddressMessage(
+                alternate_address = mcp_server_buildium.buildium_sdk.models.address_message.AddressMessage(
                     address_line1 = '', 
                     address_line2 = '', 
                     address_line3 = '', 

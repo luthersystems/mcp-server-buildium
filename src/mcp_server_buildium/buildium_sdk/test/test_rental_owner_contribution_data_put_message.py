@@ -36,11 +36,11 @@ class TestRentalOwnerContributionDataPutMessage(unittest.TestCase):
         if include_optional:
             return RentalOwnerContributionDataPutMessage(
                 contribution_requests = [
-                    buildium_sdk.models.rental_owner_contribution_put_message.RentalOwnerContributionPutMessage(
+                    mcp_server_buildium.buildium_sdk.models.rental_owner_contribution_put_message.RentalOwnerContributionPutMessage(
                         description = '', 
                         amount = 1.337, )
                     ],
-                reminder_settings = buildium_sdk.models.rental_owner_contribution_reminder_put_message.RentalOwnerContributionReminderPutMessage(
+                reminder_settings = mcp_server_buildium.buildium_sdk.models.rental_owner_contribution_reminder_put_message.RentalOwnerContributionReminderPutMessage(
                     is_active = True, 
                     recurrence_days = 56, )
             )

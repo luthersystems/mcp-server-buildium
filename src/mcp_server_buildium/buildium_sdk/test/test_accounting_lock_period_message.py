@@ -35,10 +35,10 @@ class TestAccountingLockPeriodMessage(unittest.TestCase):
         model = AccountingLockPeriodMessage()
         if include_optional:
             return AccountingLockPeriodMessage(
-                var_global = buildium_sdk.models.lock_period_settings_global_message.LockPeriodSettingsGlobalMessage(
+                var_global = mcp_server_buildium.buildium_sdk.models.lock_period_settings_global_message.LockPeriodSettingsGlobalMessage(
                     lock_date = datetime.datetime.strptime('1975-12-30', '%Y-%m-%d').date(), ),
                 overrides = [
-                    buildium_sdk.models.lock_period_settings_overrides_message.LockPeriodSettingsOverridesMessage(
+                    mcp_server_buildium.buildium_sdk.models.lock_period_settings_overrides_message.LockPeriodSettingsOverridesMessage(
                         property = null, 
                         lock_date = datetime.datetime.strptime('1975-12-30', '%Y-%m-%d').date(), )
                     ],

@@ -39,7 +39,7 @@ class TestCreditRecurringTransactionPostMessage(unittest.TestCase):
                 offsetting_gl_account_id = 56,
                 posting_rule_gl_account_id = 56,
                 lines = [
-                    buildium_sdk.models.recurring_transaction_line_post_message.RecurringTransactionLinePostMessage(
+                    mcp_server_buildium.buildium_sdk.models.recurring_transaction_line_post_message.RecurringTransactionLinePostMessage(
                         gl_account_id = 56, 
                         amount = 1.337, )
                     ],

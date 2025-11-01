@@ -40,7 +40,7 @@ class TestRentalOwnerTaxInformationMessage(unittest.TestCase):
                 tax_payer_name1 = '',
                 tax_payer_name2 = '',
                 include_in1099 = True,
-                address = buildium_sdk.models.address_message.AddressMessage(
+                address = mcp_server_buildium.buildium_sdk.models.address_message.AddressMessage(
                     address_line1 = '', 
                     address_line2 = '', 
                     address_line3 = '', 

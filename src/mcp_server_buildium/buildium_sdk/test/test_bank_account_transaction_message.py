@@ -43,12 +43,12 @@ class TestBankAccountTransactionMessage(unittest.TestCase):
                 amount = 1.337,
                 reconciliation_status = 'Unknown',
                 paid_by = [
-                    buildium_sdk.models.paid_by_message.PaidByMessage(
+                    mcp_server_buildium.buildium_sdk.models.paid_by_message.PaidByMessage(
                         accounting_entity = null, 
                         amount = 1.337, )
                     ],
                 paid_to = [
-                    buildium_sdk.models.payee_message.PayeeMessage(
+                    mcp_server_buildium.buildium_sdk.models.payee_message.PayeeMessage(
                         id = 56, 
                         name = '', 
                         type = 'Tenant', 

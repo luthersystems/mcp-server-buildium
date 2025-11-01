@@ -35,7 +35,7 @@ class TestUndepositedFundsMessage(unittest.TestCase):
         model = UndepositedFundsMessage()
         if include_optional:
             return UndepositedFundsMessage(
-                general_ledger_transaction = buildium_sdk.models.gl_transaction_message_v1.GLTransactionMessageV1(
+                general_ledger_transaction = mcp_server_buildium.buildium_sdk.models.gl_transaction_message_v1.GLTransactionMessageV1(
                     id = 56, 
                     amount = 1.337, 
                     check_number = '', 

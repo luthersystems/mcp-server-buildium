@@ -37,7 +37,7 @@ class TestGeneralLedgerJournalMessage(unittest.TestCase):
             return GeneralLedgerJournalMessage(
                 memo = '',
                 lines = [
-                    buildium_sdk.models.general_ledger_journal_line_message.GeneralLedgerJournalLineMessage(
+                    mcp_server_buildium.buildium_sdk.models.general_ledger_journal_line_message.GeneralLedgerJournalLineMessage(
                         gl_account = null, 
                         amount = 1.337, 
                         is_cash_posting = True, 

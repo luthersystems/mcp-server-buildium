@@ -44,12 +44,12 @@ class TestRentalOwnerPutMessage(unittest.TestCase):
                 management_agreement_end_date = datetime.datetime.strptime('1975-12-30', '%Y-%m-%d').date(),
                 email = '',
                 alternate_email = '',
-                phone_numbers = buildium_sdk.models.phone_numbers_message.PhoneNumbersMessage(
+                phone_numbers = mcp_server_buildium.buildium_sdk.models.phone_numbers_message.PhoneNumbersMessage(
                     home = '', 
                     work = '', 
                     mobile = '', 
                     fax = '', ),
-                address = buildium_sdk.models.save_address_message.SaveAddressMessage(
+                address = mcp_server_buildium.buildium_sdk.models.save_address_message.SaveAddressMessage(
                     address_line1 = '0', 
                     address_line2 = '', 
                     address_line3 = '', 
@@ -65,7 +65,7 @@ class TestRentalOwnerPutMessage(unittest.TestCase):
         else:
             return RentalOwnerPutMessage(
                 is_company = True,
-                address = buildium_sdk.models.save_address_message.SaveAddressMessage(
+                address = mcp_server_buildium.buildium_sdk.models.save_address_message.SaveAddressMessage(
                     address_line1 = '0', 
                     address_line2 = '', 
                     address_line3 = '', 

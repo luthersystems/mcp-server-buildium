@@ -38,7 +38,7 @@ class TestMeterReadingDetailsMessage(unittest.TestCase):
                 reading_date = datetime.datetime.strptime('1975-12-30', '%Y-%m-%d').date(),
                 meter_type = 'Unknown',
                 details = [
-                    buildium_sdk.models.meter_reading_detail_message.MeterReadingDetailMessage(
+                    mcp_server_buildium.buildium_sdk.models.meter_reading_detail_message.MeterReadingDetailMessage(
                         id = 56, 
                         unit_id = 56, 
                         unit_number = '', 

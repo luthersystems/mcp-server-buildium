@@ -35,14 +35,14 @@ class TestGeneralJournalEntryPostMessage(unittest.TestCase):
         model = GeneralJournalEntryPostMessage()
         if include_optional:
             return GeneralJournalEntryPostMessage(
-                accounting_entity = buildium_sdk.models.accounting_entity_save_message.AccountingEntitySaveMessage(
+                accounting_entity = mcp_server_buildium.buildium_sdk.models.accounting_entity_save_message.AccountingEntitySaveMessage(
                     id = 56, 
                     accounting_entity_type = 'Association', 
                     unit_id = 56, ),
                 var_date = datetime.datetime.strptime('1975-12-30', '%Y-%m-%d').date(),
                 memo = '',
                 lines = [
-                    buildium_sdk.models.general_journal_entry_line_save_message.GeneralJournalEntryLineSaveMessage(
+                    mcp_server_buildium.buildium_sdk.models.general_journal_entry_line_save_message.GeneralJournalEntryLineSaveMessage(
                         gl_account_id = 56, 
                         memo = '', 
                         posting_type = 'Credit', 
@@ -51,13 +51,13 @@ class TestGeneralJournalEntryPostMessage(unittest.TestCase):
             )
         else:
             return GeneralJournalEntryPostMessage(
-                accounting_entity = buildium_sdk.models.accounting_entity_save_message.AccountingEntitySaveMessage(
+                accounting_entity = mcp_server_buildium.buildium_sdk.models.accounting_entity_save_message.AccountingEntitySaveMessage(
                     id = 56, 
                     accounting_entity_type = 'Association', 
                     unit_id = 56, ),
                 var_date = datetime.datetime.strptime('1975-12-30', '%Y-%m-%d').date(),
                 lines = [
-                    buildium_sdk.models.general_journal_entry_line_save_message.GeneralJournalEntryLineSaveMessage(
+                    mcp_server_buildium.buildium_sdk.models.general_journal_entry_line_save_message.GeneralJournalEntryLineSaveMessage(
                         gl_account_id = 56, 
                         memo = '', 
                         posting_type = 'Credit', 

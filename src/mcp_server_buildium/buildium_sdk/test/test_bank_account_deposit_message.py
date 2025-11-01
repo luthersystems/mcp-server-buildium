@@ -40,7 +40,7 @@ class TestBankAccountDepositMessage(unittest.TestCase):
                 memo = '',
                 total_amount = 1.337,
                 lines = [
-                    buildium_sdk.models.bank_account_deposit_line_message.BankAccountDepositLineMessage(
+                    mcp_server_buildium.buildium_sdk.models.bank_account_deposit_line_message.BankAccountDepositLineMessage(
                         id = 56, 
                         accounting_entity = null, 
                         gl_account_id = 56, 

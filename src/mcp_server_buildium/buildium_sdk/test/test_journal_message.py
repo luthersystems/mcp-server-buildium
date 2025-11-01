@@ -37,7 +37,7 @@ class TestJournalMessage(unittest.TestCase):
             return JournalMessage(
                 memo = '',
                 lines = [
-                    buildium_sdk.models.journal_line_message.JournalLineMessage(
+                    mcp_server_buildium.buildium_sdk.models.journal_line_message.JournalLineMessage(
                         gl_account = null, 
                         amount = 1.337, 
                         is_cash_posting = True, 

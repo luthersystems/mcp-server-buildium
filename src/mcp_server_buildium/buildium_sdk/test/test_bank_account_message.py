@@ -36,7 +36,7 @@ class TestBankAccountMessage(unittest.TestCase):
         if include_optional:
             return BankAccountMessage(
                 id = 56,
-                gl_account = buildium_sdk.models.gl_account_message.GLAccountMessage(
+                gl_account = mcp_server_buildium.buildium_sdk.models.gl_account_message.GLAccountMessage(
                     id = 56, 
                     account_number = '', 
                     name = '', 
@@ -50,7 +50,7 @@ class TestBankAccountMessage(unittest.TestCase):
                     cash_flow_classification = 'OperatingActivities', 
                     exclude_from_cash_balances = True, 
                     sub_accounts = [
-                        buildium_sdk.models.gl_account_message.GLAccountMessage(
+                        mcp_server_buildium.buildium_sdk.models.gl_account_message.GLAccountMessage(
                             id = 56, 
                             account_number = '', 
                             name = '', 
@@ -68,7 +68,7 @@ class TestBankAccountMessage(unittest.TestCase):
                         ], 
                     is_active = True, 
                     parent_gl_account_id = 56, ),
-                check_printing_info = buildium_sdk.models.check_printing_info_message.CheckPrintingInfoMessage(
+                check_printing_info = mcp_server_buildium.buildium_sdk.models.check_printing_info_message.CheckPrintingInfoMessage(
                     enable_remote_check_printing = True, 
                     enable_local_check_printing = True, 
                     check_layout_type = 'Voucher1StubBottomMemo1Signature', 
@@ -84,7 +84,7 @@ class TestBankAccountMessage(unittest.TestCase):
                     company_information_line3 = '', 
                     company_information_line4 = '', 
                     company_information_line5 = '', ),
-                electronic_payments = buildium_sdk.models.electronic_payments_message.ElectronicPaymentsMessage(
+                electronic_payments = mcp_server_buildium.buildium_sdk.models.electronic_payments_message.ElectronicPaymentsMessage(
                     debit_transaction_limit = 1.337, 
                     credit_transaction_limit = 1.337, 
                     debit_monthly_limit = 1.337, 

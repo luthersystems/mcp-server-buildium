@@ -44,12 +44,12 @@ class TestBillPaymentMessage(unittest.TestCase):
                     56
                     ],
                 applied_vendor_credits = [
-                    buildium_sdk.models.applied_vendor_credit_message.AppliedVendorCreditMessage(
+                    mcp_server_buildium.buildium_sdk.models.applied_vendor_credit_message.AppliedVendorCreditMessage(
                         id = 56, 
                         href = '', )
                     ],
                 lines = [
-                    buildium_sdk.models.bill_payment_line_message.BillPaymentLineMessage(
+                    mcp_server_buildium.buildium_sdk.models.bill_payment_line_message.BillPaymentLineMessage(
                         accounting_entity = null, 
                         gl_account_id = 56, 
                         amount = 1.337, )

@@ -36,7 +36,7 @@ class TestFileMessage(unittest.TestCase):
         if include_optional:
             return FileMessage(
                 id = 56,
-                file_entity = buildium_sdk.models.file_entity_message.FileEntityMessage(
+                file_entity = mcp_server_buildium.buildium_sdk.models.file_entity_message.FileEntityMessage(
                     id = 56, 
                     entity_type = 'Unknown', 
                     href = '', ),

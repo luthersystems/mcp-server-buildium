@@ -38,7 +38,7 @@ class TestAssociationUnitsPostMessage(unittest.TestCase):
                 unit_number = '0',
                 association_id = 56,
                 unit_size = 56,
-                address = buildium_sdk.models.save_address_message.SaveAddressMessage(
+                address = mcp_server_buildium.buildium_sdk.models.save_address_message.SaveAddressMessage(
                     address_line1 = '0', 
                     address_line2 = '', 
                     address_line3 = '', 
@@ -53,7 +53,7 @@ class TestAssociationUnitsPostMessage(unittest.TestCase):
             return AssociationUnitsPostMessage(
                 unit_number = '0',
                 association_id = 56,
-                address = buildium_sdk.models.save_address_message.SaveAddressMessage(
+                address = mcp_server_buildium.buildium_sdk.models.save_address_message.SaveAddressMessage(
                     address_line1 = '0', 
                     address_line2 = '', 
                     address_line3 = '', 

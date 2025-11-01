@@ -38,7 +38,7 @@ class TestBudgetDetailsMessage(unittest.TestCase):
                 gl_account_id = 56,
                 gl_account_sub_type = 'CurrentAsset',
                 total_amount = 1.337,
-                monthly_amounts = buildium_sdk.models.budget_monthly_amounts_message.BudgetMonthlyAmountsMessage(
+                monthly_amounts = mcp_server_buildium.buildium_sdk.models.budget_monthly_amounts_message.BudgetMonthlyAmountsMessage(
                     january = 1.337, 
                     february = 1.337, 
                     march = 1.337, 

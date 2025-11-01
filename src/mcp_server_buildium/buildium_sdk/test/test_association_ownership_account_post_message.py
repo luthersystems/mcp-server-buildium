@@ -43,7 +43,7 @@ class TestAssociationOwnershipAccountPostMessage(unittest.TestCase):
                     56
                     ],
                 association_owners = [
-                    buildium_sdk.models.association_owner_post_message.AssociationOwnerPostMessage(
+                    mcp_server_buildium.buildium_sdk.models.association_owner_post_message.AssociationOwnerPostMessage(
                         first_name = '0', 
                         last_name = '0', 
                         primary_address = null, 

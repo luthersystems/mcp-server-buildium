@@ -35,7 +35,7 @@ class TestFileSharingMessage(unittest.TestCase):
         model = FileSharingMessage()
         if include_optional:
             return FileSharingMessage(
-                account = buildium_sdk.models.file_sharing_account_message.FileSharingAccountMessage(
+                account = mcp_server_buildium.buildium_sdk.models.file_sharing_account_message.FileSharingAccountMessage(
                     all_residents = True, 
                     property_ids = [
                         56
@@ -45,34 +45,34 @@ class TestFileSharingMessage(unittest.TestCase):
                         56
                         ], 
                     website_visitors = True, ),
-                rental = buildium_sdk.models.file_sharing_rental_message.FileSharingRentalMessage(
+                rental = mcp_server_buildium.buildium_sdk.models.file_sharing_rental_message.FileSharingRentalMessage(
                     rental_owners = True, 
                     tenants = True, ),
-                rental_unit = buildium_sdk.models.file_sharing_rental_unit_mesage.FileSharingRentalUnitMesage(
+                rental_unit = mcp_server_buildium.buildium_sdk.models.file_sharing_rental_unit_mesage.FileSharingRentalUnitMesage(
                     rental_owners = True, 
                     tenants = True, ),
-                lease = buildium_sdk.models.file_sharing_lease_message.FileSharingLeaseMessage(
+                lease = mcp_server_buildium.buildium_sdk.models.file_sharing_lease_message.FileSharingLeaseMessage(
                     tenants = True, 
                     rental_owners = True, ),
-                tenant = buildium_sdk.models.file_sharing_tenant_message.FileSharingTenantMessage(
+                tenant = mcp_server_buildium.buildium_sdk.models.file_sharing_tenant_message.FileSharingTenantMessage(
                     tenants = True, 
                     rental_owners = True, ),
-                rental_owner = buildium_sdk.models.file_sharing_rental_owner_message.FileSharingRentalOwnerMessage(
+                rental_owner = mcp_server_buildium.buildium_sdk.models.file_sharing_rental_owner_message.FileSharingRentalOwnerMessage(
                     rental_owner = True, ),
-                association = buildium_sdk.models.file_sharing_association_message.FileSharingAssociationMessage(
+                association = mcp_server_buildium.buildium_sdk.models.file_sharing_association_message.FileSharingAssociationMessage(
                     association_owners = True, 
                     board_members = True, ),
-                association_unit = buildium_sdk.models.file_sharing_association_unit_message.FileSharingAssociationUnitMessage(
+                association_unit = mcp_server_buildium.buildium_sdk.models.file_sharing_association_unit_message.FileSharingAssociationUnitMessage(
                     association_owners = True, 
                     board_members = True, ),
-                ownership_account = buildium_sdk.models.file_sharing_ownership_account_message.FileSharingOwnershipAccountMessage(
+                ownership_account = mcp_server_buildium.buildium_sdk.models.file_sharing_ownership_account_message.FileSharingOwnershipAccountMessage(
                     association_owners = True, 
                     board_members = True, ),
-                association_owner = buildium_sdk.models.file_sharing_association_owner_message.FileSharingAssociationOwnerMessage(
+                association_owner = mcp_server_buildium.buildium_sdk.models.file_sharing_association_owner_message.FileSharingAssociationOwnerMessage(
                     association_owner = True, ),
-                vendor = buildium_sdk.models.file_sharing_vendor_message.FileSharingVendorMessage(
+                vendor = mcp_server_buildium.buildium_sdk.models.file_sharing_vendor_message.FileSharingVendorMessage(
                     vendor = True, ),
-                committee = buildium_sdk.models.file_sharing_committee_message.FileSharingCommitteeMessage(
+                committee = mcp_server_buildium.buildium_sdk.models.file_sharing_committee_message.FileSharingCommitteeMessage(
                     association_owners = True, 
                     board_members = True, 
                     committee = True, )

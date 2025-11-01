@@ -43,7 +43,7 @@ class TestRentersInsurancePolicyMessage(unittest.TestCase):
                 expiration_date = datetime.datetime.strptime('1975-12-30', '%Y-%m-%d').date(),
                 cancellation_date = datetime.datetime.strptime('1975-12-30', '%Y-%m-%d').date(),
                 insured_tenants = [
-                    buildium_sdk.models.insured_tenant_message.InsuredTenantMessage(
+                    mcp_server_buildium.buildium_sdk.models.insured_tenant_message.InsuredTenantMessage(
                         id = 56, 
                         first_name = '', 
                         last_name = '', 

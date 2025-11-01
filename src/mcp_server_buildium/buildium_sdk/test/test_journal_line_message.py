@@ -35,7 +35,7 @@ class TestJournalLineMessage(unittest.TestCase):
         model = JournalLineMessage()
         if include_optional:
             return JournalLineMessage(
-                gl_account = buildium_sdk.models.gl_account_message.GLAccountMessage(
+                gl_account = mcp_server_buildium.buildium_sdk.models.gl_account_message.GLAccountMessage(
                     id = 56, 
                     account_number = '', 
                     name = '', 
@@ -49,7 +49,7 @@ class TestJournalLineMessage(unittest.TestCase):
                     cash_flow_classification = 'OperatingActivities', 
                     exclude_from_cash_balances = True, 
                     sub_accounts = [
-                        buildium_sdk.models.gl_account_message.GLAccountMessage(
+                        mcp_server_buildium.buildium_sdk.models.gl_account_message.GLAccountMessage(
                             id = 56, 
                             account_number = '', 
                             name = '', 

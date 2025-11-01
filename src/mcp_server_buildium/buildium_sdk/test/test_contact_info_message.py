@@ -37,7 +37,7 @@ class TestContactInfoMessage(unittest.TestCase):
             return ContactInfoMessage(
                 first_name = '',
                 last_name = '',
-                address = buildium_sdk.models.address_message.AddressMessage(
+                address = mcp_server_buildium.buildium_sdk.models.address_message.AddressMessage(
                     address_line1 = '', 
                     address_line2 = '', 
                     address_line3 = '', 

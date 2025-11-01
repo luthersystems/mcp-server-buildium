@@ -43,7 +43,7 @@ class TestAssociationMessage(unittest.TestCase):
                 year_built = 56,
                 operating_bank_account = '',
                 operating_bank_account_id = 56,
-                address = buildium_sdk.models.address_message.AddressMessage(
+                address = mcp_server_buildium.buildium_sdk.models.address_message.AddressMessage(
                     address_line1 = '', 
                     address_line2 = '', 
                     address_line3 = '', 
@@ -51,7 +51,7 @@ class TestAssociationMessage(unittest.TestCase):
                     state = '', 
                     postal_code = '', 
                     country = 'Afghanistan', ),
-                association_manager = buildium_sdk.models.property_manager_message.PropertyManagerMessage(
+                association_manager = mcp_server_buildium.buildium_sdk.models.property_manager_message.PropertyManagerMessage(
                     id = 56, 
                     first_name = '', 
                     last_name = '', 
@@ -60,13 +60,13 @@ class TestAssociationMessage(unittest.TestCase):
                     profile_photo_url = '', 
                     email = '', 
                     phone_numbers = [
-                        buildium_sdk.models.phone_number_message.PhoneNumberMessage(
+                        mcp_server_buildium.buildium_sdk.models.phone_number_message.PhoneNumberMessage(
                             number = '', 
                             type = 'NotSet', )
                         ], ),
                 fiscal_year_end_day = 56,
                 fiscal_year_end_month = 56,
-                tax_information = buildium_sdk.models.association_tax_information_message.AssociationTaxInformationMessage(
+                tax_information = mcp_server_buildium.buildium_sdk.models.association_tax_information_message.AssociationTaxInformationMessage(
                     tax_payer_id_type = 'SSN', 
                     tax_payer_id = '', 
                     tax_payer_name1 = '', 

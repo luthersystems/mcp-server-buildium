@@ -44,12 +44,12 @@ class TestRentalOwnerPostMessage(unittest.TestCase):
                 management_agreement_end_date = datetime.datetime.strptime('1975-12-30', '%Y-%m-%d').date(),
                 email = '',
                 alternate_email = '',
-                phone_numbers = buildium_sdk.models.phone_numbers_message.PhoneNumbersMessage(
+                phone_numbers = mcp_server_buildium.buildium_sdk.models.phone_numbers_message.PhoneNumbersMessage(
                     home = '', 
                     work = '', 
                     mobile = '', 
                     fax = '', ),
-                address = buildium_sdk.models.save_address_message.SaveAddressMessage(
+                address = mcp_server_buildium.buildium_sdk.models.save_address_message.SaveAddressMessage(
                     address_line1 = '0', 
                     address_line2 = '', 
                     address_line3 = '', 
@@ -61,7 +61,7 @@ class TestRentalOwnerPostMessage(unittest.TestCase):
                 property_ids = [
                     56
                     ],
-                tax_information = buildium_sdk.models.tax_information_post_message.TaxInformationPostMessage(
+                tax_information = mcp_server_buildium.buildium_sdk.models.tax_information_post_message.TaxInformationPostMessage(
                     tax_payer_id = '', 
                     tax_payer_type = 'SSN', 
                     tax_payer_name1 = '', 
@@ -71,7 +71,7 @@ class TestRentalOwnerPostMessage(unittest.TestCase):
         else:
             return RentalOwnerPostMessage(
                 is_company = True,
-                address = buildium_sdk.models.save_address_message.SaveAddressMessage(
+                address = mcp_server_buildium.buildium_sdk.models.save_address_message.SaveAddressMessage(
                     address_line1 = '0', 
                     address_line2 = '', 
                     address_line3 = '', 

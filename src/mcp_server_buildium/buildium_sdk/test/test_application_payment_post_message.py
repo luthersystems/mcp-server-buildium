@@ -41,7 +41,7 @@ class TestApplicationPaymentPostMessage(unittest.TestCase):
                 reference_number = '',
                 send_email_receipt = True,
                 lines = [
-                    buildium_sdk.models.application_payment_line_save_message.ApplicationPaymentLineSaveMessage(
+                    mcp_server_buildium.buildium_sdk.models.application_payment_line_save_message.ApplicationPaymentLineSaveMessage(
                         amount = 1.337, 
                         gl_account_id = 56, )
                     ]
@@ -52,7 +52,7 @@ class TestApplicationPaymentPostMessage(unittest.TestCase):
                 payment_method = 'Check',
                 send_email_receipt = True,
                 lines = [
-                    buildium_sdk.models.application_payment_line_save_message.ApplicationPaymentLineSaveMessage(
+                    mcp_server_buildium.buildium_sdk.models.application_payment_line_save_message.ApplicationPaymentLineSaveMessage(
                         amount = 1.337, 
                         gl_account_id = 56, )
                     ],

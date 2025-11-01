@@ -35,11 +35,11 @@ class TestResidentCenterUserMessage(unittest.TestCase):
         model = ResidentCenterUserMessage()
         if include_optional:
             return ResidentCenterUserMessage(
-                unit_agreement = buildium_sdk.models.unit_agreement_message.UnitAgreementMessage(
+                unit_agreement = mcp_server_buildium.buildium_sdk.models.unit_agreement_message.UnitAgreementMessage(
                     id = 56, 
                     type = 'NotSet', 
                     href = '', ),
-                user = buildium_sdk.models.resident_center_user_reference_message.ResidentCenterUserReferenceMessage(
+                user = mcp_server_buildium.buildium_sdk.models.resident_center_user_reference_message.ResidentCenterUserReferenceMessage(
                     id = 56, 
                     first_name = '', 
                     last_name = '', 

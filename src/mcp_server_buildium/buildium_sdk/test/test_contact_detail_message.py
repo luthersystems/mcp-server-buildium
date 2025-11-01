@@ -38,7 +38,7 @@ class TestContactDetailMessage(unittest.TestCase):
                 first_name = '',
                 last_name = '',
                 email = '',
-                phone_numbers = buildium_sdk.models.contact_detail_phone_message.ContactDetailPhoneMessage(
+                phone_numbers = mcp_server_buildium.buildium_sdk.models.contact_detail_phone_message.ContactDetailPhoneMessage(
                     home = '', 
                     work = '', 
                     mobile = '', )

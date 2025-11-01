@@ -37,14 +37,14 @@ class TestOwnershipAccountRecurringPaymentMessage(unittest.TestCase):
             return OwnershipAccountRecurringPaymentMessage(
                 id = 56,
                 ownership_account_id = 56,
-                payer = buildium_sdk.models.payee_message.PayeeMessage(
+                payer = mcp_server_buildium.buildium_sdk.models.payee_message.PayeeMessage(
                     id = 56, 
                     name = '', 
                     type = 'Tenant', 
                     href = '', ),
                 payment_method = 'None',
                 lines = [
-                    buildium_sdk.models.recurring_transaction_line_message.RecurringTransactionLineMessage(
+                    mcp_server_buildium.buildium_sdk.models.recurring_transaction_line_message.RecurringTransactionLineMessage(
                         gl_account_id = 56, 
                         amount = 1.337, )
                     ],

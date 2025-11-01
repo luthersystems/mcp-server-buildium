@@ -42,7 +42,7 @@ class TestOwnershipAccountLedgerPaymentPostMessage(unittest.TestCase):
                 reference_number = '',
                 send_email_receipt = True,
                 lines = [
-                    buildium_sdk.models.ownership_account_ledger_payment_line_save_message.OwnershipAccountLedgerPaymentLineSaveMessage(
+                    mcp_server_buildium.buildium_sdk.models.ownership_account_ledger_payment_line_save_message.OwnershipAccountLedgerPaymentLineSaveMessage(
                         amount = 1.337, 
                         gl_account_id = 56, )
                     ]
@@ -53,7 +53,7 @@ class TestOwnershipAccountLedgerPaymentPostMessage(unittest.TestCase):
                 payment_method = 'Check',
                 send_email_receipt = True,
                 lines = [
-                    buildium_sdk.models.ownership_account_ledger_payment_line_save_message.OwnershipAccountLedgerPaymentLineSaveMessage(
+                    mcp_server_buildium.buildium_sdk.models.ownership_account_ledger_payment_line_save_message.OwnershipAccountLedgerPaymentLineSaveMessage(
                         amount = 1.337, 
                         gl_account_id = 56, )
                     ],

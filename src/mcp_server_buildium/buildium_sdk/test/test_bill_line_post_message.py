@@ -35,20 +35,20 @@ class TestBillLinePostMessage(unittest.TestCase):
         model = BillLinePostMessage()
         if include_optional:
             return BillLinePostMessage(
-                accounting_entity = buildium_sdk.models.accounting_entity_save_message.AccountingEntitySaveMessage(
+                accounting_entity = mcp_server_buildium.buildium_sdk.models.accounting_entity_save_message.AccountingEntitySaveMessage(
                     id = 56, 
                     accounting_entity_type = 'Association', 
                     unit_id = 56, ),
                 gl_account_id = 56,
                 amount = 1.337,
-                markup = buildium_sdk.models.bill_markup_save_message.BillMarkupSaveMessage(
+                markup = mcp_server_buildium.buildium_sdk.models.bill_markup_save_message.BillMarkupSaveMessage(
                     amount = 1.337, 
                     type = 'Percent', ),
                 memo = ''
             )
         else:
             return BillLinePostMessage(
-                accounting_entity = buildium_sdk.models.accounting_entity_save_message.AccountingEntitySaveMessage(
+                accounting_entity = mcp_server_buildium.buildium_sdk.models.accounting_entity_save_message.AccountingEntitySaveMessage(
                     id = 56, 
                     accounting_entity_type = 'Association', 
                     unit_id = 56, ),

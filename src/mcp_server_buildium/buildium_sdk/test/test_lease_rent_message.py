@@ -44,7 +44,7 @@ class TestLeaseRentMessage(unittest.TestCase):
                 created_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 created_by_user_id = 56,
                 charges = [
-                    buildium_sdk.models.lease_rent_charge_message.LeaseRentChargeMessage(
+                    mcp_server_buildium.buildium_sdk.models.lease_rent_charge_message.LeaseRentChargeMessage(
                         id = 56, 
                         gl_account_id = 56, 
                         amount = 1.337, 

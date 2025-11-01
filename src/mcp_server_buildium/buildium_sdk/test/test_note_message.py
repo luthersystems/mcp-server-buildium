@@ -37,7 +37,7 @@ class TestNoteMessage(unittest.TestCase):
             return NoteMessage(
                 id = 56,
                 note = '',
-                last_updated_by_user = buildium_sdk.models.last_updated_by_user_message.LastUpdatedByUserMessage(
+                last_updated_by_user = mcp_server_buildium.buildium_sdk.models.last_updated_by_user_message.LastUpdatedByUserMessage(
                     id = 56, 
                     first_name = '', 
                     last_name = '', 

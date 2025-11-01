@@ -38,7 +38,7 @@ class TestLeaseLedgerRefundMessage(unittest.TestCase):
                 id = 56,
                 var_date = datetime.datetime.strptime('1975-12-30', '%Y-%m-%d').date(),
                 payees = [
-                    buildium_sdk.models.payee_message.PayeeMessage(
+                    mcp_server_buildium.buildium_sdk.models.payee_message.PayeeMessage(
                         id = 56, 
                         name = '', 
                         type = 'Tenant', 
@@ -47,7 +47,7 @@ class TestLeaseLedgerRefundMessage(unittest.TestCase):
                 memo = '',
                 check_number = '',
                 bank_account_id = 56,
-                address = buildium_sdk.models.address_message.AddressMessage(
+                address = mcp_server_buildium.buildium_sdk.models.address_message.AddressMessage(
                     address_line1 = '', 
                     address_line2 = '', 
                     address_line3 = '', 
@@ -57,7 +57,7 @@ class TestLeaseLedgerRefundMessage(unittest.TestCase):
                     country = 'Afghanistan', ),
                 total_amount = 1.337,
                 lines = [
-                    buildium_sdk.models.lease_ledger_refund_line_message.LeaseLedgerRefundLineMessage(
+                    mcp_server_buildium.buildium_sdk.models.lease_ledger_refund_line_message.LeaseLedgerRefundLineMessage(
                         amount = 1.337, 
                         gl_account_id = 56, )
                     ]

@@ -39,7 +39,7 @@ class TestOwnershipAccountDepositWithholdingPutMessage(unittest.TestCase):
                 deposit_liability_gl_account_id = 56,
                 memo = '',
                 lines = [
-                    buildium_sdk.models.ownership_account_deposit_withholding_line_put_message.OwnershipAccountDepositWithholdingLinePutMessage(
+                    mcp_server_buildium.buildium_sdk.models.ownership_account_deposit_withholding_line_put_message.OwnershipAccountDepositWithholdingLinePutMessage(
                         amount = 1.337, 
                         gl_account_id = 56, )
                     ]

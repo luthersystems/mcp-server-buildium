@@ -47,7 +47,7 @@ class TestWorkOrderPutMessage(unittest.TestCase):
                     56
                     ],
                 line_items = [
-                    buildium_sdk.models.work_order_line_item_save_message.WorkOrderLineItemSaveMessage(
+                    mcp_server_buildium.buildium_sdk.models.work_order_line_item_save_message.WorkOrderLineItemSaveMessage(
                         gl_account_id = 56, 
                         quantity = 1.337, 
                         memo = '', 

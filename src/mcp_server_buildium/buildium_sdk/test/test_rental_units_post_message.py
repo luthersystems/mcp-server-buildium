@@ -39,7 +39,7 @@ class TestRentalUnitsPostMessage(unittest.TestCase):
                 property_id = 56,
                 unit_size = 56,
                 market_rent = 1.337,
-                address = buildium_sdk.models.save_address_message.SaveAddressMessage(
+                address = mcp_server_buildium.buildium_sdk.models.save_address_message.SaveAddressMessage(
                     address_line1 = '0', 
                     address_line2 = '', 
                     address_line3 = '', 
@@ -55,7 +55,7 @@ class TestRentalUnitsPostMessage(unittest.TestCase):
             return RentalUnitsPostMessage(
                 unit_number = '0',
                 property_id = 56,
-                address = buildium_sdk.models.save_address_message.SaveAddressMessage(
+                address = mcp_server_buildium.buildium_sdk.models.save_address_message.SaveAddressMessage(
                     address_line1 = '0', 
                     address_line2 = '', 
                     address_line3 = '', 

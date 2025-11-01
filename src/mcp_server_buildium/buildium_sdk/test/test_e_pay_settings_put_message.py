@@ -35,22 +35,22 @@ class TestEPaySettingsPutMessage(unittest.TestCase):
         model = EPaySettingsPutMessage()
         if include_optional:
             return EPaySettingsPutMessage(
-                eft_payments = buildium_sdk.models.eft_payments_put_message.EFTPaymentsPutMessage(
+                eft_payments = mcp_server_buildium.buildium_sdk.models.eft_payments_put_message.EFTPaymentsPutMessage(
                     payments_enabled = True, ),
-                credit_card_payments = buildium_sdk.models.cc_payments_put_message.CCPaymentsPutMessage(
+                credit_card_payments = mcp_server_buildium.buildium_sdk.models.cc_payments_put_message.CCPaymentsPutMessage(
                     payments_enabled = True, ),
-                offline_payments = buildium_sdk.models.offline_payments_put_message.OfflinePaymentsPutMessage(
+                offline_payments = mcp_server_buildium.buildium_sdk.models.offline_payments_put_message.OfflinePaymentsPutMessage(
                     display_info_in_resident_center = True, 
                     display_company_address = True, 
                     payment_instructions = '', )
             )
         else:
             return EPaySettingsPutMessage(
-                eft_payments = buildium_sdk.models.eft_payments_put_message.EFTPaymentsPutMessage(
+                eft_payments = mcp_server_buildium.buildium_sdk.models.eft_payments_put_message.EFTPaymentsPutMessage(
                     payments_enabled = True, ),
-                credit_card_payments = buildium_sdk.models.cc_payments_put_message.CCPaymentsPutMessage(
+                credit_card_payments = mcp_server_buildium.buildium_sdk.models.cc_payments_put_message.CCPaymentsPutMessage(
                     payments_enabled = True, ),
-                offline_payments = buildium_sdk.models.offline_payments_put_message.OfflinePaymentsPutMessage(
+                offline_payments = mcp_server_buildium.buildium_sdk.models.offline_payments_put_message.OfflinePaymentsPutMessage(
                     display_info_in_resident_center = True, 
                     display_company_address = True, 
                     payment_instructions = '', ),

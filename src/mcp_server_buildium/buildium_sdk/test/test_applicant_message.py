@@ -44,13 +44,13 @@ class TestApplicantMessage(unittest.TestCase):
                 last_name = '',
                 email = '',
                 phone_numbers = [
-                    buildium_sdk.models.phone_number_message.PhoneNumberMessage(
+                    mcp_server_buildium.buildium_sdk.models.phone_number_message.PhoneNumberMessage(
                         number = '', 
                         type = 'NotSet', )
                     ],
                 status = 'Unknown',
                 applications = [
-                    buildium_sdk.models.applicant_application_message.ApplicantApplicationMessage(
+                    mcp_server_buildium.buildium_sdk.models.applicant_application_message.ApplicantApplicationMessage(
                         id = 56, 
                         application_number = '', 
                         application_status = 'Unknown', 

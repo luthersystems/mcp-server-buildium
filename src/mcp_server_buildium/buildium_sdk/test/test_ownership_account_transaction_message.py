@@ -44,10 +44,10 @@ class TestOwnershipAccountTransactionMessage(unittest.TestCase):
                 ownership_account_id = 56,
                 payee_association_owner_id = 56,
                 payment_method = '',
-                journal = buildium_sdk.models.journal_message.JournalMessage(
+                journal = mcp_server_buildium.buildium_sdk.models.journal_message.JournalMessage(
                     memo = '', 
                     lines = [
-                        buildium_sdk.models.journal_line_message.JournalLineMessage(
+                        mcp_server_buildium.buildium_sdk.models.journal_line_message.JournalLineMessage(
                             gl_account = null, 
                             amount = 1.337, 
                             is_cash_posting = True, 
