@@ -72,6 +72,7 @@ class BuildiumClient:
 
         # Log initialization details
         import logging
+
         logger = logging.getLogger(__name__)
         logger.debug("Initialized Buildium client:")
         logger.debug("  Base URL: %s", base_url)
