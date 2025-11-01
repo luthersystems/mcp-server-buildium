@@ -44,7 +44,7 @@ def register_owner_tools(mcp: FastMCP, client: BuildiumClient) -> None:
     async def create_rental_owner(owner_data: dict[str, Any]) -> dict[str, Any]:
         """Create a new rental owner."""
         try:
-            from buildium_sdk.models.rental_owner_post_message import RentalOwnerPostMessage
+            from mcp_server_buildium.buildium_sdk.models.rental_owner_post_message import RentalOwnerPostMessage
 
             owner_message = RentalOwnerPostMessage(**owner_data)
         except ImportError:
@@ -61,7 +61,7 @@ def register_owner_tools(mcp: FastMCP, client: BuildiumClient) -> None:
     async def update_rental_owner(owner_id: int, owner_data: dict[str, Any]) -> dict[str, Any]:
         """Update an existing rental owner."""
         try:
-            from buildium_sdk.models.rental_owner_put_message import RentalOwnerPutMessage
+            from mcp_server_buildium.buildium_sdk.models.rental_owner_put_message import RentalOwnerPutMessage
 
             owner_message = RentalOwnerPutMessage(**owner_data)
         except ImportError:
@@ -104,7 +104,7 @@ def register_owner_tools(mcp: FastMCP, client: BuildiumClient) -> None:
     async def create_association_owner(owner_data: dict[str, Any]) -> dict[str, Any]:
         """Create a new association owner."""
         try:
-            from buildium_sdk.models.association_owner_post_message import (
+            from mcp_server_buildium.buildium_sdk.models.association_owner_post_message import (
                 AssociationOwnerPostMessage,
             )
 
@@ -123,7 +123,7 @@ def register_owner_tools(mcp: FastMCP, client: BuildiumClient) -> None:
     async def update_association_owner(owner_id: int, owner_data: dict[str, Any]) -> dict[str, Any]:
         """Update an existing association owner."""
         try:
-            from buildium_sdk.models.association_owner_put_message import (
+            from mcp_server_buildium.buildium_sdk.models.association_owner_put_message import (
                 AssociationOwnerPutMessage,
             )
 

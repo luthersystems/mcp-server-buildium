@@ -8,8 +8,8 @@ from ..buildium_client import BuildiumClient
 
 # Import SDK models - they're imported via sdk_imports path setup
 try:
-    from buildium_sdk.models.association_post_message import AssociationPostMessage
-    from buildium_sdk.models.association_put_message import AssociationPutMessage
+    from mcp_server_buildium.buildium_sdk.models.association_post_message import AssociationPostMessage
+    from mcp_server_buildium.buildium_sdk.models.association_put_message import AssociationPutMessage
 except ImportError:
     # Fallback: define minimal model classes if SDK not available
     class AssociationPostMessage:

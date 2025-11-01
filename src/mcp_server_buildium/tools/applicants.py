@@ -66,7 +66,7 @@ def register_applicant_tools(mcp: FastMCP, client: BuildiumClient) -> None:
             Created applicant details.
         """
         try:
-            from buildium_sdk.models.applicant_post_message import ApplicantPostMessage
+            from mcp_server_buildium.buildium_sdk.models.applicant_post_message import ApplicantPostMessage
 
             applicant_message = ApplicantPostMessage(**applicant_data)
         except ImportError:
@@ -91,7 +91,7 @@ def register_applicant_tools(mcp: FastMCP, client: BuildiumClient) -> None:
             Updated applicant details.
         """
         try:
-            from buildium_sdk.models.applicant_put_message import ApplicantPutMessage
+            from mcp_server_buildium.buildium_sdk.models.applicant_put_message import ApplicantPutMessage
 
             applicant_message = ApplicantPutMessage(**applicant_data)
         except ImportError:
@@ -156,7 +156,7 @@ def register_applicant_tools(mcp: FastMCP, client: BuildiumClient) -> None:
             Updated application details.
         """
         try:
-            from buildium_sdk.models.application_put_message import ApplicationPutMessage
+            from mcp_server_buildium.buildium_sdk.models.application_put_message import ApplicationPutMessage
 
             application_message = ApplicationPutMessage(**application_data)
         except ImportError:
@@ -204,7 +204,7 @@ def register_applicant_tools(mcp: FastMCP, client: BuildiumClient) -> None:
             Created applicant group details.
         """
         try:
-            from buildium_sdk.models.applicant_group_post_message import ApplicantGroupPostMessage
+            from mcp_server_buildium.buildium_sdk.models.applicant_group_post_message import ApplicantGroupPostMessage
 
             group_message = ApplicantGroupPostMessage(**group_data)
         except ImportError:
@@ -229,7 +229,7 @@ def register_applicant_tools(mcp: FastMCP, client: BuildiumClient) -> None:
             Updated applicant group details.
         """
         try:
-            from buildium_sdk.models.applicant_group_put_message import ApplicantGroupPutMessage
+            from mcp_server_buildium.buildium_sdk.models.applicant_group_put_message import ApplicantGroupPutMessage
 
             group_message = ApplicantGroupPutMessage(**group_data)
         except ImportError:

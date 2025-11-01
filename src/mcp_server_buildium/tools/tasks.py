@@ -50,7 +50,7 @@ def register_task_tools(mcp: FastMCP, client: BuildiumClient) -> None:
     async def create_task_category(category_data: dict[str, Any]) -> dict[str, Any]:
         """Create a new task category."""
         try:
-            from buildium_sdk.models.task_category_post_message import TaskCategoryPostMessage
+            from mcp_server_buildium.buildium_sdk.models.task_category_post_message import TaskCategoryPostMessage
 
             category_message = TaskCategoryPostMessage(**category_data)
         except ImportError:
@@ -69,7 +69,7 @@ def register_task_tools(mcp: FastMCP, client: BuildiumClient) -> None:
     ) -> dict[str, Any]:
         """Update a task category."""
         try:
-            from buildium_sdk.models.task_category_put_message import TaskCategoryPutMessage
+            from mcp_server_buildium.buildium_sdk.models.task_category_put_message import TaskCategoryPutMessage
 
             category_message = TaskCategoryPutMessage(**category_data)
         except ImportError:

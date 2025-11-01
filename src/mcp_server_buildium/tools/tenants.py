@@ -50,7 +50,7 @@ def register_tenant_tools(mcp: FastMCP, client: BuildiumClient) -> None:
     async def create_rental_tenant(tenant_data: dict[str, Any]) -> dict[str, Any]:
         """Create a new rental tenant."""
         try:
-            from buildium_sdk.models.rental_tenant_post_message import RentalTenantPostMessage
+            from mcp_server_buildium.buildium_sdk.models.rental_tenant_post_message import RentalTenantPostMessage
 
             tenant_message = RentalTenantPostMessage(**tenant_data)
         except ImportError:
@@ -67,7 +67,7 @@ def register_tenant_tools(mcp: FastMCP, client: BuildiumClient) -> None:
     async def update_rental_tenant(tenant_id: int, tenant_data: dict[str, Any]) -> dict[str, Any]:
         """Update an existing rental tenant."""
         try:
-            from buildium_sdk.models.rental_tenant_put_message import RentalTenantPutMessage
+            from mcp_server_buildium.buildium_sdk.models.rental_tenant_put_message import RentalTenantPutMessage
 
             tenant_message = RentalTenantPutMessage(**tenant_data)
         except ImportError:
@@ -100,7 +100,7 @@ def register_tenant_tools(mcp: FastMCP, client: BuildiumClient) -> None:
     async def create_association_tenant(tenant_data: dict[str, Any]) -> dict[str, Any]:
         """Create a new association tenant."""
         try:
-            from buildium_sdk.models.association_tenant_post_message import (
+            from mcp_server_buildium.buildium_sdk.models.association_tenant_post_message import (
                 AssociationTenantPostMessage,
             )
 
@@ -121,7 +121,7 @@ def register_tenant_tools(mcp: FastMCP, client: BuildiumClient) -> None:
     ) -> dict[str, Any]:
         """Update an existing association tenant."""
         try:
-            from buildium_sdk.models.association_tenant_put_message import (
+            from mcp_server_buildium.buildium_sdk.models.association_tenant_put_message import (
                 AssociationTenantPutMessage,
             )
 
