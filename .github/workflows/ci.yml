@@ -45,10 +45,16 @@ jobs:
       - name: Install Buildium SDK
         run: |
           # SDK is checked into the repo, just install it
+          echo "Checking for buildium_sdk directory..."
+          ls -la
           if [ -d buildium_sdk ]; then
-            cd buildium_sdk && uv pip install -e .
+            echo "Found buildium_sdk, installing..."
+            ls -la buildium_sdk/
+            cd buildium_sdk
+            uv pip install -e .
           else
-            echo "Warning: buildium_sdk directory not found"
+            echo "ERROR: buildium_sdk directory not found"
+            exit 1
           fi
 
       - name: Install dependencies
