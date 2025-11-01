@@ -37,7 +37,7 @@ class TestBankAccountCheckLineMessage(unittest.TestCase):
             return BankAccountCheckLineMessage(
                 id = 56,
                 gl_account_id = 56,
-                accounting_entity = buildium_sdk.models.accounting_entity_message.AccountingEntityMessage(
+                accounting_entity = mcp_server_buildium.buildium_sdk.models.accounting_entity_message.AccountingEntityMessage(
                     id = 56, 
                     accounting_entity_type = 'Association', 
                     href = '', 

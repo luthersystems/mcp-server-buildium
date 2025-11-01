@@ -37,7 +37,7 @@ class TestPhoneLogParticipantPostMessage(unittest.TestCase):
             return PhoneLogParticipantPostMessage(
                 entity_type = 'Vendor',
                 entity_id = 56,
-                unit_agreement = buildium_sdk.models.phone_log_participant_unit_agreement_post_message.PhoneLogParticipantUnitAgreementPostMessage(
+                unit_agreement = mcp_server_buildium.buildium_sdk.models.phone_log_participant_unit_agreement_post_message.PhoneLogParticipantUnitAgreementPostMessage(
                     id = 56, 
                     type = 'NotSet', )
             )

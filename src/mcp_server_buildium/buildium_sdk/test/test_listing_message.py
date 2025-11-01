@@ -42,13 +42,13 @@ class TestListingMessage(unittest.TestCase):
                 available_date = datetime.datetime.strptime('1975-12-30', '%Y-%m-%d').date(),
                 is_managed_externally = True,
                 rental_application_url = '',
-                contact = buildium_sdk.models.listing_contact_message.ListingContactMessage(
+                contact = mcp_server_buildium.buildium_sdk.models.listing_contact_message.ListingContactMessage(
                     id = 56, 
                     name = '', 
                     email = '', 
                     phone_number = '', 
                     website = '', ),
-                var_property = buildium_sdk.models.listing_property_message.ListingPropertyMessage(
+                var_property = mcp_server_buildium.buildium_sdk.models.listing_property_message.ListingPropertyMessage(
                     id = 56, 
                     name = '', 
                     address = null, 
@@ -62,12 +62,12 @@ class TestListingMessage(unittest.TestCase):
                         'Gas'
                         ], 
                     files = [
-                        buildium_sdk.models.listing_file_message.ListingFileMessage(
+                        mcp_server_buildium.buildium_sdk.models.listing_file_message.ListingFileMessage(
                             type = 'Image', 
                             name = '', 
                             url = '', )
                         ], ),
-                unit = buildium_sdk.models.listing_unit_message.ListingUnitMessage(
+                unit = mcp_server_buildium.buildium_sdk.models.listing_unit_message.ListingUnitMessage(
                     id = 56, 
                     unit_number = '', 
                     address = null, 
@@ -80,7 +80,7 @@ class TestListingMessage(unittest.TestCase):
                         'CableReady'
                         ], 
                     files = [
-                        buildium_sdk.models.listing_file_message.ListingFileMessage(
+                        mcp_server_buildium.buildium_sdk.models.listing_file_message.ListingFileMessage(
                             type = 'Image', 
                             name = '', 
                             url = '', )

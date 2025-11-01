@@ -38,7 +38,7 @@ class TestTaskCategoryResponseMessage(unittest.TestCase):
                 id = 56,
                 name = '',
                 href = '',
-                sub_category = buildium_sdk.models.task_sub_category_message.TaskSubCategoryMessage(
+                sub_category = mcp_server_buildium.buildium_sdk.models.task_sub_category_message.TaskSubCategoryMessage(
                     id = 56, 
                     name = '', )
             )

@@ -38,7 +38,7 @@ class TestApiErrorResponse(unittest.TestCase):
                 user_message = '',
                 error_code = '',
                 errors = [
-                    buildium_sdk.models.api_error.ApiError(
+                    mcp_server_buildium.buildium_sdk.models.api_error.ApiError(
                         key = '', 
                         value = '', )
                     ]

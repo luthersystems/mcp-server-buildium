@@ -38,7 +38,7 @@ class TestVendorRefundLinePostMessage(unittest.TestCase):
                 gl_account_id = 56,
                 amount = 1.337,
                 memo = '',
-                accounting_entity = buildium_sdk.models.accounting_entity_save_message.AccountingEntitySaveMessage(
+                accounting_entity = mcp_server_buildium.buildium_sdk.models.accounting_entity_save_message.AccountingEntitySaveMessage(
                     id = 56, 
                     accounting_entity_type = 'Association', 
                     unit_id = 56, )
@@ -47,7 +47,7 @@ class TestVendorRefundLinePostMessage(unittest.TestCase):
             return VendorRefundLinePostMessage(
                 gl_account_id = 56,
                 amount = 1.337,
-                accounting_entity = buildium_sdk.models.accounting_entity_save_message.AccountingEntitySaveMessage(
+                accounting_entity = mcp_server_buildium.buildium_sdk.models.accounting_entity_save_message.AccountingEntitySaveMessage(
                     id = 56, 
                     accounting_entity_type = 'Association', 
                     unit_id = 56, ),

@@ -41,14 +41,14 @@ class TestRentalOwnerMessage(unittest.TestCase):
                 first_name = '',
                 last_name = '',
                 phone_numbers = [
-                    buildium_sdk.models.phone_number_message.PhoneNumberMessage(
+                    mcp_server_buildium.buildium_sdk.models.phone_number_message.PhoneNumberMessage(
                         number = '', 
                         type = 'NotSet', )
                     ],
                 email = '',
                 alternate_email = '',
                 comment = '',
-                address = buildium_sdk.models.address_message.AddressMessage(
+                address = mcp_server_buildium.buildium_sdk.models.address_message.AddressMessage(
                     address_line1 = '', 
                     address_line2 = '', 
                     address_line3 = '', 
@@ -62,7 +62,7 @@ class TestRentalOwnerMessage(unittest.TestCase):
                 property_ids = [
                     56
                     ],
-                tax_information = buildium_sdk.models.rental_owner_tax_information_message.RentalOwnerTaxInformationMessage(
+                tax_information = mcp_server_buildium.buildium_sdk.models.rental_owner_tax_information_message.RentalOwnerTaxInformationMessage(
                     tax_payer_id_type = 'SSN', 
                     tax_payer_id = '', 
                     tax_payer_name1 = '', 

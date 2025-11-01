@@ -39,7 +39,7 @@ class TestLeaseLedgerDepositWithholdingPutMessage(unittest.TestCase):
                 deposit_liability_gl_account_id = 56,
                 memo = '',
                 lines = [
-                    buildium_sdk.models.lease_ledger_deposit_withholding_line_put_message.LeaseLedgerDepositWithholdingLinePutMessage(
+                    mcp_server_buildium.buildium_sdk.models.lease_ledger_deposit_withholding_line_put_message.LeaseLedgerDepositWithholdingLinePutMessage(
                         amount = 1.337, 
                         gl_account_id = 56, )
                     ]

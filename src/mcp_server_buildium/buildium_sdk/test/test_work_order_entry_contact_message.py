@@ -37,7 +37,7 @@ class TestWorkOrderEntryContactMessage(unittest.TestCase):
             return WorkOrderEntryContactMessage(
                 id = 56,
                 resources = [
-                    buildium_sdk.models.work_order_entry_contact_resource_message.WorkOrderEntryContactResourceMessage(
+                    mcp_server_buildium.buildium_sdk.models.work_order_entry_contact_resource_message.WorkOrderEntryContactResourceMessage(
                         type = 'RentalTenant', 
                         href = '', )
                     ]

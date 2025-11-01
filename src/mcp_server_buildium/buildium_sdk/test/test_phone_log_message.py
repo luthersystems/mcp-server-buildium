@@ -36,15 +36,15 @@ class TestPhoneLogMessage(unittest.TestCase):
         if include_optional:
             return PhoneLogMessage(
                 id = 56,
-                participant = buildium_sdk.models.participant_message.ParticipantMessage(
+                participant = mcp_server_buildium.buildium_sdk.models.participant_message.ParticipantMessage(
                     entity_id = 56, 
                     entity_resources = [
-                        buildium_sdk.models.participant_resource_message.ParticipantResourceMessage(
+                        mcp_server_buildium.buildium_sdk.models.participant_resource_message.ParticipantResourceMessage(
                             type = 'Vendor', 
                             href = '', )
                         ], 
                     unit_agreement = null, ),
-                logged_by_staff_user = buildium_sdk.models.logged_by_staff_user_message.LoggedByStaffUserMessage(
+                logged_by_staff_user = mcp_server_buildium.buildium_sdk.models.logged_by_staff_user_message.LoggedByStaffUserMessage(
                     id = 56, 
                     first_name = '', 
                     last_name = '', 

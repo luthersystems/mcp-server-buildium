@@ -35,7 +35,7 @@ class TestBillPaymentLineMessage(unittest.TestCase):
         model = BillPaymentLineMessage()
         if include_optional:
             return BillPaymentLineMessage(
-                accounting_entity = buildium_sdk.models.bill_payment_accounting_entity_message.BillPaymentAccountingEntityMessage(
+                accounting_entity = mcp_server_buildium.buildium_sdk.models.bill_payment_accounting_entity_message.BillPaymentAccountingEntityMessage(
                     id = 56, 
                     accounting_entity_type = 'Association', 
                     unit_id = 56, ),

@@ -40,7 +40,7 @@ class TestGeneralLedgerMessage(unittest.TestCase):
                 beginning_balance = 1.337,
                 total_amount = 1.337,
                 entries = [
-                    buildium_sdk.models.general_ledger_entry_message.GeneralLedgerEntryMessage(
+                    mcp_server_buildium.buildium_sdk.models.general_ledger_entry_message.GeneralLedgerEntryMessage(
                         id = 56, 
                         date = datetime.datetime.strptime('1975-12-30', '%Y-%m-%d').date(), 
                         description = '', 

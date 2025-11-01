@@ -36,7 +36,7 @@ class TestBankAccountCheckMessage(unittest.TestCase):
         if include_optional:
             return BankAccountCheckMessage(
                 id = 56,
-                payee = buildium_sdk.models.bank_account_check_payee_message.BankAccountCheckPayeeMessage(
+                payee = mcp_server_buildium.buildium_sdk.models.bank_account_check_payee_message.BankAccountCheckPayeeMessage(
                     id = 56, 
                     type = 'Vendor', 
                     href = '', ),
@@ -45,7 +45,7 @@ class TestBankAccountCheckMessage(unittest.TestCase):
                 memo = '',
                 total_amount = 1.337,
                 lines = [
-                    buildium_sdk.models.bank_account_check_line_message.BankAccountCheckLineMessage(
+                    mcp_server_buildium.buildium_sdk.models.bank_account_check_line_message.BankAccountCheckLineMessage(
                         id = 56, 
                         gl_account_id = 56, 
                         accounting_entity = null, 

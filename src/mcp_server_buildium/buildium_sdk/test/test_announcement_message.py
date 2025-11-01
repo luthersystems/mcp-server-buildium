@@ -43,7 +43,7 @@ class TestAnnouncementMessage(unittest.TestCase):
                 channels = [
                     'None'
                     ],
-                sender = buildium_sdk.models.announcement_sender_message.AnnouncementSenderMessage(
+                sender = mcp_server_buildium.buildium_sdk.models.announcement_sender_message.AnnouncementSenderMessage(
                     id = 56, 
                     display_name = '', 
                     href = '', )

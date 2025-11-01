@@ -38,7 +38,7 @@ class TestApplicationRefundMessage(unittest.TestCase):
                 id = 56,
                 var_date = datetime.datetime.strptime('1975-12-30', '%Y-%m-%d').date(),
                 payees = [
-                    buildium_sdk.models.applicant_payee_message.ApplicantPayeeMessage(
+                    mcp_server_buildium.buildium_sdk.models.applicant_payee_message.ApplicantPayeeMessage(
                         id = 56, 
                         name = '', 
                         type = 'Tenant', 
@@ -47,7 +47,7 @@ class TestApplicationRefundMessage(unittest.TestCase):
                 memo = '',
                 check_number = '',
                 bank_account_id = 56,
-                address = buildium_sdk.models.address_message.AddressMessage(
+                address = mcp_server_buildium.buildium_sdk.models.address_message.AddressMessage(
                     address_line1 = '', 
                     address_line2 = '', 
                     address_line3 = '', 
@@ -57,7 +57,7 @@ class TestApplicationRefundMessage(unittest.TestCase):
                     country = 'Afghanistan', ),
                 total_amount = 1.337,
                 lines = [
-                    buildium_sdk.models.application_refund_line_message.ApplicationRefundLineMessage(
+                    mcp_server_buildium.buildium_sdk.models.application_refund_line_message.ApplicationRefundLineMessage(
                         amount = 1.337, 
                         gl_account_id = 56, )
                     ]

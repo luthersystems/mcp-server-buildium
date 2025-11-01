@@ -41,7 +41,7 @@ class TestVendorRefundPostMessage(unittest.TestCase):
                 reference_number = '',
                 memo = '',
                 lines = [
-                    buildium_sdk.models.vendor_refund_line_post_message.VendorRefundLinePostMessage(
+                    mcp_server_buildium.buildium_sdk.models.vendor_refund_line_post_message.VendorRefundLinePostMessage(
                         gl_account_id = 56, 
                         amount = 1.337, 
                         memo = '', 
@@ -53,7 +53,7 @@ class TestVendorRefundPostMessage(unittest.TestCase):
                 entry_date = datetime.datetime.strptime('1975-12-30', '%Y-%m-%d').date(),
                 payment_method = 'Check',
                 lines = [
-                    buildium_sdk.models.vendor_refund_line_post_message.VendorRefundLinePostMessage(
+                    mcp_server_buildium.buildium_sdk.models.vendor_refund_line_post_message.VendorRefundLinePostMessage(
                         gl_account_id = 56, 
                         amount = 1.337, 
                         memo = '', 

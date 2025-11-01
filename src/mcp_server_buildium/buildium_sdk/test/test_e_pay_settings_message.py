@@ -35,11 +35,11 @@ class TestEPaySettingsMessage(unittest.TestCase):
         model = EPaySettingsMessage()
         if include_optional:
             return EPaySettingsMessage(
-                eft_payments = buildium_sdk.models.eft_payments_message.EFTPaymentsMessage(
+                eft_payments = mcp_server_buildium.buildium_sdk.models.eft_payments_message.EFTPaymentsMessage(
                     payments_enabled = True, ),
-                credit_card_payments = buildium_sdk.models.cc_payments_message.CCPaymentsMessage(
+                credit_card_payments = mcp_server_buildium.buildium_sdk.models.cc_payments_message.CCPaymentsMessage(
                     payments_enabled = True, ),
-                offline_payments = buildium_sdk.models.offline_payments_message.OfflinePaymentsMessage(
+                offline_payments = mcp_server_buildium.buildium_sdk.models.offline_payments_message.OfflinePaymentsMessage(
                     display_info_in_resident_center = True, 
                     display_company_address = True, 
                     payment_instructions = '', )

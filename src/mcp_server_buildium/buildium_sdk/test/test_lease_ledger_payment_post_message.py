@@ -42,7 +42,7 @@ class TestLeaseLedgerPaymentPostMessage(unittest.TestCase):
                 reference_number = '',
                 send_email_receipt = True,
                 lines = [
-                    buildium_sdk.models.lease_ledger_payment_line_save_message.LeaseLedgerPaymentLineSaveMessage(
+                    mcp_server_buildium.buildium_sdk.models.lease_ledger_payment_line_save_message.LeaseLedgerPaymentLineSaveMessage(
                         amount = 1.337, 
                         gl_account_id = 56, )
                     ]
@@ -53,7 +53,7 @@ class TestLeaseLedgerPaymentPostMessage(unittest.TestCase):
                 payment_method = 'Check',
                 send_email_receipt = True,
                 lines = [
-                    buildium_sdk.models.lease_ledger_payment_line_save_message.LeaseLedgerPaymentLineSaveMessage(
+                    mcp_server_buildium.buildium_sdk.models.lease_ledger_payment_line_save_message.LeaseLedgerPaymentLineSaveMessage(
                         amount = 1.337, 
                         gl_account_id = 56, )
                     ],

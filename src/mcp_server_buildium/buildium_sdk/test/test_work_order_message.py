@@ -36,7 +36,7 @@ class TestWorkOrderMessage(unittest.TestCase):
         if include_optional:
             return WorkOrderMessage(
                 id = 56,
-                task = buildium_sdk.models.work_order_task_message.WorkOrderTaskMessage(
+                task = mcp_server_buildium.buildium_sdk.models.work_order_task_message.WorkOrderTaskMessage(
                     id = 56, 
                     type = 'ContactRequest', 
                     unit_id = 56, 
@@ -56,18 +56,18 @@ class TestWorkOrderMessage(unittest.TestCase):
                 entry_notes = '',
                 vendor_id = 56,
                 vendor_notes = '',
-                entry_contact = buildium_sdk.models.work_order_entry_contact_message.WorkOrderEntryContactMessage(
+                entry_contact = mcp_server_buildium.buildium_sdk.models.work_order_entry_contact_message.WorkOrderEntryContactMessage(
                     id = 56, 
                     resources = [
-                        buildium_sdk.models.work_order_entry_contact_resource_message.WorkOrderEntryContactResourceMessage(
+                        mcp_server_buildium.buildium_sdk.models.work_order_entry_contact_resource_message.WorkOrderEntryContactResourceMessage(
                             type = 'RentalTenant', 
                             href = '', )
                         ], ),
                 entry_contacts = [
-                    buildium_sdk.models.work_order_entry_contact_message.WorkOrderEntryContactMessage(
+                    mcp_server_buildium.buildium_sdk.models.work_order_entry_contact_message.WorkOrderEntryContactMessage(
                         id = 56, 
                         resources = [
-                            buildium_sdk.models.work_order_entry_contact_resource_message.WorkOrderEntryContactResourceMessage(
+                            mcp_server_buildium.buildium_sdk.models.work_order_entry_contact_resource_message.WorkOrderEntryContactResourceMessage(
                                 type = 'RentalTenant', 
                                 href = '', )
                             ], )
@@ -78,7 +78,7 @@ class TestWorkOrderMessage(unittest.TestCase):
                     ],
                 amount = 1.337,
                 line_items = [
-                    buildium_sdk.models.work_order_line_item_message.WorkOrderLineItemMessage(
+                    mcp_server_buildium.buildium_sdk.models.work_order_line_item_message.WorkOrderLineItemMessage(
                         gl_account_id = 56, 
                         quantity = 1.337, 
                         memo = '', 

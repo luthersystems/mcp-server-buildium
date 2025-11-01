@@ -38,7 +38,7 @@ class TestWorkOrderTaskMessage(unittest.TestCase):
                 id = 56,
                 type = 'ContactRequest',
                 unit_id = 56,
-                unit_agreement = buildium_sdk.models.unit_agreement_message.UnitAgreementMessage(
+                unit_agreement = mcp_server_buildium.buildium_sdk.models.unit_agreement_message.UnitAgreementMessage(
                     id = 56, 
                     type = 'NotSet', 
                     href = '', ),

@@ -36,12 +36,12 @@ class TestBillLineMessage(unittest.TestCase):
         if include_optional:
             return BillLineMessage(
                 id = 56,
-                accounting_entity = buildium_sdk.models.accounting_entity_message.AccountingEntityMessage(
+                accounting_entity = mcp_server_buildium.buildium_sdk.models.accounting_entity_message.AccountingEntityMessage(
                     id = 56, 
                     accounting_entity_type = 'Association', 
                     href = '', 
                     unit = null, ),
-                gl_account = buildium_sdk.models.gl_account_message.GLAccountMessage(
+                gl_account = mcp_server_buildium.buildium_sdk.models.gl_account_message.GLAccountMessage(
                     id = 56, 
                     account_number = '', 
                     name = '', 
@@ -55,7 +55,7 @@ class TestBillLineMessage(unittest.TestCase):
                     cash_flow_classification = 'OperatingActivities', 
                     exclude_from_cash_balances = True, 
                     sub_accounts = [
-                        buildium_sdk.models.gl_account_message.GLAccountMessage(
+                        mcp_server_buildium.buildium_sdk.models.gl_account_message.GLAccountMessage(
                             id = 56, 
                             account_number = '', 
                             name = '', 
@@ -74,7 +74,7 @@ class TestBillLineMessage(unittest.TestCase):
                     is_active = True, 
                     parent_gl_account_id = 56, ),
                 amount = 1.337,
-                markup = buildium_sdk.models.bill_markup_message.BillMarkupMessage(
+                markup = mcp_server_buildium.buildium_sdk.models.bill_markup_message.BillMarkupMessage(
                     amount = 1.337, 
                     type = 'Percent', ),
                 memo = ''

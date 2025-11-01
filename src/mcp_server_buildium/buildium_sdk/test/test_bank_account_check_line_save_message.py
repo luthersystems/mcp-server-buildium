@@ -36,7 +36,7 @@ class TestBankAccountCheckLineSaveMessage(unittest.TestCase):
         if include_optional:
             return BankAccountCheckLineSaveMessage(
                 gl_account_id = 56,
-                accounting_entity = buildium_sdk.models.bank_account_check_accounting_entity_save_message.BankAccountCheckAccountingEntitySaveMessage(
+                accounting_entity = mcp_server_buildium.buildium_sdk.models.bank_account_check_accounting_entity_save_message.BankAccountCheckAccountingEntitySaveMessage(
                     id = 56, 
                     accounting_entity_type = 'Association', 
                     unit_id = 56, ),
@@ -47,7 +47,7 @@ class TestBankAccountCheckLineSaveMessage(unittest.TestCase):
         else:
             return BankAccountCheckLineSaveMessage(
                 gl_account_id = 56,
-                accounting_entity = buildium_sdk.models.bank_account_check_accounting_entity_save_message.BankAccountCheckAccountingEntitySaveMessage(
+                accounting_entity = mcp_server_buildium.buildium_sdk.models.bank_account_check_accounting_entity_save_message.BankAccountCheckAccountingEntitySaveMessage(
                     id = 56, 
                     accounting_entity_type = 'Association', 
                     unit_id = 56, ),

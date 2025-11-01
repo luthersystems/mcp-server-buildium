@@ -38,12 +38,12 @@ class TestAccountInfoMessage(unittest.TestCase):
                 id = 56,
                 company_name = '',
                 url = '',
-                contact = buildium_sdk.models.contact_info_message.ContactInfoMessage(
+                contact = mcp_server_buildium.buildium_sdk.models.contact_info_message.ContactInfoMessage(
                     first_name = '', 
                     last_name = '', 
                     address = null, 
                     phone_number = '', ),
-                accounting_settings = buildium_sdk.models.accounting_settings_message.AccountingSettingsMessage(
+                accounting_settings = mcp_server_buildium.buildium_sdk.models.accounting_settings_message.AccountingSettingsMessage(
                     accounting_book_id = 56, 
                     default_bank_account_id = 56, 
                     default_accounting_basis = 'Accrual', 

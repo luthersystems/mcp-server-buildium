@@ -38,17 +38,17 @@ class TestLeaseRenewalPostMessage(unittest.TestCase):
                 lease_type = 'Fixed',
                 lease_to_date = datetime.datetime.strptime('1975-12-30', '%Y-%m-%d').date(),
                 automatically_move_out_tenants = True,
-                rent = buildium_sdk.models.lease_rent_post_message.LeaseRentPostMessage(
+                rent = mcp_server_buildium.buildium_sdk.models.lease_rent_post_message.LeaseRentPostMessage(
                     cycle = 'Monthly', 
                     charges = [
-                        buildium_sdk.models.lease_rent_charge_post_message.LeaseRentChargePostMessage(
+                        mcp_server_buildium.buildium_sdk.models.lease_rent_charge_post_message.LeaseRentChargePostMessage(
                             amount = 1.337, 
                             gl_account_id = 56, 
                             next_due_date = datetime.datetime.strptime('1975-12-30', '%Y-%m-%d').date(), 
                             memo = '', )
                         ], ),
                 cosigners = [
-                    buildium_sdk.models.lease_cosigner_post_message.LeaseCosignerPostMessage(
+                    mcp_server_buildium.buildium_sdk.models.lease_cosigner_post_message.LeaseCosignerPostMessage(
                         first_name = '0', 
                         last_name = '0', 
                         email = '', 
@@ -62,7 +62,7 @@ class TestLeaseRenewalPostMessage(unittest.TestCase):
                     56
                     ],
                 tenants = [
-                    buildium_sdk.models.rental_tenant_renewal_post_message.RentalTenantRenewalPostMessage(
+                    mcp_server_buildium.buildium_sdk.models.rental_tenant_renewal_post_message.RentalTenantRenewalPostMessage(
                         first_name = '0', 
                         last_name = '0', 
                         email = '', 
@@ -81,7 +81,7 @@ class TestLeaseRenewalPostMessage(unittest.TestCase):
                     56
                     ],
                 recurring_charges_to_create = [
-                    buildium_sdk.models.charge_recurring_transaction_post_message.ChargeRecurringTransactionPostMessage(
+                    mcp_server_buildium.buildium_sdk.models.charge_recurring_transaction_post_message.ChargeRecurringTransactionPostMessage(
                         gl_account_id = 56, 
                         amount = 1.337, 
                         memo = '', 
@@ -92,7 +92,7 @@ class TestLeaseRenewalPostMessage(unittest.TestCase):
                         number_of_occurrences = 56, )
                     ],
                 recurring_charges_to_update = [
-                    buildium_sdk.models.charge_recurring_transaction_put_message.ChargeRecurringTransactionPutMessage(
+                    mcp_server_buildium.buildium_sdk.models.charge_recurring_transaction_put_message.ChargeRecurringTransactionPutMessage(
                         id = 56, 
                         gl_account_id = 56, 
                         amount = 1.337, 
@@ -107,10 +107,10 @@ class TestLeaseRenewalPostMessage(unittest.TestCase):
         else:
             return LeaseRenewalPostMessage(
                 lease_type = 'Fixed',
-                rent = buildium_sdk.models.lease_rent_post_message.LeaseRentPostMessage(
+                rent = mcp_server_buildium.buildium_sdk.models.lease_rent_post_message.LeaseRentPostMessage(
                     cycle = 'Monthly', 
                     charges = [
-                        buildium_sdk.models.lease_rent_charge_post_message.LeaseRentChargePostMessage(
+                        mcp_server_buildium.buildium_sdk.models.lease_rent_charge_post_message.LeaseRentChargePostMessage(
                             amount = 1.337, 
                             gl_account_id = 56, 
                             next_due_date = datetime.datetime.strptime('1975-12-30', '%Y-%m-%d').date(), 

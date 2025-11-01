@@ -44,20 +44,20 @@ class TestApplicantDetailsMessage(unittest.TestCase):
                 last_name = '',
                 email = '',
                 phone_numbers = [
-                    buildium_sdk.models.phone_number_message.PhoneNumberMessage(
+                    mcp_server_buildium.buildium_sdk.models.phone_number_message.PhoneNumberMessage(
                         number = '', 
                         type = 'NotSet', )
                     ],
                 status = 'Unknown',
                 applications = [
-                    buildium_sdk.models.applicant_application_message.ApplicantApplicationMessage(
+                    mcp_server_buildium.buildium_sdk.models.applicant_application_message.ApplicantApplicationMessage(
                         id = 56, 
                         application_number = '', 
                         application_status = 'Unknown', 
                         application_submitted_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), )
                     ],
                 unsubmitted_applications = [
-                    buildium_sdk.models.unsubmitted_application_message.UnsubmittedApplicationMessage(
+                    mcp_server_buildium.buildium_sdk.models.unsubmitted_application_message.UnsubmittedApplicationMessage(
                         id = 56, )
                     ],
                 last_updated_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f')

@@ -37,7 +37,7 @@ class TestLeaseRentPostMessage(unittest.TestCase):
             return LeaseRentPostMessage(
                 cycle = 'Monthly',
                 charges = [
-                    buildium_sdk.models.lease_rent_charge_post_message.LeaseRentChargePostMessage(
+                    mcp_server_buildium.buildium_sdk.models.lease_rent_charge_post_message.LeaseRentChargePostMessage(
                         amount = 1.337, 
                         gl_account_id = 56, 
                         next_due_date = datetime.datetime.strptime('1975-12-30', '%Y-%m-%d').date(), 
@@ -48,7 +48,7 @@ class TestLeaseRentPostMessage(unittest.TestCase):
             return LeaseRentPostMessage(
                 cycle = 'Monthly',
                 charges = [
-                    buildium_sdk.models.lease_rent_charge_post_message.LeaseRentChargePostMessage(
+                    mcp_server_buildium.buildium_sdk.models.lease_rent_charge_post_message.LeaseRentChargePostMessage(
                         amount = 1.337, 
                         gl_account_id = 56, 
                         next_due_date = datetime.datetime.strptime('1975-12-30', '%Y-%m-%d').date(), 

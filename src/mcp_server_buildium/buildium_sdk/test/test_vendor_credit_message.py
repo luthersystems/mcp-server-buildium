@@ -40,7 +40,7 @@ class TestVendorCreditMessage(unittest.TestCase):
                 reference_number = '',
                 memo = '',
                 lines = [
-                    buildium_sdk.models.vendor_credit_line_item_message.VendorCreditLineItemMessage(
+                    mcp_server_buildium.buildium_sdk.models.vendor_credit_line_item_message.VendorCreditLineItemMessage(
                         id = 56, 
                         gl_account_id = 56, 
                         amount = 1.337, 

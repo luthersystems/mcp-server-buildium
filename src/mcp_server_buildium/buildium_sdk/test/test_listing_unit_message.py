@@ -37,7 +37,7 @@ class TestListingUnitMessage(unittest.TestCase):
             return ListingUnitMessage(
                 id = 56,
                 unit_number = '',
-                address = buildium_sdk.models.address_message.AddressMessage(
+                address = mcp_server_buildium.buildium_sdk.models.address_message.AddressMessage(
                     address_line1 = '', 
                     address_line2 = '', 
                     address_line3 = '', 
@@ -54,7 +54,7 @@ class TestListingUnitMessage(unittest.TestCase):
                     'CableReady'
                     ],
                 files = [
-                    buildium_sdk.models.listing_file_message.ListingFileMessage(
+                    mcp_server_buildium.buildium_sdk.models.listing_file_message.ListingFileMessage(
                         type = 'Image', 
                         name = '', 
                         url = '', )

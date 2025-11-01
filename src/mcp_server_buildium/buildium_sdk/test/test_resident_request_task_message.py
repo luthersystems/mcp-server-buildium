@@ -36,23 +36,23 @@ class TestResidentRequestTaskMessage(unittest.TestCase):
         if include_optional:
             return ResidentRequestTaskMessage(
                 id = 56,
-                category = buildium_sdk.models.task_category_response_message.TaskCategoryResponseMessage(
+                category = mcp_server_buildium.buildium_sdk.models.task_category_response_message.TaskCategoryResponseMessage(
                     id = 56, 
                     name = '', 
                     href = '', 
                     sub_category = null, ),
                 title = '',
                 description = '',
-                var_property = buildium_sdk.models.property_message.PropertyMessage(
+                var_property = mcp_server_buildium.buildium_sdk.models.property_message.PropertyMessage(
                     id = 56, 
                     type = 'Association', 
                     href = '', ),
                 unit_id = 56,
-                unit_agreement = buildium_sdk.models.unit_agreement_message.UnitAgreementMessage(
+                unit_agreement = mcp_server_buildium.buildium_sdk.models.unit_agreement_message.UnitAgreementMessage(
                     id = 56, 
                     type = 'NotSet', 
                     href = '', ),
-                requested_by_user_entity = buildium_sdk.models.requested_by_user_entity_message.RequestedByUserEntityMessage(
+                requested_by_user_entity = mcp_server_buildium.buildium_sdk.models.requested_by_user_entity_message.RequestedByUserEntityMessage(
                     type = 'ContactRequestor', 
                     id = 56, 
                     first_name = '', 
@@ -65,7 +65,7 @@ class TestResidentRequestTaskMessage(unittest.TestCase):
                 due_date = datetime.datetime.strptime('1975-12-30', '%Y-%m-%d').date(),
                 created_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 last_updated_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
-                appliance = buildium_sdk.models.appliance_message.ApplianceMessage(
+                appliance = mcp_server_buildium.buildium_sdk.models.appliance_message.ApplianceMessage(
                     id = 56, 
                     name = '', 
                     make = '', 

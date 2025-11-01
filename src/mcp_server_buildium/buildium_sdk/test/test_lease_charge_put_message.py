@@ -38,7 +38,7 @@ class TestLeaseChargePutMessage(unittest.TestCase):
                 var_date = datetime.datetime.strptime('1975-12-30', '%Y-%m-%d').date(),
                 memo = '',
                 lines = [
-                    buildium_sdk.models.lease_charge_line_save_message.LeaseChargeLineSaveMessage(
+                    mcp_server_buildium.buildium_sdk.models.lease_charge_line_save_message.LeaseChargeLineSaveMessage(
                         amount = 1.337, 
                         gl_account_id = 56, 
                         reference_number = '', )
@@ -48,7 +48,7 @@ class TestLeaseChargePutMessage(unittest.TestCase):
             return LeaseChargePutMessage(
                 var_date = datetime.datetime.strptime('1975-12-30', '%Y-%m-%d').date(),
                 lines = [
-                    buildium_sdk.models.lease_charge_line_save_message.LeaseChargeLineSaveMessage(
+                    mcp_server_buildium.buildium_sdk.models.lease_charge_line_save_message.LeaseChargeLineSaveMessage(
                         amount = 1.337, 
                         gl_account_id = 56, 
                         reference_number = '', )

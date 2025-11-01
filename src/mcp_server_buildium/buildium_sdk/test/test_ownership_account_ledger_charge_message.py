@@ -41,7 +41,7 @@ class TestOwnershipAccountLedgerChargeMessage(unittest.TestCase):
                 memo = '',
                 bill_id = 56,
                 lines = [
-                    buildium_sdk.models.ownership_account_ledger_charge_line_message.OwnershipAccountLedgerChargeLineMessage(
+                    mcp_server_buildium.buildium_sdk.models.ownership_account_ledger_charge_line_message.OwnershipAccountLedgerChargeLineMessage(
                         amount = 1.337, 
                         gl_account_id = 56, )
                     ]

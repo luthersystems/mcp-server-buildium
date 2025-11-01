@@ -45,7 +45,7 @@ class TestBillMessage(unittest.TestCase):
                 reference_number = '',
                 approval_status = 'NotNeeded',
                 lines = [
-                    buildium_sdk.models.bill_line_message.BillLineMessage(
+                    mcp_server_buildium.buildium_sdk.models.bill_line_message.BillLineMessage(
                         id = 56, 
                         accounting_entity = null, 
                         gl_account = null, 

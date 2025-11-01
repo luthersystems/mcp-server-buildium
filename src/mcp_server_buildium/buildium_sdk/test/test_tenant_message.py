@@ -41,19 +41,19 @@ class TestTenantMessage(unittest.TestCase):
                 email = '',
                 alternate_email = '',
                 phone_numbers = [
-                    buildium_sdk.models.phone_number_message.PhoneNumberMessage(
+                    mcp_server_buildium.buildium_sdk.models.phone_number_message.PhoneNumberMessage(
                         number = '', 
                         type = 'NotSet', )
                     ],
                 created_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
-                emergency_contact = buildium_sdk.models.emergency_contact_message.EmergencyContactMessage(
+                emergency_contact = mcp_server_buildium.buildium_sdk.models.emergency_contact_message.EmergencyContactMessage(
                     name = '', 
                     relationship_description = '', 
                     phone = '', 
                     email = '', ),
                 date_of_birth = datetime.datetime.strptime('1975-12-30', '%Y-%m-%d').date(),
                 sms_opt_in_status = 'NotSet',
-                address = buildium_sdk.models.address_message.AddressMessage(
+                address = mcp_server_buildium.buildium_sdk.models.address_message.AddressMessage(
                     address_line1 = '', 
                     address_line2 = '', 
                     address_line3 = '', 
@@ -61,7 +61,7 @@ class TestTenantMessage(unittest.TestCase):
                     state = '', 
                     postal_code = '', 
                     country = 'Afghanistan', ),
-                alternate_address = buildium_sdk.models.address_message.AddressMessage(
+                alternate_address = mcp_server_buildium.buildium_sdk.models.address_message.AddressMessage(
                     address_line1 = '', 
                     address_line2 = '', 
                     address_line3 = '', 
@@ -71,7 +71,7 @@ class TestTenantMessage(unittest.TestCase):
                     country = 'Afghanistan', ),
                 mailing_preference = 'PrimaryAddress',
                 leases = [
-                    buildium_sdk.models.lease_message.LeaseMessage(
+                    mcp_server_buildium.buildium_sdk.models.lease_message.LeaseMessage(
                         id = 56, 
                         property_id = 56, 
                         unit_id = 56, 
@@ -84,14 +84,14 @@ class TestTenantMessage(unittest.TestCase):
                         term_type = 'MonthToMonth', 
                         renewal_offer_status = 'NotSet', 
                         current_tenants = [
-                            buildium_sdk.models.tenant_message.TenantMessage(
+                            mcp_server_buildium.buildium_sdk.models.tenant_message.TenantMessage(
                                 id = 56, 
                                 first_name = '', 
                                 last_name = '', 
                                 email = '', 
                                 alternate_email = '', 
                                 phone_numbers = [
-                                    buildium_sdk.models.phone_number_message.PhoneNumberMessage(
+                                    mcp_server_buildium.buildium_sdk.models.phone_number_message.PhoneNumberMessage(
                                         number = '', 
                                         type = 'NotSet', )
                                     ], 
@@ -108,7 +108,7 @@ class TestTenantMessage(unittest.TestCase):
                         current_number_of_occupants = 56, 
                         account_details = null, 
                         cosigners = [
-                            buildium_sdk.models.cosigner_message.CosignerMessage(
+                            mcp_server_buildium.buildium_sdk.models.cosigner_message.CosignerMessage(
                                 id = 56, 
                                 first_name = '', 
                                 last_name = '', 
@@ -123,14 +123,14 @@ class TestTenantMessage(unittest.TestCase):
                         created_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                         last_updated_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                         move_out_data = [
-                            buildium_sdk.models.lease_move_out_data_message.LeaseMoveOutDataMessage(
+                            mcp_server_buildium.buildium_sdk.models.lease_move_out_data_message.LeaseMoveOutDataMessage(
                                 tenant_id = 56, 
                                 move_out_date = datetime.datetime.strptime('1975-12-30', '%Y-%m-%d').date(), 
                                 notice_given_date = datetime.datetime.strptime('1975-12-30', '%Y-%m-%d').date(), )
                             ], 
                         payment_due_day = 56, 
                         tenants = [
-                            buildium_sdk.models.lease_tenant_message.LeaseTenantMessage(
+                            mcp_server_buildium.buildium_sdk.models.lease_tenant_message.LeaseTenantMessage(
                                 id = 56, 
                                 status = 'MovedOut', 
                                 move_in_date = datetime.datetime.strptime('1975-12-30', '%Y-%m-%d').date(), )

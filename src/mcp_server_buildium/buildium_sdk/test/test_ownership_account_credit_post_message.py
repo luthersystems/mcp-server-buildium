@@ -40,7 +40,7 @@ class TestOwnershipAccountCreditPostMessage(unittest.TestCase):
                 credit_type = 'WaiveUnpaid',
                 offsetting_gl_account_id = 56,
                 lines = [
-                    buildium_sdk.models.ownership_account_credit_line_post_message.OwnershipAccountCreditLinePostMessage(
+                    mcp_server_buildium.buildium_sdk.models.ownership_account_credit_line_post_message.OwnershipAccountCreditLinePostMessage(
                         amount = 1.337, 
                         gl_account_id = 56, )
                     ]
@@ -50,7 +50,7 @@ class TestOwnershipAccountCreditPostMessage(unittest.TestCase):
                 var_date = datetime.datetime.strptime('1975-12-30', '%Y-%m-%d').date(),
                 credit_type = 'WaiveUnpaid',
                 lines = [
-                    buildium_sdk.models.ownership_account_credit_line_post_message.OwnershipAccountCreditLinePostMessage(
+                    mcp_server_buildium.buildium_sdk.models.ownership_account_credit_line_post_message.OwnershipAccountCreditLinePostMessage(
                         amount = 1.337, 
                         gl_account_id = 56, )
                     ],

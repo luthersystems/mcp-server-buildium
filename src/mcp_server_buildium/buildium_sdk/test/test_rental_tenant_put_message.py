@@ -39,7 +39,7 @@ class TestRentalTenantPutMessage(unittest.TestCase):
                 last_name = '0',
                 email = '',
                 alternate_email = '',
-                phone_numbers = buildium_sdk.models.phone_numbers_message.PhoneNumbersMessage(
+                phone_numbers = mcp_server_buildium.buildium_sdk.models.phone_numbers_message.PhoneNumbersMessage(
                     home = '', 
                     work = '', 
                     mobile = '', 
@@ -47,12 +47,12 @@ class TestRentalTenantPutMessage(unittest.TestCase):
                 date_of_birth = datetime.datetime.strptime('1975-12-30', '%Y-%m-%d').date(),
                 comment = '',
                 tax_id = '',
-                emergency_contact = buildium_sdk.models.save_emergency_contact_message.SaveEmergencyContactMessage(
+                emergency_contact = mcp_server_buildium.buildium_sdk.models.save_emergency_contact_message.SaveEmergencyContactMessage(
                     name = '', 
                     relationship_description = '', 
                     phone = '', 
                     email = '', ),
-                address = buildium_sdk.models.save_address_message.SaveAddressMessage(
+                address = mcp_server_buildium.buildium_sdk.models.save_address_message.SaveAddressMessage(
                     address_line1 = '0', 
                     address_line2 = '', 
                     address_line3 = '', 
@@ -60,7 +60,7 @@ class TestRentalTenantPutMessage(unittest.TestCase):
                     state = '', 
                     postal_code = '0', 
                     country = 'Afghanistan', ),
-                alternate_address = buildium_sdk.models.save_address_message.SaveAddressMessage(
+                alternate_address = mcp_server_buildium.buildium_sdk.models.save_address_message.SaveAddressMessage(
                     address_line1 = '0', 
                     address_line2 = '', 
                     address_line3 = '', 
@@ -74,7 +74,7 @@ class TestRentalTenantPutMessage(unittest.TestCase):
             return RentalTenantPutMessage(
                 first_name = '0',
                 last_name = '0',
-                address = buildium_sdk.models.save_address_message.SaveAddressMessage(
+                address = mcp_server_buildium.buildium_sdk.models.save_address_message.SaveAddressMessage(
                     address_line1 = '0', 
                     address_line2 = '', 
                     address_line3 = '', 

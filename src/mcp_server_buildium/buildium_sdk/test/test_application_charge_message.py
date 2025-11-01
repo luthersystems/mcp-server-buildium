@@ -40,7 +40,7 @@ class TestApplicationChargeMessage(unittest.TestCase):
                 total_amount = 1.337,
                 memo = '',
                 lines = [
-                    buildium_sdk.models.charge_line_message.ChargeLineMessage(
+                    mcp_server_buildium.buildium_sdk.models.charge_line_message.ChargeLineMessage(
                         amount = 1.337, 
                         gl_account_id = 56, )
                     ]

@@ -36,12 +36,12 @@ class TestBankAccountReconciliationBalanceMessage(unittest.TestCase):
         if include_optional:
             return BankAccountReconciliationBalanceMessage(
                 difference = 1.337,
-                statement_balance = buildium_sdk.models.bank_reconciliation_statement_balance_message.BankReconciliationStatementBalanceMessage(
+                statement_balance = mcp_server_buildium.buildium_sdk.models.bank_reconciliation_statement_balance_message.BankReconciliationStatementBalanceMessage(
                     total_checks_and_withdrawals = 1.337, 
                     total_deposits_and_additions = 1.337, 
                     ending_balance = 1.337, 
                     beginning_balance = 1.337, ),
-                cleared_balance = buildium_sdk.models.bank_reconciliation_cleared_balance_message.BankReconciliationClearedBalanceMessage(
+                cleared_balance = mcp_server_buildium.buildium_sdk.models.bank_reconciliation_cleared_balance_message.BankReconciliationClearedBalanceMessage(
                     total_checks_and_withdrawals = 1.337, 
                     total_deposits_and_additions = 1.337, 
                     ending_balance = 1.337, 

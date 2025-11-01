@@ -36,19 +36,19 @@ class TestContactRequestTaskMessage(unittest.TestCase):
         if include_optional:
             return ContactRequestTaskMessage(
                 id = 56,
-                category = buildium_sdk.models.task_category_response_message.TaskCategoryResponseMessage(
+                category = mcp_server_buildium.buildium_sdk.models.task_category_response_message.TaskCategoryResponseMessage(
                     id = 56, 
                     name = '', 
                     href = '', 
                     sub_category = null, ),
                 title = '',
                 description = '',
-                var_property = buildium_sdk.models.property_message.PropertyMessage(
+                var_property = mcp_server_buildium.buildium_sdk.models.property_message.PropertyMessage(
                     id = 56, 
                     type = 'Association', 
                     href = '', ),
                 unit_id = 56,
-                contact_detail = buildium_sdk.models.contact_detail_message.ContactDetailMessage(
+                contact_detail = mcp_server_buildium.buildium_sdk.models.contact_detail_message.ContactDetailMessage(
                     first_name = '', 
                     last_name = '', 
                     email = '', 

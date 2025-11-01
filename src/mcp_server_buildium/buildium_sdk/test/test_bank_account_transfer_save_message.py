@@ -39,7 +39,7 @@ class TestBankAccountTransferSaveMessage(unittest.TestCase):
                 transfer_to_bank_account_id = 56,
                 total_amount = 1.337,
                 memo = '',
-                accounting_entity = buildium_sdk.models.bank_account_transfer_accounting_entity_save_message.BankAccountTransferAccountingEntitySaveMessage(
+                accounting_entity = mcp_server_buildium.buildium_sdk.models.bank_account_transfer_accounting_entity_save_message.BankAccountTransferAccountingEntitySaveMessage(
                     id = 56, 
                     accounting_entity_type = 'Association', 
                     unit_id = 56, )
@@ -49,7 +49,7 @@ class TestBankAccountTransferSaveMessage(unittest.TestCase):
                 entry_date = datetime.datetime.strptime('1975-12-30', '%Y-%m-%d').date(),
                 transfer_to_bank_account_id = 56,
                 total_amount = 1.337,
-                accounting_entity = buildium_sdk.models.bank_account_transfer_accounting_entity_save_message.BankAccountTransferAccountingEntitySaveMessage(
+                accounting_entity = mcp_server_buildium.buildium_sdk.models.bank_account_transfer_accounting_entity_save_message.BankAccountTransferAccountingEntitySaveMessage(
                     id = 56, 
                     accounting_entity_type = 'Association', 
                     unit_id = 56, ),

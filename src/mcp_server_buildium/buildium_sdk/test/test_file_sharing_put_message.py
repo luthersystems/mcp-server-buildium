@@ -35,7 +35,7 @@ class TestFileSharingPutMessage(unittest.TestCase):
         model = FileSharingPutMessage()
         if include_optional:
             return FileSharingPutMessage(
-                account = buildium_sdk.models.file_sharing_account_put_message.FileSharingAccountPutMessage(
+                account = mcp_server_buildium.buildium_sdk.models.file_sharing_account_put_message.FileSharingAccountPutMessage(
                     all_residents = True, 
                     property_ids = [
                         56
@@ -45,34 +45,34 @@ class TestFileSharingPutMessage(unittest.TestCase):
                         56
                         ], 
                     website_visitors = True, ),
-                rental = buildium_sdk.models.file_sharing_rental_put_message.FileSharingRentalPutMessage(
+                rental = mcp_server_buildium.buildium_sdk.models.file_sharing_rental_put_message.FileSharingRentalPutMessage(
                     rental_owners = True, 
                     tenants = True, ),
-                rental_unit = buildium_sdk.models.file_sharing_rental_unit_put_mesage.FileSharingRentalUnitPutMesage(
+                rental_unit = mcp_server_buildium.buildium_sdk.models.file_sharing_rental_unit_put_mesage.FileSharingRentalUnitPutMesage(
                     rental_owners = True, 
                     tenants = True, ),
-                lease = buildium_sdk.models.file_sharing_lease_put_message.FileSharingLeasePutMessage(
+                lease = mcp_server_buildium.buildium_sdk.models.file_sharing_lease_put_message.FileSharingLeasePutMessage(
                     tenants = True, 
                     rental_owners = True, ),
-                tenant = buildium_sdk.models.file_sharing_tenant_put_message.FileSharingTenantPutMessage(
+                tenant = mcp_server_buildium.buildium_sdk.models.file_sharing_tenant_put_message.FileSharingTenantPutMessage(
                     tenants = True, 
                     rental_owners = True, ),
-                rental_owner = buildium_sdk.models.file_sharing_rental_owner_put_message.FileSharingRentalOwnerPutMessage(
+                rental_owner = mcp_server_buildium.buildium_sdk.models.file_sharing_rental_owner_put_message.FileSharingRentalOwnerPutMessage(
                     rental_owner = True, ),
-                association = buildium_sdk.models.file_sharing_association_put_message.FileSharingAssociationPutMessage(
+                association = mcp_server_buildium.buildium_sdk.models.file_sharing_association_put_message.FileSharingAssociationPutMessage(
                     association_owners = True, 
                     board_members = True, ),
-                association_unit = buildium_sdk.models.file_sharing_association_unit_put_message.FileSharingAssociationUnitPutMessage(
+                association_unit = mcp_server_buildium.buildium_sdk.models.file_sharing_association_unit_put_message.FileSharingAssociationUnitPutMessage(
                     association_owners = True, 
                     board_members = True, ),
-                ownership_account = buildium_sdk.models.file_sharing_ownership_account_put_message.FileSharingOwnershipAccountPutMessage(
+                ownership_account = mcp_server_buildium.buildium_sdk.models.file_sharing_ownership_account_put_message.FileSharingOwnershipAccountPutMessage(
                     association_owners = True, 
                     board_members = True, ),
-                association_owner = buildium_sdk.models.file_sharing_association_owner_put_message.FileSharingAssociationOwnerPutMessage(
+                association_owner = mcp_server_buildium.buildium_sdk.models.file_sharing_association_owner_put_message.FileSharingAssociationOwnerPutMessage(
                     association_owner = True, ),
-                vendor = buildium_sdk.models.file_sharing_vendor_put_message.FileSharingVendorPutMessage(
+                vendor = mcp_server_buildium.buildium_sdk.models.file_sharing_vendor_put_message.FileSharingVendorPutMessage(
                     vendor = True, ),
-                committee = buildium_sdk.models.file_sharing_committee_put_message.FileSharingCommitteePutMessage(
+                committee = mcp_server_buildium.buildium_sdk.models.file_sharing_committee_put_message.FileSharingCommitteePutMessage(
                     association_owners = True, 
                     board_members = True, 
                     committee = True, )

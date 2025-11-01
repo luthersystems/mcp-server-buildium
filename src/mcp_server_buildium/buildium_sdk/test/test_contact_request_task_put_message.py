@@ -45,7 +45,7 @@ class TestContactRequestTaskPutMessage(unittest.TestCase):
                 task_status = 'New',
                 priority = 'Low',
                 due_date = datetime.datetime.strptime('1975-12-30', '%Y-%m-%d').date(),
-                contact_detail = buildium_sdk.models.contact_detail_save_message.ContactDetailSaveMessage(
+                contact_detail = mcp_server_buildium.buildium_sdk.models.contact_detail_save_message.ContactDetailSaveMessage(
                     first_name = '0', 
                     last_name = '', 
                     email = '', 
@@ -57,7 +57,7 @@ class TestContactRequestTaskPutMessage(unittest.TestCase):
                 assigned_to_user_id = 56,
                 task_status = 'New',
                 priority = 'Low',
-                contact_detail = buildium_sdk.models.contact_detail_save_message.ContactDetailSaveMessage(
+                contact_detail = mcp_server_buildium.buildium_sdk.models.contact_detail_save_message.ContactDetailSaveMessage(
                     first_name = '0', 
                     last_name = '', 
                     email = '', 

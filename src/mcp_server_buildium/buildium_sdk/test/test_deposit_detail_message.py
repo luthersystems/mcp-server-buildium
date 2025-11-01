@@ -37,7 +37,7 @@ class TestDepositDetailMessage(unittest.TestCase):
             return DepositDetailMessage(
                 bank_gl_account_id = 56,
                 payment_transactions = [
-                    buildium_sdk.models.payment_transactions_message.PaymentTransactionsMessage(
+                    mcp_server_buildium.buildium_sdk.models.payment_transactions_message.PaymentTransactionsMessage(
                         id = 56, 
                         accounting_entity = null, 
                         amount = 1.337, )

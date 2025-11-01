@@ -40,7 +40,7 @@ class TestApplicantGroupMessage(unittest.TestCase):
                 unit_id = 56,
                 application_group_status = 'Unknown',
                 applicants = [
-                    buildium_sdk.models.applicant_message.ApplicantMessage(
+                    mcp_server_buildium.buildium_sdk.models.applicant_message.ApplicantMessage(
                         id = 56, 
                         applicant_group_id = 56, 
                         property_id = 56, 
@@ -50,13 +50,13 @@ class TestApplicantGroupMessage(unittest.TestCase):
                         last_name = '', 
                         email = '', 
                         phone_numbers = [
-                            buildium_sdk.models.phone_number_message.PhoneNumberMessage(
+                            mcp_server_buildium.buildium_sdk.models.phone_number_message.PhoneNumberMessage(
                                 number = '', 
                                 type = 'NotSet', )
                             ], 
                         status = 'Unknown', 
                         applications = [
-                            buildium_sdk.models.applicant_application_message.ApplicantApplicationMessage(
+                            mcp_server_buildium.buildium_sdk.models.applicant_application_message.ApplicantApplicationMessage(
                                 id = 56, 
                                 application_number = '', 
                                 application_status = 'Unknown', 

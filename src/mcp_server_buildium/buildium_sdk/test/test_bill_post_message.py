@@ -42,7 +42,7 @@ class TestBillPostMessage(unittest.TestCase):
                 work_order_id = 56,
                 reference_number = '',
                 lines = [
-                    buildium_sdk.models.bill_line_post_message.BillLinePostMessage(
+                    mcp_server_buildium.buildium_sdk.models.bill_line_post_message.BillLinePostMessage(
                         accounting_entity = null, 
                         gl_account_id = 56, 
                         amount = 1.337, 
@@ -56,7 +56,7 @@ class TestBillPostMessage(unittest.TestCase):
                 due_date = datetime.datetime.strptime('1975-12-30', '%Y-%m-%d').date(),
                 vendor_id = 56,
                 lines = [
-                    buildium_sdk.models.bill_line_post_message.BillLinePostMessage(
+                    mcp_server_buildium.buildium_sdk.models.bill_line_post_message.BillLinePostMessage(
                         accounting_entity = null, 
                         gl_account_id = 56, 
                         amount = 1.337, 

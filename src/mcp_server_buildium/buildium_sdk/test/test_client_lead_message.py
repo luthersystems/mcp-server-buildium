@@ -41,7 +41,7 @@ class TestClientLeadMessage(unittest.TestCase):
                 email = '',
                 phone_number = '',
                 price_paid = 1.337,
-                address = buildium_sdk.models.address_message.AddressMessage(
+                address = mcp_server_buildium.buildium_sdk.models.address_message.AddressMessage(
                     address_line1 = '', 
                     address_line2 = '', 
                     address_line3 = '', 
@@ -52,7 +52,7 @@ class TestClientLeadMessage(unittest.TestCase):
                 property_type = 'SingleHomeUpToThreeHundredThousand',
                 comments = '',
                 lead_status = 'Unknown',
-                credit_request = buildium_sdk.models.client_lead_credit_request_message.ClientLeadCreditRequestMessage(
+                credit_request = mcp_server_buildium.buildium_sdk.models.client_lead_credit_request_message.ClientLeadCreditRequestMessage(
                     credit_status = 'Approved', 
                     credit_reason = 'AccidentalFormSubmission', 
                     comments = '', 

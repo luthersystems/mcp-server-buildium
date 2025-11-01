@@ -37,7 +37,7 @@ class TestRentalPropertyPutMessage(unittest.TestCase):
             return RentalPropertyPutMessage(
                 name = '0',
                 structure_description = '',
-                address = buildium_sdk.models.save_address_message.SaveAddressMessage(
+                address = mcp_server_buildium.buildium_sdk.models.save_address_message.SaveAddressMessage(
                     address_line1 = '0', 
                     address_line2 = '', 
                     address_line3 = '', 
@@ -54,7 +54,7 @@ class TestRentalPropertyPutMessage(unittest.TestCase):
         else:
             return RentalPropertyPutMessage(
                 name = '0',
-                address = buildium_sdk.models.save_address_message.SaveAddressMessage(
+                address = mcp_server_buildium.buildium_sdk.models.save_address_message.SaveAddressMessage(
                     address_line1 = '0', 
                     address_line2 = '', 
                     address_line3 = '', 

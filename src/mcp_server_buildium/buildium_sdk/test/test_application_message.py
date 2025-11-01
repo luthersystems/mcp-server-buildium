@@ -40,13 +40,13 @@ class TestApplicationMessage(unittest.TestCase):
                 application_status = 'Unknown',
                 application_submitted_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 application = [
-                    buildium_sdk.models.application_response_message.ApplicationResponseMessage(
+                    mcp_server_buildium.buildium_sdk.models.application_response_message.ApplicationResponseMessage(
                         section_label = '', 
                         section_type = 'ApplicantInformation', 
                         section_responses = [
-                            buildium_sdk.models.application_section_response_message.ApplicationSectionResponseMessage(
+                            mcp_server_buildium.buildium_sdk.models.application_section_response_message.ApplicationSectionResponseMessage(
                                 section_fields = [
-                                    buildium_sdk.models.application_response_field_message.ApplicationResponseFieldMessage(
+                                    mcp_server_buildium.buildium_sdk.models.application_response_field_message.ApplicationResponseFieldMessage(
                                         field_category_type = 'ApplicantName', 
                                         field_type = 'TextSingleLine', 
                                         field_label = '', 

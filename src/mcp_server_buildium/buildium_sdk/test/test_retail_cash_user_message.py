@@ -35,11 +35,11 @@ class TestRetailCashUserMessage(unittest.TestCase):
         model = RetailCashUserMessage()
         if include_optional:
             return RetailCashUserMessage(
-                unit_agreement = buildium_sdk.models.unit_agreement_message.UnitAgreementMessage(
+                unit_agreement = mcp_server_buildium.buildium_sdk.models.unit_agreement_message.UnitAgreementMessage(
                     id = 56, 
                     type = 'NotSet', 
                     href = '', ),
-                user = buildium_sdk.models.retail_cash_user_data_message.RetailCashUserDataMessage(
+                user = mcp_server_buildium.buildium_sdk.models.retail_cash_user_data_message.RetailCashUserDataMessage(
                     id = 56, 
                     first_name = '', 
                     last_name = '', 
@@ -47,12 +47,12 @@ class TestRetailCashUserMessage(unittest.TestCase):
                     phone = '', 
                     user_type = 'Tenant', 
                     href = '', ),
-                var_property = buildium_sdk.models.retail_cash_property_message.RetailCashPropertyMessage(
+                var_property = mcp_server_buildium.buildium_sdk.models.retail_cash_property_message.RetailCashPropertyMessage(
                     id = 56, 
                     name = '', 
                     type = 'Association', 
                     href = '', ),
-                unit = buildium_sdk.models.retail_cash_unit_message.RetailCashUnitMessage(
+                unit = mcp_server_buildium.buildium_sdk.models.retail_cash_unit_message.RetailCashUnitMessage(
                     id = 56, 
                     unit_number = '', 
                     href = '', ),

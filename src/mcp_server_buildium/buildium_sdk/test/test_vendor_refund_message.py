@@ -42,7 +42,7 @@ class TestVendorRefundMessage(unittest.TestCase):
                 reference_number = '',
                 memo = '',
                 lines = [
-                    buildium_sdk.models.vendor_refund_line_message.VendorRefundLineMessage(
+                    mcp_server_buildium.buildium_sdk.models.vendor_refund_line_message.VendorRefundLineMessage(
                         id = 56, 
                         accounting_entity = null, 
                         gl_account_id = 56, 

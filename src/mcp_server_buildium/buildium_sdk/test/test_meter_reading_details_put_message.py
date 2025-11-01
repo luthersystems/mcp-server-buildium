@@ -38,7 +38,7 @@ class TestMeterReadingDetailsPutMessage(unittest.TestCase):
                 reading_date = datetime.datetime.strptime('1975-12-30', '%Y-%m-%d').date(),
                 meter_type = 'Electric',
                 details = [
-                    buildium_sdk.models.meter_reading_detail_put_message.MeterReadingDetailPutMessage(
+                    mcp_server_buildium.buildium_sdk.models.meter_reading_detail_put_message.MeterReadingDetailPutMessage(
                         id = 56, 
                         unit_id = 56, 
                         prior_value = 56, 
@@ -50,7 +50,7 @@ class TestMeterReadingDetailsPutMessage(unittest.TestCase):
                 reading_date = datetime.datetime.strptime('1975-12-30', '%Y-%m-%d').date(),
                 meter_type = 'Electric',
                 details = [
-                    buildium_sdk.models.meter_reading_detail_put_message.MeterReadingDetailPutMessage(
+                    mcp_server_buildium.buildium_sdk.models.meter_reading_detail_put_message.MeterReadingDetailPutMessage(
                         id = 56, 
                         unit_id = 56, 
                         prior_value = 56, 

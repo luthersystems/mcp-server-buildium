@@ -35,7 +35,7 @@ class TestBankAccountPutMessage(unittest.TestCase):
         model = BankAccountPutMessage()
         if include_optional:
             return BankAccountPutMessage(
-                check_printing_info = buildium_sdk.models.check_printing_info_put_message.CheckPrintingInfoPutMessage(
+                check_printing_info = mcp_server_buildium.buildium_sdk.models.check_printing_info_put_message.CheckPrintingInfoPutMessage(
                     enable_remote_check_printing = True, 
                     enable_local_check_printing = True, 
                     check_layout_type = 'Voucher1StubBottomMemo1Signature', 
@@ -60,7 +60,7 @@ class TestBankAccountPutMessage(unittest.TestCase):
             )
         else:
             return BankAccountPutMessage(
-                check_printing_info = buildium_sdk.models.check_printing_info_put_message.CheckPrintingInfoPutMessage(
+                check_printing_info = mcp_server_buildium.buildium_sdk.models.check_printing_info_put_message.CheckPrintingInfoPutMessage(
                     enable_remote_check_printing = True, 
                     enable_local_check_printing = True, 
                     check_layout_type = 'Voucher1StubBottomMemo1Signature', 

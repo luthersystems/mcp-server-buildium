@@ -36,19 +36,19 @@ class TestRentalOwnerRequestTaskMessage(unittest.TestCase):
         if include_optional:
             return RentalOwnerRequestTaskMessage(
                 id = 56,
-                category = buildium_sdk.models.task_category_response_message.TaskCategoryResponseMessage(
+                category = mcp_server_buildium.buildium_sdk.models.task_category_response_message.TaskCategoryResponseMessage(
                     id = 56, 
                     name = '', 
                     href = '', 
                     sub_category = null, ),
                 title = '',
                 description = '',
-                var_property = buildium_sdk.models.property_message.PropertyMessage(
+                var_property = mcp_server_buildium.buildium_sdk.models.property_message.PropertyMessage(
                     id = 56, 
                     type = 'Association', 
                     href = '', ),
                 unit_id = 56,
-                requested_by_user_entity = buildium_sdk.models.requested_by_user_entity_message.RequestedByUserEntityMessage(
+                requested_by_user_entity = mcp_server_buildium.buildium_sdk.models.requested_by_user_entity_message.RequestedByUserEntityMessage(
                     type = 'ContactRequestor', 
                     id = 56, 
                     first_name = '', 

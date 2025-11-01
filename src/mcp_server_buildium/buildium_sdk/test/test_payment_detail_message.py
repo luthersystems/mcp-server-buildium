@@ -36,13 +36,13 @@ class TestPaymentDetailMessage(unittest.TestCase):
         if include_optional:
             return PaymentDetailMessage(
                 payment_method = 'None',
-                payee = buildium_sdk.models.payee_message.PayeeMessage(
+                payee = mcp_server_buildium.buildium_sdk.models.payee_message.PayeeMessage(
                     id = 56, 
                     name = '', 
                     type = 'Tenant', 
                     href = '', ),
                 is_internal_transaction = True,
-                internal_transaction_status = buildium_sdk.models.internal_transaction_status_message.InternalTransactionStatusMessage(
+                internal_transaction_status = mcp_server_buildium.buildium_sdk.models.internal_transaction_status_message.InternalTransactionStatusMessage(
                     is_pending = True, 
                     result_date = datetime.datetime.strptime('1975-12-30', '%Y-%m-%d').date(), 
                     result_code = '', )

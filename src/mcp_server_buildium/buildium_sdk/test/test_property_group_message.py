@@ -39,12 +39,12 @@ class TestPropertyGroupMessage(unittest.TestCase):
                 name = '',
                 description = '',
                 properties = [
-                    buildium_sdk.models.property_message.PropertyMessage(
+                    mcp_server_buildium.buildium_sdk.models.property_message.PropertyMessage(
                         id = 56, 
                         type = 'Association', 
                         href = '', )
                     ],
-                created_by_user = buildium_sdk.models.created_by_user_message.CreatedByUserMessage(
+                created_by_user = mcp_server_buildium.buildium_sdk.models.created_by_user_message.CreatedByUserMessage(
                     id = 56, 
                     first_name = '', 
                     last_name = '', 

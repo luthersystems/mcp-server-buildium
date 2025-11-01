@@ -38,7 +38,7 @@ class TestBankAccountDepositPostMessage(unittest.TestCase):
                 entry_date = datetime.datetime.strptime('1975-12-30', '%Y-%m-%d').date(),
                 memo = '',
                 lines = [
-                    buildium_sdk.models.bank_account_deposit_line_save_message.BankAccountDepositLineSaveMessage(
+                    mcp_server_buildium.buildium_sdk.models.bank_account_deposit_line_save_message.BankAccountDepositLineSaveMessage(
                         gl_account_id = 56, 
                         accounting_entity = null, 
                         memo = '', 

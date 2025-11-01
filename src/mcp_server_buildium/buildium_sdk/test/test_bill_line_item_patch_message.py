@@ -36,13 +36,13 @@ class TestBillLineItemPatchMessage(unittest.TestCase):
         if include_optional:
             return BillLineItemPatchMessage(
                 id = 56,
-                accounting_entity = buildium_sdk.models.accounting_entity_patch_message.AccountingEntityPatchMessage(
+                accounting_entity = mcp_server_buildium.buildium_sdk.models.accounting_entity_patch_message.AccountingEntityPatchMessage(
                     id = 56, 
                     accounting_entity_type = 'Association', 
                     unit_id = 56, ),
                 gl_account_id = 56,
                 amount = 1.337,
-                markup = buildium_sdk.models.bill_markup_patch_message.BillMarkupPatchMessage(
+                markup = mcp_server_buildium.buildium_sdk.models.bill_markup_patch_message.BillMarkupPatchMessage(
                     amount = 1.337, 
                     type = 'Percent', ),
                 memo = ''

@@ -36,7 +36,7 @@ class TestGLAccountBalanceMessage(unittest.TestCase):
         if include_optional:
             return GLAccountBalanceMessage(
                 total_balance = 1.337,
-                gl_account = buildium_sdk.models.gl_account_message.GLAccountMessage(
+                gl_account = mcp_server_buildium.buildium_sdk.models.gl_account_message.GLAccountMessage(
                     id = 56, 
                     account_number = '', 
                     name = '', 
@@ -50,7 +50,7 @@ class TestGLAccountBalanceMessage(unittest.TestCase):
                     cash_flow_classification = 'OperatingActivities', 
                     exclude_from_cash_balances = True, 
                     sub_accounts = [
-                        buildium_sdk.models.gl_account_message.GLAccountMessage(
+                        mcp_server_buildium.buildium_sdk.models.gl_account_message.GLAccountMessage(
                             id = 56, 
                             account_number = '', 
                             name = '', 
@@ -69,7 +69,7 @@ class TestGLAccountBalanceMessage(unittest.TestCase):
                     is_active = True, 
                     parent_gl_account_id = 56, ),
                 accounting_entity_balances = [
-                    buildium_sdk.models.gl_account_balance_item_message.GLAccountBalanceItemMessage(
+                    mcp_server_buildium.buildium_sdk.models.gl_account_balance_item_message.GLAccountBalanceItemMessage(
                         balance = 1.337, 
                         accounting_entity = null, )
                     ]

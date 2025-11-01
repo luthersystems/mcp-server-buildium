@@ -37,10 +37,10 @@ class TestLeaseLedgerReversePaymentPostMessage(unittest.TestCase):
             return LeaseLedgerReversePaymentPostMessage(
                 entry_date = datetime.datetime.strptime('1975-12-30', '%Y-%m-%d').date(),
                 payment_transaction_id = 56,
-                nsf_charge = buildium_sdk.models.lease_ledger_reverse_payment_nsf_charge_post_message.LeaseLedgerReversePaymentNSFChargePostMessage(
+                nsf_charge = mcp_server_buildium.buildium_sdk.models.lease_ledger_reverse_payment_nsf_charge_post_message.LeaseLedgerReversePaymentNSFChargePostMessage(
                     gl_account_id = 56, 
                     total_amount = 1.337, ),
-                bank_fee = buildium_sdk.models.lease_ledger_reverse_payment_other_bank_charge_post_message.LeaseLedgerReversePaymentOtherBankChargePostMessage(
+                bank_fee = mcp_server_buildium.buildium_sdk.models.lease_ledger_reverse_payment_other_bank_charge_post_message.LeaseLedgerReversePaymentOtherBankChargePostMessage(
                     gl_account_id = 56, 
                     total_amount = 1.337, )
             )

@@ -47,11 +47,11 @@ class TestUserMessage(unittest.TestCase):
                 email = '',
                 alternate_email = '',
                 phone_numbers = [
-                    buildium_sdk.models.phone_number_message.PhoneNumberMessage(
+                    mcp_server_buildium.buildium_sdk.models.phone_number_message.PhoneNumberMessage(
                         number = '', 
                         type = 'NotSet', )
                     ],
-                user_role = buildium_sdk.models.user_role_message.UserRoleMessage(
+                user_role = mcp_server_buildium.buildium_sdk.models.user_role_message.UserRoleMessage(
                     id = 56, 
                     name = '', 
                     description = '', 

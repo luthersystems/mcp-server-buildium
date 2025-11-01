@@ -42,7 +42,7 @@ class TestAssociationPreferredVendorMessage(unittest.TestCase):
                 primary_email = '',
                 alternate_email = '',
                 phone_numbers = [
-                    buildium_sdk.models.phone_number_message.PhoneNumberMessage(
+                    mcp_server_buildium.buildium_sdk.models.phone_number_message.PhoneNumberMessage(
                         number = '', 
                         type = 'NotSet', )
                     ],

@@ -41,7 +41,7 @@ class TestLeasePostMessage(unittest.TestCase):
                 lease_to_date = datetime.datetime.strptime('1975-12-30', '%Y-%m-%d').date(),
                 send_welcome_email = True,
                 tenants = [
-                    buildium_sdk.models.rental_tenant_put_message.RentalTenantPutMessage(
+                    mcp_server_buildium.buildium_sdk.models.rental_tenant_put_message.RentalTenantPutMessage(
                         first_name = '0', 
                         last_name = '0', 
                         email = '', 
@@ -62,7 +62,7 @@ class TestLeasePostMessage(unittest.TestCase):
                     56
                     ],
                 cosigners = [
-                    buildium_sdk.models.lease_cosigner_post_message.LeaseCosignerPostMessage(
+                    mcp_server_buildium.buildium_sdk.models.lease_cosigner_post_message.LeaseCosignerPostMessage(
                         first_name = '0', 
                         last_name = '0', 
                         email = '', 
@@ -72,16 +72,16 @@ class TestLeasePostMessage(unittest.TestCase):
                         alternate_address = null, 
                         mailing_preference = 'PrimaryAddress', )
                     ],
-                rent = buildium_sdk.models.lease_rent_post_message.LeaseRentPostMessage(
+                rent = mcp_server_buildium.buildium_sdk.models.lease_rent_post_message.LeaseRentPostMessage(
                     cycle = 'Monthly', 
                     charges = [
-                        buildium_sdk.models.lease_rent_charge_post_message.LeaseRentChargePostMessage(
+                        mcp_server_buildium.buildium_sdk.models.lease_rent_charge_post_message.LeaseRentChargePostMessage(
                             amount = 1.337, 
                             gl_account_id = 56, 
                             next_due_date = datetime.datetime.strptime('1975-12-30', '%Y-%m-%d').date(), 
                             memo = '', )
                         ], ),
-                security_deposit = buildium_sdk.models.lease_security_deposit_post_message.LeaseSecurityDepositPostMessage(
+                security_deposit = mcp_server_buildium.buildium_sdk.models.lease_security_deposit_post_message.LeaseSecurityDepositPostMessage(
                     due_date = datetime.datetime.strptime('1975-12-30', '%Y-%m-%d').date(), 
                     amount = 1.337, ),
                 prorated_first_month_rent = 1.337,

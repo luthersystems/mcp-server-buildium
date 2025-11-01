@@ -39,12 +39,12 @@ class TestBudgetMessage(unittest.TestCase):
                 name = '',
                 start_date = datetime.datetime.strptime('1975-12-30', '%Y-%m-%d').date(),
                 end_date = datetime.datetime.strptime('1975-12-30', '%Y-%m-%d').date(),
-                var_property = buildium_sdk.models.property_message.PropertyMessage(
+                var_property = mcp_server_buildium.buildium_sdk.models.property_message.PropertyMessage(
                     id = 56, 
                     type = 'Association', 
                     href = '', ),
                 details = [
-                    buildium_sdk.models.budget_details_message.BudgetDetailsMessage(
+                    mcp_server_buildium.buildium_sdk.models.budget_details_message.BudgetDetailsMessage(
                         gl_account_id = 56, 
                         gl_account_sub_type = 'CurrentAsset', 
                         total_amount = 1.337, 

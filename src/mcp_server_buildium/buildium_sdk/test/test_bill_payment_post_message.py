@@ -40,7 +40,7 @@ class TestBillPaymentPostMessage(unittest.TestCase):
                 memo = '',
                 check_number = '',
                 lines = [
-                    buildium_sdk.models.bill_payment_line_post_message.BillPaymentLinePostMessage(
+                    mcp_server_buildium.buildium_sdk.models.bill_payment_line_post_message.BillPaymentLinePostMessage(
                         bill_line_id = 56, 
                         amount = 1.337, )
                     ],
@@ -53,7 +53,7 @@ class TestBillPaymentPostMessage(unittest.TestCase):
                 bank_account_id = 56,
                 entry_date = datetime.datetime.strptime('1975-12-30', '%Y-%m-%d').date(),
                 lines = [
-                    buildium_sdk.models.bill_payment_line_post_message.BillPaymentLinePostMessage(
+                    mcp_server_buildium.buildium_sdk.models.bill_payment_line_post_message.BillPaymentLinePostMessage(
                         bill_line_id = 56, 
                         amount = 1.337, )
                     ],

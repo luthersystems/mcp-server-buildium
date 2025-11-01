@@ -37,7 +37,7 @@ class TestBudgetPutMessage(unittest.TestCase):
             return BudgetPutMessage(
                 name = '0',
                 details = [
-                    buildium_sdk.models.budget_details_save_message.BudgetDetailsSaveMessage(
+                    mcp_server_buildium.buildium_sdk.models.budget_details_save_message.BudgetDetailsSaveMessage(
                         gl_account_id = 56, 
                         monthly_amounts = null, )
                     ]
@@ -46,7 +46,7 @@ class TestBudgetPutMessage(unittest.TestCase):
             return BudgetPutMessage(
                 name = '0',
                 details = [
-                    buildium_sdk.models.budget_details_save_message.BudgetDetailsSaveMessage(
+                    mcp_server_buildium.buildium_sdk.models.budget_details_save_message.BudgetDetailsSaveMessage(
                         gl_account_id = 56, 
                         monthly_amounts = null, )
                     ],

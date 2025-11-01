@@ -48,14 +48,14 @@ class TestTaskHistoryMessage(unittest.TestCase):
                     56
                     ],
                 created_date_t_ime = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
-                created_by_user = buildium_sdk.models.task_history_user_message.TaskHistoryUserMessage(
+                created_by_user = mcp_server_buildium.buildium_sdk.models.task_history_user_message.TaskHistoryUserMessage(
                     id = 56, 
                     first_name = '', 
                     last_name = '', 
                     href = '', 
                     user_type = 'Unknown', ),
                 last_updated_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
-                last_updated_by_user = buildium_sdk.models.task_history_user_message.TaskHistoryUserMessage(
+                last_updated_by_user = mcp_server_buildium.buildium_sdk.models.task_history_user_message.TaskHistoryUserMessage(
                     id = 56, 
                     first_name = '', 
                     last_name = '', 

@@ -38,7 +38,7 @@ class TestAccountingEntityMessage(unittest.TestCase):
                 id = 56,
                 accounting_entity_type = 'Association',
                 href = '',
-                unit = buildium_sdk.models.unit_entity_message.UnitEntityMessage(
+                unit = mcp_server_buildium.buildium_sdk.models.unit_entity_message.UnitEntityMessage(
                     id = 56, 
                     href = '', )
             )

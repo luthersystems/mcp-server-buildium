@@ -41,7 +41,7 @@ class TestBillPutMessage(unittest.TestCase):
                 vendor_id = 56,
                 reference_number = '',
                 lines = [
-                    buildium_sdk.models.bill_line_put_message.BillLinePutMessage(
+                    mcp_server_buildium.buildium_sdk.models.bill_line_put_message.BillLinePutMessage(
                         id = 56, 
                         accounting_entity = null, 
                         gl_account_id = 56, 

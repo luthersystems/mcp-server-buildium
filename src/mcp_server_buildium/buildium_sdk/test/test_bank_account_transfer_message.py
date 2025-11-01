@@ -38,7 +38,7 @@ class TestBankAccountTransferMessage(unittest.TestCase):
                 id = 56,
                 entry_date = datetime.datetime.strptime('1975-12-30', '%Y-%m-%d').date(),
                 memo = '',
-                accounting_entity = buildium_sdk.models.accounting_entity_message.AccountingEntityMessage(
+                accounting_entity = mcp_server_buildium.buildium_sdk.models.accounting_entity_message.AccountingEntityMessage(
                     id = 56, 
                     accounting_entity_type = 'Association', 
                     href = '', 

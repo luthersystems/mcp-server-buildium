@@ -36,7 +36,7 @@ class TestPaymentTransactionsMessage(unittest.TestCase):
         if include_optional:
             return PaymentTransactionsMessage(
                 id = 56,
-                accounting_entity = buildium_sdk.models.accounting_entity_message.AccountingEntityMessage(
+                accounting_entity = mcp_server_buildium.buildium_sdk.models.accounting_entity_message.AccountingEntityMessage(
                     id = 56, 
                     accounting_entity_type = 'Association', 
                     href = '', 

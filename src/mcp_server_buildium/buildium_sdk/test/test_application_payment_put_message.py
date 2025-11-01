@@ -40,7 +40,7 @@ class TestApplicationPaymentPutMessage(unittest.TestCase):
                 memo = '',
                 reference_number = '',
                 lines = [
-                    buildium_sdk.models.application_payment_line_save_message.ApplicationPaymentLineSaveMessage(
+                    mcp_server_buildium.buildium_sdk.models.application_payment_line_save_message.ApplicationPaymentLineSaveMessage(
                         amount = 1.337, 
                         gl_account_id = 56, )
                     ]
@@ -50,7 +50,7 @@ class TestApplicationPaymentPutMessage(unittest.TestCase):
                 var_date = datetime.datetime.strptime('1975-12-30', '%Y-%m-%d').date(),
                 payment_method = 'Check',
                 lines = [
-                    buildium_sdk.models.application_payment_line_save_message.ApplicationPaymentLineSaveMessage(
+                    mcp_server_buildium.buildium_sdk.models.application_payment_line_save_message.ApplicationPaymentLineSaveMessage(
                         amount = 1.337, 
                         gl_account_id = 56, )
                     ],

@@ -47,14 +47,14 @@ class TestLeaseMessage(unittest.TestCase):
                 term_type = 'MonthToMonth',
                 renewal_offer_status = 'NotSet',
                 current_tenants = [
-                    buildium_sdk.models.tenant_message.TenantMessage(
+                    mcp_server_buildium.buildium_sdk.models.tenant_message.TenantMessage(
                         id = 56, 
                         first_name = '', 
                         last_name = '', 
                         email = '', 
                         alternate_email = '', 
                         phone_numbers = [
-                            buildium_sdk.models.phone_number_message.PhoneNumberMessage(
+                            mcp_server_buildium.buildium_sdk.models.phone_number_message.PhoneNumberMessage(
                                 number = '', 
                                 type = 'NotSet', )
                             ], 
@@ -66,7 +66,7 @@ class TestLeaseMessage(unittest.TestCase):
                         alternate_address = null, 
                         mailing_preference = 'PrimaryAddress', 
                         leases = [
-                            buildium_sdk.models.lease_message.LeaseMessage(
+                            mcp_server_buildium.buildium_sdk.models.lease_message.LeaseMessage(
                                 id = 56, 
                                 property_id = 56, 
                                 unit_id = 56, 
@@ -79,7 +79,7 @@ class TestLeaseMessage(unittest.TestCase):
                                 term_type = 'MonthToMonth', 
                                 renewal_offer_status = 'NotSet', 
                                 current_tenants = [
-                                    buildium_sdk.models.tenant_message.TenantMessage(
+                                    mcp_server_buildium.buildium_sdk.models.tenant_message.TenantMessage(
                                         id = 56, 
                                         first_name = '', 
                                         last_name = '', 
@@ -98,7 +98,7 @@ class TestLeaseMessage(unittest.TestCase):
                                 current_number_of_occupants = 56, 
                                 account_details = null, 
                                 cosigners = [
-                                    buildium_sdk.models.cosigner_message.CosignerMessage(
+                                    mcp_server_buildium.buildium_sdk.models.cosigner_message.CosignerMessage(
                                         id = 56, 
                                         first_name = '', 
                                         last_name = '', 
@@ -113,14 +113,14 @@ class TestLeaseMessage(unittest.TestCase):
                                 created_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                                 last_updated_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                                 move_out_data = [
-                                    buildium_sdk.models.lease_move_out_data_message.LeaseMoveOutDataMessage(
+                                    mcp_server_buildium.buildium_sdk.models.lease_move_out_data_message.LeaseMoveOutDataMessage(
                                         tenant_id = 56, 
                                         move_out_date = datetime.datetime.strptime('1975-12-30', '%Y-%m-%d').date(), 
                                         notice_given_date = datetime.datetime.strptime('1975-12-30', '%Y-%m-%d').date(), )
                                     ], 
                                 payment_due_day = 56, 
                                 tenants = [
-                                    buildium_sdk.models.lease_tenant_message.LeaseTenantMessage(
+                                    mcp_server_buildium.buildium_sdk.models.lease_tenant_message.LeaseTenantMessage(
                                         id = 56, 
                                         status = 'MovedOut', 
                                         move_in_date = datetime.datetime.strptime('1975-12-30', '%Y-%m-%d').date(), )
@@ -130,18 +130,18 @@ class TestLeaseMessage(unittest.TestCase):
                         tax_id = '', )
                     ],
                 current_number_of_occupants = 56,
-                account_details = buildium_sdk.models.lease_account_detail_message.LeaseAccountDetailMessage(
+                account_details = mcp_server_buildium.buildium_sdk.models.lease_account_detail_message.LeaseAccountDetailMessage(
                     security_deposit = 1.337, 
                     rent = 1.337, ),
                 cosigners = [
-                    buildium_sdk.models.cosigner_message.CosignerMessage(
+                    mcp_server_buildium.buildium_sdk.models.cosigner_message.CosignerMessage(
                         id = 56, 
                         first_name = '', 
                         last_name = '', 
                         email = '', 
                         alternate_email = '', 
                         phone_numbers = [
-                            buildium_sdk.models.phone_number_message.PhoneNumberMessage(
+                            mcp_server_buildium.buildium_sdk.models.phone_number_message.PhoneNumberMessage(
                                 number = '', 
                                 type = 'NotSet', )
                             ], 
@@ -154,14 +154,14 @@ class TestLeaseMessage(unittest.TestCase):
                 created_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 last_updated_date_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 move_out_data = [
-                    buildium_sdk.models.lease_move_out_data_message.LeaseMoveOutDataMessage(
+                    mcp_server_buildium.buildium_sdk.models.lease_move_out_data_message.LeaseMoveOutDataMessage(
                         tenant_id = 56, 
                         move_out_date = datetime.datetime.strptime('1975-12-30', '%Y-%m-%d').date(), 
                         notice_given_date = datetime.datetime.strptime('1975-12-30', '%Y-%m-%d').date(), )
                     ],
                 payment_due_day = 56,
                 tenants = [
-                    buildium_sdk.models.lease_tenant_message.LeaseTenantMessage(
+                    mcp_server_buildium.buildium_sdk.models.lease_tenant_message.LeaseTenantMessage(
                         id = 56, 
                         status = 'MovedOut', 
                         move_in_date = datetime.datetime.strptime('1975-12-30', '%Y-%m-%d').date(), )
