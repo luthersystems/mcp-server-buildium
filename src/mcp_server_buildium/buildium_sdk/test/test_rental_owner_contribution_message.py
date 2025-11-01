@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.rental_owner_contribution_message import RentalOwnerContributionMessage
+from mcp_server_buildium.buildium_sdk.models.rental_owner_contribution_message import RentalOwnerContributionMessage
 
 class TestRentalOwnerContributionMessage(unittest.TestCase):
     """RentalOwnerContributionMessage unit test stubs"""

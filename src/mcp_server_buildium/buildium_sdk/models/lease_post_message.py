@@ -20,10 +20,10 @@ import json
 from datetime import date
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictFloat, StrictInt, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional, Union
-from buildium_sdk.models.lease_cosigner_post_message import LeaseCosignerPostMessage
-from buildium_sdk.models.lease_rent_post_message import LeaseRentPostMessage
-from buildium_sdk.models.lease_security_deposit_post_message import LeaseSecurityDepositPostMessage
-from buildium_sdk.models.rental_tenant_put_message import RentalTenantPutMessage
+from mcp_server_buildium.buildium_sdk.models.lease_cosigner_post_message import LeaseCosignerPostMessage
+from mcp_server_buildium.buildium_sdk.models.lease_rent_post_message import LeaseRentPostMessage
+from mcp_server_buildium.buildium_sdk.models.lease_security_deposit_post_message import LeaseSecurityDepositPostMessage
+from mcp_server_buildium.buildium_sdk.models.rental_tenant_put_message import RentalTenantPutMessage
 from typing import Optional, Set
 from typing_extensions import Self
 

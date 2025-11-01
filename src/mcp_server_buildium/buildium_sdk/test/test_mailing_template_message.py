@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.mailing_template_message import MailingTemplateMessage
+from mcp_server_buildium.buildium_sdk.models.mailing_template_message import MailingTemplateMessage
 
 class TestMailingTemplateMessage(unittest.TestCase):
     """MailingTemplateMessage unit test stubs"""

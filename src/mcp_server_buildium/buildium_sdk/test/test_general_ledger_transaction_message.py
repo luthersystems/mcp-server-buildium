@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.general_ledger_transaction_message import GeneralLedgerTransactionMessage
+from mcp_server_buildium.buildium_sdk.models.general_ledger_transaction_message import GeneralLedgerTransactionMessage
 
 class TestGeneralLedgerTransactionMessage(unittest.TestCase):
     """GeneralLedgerTransactionMessage unit test stubs"""

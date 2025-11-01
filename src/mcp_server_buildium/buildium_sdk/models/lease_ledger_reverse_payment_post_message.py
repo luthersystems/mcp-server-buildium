@@ -20,8 +20,8 @@ import json
 from datetime import date
 from pydantic import BaseModel, ConfigDict, Field, StrictInt
 from typing import Any, ClassVar, Dict, List, Optional
-from buildium_sdk.models.lease_ledger_reverse_payment_nsf_charge_post_message import LeaseLedgerReversePaymentNSFChargePostMessage
-from buildium_sdk.models.lease_ledger_reverse_payment_other_bank_charge_post_message import LeaseLedgerReversePaymentOtherBankChargePostMessage
+from mcp_server_buildium.buildium_sdk.models.lease_ledger_reverse_payment_nsf_charge_post_message import LeaseLedgerReversePaymentNSFChargePostMessage
+from mcp_server_buildium.buildium_sdk.models.lease_ledger_reverse_payment_other_bank_charge_post_message import LeaseLedgerReversePaymentOtherBankChargePostMessage
 from typing import Optional, Set
 from typing_extensions import Self
 

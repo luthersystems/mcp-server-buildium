@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.application_auto_allocated_payment_post_message import ApplicationAutoAllocatedPaymentPostMessage
+from mcp_server_buildium.buildium_sdk.models.application_auto_allocated_payment_post_message import ApplicationAutoAllocatedPaymentPostMessage
 
 class TestApplicationAutoAllocatedPaymentPostMessage(unittest.TestCase):
     """ApplicationAutoAllocatedPaymentPostMessage unit test stubs"""

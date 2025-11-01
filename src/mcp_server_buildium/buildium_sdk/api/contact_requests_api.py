@@ -20,13 +20,13 @@ from datetime import date
 from pydantic import Field, StrictInt, StrictStr, field_validator
 from typing import List, Optional
 from typing_extensions import Annotated
-from buildium_sdk.models.contact_request_task_message import ContactRequestTaskMessage
-from buildium_sdk.models.contact_request_task_post_message import ContactRequestTaskPostMessage
-from buildium_sdk.models.contact_request_task_put_message import ContactRequestTaskPutMessage
+from mcp_server_buildium.buildium_sdk.models.contact_request_task_message import ContactRequestTaskMessage
+from mcp_server_buildium.buildium_sdk.models.contact_request_task_post_message import ContactRequestTaskPostMessage
+from mcp_server_buildium.buildium_sdk.models.contact_request_task_put_message import ContactRequestTaskPutMessage
 
-from buildium_sdk.api_client import ApiClient, RequestSerialized
-from buildium_sdk.api_response import ApiResponse
-from buildium_sdk.rest import RESTResponseType
+from mcp_server_buildium.buildium_sdk.api_client import ApiClient, RequestSerialized
+from mcp_server_buildium.buildium_sdk.api_response import ApiResponse
+from mcp_server_buildium.buildium_sdk.rest import RESTResponseType
 
 
 class ContactRequestsApi:

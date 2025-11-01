@@ -20,9 +20,9 @@ import json
 from datetime import date
 from pydantic import BaseModel, ConfigDict, Field, StrictFloat, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional, Union
-from buildium_sdk.models.address_message import AddressMessage
-from buildium_sdk.models.ownership_account_refund_line_message import OwnershipAccountRefundLineMessage
-from buildium_sdk.models.payee_message import PayeeMessage
+from mcp_server_buildium.buildium_sdk.models.address_message import AddressMessage
+from mcp_server_buildium.buildium_sdk.models.ownership_account_refund_line_message import OwnershipAccountRefundLineMessage
+from mcp_server_buildium.buildium_sdk.models.payee_message import PayeeMessage
 from typing import Optional, Set
 from typing_extensions import Self
 

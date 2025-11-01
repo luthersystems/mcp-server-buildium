@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.offline_payments_message import OfflinePaymentsMessage
+from mcp_server_buildium.buildium_sdk.models.offline_payments_message import OfflinePaymentsMessage
 
 class TestOfflinePaymentsMessage(unittest.TestCase):
     """OfflinePaymentsMessage unit test stubs"""

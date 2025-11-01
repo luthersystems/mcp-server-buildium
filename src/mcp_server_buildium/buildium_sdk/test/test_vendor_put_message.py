@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.vendor_put_message import VendorPutMessage
+from mcp_server_buildium.buildium_sdk.models.vendor_put_message import VendorPutMessage
 
 class TestVendorPutMessage(unittest.TestCase):
     """VendorPutMessage unit test stubs"""

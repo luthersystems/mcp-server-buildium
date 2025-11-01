@@ -20,16 +20,16 @@ from datetime import datetime
 from pydantic import Field, StrictInt, StrictStr
 from typing import List, Optional
 from typing_extensions import Annotated
-from buildium_sdk.models.association_unit_message import AssociationUnitMessage
-from buildium_sdk.models.association_unit_put_message import AssociationUnitPutMessage
-from buildium_sdk.models.association_units_post_message import AssociationUnitsPostMessage
-from buildium_sdk.models.note_message import NoteMessage
-from buildium_sdk.models.note_post_message import NotePostMessage
-from buildium_sdk.models.note_put_message import NotePutMessage
+from mcp_server_buildium.buildium_sdk.models.association_unit_message import AssociationUnitMessage
+from mcp_server_buildium.buildium_sdk.models.association_unit_put_message import AssociationUnitPutMessage
+from mcp_server_buildium.buildium_sdk.models.association_units_post_message import AssociationUnitsPostMessage
+from mcp_server_buildium.buildium_sdk.models.note_message import NoteMessage
+from mcp_server_buildium.buildium_sdk.models.note_post_message import NotePostMessage
+from mcp_server_buildium.buildium_sdk.models.note_put_message import NotePutMessage
 
-from buildium_sdk.api_client import ApiClient, RequestSerialized
-from buildium_sdk.api_response import ApiResponse
-from buildium_sdk.rest import RESTResponseType
+from mcp_server_buildium.buildium_sdk.api_client import ApiClient, RequestSerialized
+from mcp_server_buildium.buildium_sdk.api_response import ApiResponse
+from mcp_server_buildium.buildium_sdk.rest import RESTResponseType
 
 
 class AssociationUnitsApi:

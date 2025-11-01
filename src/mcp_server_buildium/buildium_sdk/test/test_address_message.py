@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.address_message import AddressMessage
+from mcp_server_buildium.buildium_sdk.models.address_message import AddressMessage
 
 class TestAddressMessage(unittest.TestCase):
     """AddressMessage unit test stubs"""

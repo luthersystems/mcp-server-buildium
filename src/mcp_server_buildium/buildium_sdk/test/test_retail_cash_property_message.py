@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.retail_cash_property_message import RetailCashPropertyMessage
+from mcp_server_buildium.buildium_sdk.models.retail_cash_property_message import RetailCashPropertyMessage
 
 class TestRetailCashPropertyMessage(unittest.TestCase):
     """RetailCashPropertyMessage unit test stubs"""

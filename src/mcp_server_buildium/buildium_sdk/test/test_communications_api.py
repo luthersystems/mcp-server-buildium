@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.api.communications_api import CommunicationsApi
+from mcp_server_buildium.buildium_sdk.api.communications_api import CommunicationsApi
 
 
 class TestCommunicationsApi(unittest.IsolatedAsyncioTestCase):

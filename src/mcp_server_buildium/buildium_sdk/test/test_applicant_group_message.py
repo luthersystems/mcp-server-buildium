@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.applicant_group_message import ApplicantGroupMessage
+from mcp_server_buildium.buildium_sdk.models.applicant_group_message import ApplicantGroupMessage
 
 class TestApplicantGroupMessage(unittest.TestCase):
     """ApplicantGroupMessage unit test stubs"""

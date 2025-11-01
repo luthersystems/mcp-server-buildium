@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.meter_reading_message import MeterReadingMessage
+from mcp_server_buildium.buildium_sdk.models.meter_reading_message import MeterReadingMessage
 
 class TestMeterReadingMessage(unittest.TestCase):
     """MeterReadingMessage unit test stubs"""

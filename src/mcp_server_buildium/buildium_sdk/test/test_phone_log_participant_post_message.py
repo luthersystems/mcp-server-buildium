@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.phone_log_participant_post_message import PhoneLogParticipantPostMessage
+from mcp_server_buildium.buildium_sdk.models.phone_log_participant_post_message import PhoneLogParticipantPostMessage
 
 class TestPhoneLogParticipantPostMessage(unittest.TestCase):
     """PhoneLogParticipantPostMessage unit test stubs"""

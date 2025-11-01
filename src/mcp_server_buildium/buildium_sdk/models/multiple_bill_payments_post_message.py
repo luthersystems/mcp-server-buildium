@@ -20,7 +20,7 @@ import json
 from datetime import date
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt
 from typing import Any, ClassVar, Dict, List, Optional
-from buildium_sdk.models.multiple_bill_payment_allocation_line_post_message import MultipleBillPaymentAllocationLinePostMessage
+from mcp_server_buildium.buildium_sdk.models.multiple_bill_payment_allocation_line_post_message import MultipleBillPaymentAllocationLinePostMessage
 from typing import Optional, Set
 from typing_extensions import Self
 

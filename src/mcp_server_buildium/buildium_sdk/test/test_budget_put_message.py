@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.budget_put_message import BudgetPutMessage
+from mcp_server_buildium.buildium_sdk.models.budget_put_message import BudgetPutMessage
 
 class TestBudgetPutMessage(unittest.TestCase):
     """BudgetPutMessage unit test stubs"""

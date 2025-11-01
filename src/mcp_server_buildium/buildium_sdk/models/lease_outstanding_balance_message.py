@@ -20,7 +20,7 @@ import json
 from datetime import date, datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictFloat, StrictInt
 from typing import Any, ClassVar, Dict, List, Optional, Union
-from buildium_sdk.models.outstanding_balances_line_message import OutstandingBalancesLineMessage
+from mcp_server_buildium.buildium_sdk.models.outstanding_balances_line_message import OutstandingBalancesLineMessage
 from typing import Optional, Set
 from typing_extensions import Self
 

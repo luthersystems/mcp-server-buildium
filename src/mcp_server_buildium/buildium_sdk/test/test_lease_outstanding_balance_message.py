@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.lease_outstanding_balance_message import LeaseOutstandingBalanceMessage
+from mcp_server_buildium.buildium_sdk.models.lease_outstanding_balance_message import LeaseOutstandingBalanceMessage
 
 class TestLeaseOutstandingBalanceMessage(unittest.TestCase):
     """LeaseOutstandingBalanceMessage unit test stubs"""

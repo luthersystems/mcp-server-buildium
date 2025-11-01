@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.lease_renewal_post_message import LeaseRenewalPostMessage
+from mcp_server_buildium.buildium_sdk.models.lease_renewal_post_message import LeaseRenewalPostMessage
 
 class TestLeaseRenewalPostMessage(unittest.TestCase):
     """LeaseRenewalPostMessage unit test stubs"""

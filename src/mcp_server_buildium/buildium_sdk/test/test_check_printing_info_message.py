@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.check_printing_info_message import CheckPrintingInfoMessage
+from mcp_server_buildium.buildium_sdk.models.check_printing_info_message import CheckPrintingInfoMessage
 
 class TestCheckPrintingInfoMessage(unittest.TestCase):
     """CheckPrintingInfoMessage unit test stubs"""

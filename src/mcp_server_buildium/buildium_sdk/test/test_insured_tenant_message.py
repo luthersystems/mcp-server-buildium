@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.insured_tenant_message import InsuredTenantMessage
+from mcp_server_buildium.buildium_sdk.models.insured_tenant_message import InsuredTenantMessage
 
 class TestInsuredTenantMessage(unittest.TestCase):
     """InsuredTenantMessage unit test stubs"""

@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.application_reverse_payment_other_bank_charge_post_message import ApplicationReversePaymentOtherBankChargePostMessage
+from mcp_server_buildium.buildium_sdk.models.application_reverse_payment_other_bank_charge_post_message import ApplicationReversePaymentOtherBankChargePostMessage
 
 class TestApplicationReversePaymentOtherBankChargePostMessage(unittest.TestCase):
     """ApplicationReversePaymentOtherBankChargePostMessage unit test stubs"""

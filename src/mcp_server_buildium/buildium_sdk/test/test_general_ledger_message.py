@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.general_ledger_message import GeneralLedgerMessage
+from mcp_server_buildium.buildium_sdk.models.general_ledger_message import GeneralLedgerMessage
 
 class TestGeneralLedgerMessage(unittest.TestCase):
     """GeneralLedgerMessage unit test stubs"""

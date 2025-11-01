@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.lease_cosigner_post_message import LeaseCosignerPostMessage
+from mcp_server_buildium.buildium_sdk.models.lease_cosigner_post_message import LeaseCosignerPostMessage
 
 class TestLeaseCosignerPostMessage(unittest.TestCase):
     """LeaseCosignerPostMessage unit test stubs"""

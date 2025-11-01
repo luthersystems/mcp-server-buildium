@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.application_payment_line_save_message import ApplicationPaymentLineSaveMessage
+from mcp_server_buildium.buildium_sdk.models.application_payment_line_save_message import ApplicationPaymentLineSaveMessage
 
 class TestApplicationPaymentLineSaveMessage(unittest.TestCase):
     """ApplicationPaymentLineSaveMessage unit test stubs"""

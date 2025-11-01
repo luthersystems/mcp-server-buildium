@@ -20,8 +20,8 @@ import json
 from datetime import date
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
-from buildium_sdk.models.budget_details_message import BudgetDetailsMessage
-from buildium_sdk.models.property_message import PropertyMessage
+from mcp_server_buildium.buildium_sdk.models.budget_details_message import BudgetDetailsMessage
+from mcp_server_buildium.buildium_sdk.models.property_message import PropertyMessage
 from typing import Optional, Set
 from typing_extensions import Self
 

@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.json_patch_operation import JsonPatchOperation
+from mcp_server_buildium.buildium_sdk.models.json_patch_operation import JsonPatchOperation
 
 class TestJsonPatchOperation(unittest.TestCase):
     """JsonPatchOperation unit test stubs"""

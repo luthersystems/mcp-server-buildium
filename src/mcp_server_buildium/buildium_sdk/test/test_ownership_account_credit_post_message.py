@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.ownership_account_credit_post_message import OwnershipAccountCreditPostMessage
+from mcp_server_buildium.buildium_sdk.models.ownership_account_credit_post_message import OwnershipAccountCreditPostMessage
 
 class TestOwnershipAccountCreditPostMessage(unittest.TestCase):
     """OwnershipAccountCreditPostMessage unit test stubs"""

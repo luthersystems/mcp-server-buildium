@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.property_manager_message import PropertyManagerMessage
+from mcp_server_buildium.buildium_sdk.models.property_manager_message import PropertyManagerMessage
 
 class TestPropertyManagerMessage(unittest.TestCase):
     """PropertyManagerMessage unit test stubs"""

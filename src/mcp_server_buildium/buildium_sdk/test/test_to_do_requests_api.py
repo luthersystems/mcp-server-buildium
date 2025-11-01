@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.api.to_do_requests_api import ToDoRequestsApi
+from mcp_server_buildium.buildium_sdk.api.to_do_requests_api import ToDoRequestsApi
 
 
 class TestToDoRequestsApi(unittest.IsolatedAsyncioTestCase):

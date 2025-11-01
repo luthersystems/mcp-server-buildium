@@ -17,12 +17,12 @@ from typing import Any, Dict, List, Optional, Tuple, Union
 from typing_extensions import Annotated
 
 from pydantic import StrictInt
-from buildium_sdk.models.credit_card_account_message import CreditCardAccountMessage
-from buildium_sdk.models.credit_card_account_put_message import CreditCardAccountPutMessage
+from mcp_server_buildium.buildium_sdk.models.credit_card_account_message import CreditCardAccountMessage
+from mcp_server_buildium.buildium_sdk.models.credit_card_account_put_message import CreditCardAccountPutMessage
 
-from buildium_sdk.api_client import ApiClient, RequestSerialized
-from buildium_sdk.api_response import ApiResponse
-from buildium_sdk.rest import RESTResponseType
+from mcp_server_buildium.buildium_sdk.api_client import ApiClient, RequestSerialized
+from mcp_server_buildium.buildium_sdk.api_response import ApiResponse
+from mcp_server_buildium.buildium_sdk.rest import RESTResponseType
 
 
 class CreditCardAccountsApi:

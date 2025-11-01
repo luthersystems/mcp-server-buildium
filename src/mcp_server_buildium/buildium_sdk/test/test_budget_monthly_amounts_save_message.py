@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.budget_monthly_amounts_save_message import BudgetMonthlyAmountsSaveMessage
+from mcp_server_buildium.buildium_sdk.models.budget_monthly_amounts_save_message import BudgetMonthlyAmountsSaveMessage
 
 class TestBudgetMonthlyAmountsSaveMessage(unittest.TestCase):
     """BudgetMonthlyAmountsSaveMessage unit test stubs"""

@@ -19,8 +19,8 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
-from buildium_sdk.models.work_order_line_item_save_message import WorkOrderLineItemSaveMessage
-from buildium_sdk.models.work_order_task_post_message import WorkOrderTaskPostMessage
+from mcp_server_buildium.buildium_sdk.models.work_order_line_item_save_message import WorkOrderLineItemSaveMessage
+from mcp_server_buildium.buildium_sdk.models.work_order_task_post_message import WorkOrderTaskPostMessage
 from typing import Optional, Set
 from typing_extensions import Self
 

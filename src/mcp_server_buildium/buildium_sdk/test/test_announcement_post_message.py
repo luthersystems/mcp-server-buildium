@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.announcement_post_message import AnnouncementPostMessage
+from mcp_server_buildium.buildium_sdk.models.announcement_post_message import AnnouncementPostMessage
 
 class TestAnnouncementPostMessage(unittest.TestCase):
     """AnnouncementPostMessage unit test stubs"""

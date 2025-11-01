@@ -19,8 +19,8 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictFloat, StrictInt
 from typing import Any, ClassVar, Dict, List, Optional, Union
-from buildium_sdk.models.bank_reconciliation_cleared_balance_message import BankReconciliationClearedBalanceMessage
-from buildium_sdk.models.bank_reconciliation_statement_balance_message import BankReconciliationStatementBalanceMessage
+from mcp_server_buildium.buildium_sdk.models.bank_reconciliation_cleared_balance_message import BankReconciliationClearedBalanceMessage
+from mcp_server_buildium.buildium_sdk.models.bank_reconciliation_statement_balance_message import BankReconciliationStatementBalanceMessage
 from typing import Optional, Set
 from typing_extensions import Self
 

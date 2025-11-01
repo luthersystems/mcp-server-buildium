@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.lease_put_message import LeasePutMessage
+from mcp_server_buildium.buildium_sdk.models.lease_put_message import LeasePutMessage
 
 class TestLeasePutMessage(unittest.TestCase):
     """LeasePutMessage unit test stubs"""

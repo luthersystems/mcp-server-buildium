@@ -20,11 +20,11 @@ import json
 from datetime import date, datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictFloat, StrictInt, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional, Union
-from buildium_sdk.models.application_reference_message import ApplicationReferenceMessage
-from buildium_sdk.models.deposit_detail_message import DepositDetailMessage
-from buildium_sdk.models.general_ledger_journal_message import GeneralLedgerJournalMessage
-from buildium_sdk.models.payment_detail_message import PaymentDetailMessage
-from buildium_sdk.models.unit_agreement_message import UnitAgreementMessage
+from mcp_server_buildium.buildium_sdk.models.application_reference_message import ApplicationReferenceMessage
+from mcp_server_buildium.buildium_sdk.models.deposit_detail_message import DepositDetailMessage
+from mcp_server_buildium.buildium_sdk.models.general_ledger_journal_message import GeneralLedgerJournalMessage
+from mcp_server_buildium.buildium_sdk.models.payment_detail_message import PaymentDetailMessage
+from mcp_server_buildium.buildium_sdk.models.unit_agreement_message import UnitAgreementMessage
 from typing import Optional, Set
 from typing_extensions import Self
 

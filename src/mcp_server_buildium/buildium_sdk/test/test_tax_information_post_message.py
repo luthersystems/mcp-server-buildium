@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.tax_information_post_message import TaxInformationPostMessage
+from mcp_server_buildium.buildium_sdk.models.tax_information_post_message import TaxInformationPostMessage
 
 class TestTaxInformationPostMessage(unittest.TestCase):
     """TaxInformationPostMessage unit test stubs"""

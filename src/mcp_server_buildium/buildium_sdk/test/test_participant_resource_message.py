@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.participant_resource_message import ParticipantResourceMessage
+from mcp_server_buildium.buildium_sdk.models.participant_resource_message import ParticipantResourceMessage
 
 class TestParticipantResourceMessage(unittest.TestCase):
     """ParticipantResourceMessage unit test stubs"""

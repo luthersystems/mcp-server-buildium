@@ -20,7 +20,7 @@ import json
 from datetime import date
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
-from buildium_sdk.models.ownership_account_deposit_withholding_line_post_message import OwnershipAccountDepositWithholdingLinePostMessage
+from mcp_server_buildium.buildium_sdk.models.ownership_account_deposit_withholding_line_post_message import OwnershipAccountDepositWithholdingLinePostMessage
 from typing import Optional, Set
 from typing_extensions import Self
 

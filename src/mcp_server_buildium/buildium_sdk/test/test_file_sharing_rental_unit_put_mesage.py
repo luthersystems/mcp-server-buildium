@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.file_sharing_rental_unit_put_mesage import FileSharingRentalUnitPutMesage
+from mcp_server_buildium.buildium_sdk.models.file_sharing_rental_unit_put_mesage import FileSharingRentalUnitPutMesage
 
 class TestFileSharingRentalUnitPutMesage(unittest.TestCase):
     """FileSharingRentalUnitPutMesage unit test stubs"""

@@ -20,16 +20,16 @@ from datetime import datetime
 from pydantic import Field, StrictInt, StrictStr, field_validator
 from typing import List, Optional
 from typing_extensions import Annotated
-from buildium_sdk.models.note_message import NoteMessage
-from buildium_sdk.models.note_post_message import NotePostMessage
-from buildium_sdk.models.note_put_message import NotePutMessage
-from buildium_sdk.models.rental_owner_message import RentalOwnerMessage
-from buildium_sdk.models.rental_owner_post_message import RentalOwnerPostMessage
-from buildium_sdk.models.rental_owner_put_message import RentalOwnerPutMessage
+from mcp_server_buildium.buildium_sdk.models.note_message import NoteMessage
+from mcp_server_buildium.buildium_sdk.models.note_post_message import NotePostMessage
+from mcp_server_buildium.buildium_sdk.models.note_put_message import NotePutMessage
+from mcp_server_buildium.buildium_sdk.models.rental_owner_message import RentalOwnerMessage
+from mcp_server_buildium.buildium_sdk.models.rental_owner_post_message import RentalOwnerPostMessage
+from mcp_server_buildium.buildium_sdk.models.rental_owner_put_message import RentalOwnerPutMessage
 
-from buildium_sdk.api_client import ApiClient, RequestSerialized
-from buildium_sdk.api_response import ApiResponse
-from buildium_sdk.rest import RESTResponseType
+from mcp_server_buildium.buildium_sdk.api_client import ApiClient, RequestSerialized
+from mcp_server_buildium.buildium_sdk.api_response import ApiResponse
+from mcp_server_buildium.buildium_sdk.rest import RESTResponseType
 
 
 class RentalOwnersApi:

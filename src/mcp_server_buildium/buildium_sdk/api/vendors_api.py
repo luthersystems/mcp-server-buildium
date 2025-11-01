@@ -20,23 +20,23 @@ from datetime import date, datetime
 from pydantic import Field, StrictInt, StrictStr, field_validator
 from typing import List, Optional
 from typing_extensions import Annotated
-from buildium_sdk.models.note_message import NoteMessage
-from buildium_sdk.models.note_post_message import NotePostMessage
-from buildium_sdk.models.note_put_message import NotePutMessage
-from buildium_sdk.models.vendor_category_message import VendorCategoryMessage
-from buildium_sdk.models.vendor_category_save_message import VendorCategorySaveMessage
-from buildium_sdk.models.vendor_credit_message import VendorCreditMessage
-from buildium_sdk.models.vendor_credit_post_message import VendorCreditPostMessage
-from buildium_sdk.models.vendor_message import VendorMessage
-from buildium_sdk.models.vendor_post_message import VendorPostMessage
-from buildium_sdk.models.vendor_put_message import VendorPutMessage
-from buildium_sdk.models.vendor_refund_message import VendorRefundMessage
-from buildium_sdk.models.vendor_refund_post_message import VendorRefundPostMessage
-from buildium_sdk.models.vendor_transaction_message import VendorTransactionMessage
+from mcp_server_buildium.buildium_sdk.models.note_message import NoteMessage
+from mcp_server_buildium.buildium_sdk.models.note_post_message import NotePostMessage
+from mcp_server_buildium.buildium_sdk.models.note_put_message import NotePutMessage
+from mcp_server_buildium.buildium_sdk.models.vendor_category_message import VendorCategoryMessage
+from mcp_server_buildium.buildium_sdk.models.vendor_category_save_message import VendorCategorySaveMessage
+from mcp_server_buildium.buildium_sdk.models.vendor_credit_message import VendorCreditMessage
+from mcp_server_buildium.buildium_sdk.models.vendor_credit_post_message import VendorCreditPostMessage
+from mcp_server_buildium.buildium_sdk.models.vendor_message import VendorMessage
+from mcp_server_buildium.buildium_sdk.models.vendor_post_message import VendorPostMessage
+from mcp_server_buildium.buildium_sdk.models.vendor_put_message import VendorPutMessage
+from mcp_server_buildium.buildium_sdk.models.vendor_refund_message import VendorRefundMessage
+from mcp_server_buildium.buildium_sdk.models.vendor_refund_post_message import VendorRefundPostMessage
+from mcp_server_buildium.buildium_sdk.models.vendor_transaction_message import VendorTransactionMessage
 
-from buildium_sdk.api_client import ApiClient, RequestSerialized
-from buildium_sdk.api_response import ApiResponse
-from buildium_sdk.rest import RESTResponseType
+from mcp_server_buildium.buildium_sdk.api_client import ApiClient, RequestSerialized
+from mcp_server_buildium.buildium_sdk.api_response import ApiResponse
+from mcp_server_buildium.buildium_sdk.rest import RESTResponseType
 
 
 class VendorsApi:

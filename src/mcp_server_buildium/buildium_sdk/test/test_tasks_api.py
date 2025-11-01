@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.api.tasks_api import TasksApi
+from mcp_server_buildium.buildium_sdk.api.tasks_api import TasksApi
 
 
 class TestTasksApi(unittest.IsolatedAsyncioTestCase):

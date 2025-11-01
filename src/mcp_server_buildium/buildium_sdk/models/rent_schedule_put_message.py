@@ -19,7 +19,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List
-from buildium_sdk.models.rent_schedule_charge_put_message import RentScheduleChargePutMessage
+from mcp_server_buildium.buildium_sdk.models.rent_schedule_charge_put_message import RentScheduleChargePutMessage
 from typing import Optional, Set
 from typing_extensions import Self
 

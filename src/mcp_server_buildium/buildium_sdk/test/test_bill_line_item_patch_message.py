@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.bill_line_item_patch_message import BillLineItemPatchMessage
+from mcp_server_buildium.buildium_sdk.models.bill_line_item_patch_message import BillLineItemPatchMessage
 
 class TestBillLineItemPatchMessage(unittest.TestCase):
     """BillLineItemPatchMessage unit test stubs"""

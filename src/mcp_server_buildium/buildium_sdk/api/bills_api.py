@@ -20,21 +20,21 @@ from datetime import date
 from pydantic import Field, StrictInt, StrictStr, field_validator
 from typing import List, Optional
 from typing_extensions import Annotated
-from buildium_sdk.models.bill_file_message import BillFileMessage
-from buildium_sdk.models.bill_message import BillMessage
-from buildium_sdk.models.bill_patch_message import BillPatchMessage
-from buildium_sdk.models.bill_payment_message import BillPaymentMessage
-from buildium_sdk.models.bill_payment_post_message import BillPaymentPostMessage
-from buildium_sdk.models.bill_post_message import BillPostMessage
-from buildium_sdk.models.bill_put_message import BillPutMessage
-from buildium_sdk.models.file_download_message import FileDownloadMessage
-from buildium_sdk.models.file_name_post_message import FileNamePostMessage
-from buildium_sdk.models.file_upload_ticket_message import FileUploadTicketMessage
-from buildium_sdk.models.multiple_bill_payments_post_message import MultipleBillPaymentsPostMessage
+from mcp_server_buildium.buildium_sdk.models.bill_file_message import BillFileMessage
+from mcp_server_buildium.buildium_sdk.models.bill_message import BillMessage
+from mcp_server_buildium.buildium_sdk.models.bill_patch_message import BillPatchMessage
+from mcp_server_buildium.buildium_sdk.models.bill_payment_message import BillPaymentMessage
+from mcp_server_buildium.buildium_sdk.models.bill_payment_post_message import BillPaymentPostMessage
+from mcp_server_buildium.buildium_sdk.models.bill_post_message import BillPostMessage
+from mcp_server_buildium.buildium_sdk.models.bill_put_message import BillPutMessage
+from mcp_server_buildium.buildium_sdk.models.file_download_message import FileDownloadMessage
+from mcp_server_buildium.buildium_sdk.models.file_name_post_message import FileNamePostMessage
+from mcp_server_buildium.buildium_sdk.models.file_upload_ticket_message import FileUploadTicketMessage
+from mcp_server_buildium.buildium_sdk.models.multiple_bill_payments_post_message import MultipleBillPaymentsPostMessage
 
-from buildium_sdk.api_client import ApiClient, RequestSerialized
-from buildium_sdk.api_response import ApiResponse
-from buildium_sdk.rest import RESTResponseType
+from mcp_server_buildium.buildium_sdk.api_client import ApiClient, RequestSerialized
+from mcp_server_buildium.buildium_sdk.api_response import ApiResponse
+from mcp_server_buildium.buildium_sdk.rest import RESTResponseType
 
 
 class BillsApi:

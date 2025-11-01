@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.rental_appliance_service_history_message import RentalApplianceServiceHistoryMessage
+from mcp_server_buildium.buildium_sdk.models.rental_appliance_service_history_message import RentalApplianceServiceHistoryMessage
 
 class TestRentalApplianceServiceHistoryMessage(unittest.TestCase):
     """RentalApplianceServiceHistoryMessage unit test stubs"""

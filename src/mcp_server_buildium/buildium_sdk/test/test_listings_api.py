@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.api.listings_api import ListingsApi
+from mcp_server_buildium.buildium_sdk.api.listings_api import ListingsApi
 
 
 class TestListingsApi(unittest.IsolatedAsyncioTestCase):

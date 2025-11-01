@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.vendor_credit_line_item_message import VendorCreditLineItemMessage
+from mcp_server_buildium.buildium_sdk.models.vendor_credit_line_item_message import VendorCreditLineItemMessage
 
 class TestVendorCreditLineItemMessage(unittest.TestCase):
     """VendorCreditLineItemMessage unit test stubs"""

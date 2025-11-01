@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.rental_property_put_message import RentalPropertyPutMessage
+from mcp_server_buildium.buildium_sdk.models.rental_property_put_message import RentalPropertyPutMessage
 
 class TestRentalPropertyPutMessage(unittest.TestCase):
     """RentalPropertyPutMessage unit test stubs"""

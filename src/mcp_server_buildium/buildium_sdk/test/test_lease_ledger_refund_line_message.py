@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.lease_ledger_refund_line_message import LeaseLedgerRefundLineMessage
+from mcp_server_buildium.buildium_sdk.models.lease_ledger_refund_line_message import LeaseLedgerRefundLineMessage
 
 class TestLeaseLedgerRefundLineMessage(unittest.TestCase):
     """LeaseLedgerRefundLineMessage unit test stubs"""

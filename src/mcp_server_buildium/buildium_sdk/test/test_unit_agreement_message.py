@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.unit_agreement_message import UnitAgreementMessage
+from mcp_server_buildium.buildium_sdk.models.unit_agreement_message import UnitAgreementMessage
 
 class TestUnitAgreementMessage(unittest.TestCase):
     """UnitAgreementMessage unit test stubs"""

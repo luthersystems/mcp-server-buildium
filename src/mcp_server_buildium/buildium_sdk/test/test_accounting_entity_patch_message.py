@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.accounting_entity_patch_message import AccountingEntityPatchMessage
+from mcp_server_buildium.buildium_sdk.models.accounting_entity_patch_message import AccountingEntityPatchMessage
 
 class TestAccountingEntityPatchMessage(unittest.TestCase):
     """AccountingEntityPatchMessage unit test stubs"""

@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.work_order_line_item_save_message import WorkOrderLineItemSaveMessage
+from mcp_server_buildium.buildium_sdk.models.work_order_line_item_save_message import WorkOrderLineItemSaveMessage
 
 class TestWorkOrderLineItemSaveMessage(unittest.TestCase):
     """WorkOrderLineItemSaveMessage unit test stubs"""

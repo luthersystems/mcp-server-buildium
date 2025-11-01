@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.api.credit_card_accounts_api import CreditCardAccountsApi
+from mcp_server_buildium.buildium_sdk.api.credit_card_accounts_api import CreditCardAccountsApi
 
 
 class TestCreditCardAccountsApi(unittest.IsolatedAsyncioTestCase):

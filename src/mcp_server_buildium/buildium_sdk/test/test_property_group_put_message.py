@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.property_group_put_message import PropertyGroupPutMessage
+from mcp_server_buildium.buildium_sdk.models.property_group_put_message import PropertyGroupPutMessage
 
 class TestPropertyGroupPutMessage(unittest.TestCase):
     """PropertyGroupPutMessage unit test stubs"""

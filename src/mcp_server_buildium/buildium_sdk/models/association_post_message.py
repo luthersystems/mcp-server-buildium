@@ -20,8 +20,8 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictFloat, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional, Union
 from typing_extensions import Annotated
-from buildium_sdk.models.save_address_message import SaveAddressMessage
-from buildium_sdk.models.tax_information_post_message import TaxInformationPostMessage
+from mcp_server_buildium.buildium_sdk.models.save_address_message import SaveAddressMessage
+from mcp_server_buildium.buildium_sdk.models.tax_information_post_message import TaxInformationPostMessage
 from typing import Optional, Set
 from typing_extensions import Self
 

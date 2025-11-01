@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.resident_request_task_message import ResidentRequestTaskMessage
+from mcp_server_buildium.buildium_sdk.models.resident_request_task_message import ResidentRequestTaskMessage
 
 class TestResidentRequestTaskMessage(unittest.TestCase):
     """ResidentRequestTaskMessage unit test stubs"""

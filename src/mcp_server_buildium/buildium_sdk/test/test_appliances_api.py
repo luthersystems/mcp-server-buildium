@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.api.appliances_api import AppliancesApi
+from mcp_server_buildium.buildium_sdk.api.appliances_api import AppliancesApi
 
 
 class TestAppliancesApi(unittest.IsolatedAsyncioTestCase):

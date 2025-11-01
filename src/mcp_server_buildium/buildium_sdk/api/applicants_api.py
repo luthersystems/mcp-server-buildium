@@ -20,21 +20,21 @@ from datetime import datetime
 from pydantic import Field, StrictInt, StrictStr, field_validator
 from typing import List, Optional
 from typing_extensions import Annotated
-from buildium_sdk.models.applicant_details_message import ApplicantDetailsMessage
-from buildium_sdk.models.applicant_group_message import ApplicantGroupMessage
-from buildium_sdk.models.applicant_group_post_message import ApplicantGroupPostMessage
-from buildium_sdk.models.applicant_group_put_message import ApplicantGroupPutMessage
-from buildium_sdk.models.applicant_post_message import ApplicantPostMessage
-from buildium_sdk.models.applicant_put_message import ApplicantPutMessage
-from buildium_sdk.models.application_message import ApplicationMessage
-from buildium_sdk.models.application_put_message import ApplicationPutMessage
-from buildium_sdk.models.note_message import NoteMessage
-from buildium_sdk.models.note_post_message import NotePostMessage
-from buildium_sdk.models.note_put_message import NotePutMessage
+from mcp_server_buildium.buildium_sdk.models.applicant_details_message import ApplicantDetailsMessage
+from mcp_server_buildium.buildium_sdk.models.applicant_group_message import ApplicantGroupMessage
+from mcp_server_buildium.buildium_sdk.models.applicant_group_post_message import ApplicantGroupPostMessage
+from mcp_server_buildium.buildium_sdk.models.applicant_group_put_message import ApplicantGroupPutMessage
+from mcp_server_buildium.buildium_sdk.models.applicant_post_message import ApplicantPostMessage
+from mcp_server_buildium.buildium_sdk.models.applicant_put_message import ApplicantPutMessage
+from mcp_server_buildium.buildium_sdk.models.application_message import ApplicationMessage
+from mcp_server_buildium.buildium_sdk.models.application_put_message import ApplicationPutMessage
+from mcp_server_buildium.buildium_sdk.models.note_message import NoteMessage
+from mcp_server_buildium.buildium_sdk.models.note_post_message import NotePostMessage
+from mcp_server_buildium.buildium_sdk.models.note_put_message import NotePutMessage
 
-from buildium_sdk.api_client import ApiClient, RequestSerialized
-from buildium_sdk.api_response import ApiResponse
-from buildium_sdk.rest import RESTResponseType
+from mcp_server_buildium.buildium_sdk.api_client import ApiClient, RequestSerialized
+from mcp_server_buildium.buildium_sdk.api_response import ApiResponse
+from mcp_server_buildium.buildium_sdk.rest import RESTResponseType
 
 
 class ApplicantsApi:

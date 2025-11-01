@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.bank_account_transfer_accounting_entity_save_message import BankAccountTransferAccountingEntitySaveMessage
+from mcp_server_buildium.buildium_sdk.models.bank_account_transfer_accounting_entity_save_message import BankAccountTransferAccountingEntitySaveMessage
 
 class TestBankAccountTransferAccountingEntitySaveMessage(unittest.TestCase):
     """BankAccountTransferAccountingEntitySaveMessage unit test stubs"""

@@ -20,8 +20,8 @@ import json
 from datetime import date
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
-from buildium_sdk.models.accounting_entity_save_message import AccountingEntitySaveMessage
-from buildium_sdk.models.general_journal_entry_line_save_message import GeneralJournalEntryLineSaveMessage
+from mcp_server_buildium.buildium_sdk.models.accounting_entity_save_message import AccountingEntitySaveMessage
+from mcp_server_buildium.buildium_sdk.models.general_journal_entry_line_save_message import GeneralJournalEntryLineSaveMessage
 from typing import Optional, Set
 from typing_extensions import Self
 

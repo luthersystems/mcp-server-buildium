@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.accounting_settings_message import AccountingSettingsMessage
+from mcp_server_buildium.buildium_sdk.models.accounting_settings_message import AccountingSettingsMessage
 
 class TestAccountingSettingsMessage(unittest.TestCase):
     """AccountingSettingsMessage unit test stubs"""

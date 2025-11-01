@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.lease_recurring_credit_message import LeaseRecurringCreditMessage
+from mcp_server_buildium.buildium_sdk.models.lease_recurring_credit_message import LeaseRecurringCreditMessage
 
 class TestLeaseRecurringCreditMessage(unittest.TestCase):
     """LeaseRecurringCreditMessage unit test stubs"""

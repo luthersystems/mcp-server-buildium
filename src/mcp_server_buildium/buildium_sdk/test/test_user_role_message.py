@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.user_role_message import UserRoleMessage
+from mcp_server_buildium.buildium_sdk.models.user_role_message import UserRoleMessage
 
 class TestUserRoleMessage(unittest.TestCase):
     """UserRoleMessage unit test stubs"""

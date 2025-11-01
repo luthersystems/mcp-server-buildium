@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.requested_by_user_entity_message import RequestedByUserEntityMessage
+from mcp_server_buildium.buildium_sdk.models.requested_by_user_entity_message import RequestedByUserEntityMessage
 
 class TestRequestedByUserEntityMessage(unittest.TestCase):
     """RequestedByUserEntityMessage unit test stubs"""

@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.ownership_account_recurring_credit_message import OwnershipAccountRecurringCreditMessage
+from mcp_server_buildium.buildium_sdk.models.ownership_account_recurring_credit_message import OwnershipAccountRecurringCreditMessage
 
 class TestOwnershipAccountRecurringCreditMessage(unittest.TestCase):
     """OwnershipAccountRecurringCreditMessage unit test stubs"""

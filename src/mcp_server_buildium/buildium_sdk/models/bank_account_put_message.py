@@ -20,7 +20,7 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
-from buildium_sdk.models.check_printing_info_put_message import CheckPrintingInfoPutMessage
+from mcp_server_buildium.buildium_sdk.models.check_printing_info_put_message import CheckPrintingInfoPutMessage
 from typing import Optional, Set
 from typing_extensions import Self
 

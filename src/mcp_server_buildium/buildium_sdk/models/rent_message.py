@@ -20,7 +20,7 @@ import json
 from datetime import date, datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictFloat, StrictInt, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional, Union
-from buildium_sdk.models.lease_rent_charge_message import LeaseRentChargeMessage
+from mcp_server_buildium.buildium_sdk.models.lease_rent_charge_message import LeaseRentChargeMessage
 from typing import Optional, Set
 from typing_extensions import Self
 

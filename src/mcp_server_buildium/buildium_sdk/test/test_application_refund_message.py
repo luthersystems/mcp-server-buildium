@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.application_refund_message import ApplicationRefundMessage
+from mcp_server_buildium.buildium_sdk.models.application_refund_message import ApplicationRefundMessage
 
 class TestApplicationRefundMessage(unittest.TestCase):
     """ApplicationRefundMessage unit test stubs"""

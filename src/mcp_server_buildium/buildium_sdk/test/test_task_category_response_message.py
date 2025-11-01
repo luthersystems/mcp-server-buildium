@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.task_category_response_message import TaskCategoryResponseMessage
+from mcp_server_buildium.buildium_sdk.models.task_category_response_message import TaskCategoryResponseMessage
 
 class TestTaskCategoryResponseMessage(unittest.TestCase):
     """TaskCategoryResponseMessage unit test stubs"""

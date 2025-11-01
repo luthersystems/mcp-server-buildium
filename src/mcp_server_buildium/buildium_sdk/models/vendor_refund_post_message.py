@@ -20,7 +20,7 @@ import json
 from datetime import date
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
-from buildium_sdk.models.vendor_refund_line_post_message import VendorRefundLinePostMessage
+from mcp_server_buildium.buildium_sdk.models.vendor_refund_line_post_message import VendorRefundLinePostMessage
 from typing import Optional, Set
 from typing_extensions import Self
 

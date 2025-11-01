@@ -19,7 +19,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
-from buildium_sdk.models.api_error import ApiError
+from mcp_server_buildium.buildium_sdk.models.api_error import ApiError
 from typing import Optional, Set
 from typing_extensions import Self
 

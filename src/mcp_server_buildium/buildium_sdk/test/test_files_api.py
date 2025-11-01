@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.api.files_api import FilesApi
+from mcp_server_buildium.buildium_sdk.api.files_api import FilesApi
 
 
 class TestFilesApi(unittest.IsolatedAsyncioTestCase):

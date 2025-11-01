@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.association_tax_information_message import AssociationTaxInformationMessage
+from mcp_server_buildium.buildium_sdk.models.association_tax_information_message import AssociationTaxInformationMessage
 
 class TestAssociationTaxInformationMessage(unittest.TestCase):
     """AssociationTaxInformationMessage unit test stubs"""

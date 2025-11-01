@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.application_response_field_message import ApplicationResponseFieldMessage
+from mcp_server_buildium.buildium_sdk.models.application_response_field_message import ApplicationResponseFieldMessage
 
 class TestApplicationResponseFieldMessage(unittest.TestCase):
     """ApplicationResponseFieldMessage unit test stubs"""

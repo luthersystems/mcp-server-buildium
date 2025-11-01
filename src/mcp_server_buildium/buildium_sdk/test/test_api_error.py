@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.api_error import ApiError
+from mcp_server_buildium.buildium_sdk.models.api_error import ApiError
 
 class TestApiError(unittest.TestCase):
     """ApiError unit test stubs"""

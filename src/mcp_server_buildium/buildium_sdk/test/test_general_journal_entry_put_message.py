@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.general_journal_entry_put_message import GeneralJournalEntryPutMessage
+from mcp_server_buildium.buildium_sdk.models.general_journal_entry_put_message import GeneralJournalEntryPutMessage
 
 class TestGeneralJournalEntryPutMessage(unittest.TestCase):
     """GeneralJournalEntryPutMessage unit test stubs"""

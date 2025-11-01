@@ -19,7 +19,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictInt
 from typing import Any, ClassVar, Dict, List, Optional
-from buildium_sdk.models.payment_transactions_message import PaymentTransactionsMessage
+from mcp_server_buildium.buildium_sdk.models.payment_transactions_message import PaymentTransactionsMessage
 from typing import Optional, Set
 from typing_extensions import Self
 

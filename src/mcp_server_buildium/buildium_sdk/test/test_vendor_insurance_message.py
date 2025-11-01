@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.vendor_insurance_message import VendorInsuranceMessage
+from mcp_server_buildium.buildium_sdk.models.vendor_insurance_message import VendorInsuranceMessage
 
 class TestVendorInsuranceMessage(unittest.TestCase):
     """VendorInsuranceMessage unit test stubs"""

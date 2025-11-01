@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.api.work_orders_api import WorkOrdersApi
+from mcp_server_buildium.buildium_sdk.api.work_orders_api import WorkOrdersApi
 
 
 class TestWorkOrdersApi(unittest.IsolatedAsyncioTestCase):

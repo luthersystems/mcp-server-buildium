@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.unsubmitted_application_message import UnsubmittedApplicationMessage
+from mcp_server_buildium.buildium_sdk.models.unsubmitted_application_message import UnsubmittedApplicationMessage
 
 class TestUnsubmittedApplicationMessage(unittest.TestCase):
     """UnsubmittedApplicationMessage unit test stubs"""

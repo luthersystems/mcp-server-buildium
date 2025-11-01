@@ -19,7 +19,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List
-from buildium_sdk.models.lease_rent_charge_post_message import LeaseRentChargePostMessage
+from mcp_server_buildium.buildium_sdk.models.lease_rent_charge_post_message import LeaseRentChargePostMessage
 from typing import Optional, Set
 from typing_extensions import Self
 

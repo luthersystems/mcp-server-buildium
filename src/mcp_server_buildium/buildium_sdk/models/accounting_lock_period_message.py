@@ -19,8 +19,8 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictInt
 from typing import Any, ClassVar, Dict, List, Optional
-from buildium_sdk.models.lock_period_settings_global_message import LockPeriodSettingsGlobalMessage
-from buildium_sdk.models.lock_period_settings_overrides_message import LockPeriodSettingsOverridesMessage
+from mcp_server_buildium.buildium_sdk.models.lock_period_settings_global_message import LockPeriodSettingsGlobalMessage
+from mcp_server_buildium.buildium_sdk.models.lock_period_settings_overrides_message import LockPeriodSettingsOverridesMessage
 from typing import Optional, Set
 from typing_extensions import Self
 

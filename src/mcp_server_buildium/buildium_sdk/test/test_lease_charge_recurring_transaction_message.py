@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.lease_charge_recurring_transaction_message import LeaseChargeRecurringTransactionMessage
+from mcp_server_buildium.buildium_sdk.models.lease_charge_recurring_transaction_message import LeaseChargeRecurringTransactionMessage
 
 class TestLeaseChargeRecurringTransactionMessage(unittest.TestCase):
     """LeaseChargeRecurringTransactionMessage unit test stubs"""

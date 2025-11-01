@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.application_section_response_message import ApplicationSectionResponseMessage
+from mcp_server_buildium.buildium_sdk.models.application_section_response_message import ApplicationSectionResponseMessage
 
 class TestApplicationSectionResponseMessage(unittest.TestCase):
     """ApplicationSectionResponseMessage unit test stubs"""

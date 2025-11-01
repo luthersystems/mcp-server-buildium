@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.api.property_groups_api import PropertyGroupsApi
+from mcp_server_buildium.buildium_sdk.api.property_groups_api import PropertyGroupsApi
 
 
 class TestPropertyGroupsApi(unittest.IsolatedAsyncioTestCase):

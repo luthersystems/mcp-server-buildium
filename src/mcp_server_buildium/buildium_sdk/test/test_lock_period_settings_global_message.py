@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.lock_period_settings_global_message import LockPeriodSettingsGlobalMessage
+from mcp_server_buildium.buildium_sdk.models.lock_period_settings_global_message import LockPeriodSettingsGlobalMessage
 
 class TestLockPeriodSettingsGlobalMessage(unittest.TestCase):
     """LockPeriodSettingsGlobalMessage unit test stubs"""

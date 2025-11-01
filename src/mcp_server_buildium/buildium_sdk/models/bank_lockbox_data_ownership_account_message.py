@@ -19,8 +19,8 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
-from buildium_sdk.models.address_message import AddressMessage
-from buildium_sdk.models.bank_lockbox_data_association_owner_message import BankLockboxDataAssociationOwnerMessage
+from mcp_server_buildium.buildium_sdk.models.address_message import AddressMessage
+from mcp_server_buildium.buildium_sdk.models.bank_lockbox_data_association_owner_message import BankLockboxDataAssociationOwnerMessage
 from typing import Optional, Set
 from typing_extensions import Self
 

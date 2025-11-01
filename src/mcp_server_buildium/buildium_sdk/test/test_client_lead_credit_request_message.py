@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.client_lead_credit_request_message import ClientLeadCreditRequestMessage
+from mcp_server_buildium.buildium_sdk.models.client_lead_credit_request_message import ClientLeadCreditRequestMessage
 
 class TestClientLeadCreditRequestMessage(unittest.TestCase):
     """ClientLeadCreditRequestMessage unit test stubs"""

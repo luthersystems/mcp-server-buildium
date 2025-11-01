@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.cosigner_message import CosignerMessage
+from mcp_server_buildium.buildium_sdk.models.cosigner_message import CosignerMessage
 
 class TestCosignerMessage(unittest.TestCase):
     """CosignerMessage unit test stubs"""

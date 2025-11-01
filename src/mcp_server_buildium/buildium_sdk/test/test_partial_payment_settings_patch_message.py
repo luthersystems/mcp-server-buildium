@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.partial_payment_settings_patch_message import PartialPaymentSettingsPatchMessage
+from mcp_server_buildium.buildium_sdk.models.partial_payment_settings_patch_message import PartialPaymentSettingsPatchMessage
 
 class TestPartialPaymentSettingsPatchMessage(unittest.TestCase):
     """PartialPaymentSettingsPatchMessage unit test stubs"""

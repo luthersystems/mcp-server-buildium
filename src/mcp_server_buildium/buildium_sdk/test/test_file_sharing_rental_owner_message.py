@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.file_sharing_rental_owner_message import FileSharingRentalOwnerMessage
+from mcp_server_buildium.buildium_sdk.models.file_sharing_rental_owner_message import FileSharingRentalOwnerMessage
 
 class TestFileSharingRentalOwnerMessage(unittest.TestCase):
     """FileSharingRentalOwnerMessage unit test stubs"""

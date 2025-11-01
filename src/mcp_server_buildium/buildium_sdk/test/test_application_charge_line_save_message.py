@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.application_charge_line_save_message import ApplicationChargeLineSaveMessage
+from mcp_server_buildium.buildium_sdk.models.application_charge_line_save_message import ApplicationChargeLineSaveMessage
 
 class TestApplicationChargeLineSaveMessage(unittest.TestCase):
     """ApplicationChargeLineSaveMessage unit test stubs"""

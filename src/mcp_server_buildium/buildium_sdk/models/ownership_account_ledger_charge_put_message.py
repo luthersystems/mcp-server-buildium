@@ -20,7 +20,7 @@ import json
 from datetime import date
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
-from buildium_sdk.models.ownership_account_ledger_charge_lines_put_message import OwnershipAccountLedgerChargeLinesPutMessage
+from mcp_server_buildium.buildium_sdk.models.ownership_account_ledger_charge_lines_put_message import OwnershipAccountLedgerChargeLinesPutMessage
 from typing import Optional, Set
 from typing_extensions import Self
 

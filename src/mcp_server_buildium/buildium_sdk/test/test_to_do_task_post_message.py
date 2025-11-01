@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.to_do_task_post_message import ToDoTaskPostMessage
+from mcp_server_buildium.buildium_sdk.models.to_do_task_post_message import ToDoTaskPostMessage
 
 class TestToDoTaskPostMessage(unittest.TestCase):
     """ToDoTaskPostMessage unit test stubs"""

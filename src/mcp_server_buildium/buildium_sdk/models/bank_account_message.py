@@ -19,9 +19,9 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictFloat, StrictInt, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional, Union
-from buildium_sdk.models.check_printing_info_message import CheckPrintingInfoMessage
-from buildium_sdk.models.electronic_payments_message import ElectronicPaymentsMessage
-from buildium_sdk.models.gl_account_message import GLAccountMessage
+from mcp_server_buildium.buildium_sdk.models.check_printing_info_message import CheckPrintingInfoMessage
+from mcp_server_buildium.buildium_sdk.models.electronic_payments_message import ElectronicPaymentsMessage
+from mcp_server_buildium.buildium_sdk.models.gl_account_message import GLAccountMessage
 from typing import Optional, Set
 from typing_extensions import Self
 

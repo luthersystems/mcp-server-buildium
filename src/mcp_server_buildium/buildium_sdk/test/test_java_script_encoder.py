@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.java_script_encoder import JavaScriptEncoder
+from mcp_server_buildium.buildium_sdk.models.java_script_encoder import JavaScriptEncoder
 
 class TestJavaScriptEncoder(unittest.TestCase):
     """JavaScriptEncoder unit test stubs"""

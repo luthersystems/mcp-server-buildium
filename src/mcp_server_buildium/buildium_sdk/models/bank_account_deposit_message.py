@@ -20,7 +20,7 @@ import json
 from datetime import date
 from pydantic import BaseModel, ConfigDict, Field, StrictFloat, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional, Union
-from buildium_sdk.models.bank_account_deposit_line_message import BankAccountDepositLineMessage
+from mcp_server_buildium.buildium_sdk.models.bank_account_deposit_line_message import BankAccountDepositLineMessage
 from typing import Optional, Set
 from typing_extensions import Self
 

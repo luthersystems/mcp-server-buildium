@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.gl_account_balance_message import GLAccountBalanceMessage
+from mcp_server_buildium.buildium_sdk.models.gl_account_balance_message import GLAccountBalanceMessage
 
 class TestGLAccountBalanceMessage(unittest.TestCase):
     """GLAccountBalanceMessage unit test stubs"""

@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.unit_entity_message import UnitEntityMessage
+from mcp_server_buildium.buildium_sdk.models.unit_entity_message import UnitEntityMessage
 
 class TestUnitEntityMessage(unittest.TestCase):
     """UnitEntityMessage unit test stubs"""

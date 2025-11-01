@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.api.contact_requests_api import ContactRequestsApi
+from mcp_server_buildium.buildium_sdk.api.contact_requests_api import ContactRequestsApi
 
 
 class TestContactRequestsApi(unittest.IsolatedAsyncioTestCase):

@@ -19,8 +19,8 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
-from buildium_sdk.models.rental_owner_contribution_message import RentalOwnerContributionMessage
-from buildium_sdk.models.rental_owner_contribution_reminder_message import RentalOwnerContributionReminderMessage
+from mcp_server_buildium.buildium_sdk.models.rental_owner_contribution_message import RentalOwnerContributionMessage
+from mcp_server_buildium.buildium_sdk.models.rental_owner_contribution_reminder_message import RentalOwnerContributionReminderMessage
 from typing import Optional, Set
 from typing_extensions import Self
 

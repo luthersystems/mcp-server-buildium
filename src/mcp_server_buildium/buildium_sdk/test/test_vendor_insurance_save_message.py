@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.vendor_insurance_save_message import VendorInsuranceSaveMessage
+from mcp_server_buildium.buildium_sdk.models.vendor_insurance_save_message import VendorInsuranceSaveMessage
 
 class TestVendorInsuranceSaveMessage(unittest.TestCase):
     """VendorInsuranceSaveMessage unit test stubs"""

@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.rental_appliance_put_message import RentalAppliancePutMessage
+from mcp_server_buildium.buildium_sdk.models.rental_appliance_put_message import RentalAppliancePutMessage
 
 class TestRentalAppliancePutMessage(unittest.TestCase):
     """RentalAppliancePutMessage unit test stubs"""

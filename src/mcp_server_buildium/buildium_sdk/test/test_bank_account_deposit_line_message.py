@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.bank_account_deposit_line_message import BankAccountDepositLineMessage
+from mcp_server_buildium.buildium_sdk.models.bank_account_deposit_line_message import BankAccountDepositLineMessage
 
 class TestBankAccountDepositLineMessage(unittest.TestCase):
     """BankAccountDepositLineMessage unit test stubs"""

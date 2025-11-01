@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.association_appliance_service_history_message import AssociationApplianceServiceHistoryMessage
+from mcp_server_buildium.buildium_sdk.models.association_appliance_service_history_message import AssociationApplianceServiceHistoryMessage
 
 class TestAssociationApplianceServiceHistoryMessage(unittest.TestCase):
     """AssociationApplianceServiceHistoryMessage unit test stubs"""

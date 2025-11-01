@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.api.bank_accounts_api import BankAccountsApi
+from mcp_server_buildium.buildium_sdk.api.bank_accounts_api import BankAccountsApi
 
 
 class TestBankAccountsApi(unittest.IsolatedAsyncioTestCase):

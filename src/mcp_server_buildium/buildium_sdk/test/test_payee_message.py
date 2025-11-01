@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.payee_message import PayeeMessage
+from mcp_server_buildium.buildium_sdk.models.payee_message import PayeeMessage
 
 class TestPayeeMessage(unittest.TestCase):
     """PayeeMessage unit test stubs"""

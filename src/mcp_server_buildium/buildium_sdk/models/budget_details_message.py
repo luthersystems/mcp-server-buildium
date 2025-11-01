@@ -19,7 +19,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictFloat, StrictInt, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional, Union
-from buildium_sdk.models.budget_monthly_amounts_message import BudgetMonthlyAmountsMessage
+from mcp_server_buildium.buildium_sdk.models.budget_monthly_amounts_message import BudgetMonthlyAmountsMessage
 from typing import Optional, Set
 from typing_extensions import Self
 

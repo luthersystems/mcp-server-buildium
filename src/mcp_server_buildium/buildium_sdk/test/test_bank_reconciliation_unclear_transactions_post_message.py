@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.bank_reconciliation_unclear_transactions_post_message import BankReconciliationUnclearTransactionsPostMessage
+from mcp_server_buildium.buildium_sdk.models.bank_reconciliation_unclear_transactions_post_message import BankReconciliationUnclearTransactionsPostMessage
 
 class TestBankReconciliationUnclearTransactionsPostMessage(unittest.TestCase):
     """BankReconciliationUnclearTransactionsPostMessage unit test stubs"""

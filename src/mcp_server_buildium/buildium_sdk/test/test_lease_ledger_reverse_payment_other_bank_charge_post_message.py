@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.lease_ledger_reverse_payment_other_bank_charge_post_message import LeaseLedgerReversePaymentOtherBankChargePostMessage
+from mcp_server_buildium.buildium_sdk.models.lease_ledger_reverse_payment_other_bank_charge_post_message import LeaseLedgerReversePaymentOtherBankChargePostMessage
 
 class TestLeaseLedgerReversePaymentOtherBankChargePostMessage(unittest.TestCase):
     """LeaseLedgerReversePaymentOtherBankChargePostMessage unit test stubs"""

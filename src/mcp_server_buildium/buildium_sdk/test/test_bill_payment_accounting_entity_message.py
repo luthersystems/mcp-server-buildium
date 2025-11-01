@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.bill_payment_accounting_entity_message import BillPaymentAccountingEntityMessage
+from mcp_server_buildium.buildium_sdk.models.bill_payment_accounting_entity_message import BillPaymentAccountingEntityMessage
 
 class TestBillPaymentAccountingEntityMessage(unittest.TestCase):
     """BillPaymentAccountingEntityMessage unit test stubs"""

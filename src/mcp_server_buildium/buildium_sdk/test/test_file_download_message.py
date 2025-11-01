@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.file_download_message import FileDownloadMessage
+from mcp_server_buildium.buildium_sdk.models.file_download_message import FileDownloadMessage
 
 class TestFileDownloadMessage(unittest.TestCase):
     """FileDownloadMessage unit test stubs"""

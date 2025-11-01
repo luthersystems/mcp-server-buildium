@@ -20,7 +20,7 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
-from buildium_sdk.models.phone_numbers_message import PhoneNumbersMessage
+from mcp_server_buildium.buildium_sdk.models.phone_numbers_message import PhoneNumbersMessage
 from typing import Optional, Set
 from typing_extensions import Self
 

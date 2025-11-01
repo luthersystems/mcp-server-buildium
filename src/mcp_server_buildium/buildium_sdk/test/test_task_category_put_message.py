@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.task_category_put_message import TaskCategoryPutMessage
+from mcp_server_buildium.buildium_sdk.models.task_category_put_message import TaskCategoryPutMessage
 
 class TestTaskCategoryPutMessage(unittest.TestCase):
     """TaskCategoryPutMessage unit test stubs"""

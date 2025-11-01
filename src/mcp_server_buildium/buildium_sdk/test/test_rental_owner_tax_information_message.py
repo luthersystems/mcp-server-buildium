@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.rental_owner_tax_information_message import RentalOwnerTaxInformationMessage
+from mcp_server_buildium.buildium_sdk.models.rental_owner_tax_information_message import RentalOwnerTaxInformationMessage
 
 class TestRentalOwnerTaxInformationMessage(unittest.TestCase):
     """RentalOwnerTaxInformationMessage unit test stubs"""

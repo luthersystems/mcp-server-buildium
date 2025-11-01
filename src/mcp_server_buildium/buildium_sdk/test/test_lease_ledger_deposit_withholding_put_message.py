@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.lease_ledger_deposit_withholding_put_message import LeaseLedgerDepositWithholdingPutMessage
+from mcp_server_buildium.buildium_sdk.models.lease_ledger_deposit_withholding_put_message import LeaseLedgerDepositWithholdingPutMessage
 
 class TestLeaseLedgerDepositWithholdingPutMessage(unittest.TestCase):
     """LeaseLedgerDepositWithholdingPutMessage unit test stubs"""

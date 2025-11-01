@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.bill_message import BillMessage
+from mcp_server_buildium.buildium_sdk.models.bill_message import BillMessage
 
 class TestBillMessage(unittest.TestCase):
     """BillMessage unit test stubs"""

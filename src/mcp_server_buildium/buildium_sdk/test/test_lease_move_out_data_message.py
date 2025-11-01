@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.lease_move_out_data_message import LeaseMoveOutDataMessage
+from mcp_server_buildium.buildium_sdk.models.lease_move_out_data_message import LeaseMoveOutDataMessage
 
 class TestLeaseMoveOutDataMessage(unittest.TestCase):
     """LeaseMoveOutDataMessage unit test stubs"""

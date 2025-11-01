@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.image_reorder_request_put_message import ImageReorderRequestPutMessage
+from mcp_server_buildium.buildium_sdk.models.image_reorder_request_put_message import ImageReorderRequestPutMessage
 
 class TestImageReorderRequestPutMessage(unittest.TestCase):
     """ImageReorderRequestPutMessage unit test stubs"""

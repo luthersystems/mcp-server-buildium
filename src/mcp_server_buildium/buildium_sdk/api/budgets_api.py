@@ -19,13 +19,13 @@ from typing_extensions import Annotated
 from pydantic import Field, StrictInt, StrictStr
 from typing import List, Optional
 from typing_extensions import Annotated
-from buildium_sdk.models.budget_message import BudgetMessage
-from buildium_sdk.models.budget_post_message import BudgetPostMessage
-from buildium_sdk.models.budget_put_message import BudgetPutMessage
+from mcp_server_buildium.buildium_sdk.models.budget_message import BudgetMessage
+from mcp_server_buildium.buildium_sdk.models.budget_post_message import BudgetPostMessage
+from mcp_server_buildium.buildium_sdk.models.budget_put_message import BudgetPutMessage
 
-from buildium_sdk.api_client import ApiClient, RequestSerialized
-from buildium_sdk.api_response import ApiResponse
-from buildium_sdk.rest import RESTResponseType
+from mcp_server_buildium.buildium_sdk.api_client import ApiClient, RequestSerialized
+from mcp_server_buildium.buildium_sdk.api_response import ApiResponse
+from mcp_server_buildium.buildium_sdk.rest import RESTResponseType
 
 
 class BudgetsApi:

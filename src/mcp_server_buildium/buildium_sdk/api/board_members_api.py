@@ -20,13 +20,13 @@ from datetime import datetime
 from pydantic import Field, StrictInt, StrictStr, field_validator
 from typing import List, Optional
 from typing_extensions import Annotated
-from buildium_sdk.models.association_board_member_message import AssociationBoardMemberMessage
-from buildium_sdk.models.association_board_member_post_message import AssociationBoardMemberPostMessage
-from buildium_sdk.models.association_board_member_put_message import AssociationBoardMemberPutMessage
+from mcp_server_buildium.buildium_sdk.models.association_board_member_message import AssociationBoardMemberMessage
+from mcp_server_buildium.buildium_sdk.models.association_board_member_post_message import AssociationBoardMemberPostMessage
+from mcp_server_buildium.buildium_sdk.models.association_board_member_put_message import AssociationBoardMemberPutMessage
 
-from buildium_sdk.api_client import ApiClient, RequestSerialized
-from buildium_sdk.api_response import ApiResponse
-from buildium_sdk.rest import RESTResponseType
+from mcp_server_buildium.buildium_sdk.api_client import ApiClient, RequestSerialized
+from mcp_server_buildium.buildium_sdk.api_response import ApiResponse
+from mcp_server_buildium.buildium_sdk.rest import RESTResponseType
 
 
 class BoardMembersApi:

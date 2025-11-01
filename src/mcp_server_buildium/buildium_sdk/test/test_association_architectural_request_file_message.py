@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.association_architectural_request_file_message import AssociationArchitecturalRequestFileMessage
+from mcp_server_buildium.buildium_sdk.models.association_architectural_request_file_message import AssociationArchitecturalRequestFileMessage
 
 class TestAssociationArchitecturalRequestFileMessage(unittest.TestCase):
     """AssociationArchitecturalRequestFileMessage unit test stubs"""

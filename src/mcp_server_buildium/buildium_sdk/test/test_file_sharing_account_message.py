@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.file_sharing_account_message import FileSharingAccountMessage
+from mcp_server_buildium.buildium_sdk.models.file_sharing_account_message import FileSharingAccountMessage
 
 class TestFileSharingAccountMessage(unittest.TestCase):
     """FileSharingAccountMessage unit test stubs"""

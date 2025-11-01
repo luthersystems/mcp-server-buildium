@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.task_sub_category_message import TaskSubCategoryMessage
+from mcp_server_buildium.buildium_sdk.models.task_sub_category_message import TaskSubCategoryMessage
 
 class TestTaskSubCategoryMessage(unittest.TestCase):
     """TaskSubCategoryMessage unit test stubs"""

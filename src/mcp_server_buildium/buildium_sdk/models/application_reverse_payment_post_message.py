@@ -20,8 +20,8 @@ import json
 from datetime import date
 from pydantic import BaseModel, ConfigDict, Field, StrictInt
 from typing import Any, ClassVar, Dict, List, Optional
-from buildium_sdk.models.application_reverse_payment_charge_post_message import ApplicationReversePaymentChargePostMessage
-from buildium_sdk.models.application_reverse_payment_other_bank_charge_post_message import ApplicationReversePaymentOtherBankChargePostMessage
+from mcp_server_buildium.buildium_sdk.models.application_reverse_payment_charge_post_message import ApplicationReversePaymentChargePostMessage
+from mcp_server_buildium.buildium_sdk.models.application_reverse_payment_other_bank_charge_post_message import ApplicationReversePaymentOtherBankChargePostMessage
 from typing import Optional, Set
 from typing_extensions import Self
 

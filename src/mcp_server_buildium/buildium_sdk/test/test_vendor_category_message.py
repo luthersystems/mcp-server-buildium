@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.vendor_category_message import VendorCategoryMessage
+from mcp_server_buildium.buildium_sdk.models.vendor_category_message import VendorCategoryMessage
 
 class TestVendorCategoryMessage(unittest.TestCase):
     """VendorCategoryMessage unit test stubs"""

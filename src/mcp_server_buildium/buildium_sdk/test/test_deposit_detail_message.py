@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.deposit_detail_message import DepositDetailMessage
+from mcp_server_buildium.buildium_sdk.models.deposit_detail_message import DepositDetailMessage
 
 class TestDepositDetailMessage(unittest.TestCase):
     """DepositDetailMessage unit test stubs"""

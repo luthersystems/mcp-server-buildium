@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.file_sharing_ownership_account_put_message import FileSharingOwnershipAccountPutMessage
+from mcp_server_buildium.buildium_sdk.models.file_sharing_ownership_account_put_message import FileSharingOwnershipAccountPutMessage
 
 class TestFileSharingOwnershipAccountPutMessage(unittest.TestCase):
     """FileSharingOwnershipAccountPutMessage unit test stubs"""

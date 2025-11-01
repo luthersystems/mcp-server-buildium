@@ -20,13 +20,13 @@ from datetime import date
 from pydantic import Field, StrictInt, StrictStr, field_validator
 from typing import List, Optional
 from typing_extensions import Annotated
-from buildium_sdk.models.meter_reading_details_message import MeterReadingDetailsMessage
-from buildium_sdk.models.meter_reading_details_put_message import MeterReadingDetailsPutMessage
-from buildium_sdk.models.meter_reading_message import MeterReadingMessage
+from mcp_server_buildium.buildium_sdk.models.meter_reading_details_message import MeterReadingDetailsMessage
+from mcp_server_buildium.buildium_sdk.models.meter_reading_details_put_message import MeterReadingDetailsPutMessage
+from mcp_server_buildium.buildium_sdk.models.meter_reading_message import MeterReadingMessage
 
-from buildium_sdk.api_client import ApiClient, RequestSerialized
-from buildium_sdk.api_response import ApiResponse
-from buildium_sdk.rest import RESTResponseType
+from mcp_server_buildium.buildium_sdk.api_client import ApiClient, RequestSerialized
+from mcp_server_buildium.buildium_sdk.api_response import ApiResponse
+from mcp_server_buildium.buildium_sdk.rest import RESTResponseType
 
 
 class RentalMeterReadingsApi:

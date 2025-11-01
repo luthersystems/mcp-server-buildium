@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.internal_transaction_status_message import InternalTransactionStatusMessage
+from mcp_server_buildium.buildium_sdk.models.internal_transaction_status_message import InternalTransactionStatusMessage
 
 class TestInternalTransactionStatusMessage(unittest.TestCase):
     """InternalTransactionStatusMessage unit test stubs"""

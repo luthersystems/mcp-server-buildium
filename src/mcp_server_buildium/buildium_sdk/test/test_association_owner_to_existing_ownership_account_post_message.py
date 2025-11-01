@@ -14,7 +14,7 @@
 
 import unittest
 
-from buildium_sdk.models.association_owner_to_existing_ownership_account_post_message import AssociationOwnerToExistingOwnershipAccountPostMessage
+from mcp_server_buildium.buildium_sdk.models.association_owner_to_existing_ownership_account_post_message import AssociationOwnerToExistingOwnershipAccountPostMessage
 
 class TestAssociationOwnerToExistingOwnershipAccountPostMessage(unittest.TestCase):
     """AssociationOwnerToExistingOwnershipAccountPostMessage unit test stubs"""
