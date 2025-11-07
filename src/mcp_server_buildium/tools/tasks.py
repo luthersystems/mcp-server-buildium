@@ -23,9 +23,17 @@ def register_task_tools(mcp: FastMCP, client: BuildiumClient) -> None:
         offset: int = 0,
     ) -> dict[str, Any]:
         """List tasks from Buildium."""
-        result = await client.tasks_api.external_api_tasks_get_tasks(
-            tasktype=task_type, assignedtouserid=assigned_to_user_id, limit=limit, offset=offset
-        )
+        # Build kwargs, only including optional parameters if they have values
+        kwargs = {
+            "limit": limit,
+            "offset": offset,
+        }
+        if task_type is not None:
+            kwargs["tasktype"] = task_type
+        if assigned_to_user_id is not None:
+            kwargs["assignedtouserid"] = assigned_to_user_id
+        
+        result = await client.tasks_api.external_api_tasks_get_tasks(**kwargs)
         if hasattr(result, "to_dict"):
             return result.to_dict()
         return result if isinstance(result, dict) else {"tasks": result, "count": len(result)}

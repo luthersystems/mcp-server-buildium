@@ -23,9 +23,15 @@ def register_owner_tools(mcp: FastMCP, client: BuildiumClient) -> None:
         offset: int = 0,
     ) -> dict[str, Any]:
         """List rental owners from Buildium."""
-        result = await client.rental_owners_api.external_api_rental_owners_get_rental_owners(
-            propertyid=property_id, limit=limit, offset=offset
-        )
+        # Build kwargs, only including optional parameters if they have values
+        kwargs = {
+            "limit": limit,
+            "offset": offset,
+        }
+        if property_id is not None:
+            kwargs["propertyid"] = property_id
+        
+        result = await client.rental_owners_api.external_api_rental_owners_get_rental_owners(**kwargs)
         if hasattr(result, "to_dict"):
             return result.to_dict()
         return result if isinstance(result, dict) else {"owners": result, "count": len(result)}
@@ -83,9 +89,17 @@ def register_owner_tools(mcp: FastMCP, client: BuildiumClient) -> None:
         offset: int = 0,
     ) -> dict[str, Any]:
         """List association owners from Buildium."""
-        result = await client.association_owners_api.external_api_association_owners_get_association_owners(
-            propertyid=property_id, status=status, limit=limit, offset=offset
-        )
+        # Build kwargs, only including optional parameters if they have values
+        kwargs = {
+            "limit": limit,
+            "offset": offset,
+        }
+        if property_id is not None:
+            kwargs["propertyid"] = property_id
+        if status is not None:
+            kwargs["status"] = status
+        
+        result = await client.association_owners_api.external_api_association_owners_get_association_owners(**kwargs)
         if hasattr(result, "to_dict"):
             return result.to_dict()
         return result if isinstance(result, dict) else {"owners": result, "count": len(result)}

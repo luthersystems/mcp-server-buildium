@@ -31,9 +31,15 @@ def register_applicant_tools(mcp: FastMCP, client: BuildiumClient) -> None:
         Returns:
             Dictionary with applicants list and metadata.
         """
-        result = await client.applicants_api.external_api_applicants_get_applicants(
-            email=email, limit=limit, offset=offset
-        )
+        # Build kwargs, only including optional parameters if they have values
+        kwargs = {
+            "limit": limit,
+            "offset": offset,
+        }
+        if email is not None:
+            kwargs["email"] = email
+        
+        result = await client.applicants_api.external_api_applicants_get_applicants(**kwargs)
         if hasattr(result, "to_dict"):
             return result.to_dict()
         return result if isinstance(result, dict) else {"applicants": result, "count": len(result)}
