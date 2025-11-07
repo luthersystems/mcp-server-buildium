@@ -61,7 +61,9 @@ def register_rental_tools(mcp: FastMCP, client: BuildiumClient) -> None:
             Created rental property details.
         """
         try:
-            from mcp_server_buildium.buildium_sdk.models.rental_property_post_message import RentalPropertyPostMessage
+            from mcp_server_buildium.buildium_sdk.models.rental_property_post_message import (
+                RentalPropertyPostMessage,
+            )
 
             rental_message = RentalPropertyPostMessage(**rental_data)
         except ImportError:
@@ -86,7 +88,9 @@ def register_rental_tools(mcp: FastMCP, client: BuildiumClient) -> None:
             Updated rental property details.
         """
         try:
-            from mcp_server_buildium.buildium_sdk.models.rental_property_put_message import RentalPropertyPutMessage
+            from mcp_server_buildium.buildium_sdk.models.rental_property_put_message import (
+                RentalPropertyPutMessage,
+            )
 
             rental_message = RentalPropertyPutMessage(**rental_data)
         except ImportError:

@@ -46,7 +46,7 @@ def register_lease_tools(mcp: FastMCP, client: BuildiumClient) -> None:
             kwargs["unitid"] = unit_id
         if lease_status is not None:
             kwargs["leasestatuses"] = [lease_status]
-        
+
         result = await client.leases_api.external_api_leases_get_leases(**kwargs)
         if hasattr(result, "to_dict"):
             return result.to_dict()
