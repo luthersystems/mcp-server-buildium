@@ -30,7 +30,7 @@ def register_unit_tools(mcp: FastMCP, client: BuildiumClient) -> None:
         }
         if property_id is not None:
             kwargs["propertyid"] = property_id
-        
+
         result = await client.rental_units_api.external_api_rental_units_get_rental_units(**kwargs)
         if hasattr(result, "to_dict"):
             return result.to_dict()
@@ -50,7 +50,9 @@ def register_unit_tools(mcp: FastMCP, client: BuildiumClient) -> None:
     async def create_rental_unit(unit_data: dict[str, Any]) -> dict[str, Any]:
         """Create a new rental unit."""
         try:
-            from mcp_server_buildium.buildium_sdk.models.rental_unit_post_message import RentalUnitPostMessage
+            from mcp_server_buildium.buildium_sdk.models.rental_unit_post_message import (
+                RentalUnitPostMessage,
+            )
 
             unit_message = RentalUnitPostMessage(**unit_data)
         except ImportError:
@@ -67,7 +69,9 @@ def register_unit_tools(mcp: FastMCP, client: BuildiumClient) -> None:
     async def update_rental_unit(unit_id: int, unit_data: dict[str, Any]) -> dict[str, Any]:
         """Update an existing rental unit."""
         try:
-            from mcp_server_buildium.buildium_sdk.models.rental_unit_put_message import RentalUnitPutMessage
+            from mcp_server_buildium.buildium_sdk.models.rental_unit_put_message import (
+                RentalUnitPutMessage,
+            )
 
             unit_message = RentalUnitPutMessage(**unit_data)
         except ImportError:
@@ -95,7 +99,7 @@ def register_unit_tools(mcp: FastMCP, client: BuildiumClient) -> None:
         }
         if property_id is not None:
             kwargs["propertyid"] = property_id
-        
+
         result = (
             await client.association_units_api.external_api_association_units_get_association_units(**kwargs)
         )
