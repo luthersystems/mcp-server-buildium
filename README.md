@@ -233,6 +233,237 @@ Add to your Claude Desktop config (`~/Library/Application Support/Claude/claude_
 * `list_bank_account_transactions` - List transactions for a bank account
 * `get_bank_account_transaction` - Get bank account transaction details by ID
 
+## Tool Request/Response Examples
+
+This section provides detailed schemas and examples for key MCP tools.
+
+### Example: List Leases
+
+Query leases with optional filters (property, unit, status).
+
+**Parameters:**
+- `property_id` (int, optional): Filter by property ID
+- `unit_id` (int, optional): Filter by unit ID
+- `lease_status` (str, optional): Filter by status (e.g., "Active", "Future", "Past", "Expired")
+- `limit` (int, optional): Maximum results (default: 100)
+- `offset` (int, optional): Pagination offset (default: 0)
+
+**Example Request (no filters):**
+```json
+{
+  "name": "list_leases",
+  "arguments": {}
+}
+```
+
+**Example Request (with filters):**
+```json
+{
+  "name": "list_leases",
+  "arguments": {
+    "property_id": 123,
+    "lease_status": "Active",
+    "limit": 50
+  }
+}
+```
+
+**Example Response:**
+```json
+{
+  "leases": [
+    {
+      "id": 12345,
+      "propertyId": 123,
+      "unitId": 456,
+      "leaseType": "Fixed",
+      "leaseFromDate": "2024-01-01",
+      "leaseToDate": "2024-12-31",
+      "status": "Active",
+      "tenants": [
+        {
+          "id": 789,
+          "firstName": "John",
+          "lastName": "Doe"
+        }
+      ]
+    }
+  ],
+  "count": 1
+}
+```
+
+### Example: Get Lease
+
+Retrieve details of a specific lease by ID.
+
+**Parameters:**
+- `lease_id` (int, required): The lease ID
+
+**Example Request:**
+```json
+{
+  "name": "get_lease",
+  "arguments": {
+    "lease_id": 12345
+  }
+}
+```
+
+**Example Response:**
+```json
+{
+  "id": 12345,
+  "propertyId": 123,
+  "unitId": 456,
+  "leaseType": "Fixed",
+  "leaseFromDate": "2024-01-01",
+  "leaseToDate": "2024-12-31",
+  "status": "Active",
+  "rentCycle": "Monthly",
+  "rentAmount": 2000.00,
+  "securityDepositAmount": 2000.00,
+  "tenants": [
+    {
+      "id": 789,
+      "firstName": "John",
+      "lastName": "Doe",
+      "email": "john.doe@example.com",
+      "phoneNumbers": {
+        "home": "555-0100"
+      }
+    }
+  ],
+  "createdDateTime": "2024-01-01T10:00:00Z",
+  "lastModifiedDateTime": "2024-01-01T10:00:00Z"
+}
+```
+
+### Example: Create Lease
+
+Create a new lease agreement.
+
+**Required Parameters:**
+- `lease_type` (str): Lease type - `"AtWill"` (month-to-month), `"Fixed"` (specific dates), or `"FixedWithRollover"`
+- `unit_id` (int): Unit ID for the lease
+- `lease_from_date` (str): Start date (format: `YYYY-MM-DD`)
+- `send_welcome_email` (bool): Whether to send welcome email to tenants
+
+**Optional Parameters:**
+- `lease_to_date` (str): End date (required for Fixed/FixedWithRollover leases)
+- `tenant_ids` (list[int]): Existing tenant IDs to add (max 5)
+- `tenants` (list[object]): New tenants to create (max 5)
+- `applicant_ids` (list[int]): Approved applicant IDs to convert to tenants (max 5)
+- `rent` (object): Rent configuration with cycle and charges
+- `security_deposit` (object): Security deposit details
+- `prorated_first_month_rent` (float): Prorated first month rent
+- `prorated_last_month_rent` (float): Prorated last month rent
+- `cosigners` (list[object]): Cosigner details
+
+**Example Request (Minimal - Using Existing Tenant):**
+```json
+{
+  "name": "create_lease",
+  "arguments": {
+    "lease_data": {
+      "lease_type": "Fixed",
+      "unit_id": 456,
+      "lease_from_date": "2025-01-01",
+      "lease_to_date": "2025-12-31",
+      "send_welcome_email": true,
+      "tenant_ids": [789]
+    }
+  }
+}
+```
+
+**Example Request (Complete with New Tenant and Rent):**
+```json
+{
+  "name": "create_lease",
+  "arguments": {
+    "lease_data": {
+      "lease_type": "Fixed",
+      "unit_id": 456,
+      "lease_from_date": "2025-01-01",
+      "lease_to_date": "2025-12-31",
+      "send_welcome_email": true,
+      "tenants": [
+        {
+          "first_name": "Jane",
+          "last_name": "Smith",
+          "email": "jane.smith@example.com",
+          "phone_numbers": {
+            "home": "555-0200"
+          },
+          "address": {
+            "address_line1": "123 Main St",
+            "city": "Springfield",
+            "state": "IL",
+            "postal_code": "62701",
+            "country": "US"
+          }
+        }
+      ],
+      "rent": {
+        "cycle": "Monthly",
+        "charges": [
+          {
+            "gl_account_id": 1001,
+            "amount": 2000.00
+          }
+        ]
+      },
+      "security_deposit": {
+        "due_date": "2025-01-01",
+        "amount": 2000.00
+      }
+    }
+  }
+}
+```
+
+**Example Response:**
+```json
+{
+  "id": 12346,
+  "propertyId": 123,
+  "unitId": 456,
+  "leaseType": "Fixed",
+  "leaseFromDate": "2025-01-01",
+  "leaseToDate": "2025-12-31",
+  "status": "Active",
+  "rentCycle": "Monthly",
+  "rentAmount": 2000.00,
+  "securityDepositAmount": 2000.00,
+  "tenants": [
+    {
+      "id": 790,
+      "firstName": "Jane",
+      "lastName": "Smith",
+      "email": "jane.smith@example.com"
+    }
+  ],
+  "createdDateTime": "2024-11-07T00:00:00Z"
+}
+```
+
+**Field Descriptions:**
+
+**Lease Types:**
+- `AtWill`: Month-to-month lease with no end date. Automatic transactions continue until manually ended.
+- `Fixed`: Lease with specific start/end dates. Moves to expired on end date, stops automatic transactions.
+- `FixedWithRollover`: Lease that converts to AtWill status at end date, continuing automatic transactions.
+
+**Rent Configuration:**
+- `cycle`: Rent frequency - `"Monthly"`, `"Weekly"`, `"Every2Weeks"`, `"Quarterly"`, `"Yearly"`, `"Every2Months"`, `"Daily"`, `"Every6Months"`, `"OneTime"`
+- `charges`: Array of rent charges with GL account ID and amount
+
+**Tenant Creation:**
+- Can provide up to 5 tenants via `tenant_ids` (existing), `tenants` (new), or `applicant_ids` (approved applicants)
+- Required tenant fields: `first_name`, `last_name`, `address`
+- Optional: `email`, `phone_numbers`, `date_of_birth`, `emergency_contact`, etc.
+
 ## Example Usage
 
 ### Example Prompts
