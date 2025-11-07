@@ -31,7 +31,9 @@ def register_owner_tools(mcp: FastMCP, client: BuildiumClient) -> None:
         if property_id is not None:
             kwargs["propertyid"] = property_id
 
-        result = await client.rental_owners_api.external_api_rental_owners_get_rental_owners(**kwargs)
+        result = await client.rental_owners_api.external_api_rental_owners_get_rental_owners(
+            **kwargs
+        )
         if hasattr(result, "to_dict"):
             return result.to_dict()
         return result if isinstance(result, dict) else {"owners": result, "count": len(result)}
@@ -103,7 +105,9 @@ def register_owner_tools(mcp: FastMCP, client: BuildiumClient) -> None:
         if status is not None:
             kwargs["status"] = status
 
-        result = await client.association_owners_api.external_api_association_owners_get_association_owners(**kwargs)
+        result = await client.association_owners_api.external_api_association_owners_get_association_owners(
+            **kwargs
+        )
         if hasattr(result, "to_dict"):
             return result.to_dict()
         return result if isinstance(result, dict) else {"owners": result, "count": len(result)}
