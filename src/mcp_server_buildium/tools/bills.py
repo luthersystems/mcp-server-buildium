@@ -96,7 +96,9 @@ def register_bill_tools(mcp: FastMCP, client: BuildiumClient) -> None:
     async def create_bill_payment(bill_id: int, payment_data: dict[str, Any]) -> dict[str, Any]:
         """Create a payment for a bill."""
         try:
-            from mcp_server_buildium.buildium_sdk.models.bill_payment_post_message import BillPaymentPostMessage
+            from mcp_server_buildium.buildium_sdk.models.bill_payment_post_message import (
+                BillPaymentPostMessage,
+            )
 
             payment_message = BillPaymentPostMessage(**payment_data)
         except ImportError:

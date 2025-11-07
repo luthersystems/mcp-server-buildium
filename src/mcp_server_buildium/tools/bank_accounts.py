@@ -41,7 +41,9 @@ def register_bank_account_tools(mcp: FastMCP, client: BuildiumClient) -> None:
     async def create_bank_account(bank_account_data: dict[str, Any]) -> dict[str, Any]:
         """Create a new bank account."""
         try:
-            from mcp_server_buildium.buildium_sdk.models.bank_account_post_message import BankAccountPostMessage
+            from mcp_server_buildium.buildium_sdk.models.bank_account_post_message import (
+                BankAccountPostMessage,
+            )
 
             account_message = BankAccountPostMessage(**bank_account_data)
         except ImportError:
@@ -60,7 +62,9 @@ def register_bank_account_tools(mcp: FastMCP, client: BuildiumClient) -> None:
     ) -> dict[str, Any]:
         """Update an existing bank account."""
         try:
-            from mcp_server_buildium.buildium_sdk.models.bank_account_put_message import BankAccountPutMessage
+            from mcp_server_buildium.buildium_sdk.models.bank_account_put_message import (
+                BankAccountPutMessage,
+            )
 
             account_message = BankAccountPutMessage(**bank_account_data)
         except ImportError:

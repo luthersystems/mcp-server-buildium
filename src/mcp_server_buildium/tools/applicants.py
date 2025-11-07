@@ -31,9 +31,15 @@ def register_applicant_tools(mcp: FastMCP, client: BuildiumClient) -> None:
         Returns:
             Dictionary with applicants list and metadata.
         """
-        result = await client.applicants_api.external_api_applicants_get_applicants(
-            email=email, limit=limit, offset=offset
-        )
+        # Build kwargs, only including optional parameters if they have values
+        kwargs = {
+            "limit": limit,
+            "offset": offset,
+        }
+        if email is not None:
+            kwargs["email"] = email
+
+        result = await client.applicants_api.external_api_applicants_get_applicants(**kwargs)
         if hasattr(result, "to_dict"):
             return result.to_dict()
         return result if isinstance(result, dict) else {"applicants": result, "count": len(result)}
@@ -66,7 +72,9 @@ def register_applicant_tools(mcp: FastMCP, client: BuildiumClient) -> None:
             Created applicant details.
         """
         try:
-            from mcp_server_buildium.buildium_sdk.models.applicant_post_message import ApplicantPostMessage
+            from mcp_server_buildium.buildium_sdk.models.applicant_post_message import (
+                ApplicantPostMessage,
+            )
 
             applicant_message = ApplicantPostMessage(**applicant_data)
         except ImportError:
@@ -91,7 +99,9 @@ def register_applicant_tools(mcp: FastMCP, client: BuildiumClient) -> None:
             Updated applicant details.
         """
         try:
-            from mcp_server_buildium.buildium_sdk.models.applicant_put_message import ApplicantPutMessage
+            from mcp_server_buildium.buildium_sdk.models.applicant_put_message import (
+                ApplicantPutMessage,
+            )
 
             applicant_message = ApplicantPutMessage(**applicant_data)
         except ImportError:
@@ -156,7 +166,9 @@ def register_applicant_tools(mcp: FastMCP, client: BuildiumClient) -> None:
             Updated application details.
         """
         try:
-            from mcp_server_buildium.buildium_sdk.models.application_put_message import ApplicationPutMessage
+            from mcp_server_buildium.buildium_sdk.models.application_put_message import (
+                ApplicationPutMessage,
+            )
 
             application_message = ApplicationPutMessage(**application_data)
         except ImportError:
@@ -204,7 +216,9 @@ def register_applicant_tools(mcp: FastMCP, client: BuildiumClient) -> None:
             Created applicant group details.
         """
         try:
-            from mcp_server_buildium.buildium_sdk.models.applicant_group_post_message import ApplicantGroupPostMessage
+            from mcp_server_buildium.buildium_sdk.models.applicant_group_post_message import (
+                ApplicantGroupPostMessage,
+            )
 
             group_message = ApplicantGroupPostMessage(**group_data)
         except ImportError:
@@ -229,7 +243,9 @@ def register_applicant_tools(mcp: FastMCP, client: BuildiumClient) -> None:
             Updated applicant group details.
         """
         try:
-            from mcp_server_buildium.buildium_sdk.models.applicant_group_put_message import ApplicantGroupPutMessage
+            from mcp_server_buildium.buildium_sdk.models.applicant_group_put_message import (
+                ApplicantGroupPutMessage,
+            )
 
             group_message = ApplicantGroupPutMessage(**group_data)
         except ImportError:
