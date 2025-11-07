@@ -23,8 +23,16 @@ def register_owner_tools(mcp: FastMCP, client: BuildiumClient) -> None:
         offset: int = 0,
     ) -> dict[str, Any]:
         """List rental owners from Buildium."""
+        # Build kwargs, only including optional parameters if they have values
+        kwargs = {
+            "limit": limit,
+            "offset": offset,
+        }
+        if property_id is not None:
+            kwargs["propertyid"] = property_id
+
         result = await client.rental_owners_api.external_api_rental_owners_get_rental_owners(
-            propertyid=property_id, limit=limit, offset=offset
+            **kwargs
         )
         if hasattr(result, "to_dict"):
             return result.to_dict()
@@ -44,7 +52,9 @@ def register_owner_tools(mcp: FastMCP, client: BuildiumClient) -> None:
     async def create_rental_owner(owner_data: dict[str, Any]) -> dict[str, Any]:
         """Create a new rental owner."""
         try:
-            from mcp_server_buildium.buildium_sdk.models.rental_owner_post_message import RentalOwnerPostMessage
+            from mcp_server_buildium.buildium_sdk.models.rental_owner_post_message import (
+                RentalOwnerPostMessage,
+            )
 
             owner_message = RentalOwnerPostMessage(**owner_data)
         except ImportError:
@@ -61,7 +71,9 @@ def register_owner_tools(mcp: FastMCP, client: BuildiumClient) -> None:
     async def update_rental_owner(owner_id: int, owner_data: dict[str, Any]) -> dict[str, Any]:
         """Update an existing rental owner."""
         try:
-            from mcp_server_buildium.buildium_sdk.models.rental_owner_put_message import RentalOwnerPutMessage
+            from mcp_server_buildium.buildium_sdk.models.rental_owner_put_message import (
+                RentalOwnerPutMessage,
+            )
 
             owner_message = RentalOwnerPutMessage(**owner_data)
         except ImportError:
@@ -83,8 +95,18 @@ def register_owner_tools(mcp: FastMCP, client: BuildiumClient) -> None:
         offset: int = 0,
     ) -> dict[str, Any]:
         """List association owners from Buildium."""
+        # Build kwargs, only including optional parameters if they have values
+        kwargs = {
+            "limit": limit,
+            "offset": offset,
+        }
+        if property_id is not None:
+            kwargs["propertyid"] = property_id
+        if status is not None:
+            kwargs["status"] = status
+
         result = await client.association_owners_api.external_api_association_owners_get_association_owners(
-            propertyid=property_id, status=status, limit=limit, offset=offset
+            **kwargs
         )
         if hasattr(result, "to_dict"):
             return result.to_dict()

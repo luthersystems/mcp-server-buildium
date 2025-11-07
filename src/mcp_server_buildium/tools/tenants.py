@@ -25,12 +25,20 @@ def register_tenant_tools(mcp: FastMCP, client: BuildiumClient) -> None:
         offset: int = 0,
     ) -> dict[str, Any]:
         """List rental tenants from Buildium."""
+        # Build kwargs, only including optional parameters if they have values
+        kwargs = {
+            "limit": limit,
+            "offset": offset,
+        }
+        if property_id is not None:
+            kwargs["propertyid"] = property_id
+        if unit_id is not None:
+            kwargs["unitid"] = unit_id
+        if status is not None:
+            kwargs["status"] = status
+
         result = await client.rental_tenants_api.external_api_rental_tenants_get_all_tenants(
-            propertyid=property_id,
-            unitid=unit_id,
-            status=status,
-            limit=limit,
-            offset=offset,
+            **kwargs
         )
         if hasattr(result, "to_dict"):
             return result.to_dict()
@@ -50,7 +58,9 @@ def register_tenant_tools(mcp: FastMCP, client: BuildiumClient) -> None:
     async def create_rental_tenant(tenant_data: dict[str, Any]) -> dict[str, Any]:
         """Create a new rental tenant."""
         try:
-            from mcp_server_buildium.buildium_sdk.models.rental_tenant_post_message import RentalTenantPostMessage
+            from mcp_server_buildium.buildium_sdk.models.rental_tenant_post_message import (
+                RentalTenantPostMessage,
+            )
 
             tenant_message = RentalTenantPostMessage(**tenant_data)
         except ImportError:
@@ -67,7 +77,9 @@ def register_tenant_tools(mcp: FastMCP, client: BuildiumClient) -> None:
     async def update_rental_tenant(tenant_id: int, tenant_data: dict[str, Any]) -> dict[str, Any]:
         """Update an existing rental tenant."""
         try:
-            from mcp_server_buildium.buildium_sdk.models.rental_tenant_put_message import RentalTenantPutMessage
+            from mcp_server_buildium.buildium_sdk.models.rental_tenant_put_message import (
+                RentalTenantPutMessage,
+            )
 
             tenant_message = RentalTenantPutMessage(**tenant_data)
         except ImportError:
@@ -89,8 +101,18 @@ def register_tenant_tools(mcp: FastMCP, client: BuildiumClient) -> None:
         offset: int = 0,
     ) -> dict[str, Any]:
         """List association tenants from Buildium."""
+        # Build kwargs, only including optional parameters if they have values
+        kwargs = {
+            "limit": limit,
+            "offset": offset,
+        }
+        if property_id is not None:
+            kwargs["propertyid"] = property_id
+        if status is not None:
+            kwargs["status"] = status
+
         result = await client.association_tenants_api.external_api_association_tenants_get_association_tenants(
-            propertyid=property_id, status=status, limit=limit, offset=offset
+            **kwargs
         )
         if hasattr(result, "to_dict"):
             return result.to_dict()
