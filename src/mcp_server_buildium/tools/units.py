@@ -101,7 +101,9 @@ def register_unit_tools(mcp: FastMCP, client: BuildiumClient) -> None:
             kwargs["propertyid"] = property_id
 
         result = (
-            await client.association_units_api.external_api_association_units_get_association_units(**kwargs)
+            await client.association_units_api.external_api_association_units_get_association_units(
+                **kwargs
+            )
         )
         if hasattr(result, "to_dict"):
             return result.to_dict()
