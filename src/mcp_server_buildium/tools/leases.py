@@ -35,13 +35,19 @@ def register_lease_tools(mcp: FastMCP, client: BuildiumClient) -> None:
         Returns:
             Dictionary with leases list and metadata.
         """
-        result = await client.leases_api.external_api_leases_get_leases(
-            propertyid=property_id,
-            unitid=unit_id,
-            leasestatuses=[lease_status] if lease_status else None,
-            limit=limit,
-            offset=offset,
-        )
+        # Build kwargs, only including optional parameters if they have values
+        kwargs = {
+            "limit": limit,
+            "offset": offset,
+        }
+        if property_id is not None:
+            kwargs["propertyid"] = property_id
+        if unit_id is not None:
+            kwargs["unitid"] = unit_id
+        if lease_status is not None:
+            kwargs["leasestatuses"] = [lease_status]
+        
+        result = await client.leases_api.external_api_leases_get_leases(**kwargs)
         if hasattr(result, "to_dict"):
             return result.to_dict()
         return result if isinstance(result, dict) else {"leases": result, "count": len(result)}
