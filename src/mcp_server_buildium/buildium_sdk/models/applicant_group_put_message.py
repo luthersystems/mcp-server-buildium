@@ -27,7 +27,7 @@ class ApplicantGroupPutMessage(BaseModel):
     ApplicantGroupPutMessage
     """ # noqa: E501
     unit_id: Optional[StrictInt] = Field(default=None, description="Rental property unit unique identifier to associate with the applicant group.", alias="UnitId")
-    applicant_group_status: StrictStr = Field(description="Sets the status of the applicant group.", alias="ApplicantGroupStatus")
+    applicant_group_status: Any = Field(description="Sets the status of the applicant group.", alias="ApplicantGroupStatus")
     applicant_ids: List[StrictInt] = Field(description="The applicant unique identifiers to include in the applicant group. Note, that applicants can only be included in one applicant group.", alias="ApplicantIds")
     __properties: ClassVar[List[str]] = ["UnitId", "ApplicantGroupStatus", "ApplicantIds"]
 

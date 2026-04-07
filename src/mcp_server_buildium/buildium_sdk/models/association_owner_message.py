@@ -44,13 +44,13 @@ class AssociationOwnerMessage(BaseModel):
     comment: Optional[StrictStr] = Field(default=None, description="General comments.", alias="Comment")
     emergency_contact: Optional[EmergencyContactMessage] = Field(default=None, description="Emergency contact information.", alias="EmergencyContact")
     ownership_accounts: Optional[List[AssociationOwnershipAccountMessage]] = Field(default=None, description="List of associated ownership accounts.", alias="OwnershipAccounts")
-    mailing_preference: Optional[StrictStr] = Field(default=None, description="Indicates the association owner's mailing preference.", alias="MailingPreference")
+    mailing_preference: Optional[Any] = Field(default=None, description="Indicates the association owner's mailing preference.", alias="MailingPreference")
     vehicles: Optional[List[VehicleMessage]] = Field(default=None, description="List of vehicles associated with the association owner.", alias="Vehicles")
     occupies_unit: Optional[StrictBool] = Field(default=None, description="Indicates if the association owner occupies a unit(s) within the association.", alias="OccupiesUnit")
     board_member_terms: Optional[List[AssociationOwnerBoardTermMessage]] = Field(default=None, description="List of Board Member Terms for the given Association Owner(s)", alias="BoardMemberTerms")
     created_date_time: Optional[datetime] = Field(default=None, description="Date and time the association owner was created.", alias="CreatedDateTime")
     tax_id: Optional[StrictStr] = Field(default=None, description="Taxpayer identification number. Examples of United States identification numbers are Social Security number or a Employer Identification Number.", alias="TaxId")
-    delinquency_status: Optional[StrictStr] = Field(default=None, description="Indicates the delinquency status of the association owner.", alias="DelinquencyStatus")
+    delinquency_status: Optional[Any] = Field(default=None, description="Indicates the delinquency status of the association owner.", alias="DelinquencyStatus")
     __properties: ClassVar[List[str]] = ["Id", "FirstName", "LastName", "Email", "AlternateEmail", "PhoneNumbers", "PrimaryAddress", "AlternateAddress", "Comment", "EmergencyContact", "OwnershipAccounts", "MailingPreference", "Vehicles", "OccupiesUnit", "BoardMemberTerms", "CreatedDateTime", "TaxId", "DelinquencyStatus"]
 
     @field_validator('mailing_preference')
@@ -59,6 +59,8 @@ class AssociationOwnerMessage(BaseModel):
         if value is None:
             return value
 
+        if isinstance(value, int):
+            return value  # CODEMOD: lenient enum
         if value not in set(['PrimaryAddress', 'AlternateAddress']):
             raise ValueError("must be one of enum values ('PrimaryAddress', 'AlternateAddress')")
         return value
@@ -69,6 +71,8 @@ class AssociationOwnerMessage(BaseModel):
         if value is None:
             return value
 
+        if isinstance(value, int):
+            return value  # CODEMOD: lenient enum
         if value not in set(['NoDelinquency', 'InCollections', 'InForeclosure', 'Foreclosed']):
             raise ValueError("must be one of enum values ('NoDelinquency', 'InCollections', 'InForeclosure', 'Foreclosed')")
         return value

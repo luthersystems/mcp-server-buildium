@@ -49,6 +49,8 @@ class UserMessage(BaseModel):
         if value is None:
             return value
 
+        if isinstance(value, int):
+            return value  # CODEMOD: lenient enum
         for i in value:
             if i not in set(['Staff', 'RentalOwner', 'Vendor']):
                 raise ValueError("each list item must be one of ('Staff', 'RentalOwner', 'Vendor')")

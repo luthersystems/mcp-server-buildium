@@ -31,7 +31,7 @@ class AssociationOwnershipAccountPostMessage(BaseModel):
     unit_id: StrictInt = Field(description="Association unit unique identifier that the ownership account is related to.", alias="UnitId")
     date_of_purchase: date = Field(description="Date the unit was purchased by the owner. Must be formatted as YYYY-MM-DD.   If an existing association ownership account is being replaced then this date must be after the existing ownership accounts date of sale.", alias="DateOfPurchase")
     association_fee: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Recurring association fee charge. If provided, a recurring transaction will be created that adds a charge in the amount specified to the ownership account ledger with the frequency indicated in RecurringFrequency.", alias="AssociationFee")
-    recurring_frequency: Optional[StrictStr] = Field(default=None, description="Indicates the frequency of the recurring association fee. This field is required if `AssociationFee` has a value.", alias="RecurringFrequency")
+    recurring_frequency: Optional[Any] = Field(default=None, description="Indicates the frequency of the recurring association fee. This field is required if `AssociationFee` has a value.", alias="RecurringFrequency")
     association_owner_ids: Optional[List[StrictInt]] = Field(default=None, description="Current or former association owners to assign to this ownership account. Values must be an active association owner identifiers. The request must include at least one owner in this property OR the `AssociationOwners` property.", alias="AssociationOwnerIds")
     association_owners: Optional[List[AssociationOwnerPostMessage]] = Field(default=None, description="Create new association owner(s) and assigns them to this new ownership account. The request must include at least one owner in this property OR the `AssociationOwnerIds` property.", alias="AssociationOwners")
     send_welcome_email: StrictBool = Field(description="Indicates whether to send an owner portal welcome email to all of the association owners assigned to this ownership account. Once the owners sign into the portal, they can make online payments, view important documents, submit requests, and more.", alias="SendWelcomeEmail")
@@ -44,6 +44,8 @@ class AssociationOwnershipAccountPostMessage(BaseModel):
         if value is None:
             return value
 
+        if isinstance(value, int):
+            return value  # CODEMOD: lenient enum
         if value not in set(['Monthly', 'Weekly', 'Every2Weeks', 'Quarterly', 'Yearly', 'Every2Months', 'Daily', 'Every6Months', 'OneTime']):
             raise ValueError("must be one of enum values ('Monthly', 'Weekly', 'Every2Weeks', 'Quarterly', 'Yearly', 'Every2Months', 'Daily', 'Every6Months', 'OneTime')")
         return value

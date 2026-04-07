@@ -36,7 +36,7 @@ class LeaseCosignerPostMessage(BaseModel):
     phone_numbers: Optional[PhoneNumbersMessage] = Field(default=None, description="List of phone numbers for the cosigner.", alias="PhoneNumbers")
     address: Optional[SaveAddressMessage] = Field(default=None, description="Address of the cosigner.", alias="Address")
     alternate_address: Optional[SaveAddressMessage] = Field(default=None, description="Alternate address for the cosigner.", alias="AlternateAddress")
-    mailing_preference: Optional[StrictStr] = Field(default=None, description="Mailing preferences for the cosigner. If an alternate address exists and this value is not provided then the primary address will be set as the preferred address.", alias="MailingPreference")
+    mailing_preference: Optional[Any] = Field(default=None, description="Mailing preferences for the cosigner. If an alternate address exists and this value is not provided then the primary address will be set as the preferred address.", alias="MailingPreference")
     __properties: ClassVar[List[str]] = ["FirstName", "LastName", "Email", "AlternateEmail", "PhoneNumbers", "Address", "AlternateAddress", "MailingPreference"]
 
     @field_validator('mailing_preference')
@@ -45,6 +45,8 @@ class LeaseCosignerPostMessage(BaseModel):
         if value is None:
             return value
 
+        if isinstance(value, int):
+            return value  # CODEMOD: lenient enum
         if value not in set(['PrimaryAddress', 'AlternateAddress']):
             raise ValueError("must be one of enum values ('PrimaryAddress', 'AlternateAddress')")
         return value

@@ -31,7 +31,7 @@ class RetailCashUserDataMessage(BaseModel):
     last_name: Optional[StrictStr] = Field(default=None, description="User last name.", alias="LastName")
     email: Optional[StrictStr] = Field(default=None, description="User email address.", alias="Email")
     phone: Optional[StrictStr] = Field(default=None, description="User phone number.", alias="Phone")
-    user_type: Optional[StrictStr] = Field(default=None, description="User type.", alias="UserType")
+    user_type: Optional[Any] = Field(default=None, description="User type.", alias="UserType")
     href: Optional[StrictStr] = Field(default=None, description="A link to the resource endpoint associated with the user.", alias="Href")
     __properties: ClassVar[List[str]] = ["Id", "FirstName", "LastName", "Email", "Phone", "UserType", "Href"]
 
@@ -41,6 +41,8 @@ class RetailCashUserDataMessage(BaseModel):
         if value is None:
             return value
 
+        if isinstance(value, int):
+            return value  # CODEMOD: lenient enum
         if value not in set(['Tenant', 'AssociationOwner']):
             raise ValueError("must be one of enum values ('Tenant', 'AssociationOwner')")
         return value

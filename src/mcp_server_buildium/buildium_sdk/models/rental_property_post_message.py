@@ -32,7 +32,7 @@ class RentalPropertyPostMessage(BaseModel):
     name: Annotated[str, Field(min_length=1, strict=True)] = Field(description="Rental property name. The value cannot exceed 127 characters.", alias="Name")
     structure_description: Optional[StrictStr] = Field(default=None, description="Description of the rental property building. The description cannot exceed 65,535 characters.", alias="StructureDescription")
     address: SaveAddressMessage = Field(description="Rental property address.", alias="Address")
-    rental_sub_type: StrictStr = Field(description="Subtype of the rental property.", alias="RentalSubType")
+    rental_sub_type: Any = Field(description="Subtype of the rental property.", alias="RentalSubType")
     rental_owner_ids: Optional[List[StrictInt]] = Field(default=None, description="List of existing rental owner ID's that are owners of this property.", alias="RentalOwnerIds")
     operating_bank_account_id: StrictInt = Field(description="The primary bank account that a rental property uses for its income and expenses.", alias="OperatingBankAccountId")
     property_manager_id: Optional[StrictInt] = Field(default=None, description="Indicates the staff member identifier that acts as the property manager for this rental property. Note, the staff member must have permissions to this rental to be assigned as the property manager.  Set this field to null if you don't want to assign a staff member to the rental property.", alias="PropertyManagerId")

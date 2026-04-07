@@ -27,7 +27,7 @@ class BankAccountCheckPayeeSaveMessage(BaseModel):
     BankAccountCheckPayeeSaveMessage
     """ # noqa: E501
     id: StrictInt = Field(description="The payee user identifier.", alias="Id")
-    type: StrictStr = Field(description="The payee entity type.", alias="Type")
+    type: Any = Field(description="The payee entity type.", alias="Type")
     __properties: ClassVar[List[str]] = ["Id", "Type"]
 
     @field_validator('type')

@@ -41,8 +41,8 @@ class ResidentRequestTaskMessage(BaseModel):
     unit_agreement: Optional[UnitAgreementMessage] = Field(default=None, description="The unit agreement unique identifier associated with the request.", alias="UnitAgreement")
     requested_by_user_entity: Optional[RequestedByUserEntityMessage] = Field(default=None, description="The contact details for the resident who submitted the request.", alias="RequestedByUserEntity")
     assigned_to_user_id: Optional[StrictInt] = Field(default=None, description="The unique identifier of the staff user assigned to the request.", alias="AssignedToUserId")
-    task_status: Optional[StrictStr] = Field(default=None, description="Request status.", alias="TaskStatus")
-    priority: Optional[StrictStr] = Field(default=None, description="Request priority.", alias="Priority")
+    task_status: Optional[Any] = Field(default=None, description="Request status.", alias="TaskStatus")
+    priority: Optional[Any] = Field(default=None, description="Request priority.", alias="Priority")
     due_date: Optional[date] = Field(default=None, description="Request due date.", alias="DueDate")
     created_date_time: Optional[datetime] = Field(default=None, description="The date and time the request was created.", alias="CreatedDateTime")
     last_updated_date_time: Optional[datetime] = Field(default=None, description="The date and time the request was last updated.", alias="LastUpdatedDateTime")
@@ -58,6 +58,8 @@ class ResidentRequestTaskMessage(BaseModel):
         if value is None:
             return value
 
+        if isinstance(value, int):
+            return value  # CODEMOD: lenient enum
         if value not in set(['New', 'InProgress', 'Completed', 'Deferred', 'Closed']):
             raise ValueError("must be one of enum values ('New', 'InProgress', 'Completed', 'Deferred', 'Closed')")
         return value
@@ -68,6 +70,8 @@ class ResidentRequestTaskMessage(BaseModel):
         if value is None:
             return value
 
+        if isinstance(value, int):
+            return value  # CODEMOD: lenient enum
         if value not in set(['Low', 'Normal', 'High']):
             raise ValueError("must be one of enum values ('Low', 'Normal', 'High')")
         return value

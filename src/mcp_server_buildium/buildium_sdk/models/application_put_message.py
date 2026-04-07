@@ -26,7 +26,7 @@ class ApplicationPutMessage(BaseModel):
     """
     ApplicationPutMessage
     """ # noqa: E501
-    application_status: StrictStr = Field(description="Sets the status of the application.", alias="ApplicationStatus")
+    application_status: Any = Field(description="Sets the status of the application.", alias="ApplicationStatus")
     __properties: ClassVar[List[str]] = ["ApplicationStatus"]
 
     @field_validator('application_status')

@@ -26,7 +26,7 @@ class RequestedByUserEntityMessage(BaseModel):
     """
     Entity information for the user that submitted the task request.
     """ # noqa: E501
-    type: Optional[StrictStr] = Field(default=None, description="Entity type.", alias="Type")
+    type: Optional[Any] = Field(default=None, description="Entity type.", alias="Type")
     id: Optional[StrictInt] = Field(default=None, description="Entity identifier.", alias="Id")
     first_name: Optional[StrictStr] = Field(default=None, description="First name.", alias="FirstName")
     last_name: Optional[StrictStr] = Field(default=None, description="Last name.", alias="LastName")
@@ -40,6 +40,8 @@ class RequestedByUserEntityMessage(BaseModel):
         if value is None:
             return value
 
+        if isinstance(value, int):
+            return value  # CODEMOD: lenient enum
         if value not in set(['ContactRequestor', 'RentalOwner', 'RentalTenant', 'AssociationOwner']):
             raise ValueError("must be one of enum values ('ContactRequestor', 'RentalOwner', 'RentalTenant', 'AssociationOwner')")
         return value

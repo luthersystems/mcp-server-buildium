@@ -27,7 +27,7 @@ class BillMarkupPatchMessage(BaseModel):
     BillMarkupPatchMessage
     """ # noqa: E501
     amount: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The mark up amount. The value should be relative to the markup `Type`. If the mark up `Type` is `Percent` the value cannot exceed 100.", alias="Amount")
-    type: Optional[StrictStr] = Field(default=None, description="The markup type.", alias="Type")
+    type: Optional[Any] = Field(default=None, description="The markup type.", alias="Type")
     __properties: ClassVar[List[str]] = ["Amount", "Type"]
 
     @field_validator('type')
@@ -36,6 +36,8 @@ class BillMarkupPatchMessage(BaseModel):
         if value is None:
             return value
 
+        if isinstance(value, int):
+            return value  # CODEMOD: lenient enum
         if value not in set(['Percent', 'Amount']):
             raise ValueError("must be one of enum values ('Percent', 'Amount')")
         return value

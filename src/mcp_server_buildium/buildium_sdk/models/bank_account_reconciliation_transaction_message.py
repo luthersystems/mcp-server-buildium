@@ -30,10 +30,10 @@ class BankAccountReconciliationTransactionMessage(BaseModel):
     id: Optional[StrictInt] = Field(default=None, description="Reconciliation transaction unique identifier.", alias="Id")
     entry_date: Optional[date] = Field(default=None, description="Date the reconciliation transaction entered.", alias="EntryDate")
     total_amount: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Total amount of the reconciliation transaction.", alias="TotalAmount")
-    reconciliation_status: Optional[StrictStr] = Field(default=None, description="Status of the reconciliation transaction.", alias="ReconciliationStatus")
-    transaction_type: Optional[StrictStr] = Field(default=None, description="Type of transaction.", alias="TransactionType")
+    reconciliation_status: Optional[Any] = Field(default=None, description="Status of the reconciliation transaction.", alias="ReconciliationStatus")
+    transaction_type: Optional[Any] = Field(default=None, description="Type of transaction.", alias="TransactionType")
     memo: Optional[StrictStr] = Field(default=None, description="Memo associated with the transaction, if applicable.", alias="Memo")
-    payment_method: Optional[StrictStr] = Field(default=None, description="The payment method used for the transaction.", alias="PaymentMethod")
+    payment_method: Optional[Any] = Field(default=None, description="The payment method used for the transaction.", alias="PaymentMethod")
     check_number: Optional[StrictStr] = Field(default=None, description="Check number associated with the transaction, if applicable.", alias="CheckNumber")
     payee_user_id: Optional[StrictInt] = Field(default=None, description="The payee's user unique identifier.", alias="PayeeUserId")
     __properties: ClassVar[List[str]] = ["Id", "EntryDate", "TotalAmount", "ReconciliationStatus", "TransactionType", "Memo", "PaymentMethod", "CheckNumber", "PayeeUserId"]
@@ -44,6 +44,8 @@ class BankAccountReconciliationTransactionMessage(BaseModel):
         if value is None:
             return value
 
+        if isinstance(value, int):
+            return value  # CODEMOD: lenient enum
         if value not in set(['Unknown', 'UnReconciled', 'Cleared', 'Reconciled']):
             raise ValueError("must be one of enum values ('Unknown', 'UnReconciled', 'Cleared', 'Reconciled')")
         return value
@@ -54,6 +56,8 @@ class BankAccountReconciliationTransactionMessage(BaseModel):
         if value is None:
             return value
 
+        if isinstance(value, int):
+            return value  # CODEMOD: lenient enum
         if value not in set(['Bill', 'Check', 'Charge', 'Payment', 'Credit', 'Refund', 'ApplyDeposit', 'ElectronicFundsTransfer', 'Other', 'Deposit', 'GeneralJournalEntry', 'OwnerContribution', 'ReversePayment', 'ReverseElectronicFundsTransfer', 'VendorCredit', 'RentalApplicationFeePayment', 'ReverseRentalApplicationFeePayment', 'ReverseOwnerContribution', 'VendorRefund', 'UnreversedPayment', 'UnreversedElectronicFundsTransfer', 'UnreversedOwnerContribution', 'UnreversedRentalApplicationFeePayment', 'ReversedEftRefund']):
             raise ValueError("must be one of enum values ('Bill', 'Check', 'Charge', 'Payment', 'Credit', 'Refund', 'ApplyDeposit', 'ElectronicFundsTransfer', 'Other', 'Deposit', 'GeneralJournalEntry', 'OwnerContribution', 'ReversePayment', 'ReverseElectronicFundsTransfer', 'VendorCredit', 'RentalApplicationFeePayment', 'ReverseRentalApplicationFeePayment', 'ReverseOwnerContribution', 'VendorRefund', 'UnreversedPayment', 'UnreversedElectronicFundsTransfer', 'UnreversedOwnerContribution', 'UnreversedRentalApplicationFeePayment', 'ReversedEftRefund')")
         return value
@@ -64,6 +68,8 @@ class BankAccountReconciliationTransactionMessage(BaseModel):
         if value is None:
             return value
 
+        if isinstance(value, int):
+            return value  # CODEMOD: lenient enum
         if value not in set(['None', 'Check', 'Cash', 'MoneyOrder', 'CashierCheck', 'DirectDeposit', 'CreditCard', 'ElectronicPayment', 'RetailCash']):
             raise ValueError("must be one of enum values ('None', 'Check', 'Cash', 'MoneyOrder', 'CashierCheck', 'DirectDeposit', 'CreditCard', 'ElectronicPayment', 'RetailCash')")
         return value

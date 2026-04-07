@@ -31,8 +31,8 @@ class BankAccountPostMessage(BaseModel):
     check_printing_info: Optional[CheckPrintingInfoPostMessage] = Field(default=None, description="Check printing info.", alias="CheckPrintingInfo")
     name: Annotated[str, Field(min_length=1, strict=True)] = Field(description="Bank account name.", alias="Name")
     description: Optional[StrictStr] = Field(default=None, description="Bank account description.", alias="Description")
-    bank_account_type: StrictStr = Field(description="Type of bank account.", alias="BankAccountType")
-    country: StrictStr = Field(description="The country the bank account exists in.", alias="Country")
+    bank_account_type: Any = Field(description="Type of bank account.", alias="BankAccountType")
+    country: Any = Field(description="The country the bank account exists in.", alias="Country")
     account_number: Optional[StrictStr] = Field(default=None, description="Bank account number.", alias="AccountNumber")
     routing_number: Optional[StrictStr] = Field(default=None, description="Bank routing number. If the bank is in Canada, the routing number should be provided as a zero followed by the three digit institution number, followed by the five digit transit number.", alias="RoutingNumber")
     __properties: ClassVar[List[str]] = ["CheckPrintingInfo", "Name", "Description", "BankAccountType", "Country", "AccountNumber", "RoutingNumber"]

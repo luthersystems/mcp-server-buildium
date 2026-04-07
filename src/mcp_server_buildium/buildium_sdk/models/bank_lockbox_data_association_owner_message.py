@@ -34,10 +34,10 @@ class BankLockboxDataAssociationOwnerMessage(BaseModel):
     email: Optional[StrictStr] = Field(default=None, description="Association owner email.", alias="Email")
     alternate_email: Optional[StrictStr] = Field(default=None, description="Association owner alternate email.", alias="AlternateEmail")
     phone_numbers: Optional[List[PhoneNumberMessage]] = Field(default=None, description="List of phone numbers associated with the association owner.", alias="PhoneNumbers")
-    delinquency_status: Optional[StrictStr] = Field(default=None, description="Indicates the delinquency status of the association owner.", alias="DelinquencyStatus")
+    delinquency_status: Optional[Any] = Field(default=None, description="Indicates the delinquency status of the association owner.", alias="DelinquencyStatus")
     primary_address: Optional[AddressMessage] = Field(default=None, description="Primary address.", alias="PrimaryAddress")
     alternate_address: Optional[AddressMessage] = Field(default=None, description="Alternate address.", alias="AlternateAddress")
-    mailing_preference: Optional[StrictStr] = Field(default=None, description="Indicates the association owner's mailing preference.", alias="MailingPreference")
+    mailing_preference: Optional[Any] = Field(default=None, description="Indicates the association owner's mailing preference.", alias="MailingPreference")
     __properties: ClassVar[List[str]] = ["Id", "FirstName", "LastName", "Email", "AlternateEmail", "PhoneNumbers", "DelinquencyStatus", "PrimaryAddress", "AlternateAddress", "MailingPreference"]
 
     @field_validator('delinquency_status')
@@ -46,6 +46,8 @@ class BankLockboxDataAssociationOwnerMessage(BaseModel):
         if value is None:
             return value
 
+        if isinstance(value, int):
+            return value  # CODEMOD: lenient enum
         if value not in set(['NoDelinquency', 'InCollections', 'InForeclosure', 'Foreclosed']):
             raise ValueError("must be one of enum values ('NoDelinquency', 'InCollections', 'InForeclosure', 'Foreclosed')")
         return value
@@ -56,6 +58,8 @@ class BankLockboxDataAssociationOwnerMessage(BaseModel):
         if value is None:
             return value
 
+        if isinstance(value, int):
+            return value  # CODEMOD: lenient enum
         if value not in set(['PrimaryAddress', 'AlternateAddress']):
             raise ValueError("must be one of enum values ('PrimaryAddress', 'AlternateAddress')")
         return value

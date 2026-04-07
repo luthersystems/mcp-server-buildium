@@ -29,7 +29,7 @@ class RecurringTransactionMessage(BaseModel):
     RecurringTransactionMessage
     """ # noqa: E501
     id: Optional[StrictInt] = Field(default=None, description="The unique identifier for the recurring transaction schedule.", alias="Id")
-    transaction_type: Optional[StrictStr] = Field(default=None, description="Indicates the type of transaction to be applied to the ledger.", alias="TransactionType")
+    transaction_type: Optional[Any] = Field(default=None, description="Indicates the type of transaction to be applied to the ledger.", alias="TransactionType")
     is_expired: Optional[StrictBool] = Field(default=None, description="Indicates if the recurring transaction schedule has expired.", alias="IsExpired")
     rent_id: Optional[StrictInt] = Field(default=None, description="The unique identifier of the scheduled Rent entity. This field is only applicable for `Charge` transaction types.", alias="RentId")
     offsetting_gl_account_id: Optional[StrictInt] = Field(default=None, description="Offsetting general ledger account identifier. The offsetting general ledger account acts as the expense account. Note, this field is only applicable for `Credit` transaction types.", alias="OffsettingGLAccountId")
@@ -39,8 +39,8 @@ class RecurringTransactionMessage(BaseModel):
     first_occurrence_date: Optional[date] = Field(default=None, description="The date the first occurrence of this transaction was processed.", alias="FirstOccurrenceDate")
     next_occurrence_date: Optional[date] = Field(default=None, description="The next date the scheduled transaction will be processed.", alias="NextOccurrenceDate")
     post_days_in_advance: Optional[StrictInt] = Field(default=None, description="The number of days ahead of the transaction date the transaction will post on the lease ledger. This setting is used to add the transaction to the ledger ahead of it's due date for visibility. For example, if the `FirstOccurrenceDate` is set to 8/10/2022 and this value is set to 5 then the charge will added to the ledger on 8/5/2022, but will have transaction date of 8/10/2022.", alias="PostDaysInAdvance")
-    frequency: Optional[StrictStr] = Field(default=None, description="Indicates the frequency at which the recurring transaction is processed.", alias="Frequency")
-    duration: Optional[StrictStr] = Field(default=None, description="Specifies the period of time/occurrences the recurring transaction will be processed. Note, if the `Frequency` field is set to `OneTime` this field should be set to `NULL` as any submitted value will be ignored.", alias="Duration")
+    frequency: Optional[Any] = Field(default=None, description="Indicates the frequency at which the recurring transaction is processed.", alias="Frequency")
+    duration: Optional[Any] = Field(default=None, description="Specifies the period of time/occurrences the recurring transaction will be processed. Note, if the `Frequency` field is set to `OneTime` this field should be set to `NULL` as any submitted value will be ignored.", alias="Duration")
     __properties: ClassVar[List[str]] = ["Id", "TransactionType", "IsExpired", "RentId", "OffsettingGLAccountId", "Lines", "Amount", "Memo", "FirstOccurrenceDate", "NextOccurrenceDate", "PostDaysInAdvance", "Frequency", "Duration"]
 
     @field_validator('transaction_type')
@@ -49,6 +49,8 @@ class RecurringTransactionMessage(BaseModel):
         if value is None:
             return value
 
+        if isinstance(value, int):
+            return value  # CODEMOD: lenient enum
         if value not in set(['Bill', 'Check', 'Charge', 'Payment', 'Credit', 'Refund', 'ApplyDeposit', 'ElectronicFundsTransfer', 'Other', 'Deposit', 'GeneralJournalEntry', 'OwnerContribution', 'ReversePayment', 'ReverseElectronicFundsTransfer', 'VendorCredit', 'RentalApplicationFeePayment', 'ReverseRentalApplicationFeePayment', 'ReverseOwnerContribution', 'VendorRefund', 'UnreversedPayment', 'UnreversedElectronicFundsTransfer', 'UnreversedOwnerContribution', 'UnreversedRentalApplicationFeePayment', 'ReversedEftRefund']):
             raise ValueError("must be one of enum values ('Bill', 'Check', 'Charge', 'Payment', 'Credit', 'Refund', 'ApplyDeposit', 'ElectronicFundsTransfer', 'Other', 'Deposit', 'GeneralJournalEntry', 'OwnerContribution', 'ReversePayment', 'ReverseElectronicFundsTransfer', 'VendorCredit', 'RentalApplicationFeePayment', 'ReverseRentalApplicationFeePayment', 'ReverseOwnerContribution', 'VendorRefund', 'UnreversedPayment', 'UnreversedElectronicFundsTransfer', 'UnreversedOwnerContribution', 'UnreversedRentalApplicationFeePayment', 'ReversedEftRefund')")
         return value
@@ -59,6 +61,8 @@ class RecurringTransactionMessage(BaseModel):
         if value is None:
             return value
 
+        if isinstance(value, int):
+            return value  # CODEMOD: lenient enum
         if value not in set(['Monthly', 'Weekly', 'Every2Weeks', 'Quarterly', 'Yearly', 'Every2Months', 'Daily', 'Every6Months', 'OneTime']):
             raise ValueError("must be one of enum values ('Monthly', 'Weekly', 'Every2Weeks', 'Quarterly', 'Yearly', 'Every2Months', 'Daily', 'Every6Months', 'OneTime')")
         return value
@@ -69,6 +73,8 @@ class RecurringTransactionMessage(BaseModel):
         if value is None:
             return value
 
+        if isinstance(value, int):
+            return value  # CODEMOD: lenient enum
         if value not in set(['Unspecified', 'UntilEndOfTerm', 'SpecificNumber', 'SpecificDate']):
             raise ValueError("must be one of enum values ('Unspecified', 'UntilEndOfTerm', 'SpecificNumber', 'SpecificDate')")
         return value

@@ -28,7 +28,7 @@ class AccountingEntityMessage(BaseModel):
     An object that represents an accounting entity.
     """ # noqa: E501
     id: Optional[StrictInt] = Field(default=None, description="The accounting entity unique identifier.", alias="Id")
-    accounting_entity_type: Optional[StrictStr] = Field(default=None, description="The type of accounting entity.", alias="AccountingEntityType")
+    accounting_entity_type: Optional[Any] = Field(default=None, description="The type of accounting entity.", alias="AccountingEntityType")
     href: Optional[StrictStr] = Field(default=None, description="A link to the accounting entity resource.", alias="Href")
     unit: Optional[UnitEntityMessage] = Field(default=None, description="The unit for the accounting entity.", alias="Unit")
     __properties: ClassVar[List[str]] = ["Id", "AccountingEntityType", "Href", "Unit"]
@@ -39,6 +39,8 @@ class AccountingEntityMessage(BaseModel):
         if value is None:
             return value
 
+        if isinstance(value, int):
+            return value  # CODEMOD: lenient enum
         if value not in set(['Association', 'Rental', 'Company']):
             raise ValueError("must be one of enum values ('Association', 'Rental', 'Company')")
         return value

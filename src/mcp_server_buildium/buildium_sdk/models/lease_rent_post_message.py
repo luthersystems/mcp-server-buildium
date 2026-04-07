@@ -27,7 +27,7 @@ class LeaseRentPostMessage(BaseModel):
     """
     The rent for the lease. When provided in the request the charges for the specified amount will be automatically applied to the lease ledger on the cadence specified in the `Cycle`.
     """ # noqa: E501
-    cycle: StrictStr = Field(description="Indicates the cadence of when rent `Charges` will be applied automatically to the lease ledger.", alias="Cycle")
+    cycle: Any = Field(description="Indicates the cadence of when rent `Charges` will be applied automatically to the lease ledger.", alias="Cycle")
     charges: List[LeaseRentChargePostMessage] = Field(description="List of charges to apply to the lease.", alias="Charges")
     __properties: ClassVar[List[str]] = ["Cycle", "Charges"]
 

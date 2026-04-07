@@ -42,7 +42,7 @@ class RentalTenantPutMessage(BaseModel):
     emergency_contact: Optional[SaveEmergencyContactMessage] = Field(default=None, description="Emergency contact information associated with the tenant.", alias="EmergencyContact")
     address: SaveAddressMessage = Field(description="Address of the tenant.", alias="Address")
     alternate_address: Optional[SaveAddressMessage] = Field(default=None, description="Alternate address of the tenant.", alias="AlternateAddress")
-    mailing_preference: Optional[StrictStr] = Field(default=None, description="Mailing preference for the tenant. If an alternate address exists and this value is not provided then the primary address will be set as the preferred address.", alias="MailingPreference")
+    mailing_preference: Optional[Any] = Field(default=None, description="Mailing preference for the tenant. If an alternate address exists and this value is not provided then the primary address will be set as the preferred address.", alias="MailingPreference")
     __properties: ClassVar[List[str]] = ["FirstName", "LastName", "Email", "AlternateEmail", "PhoneNumbers", "DateOfBirth", "Comment", "TaxId", "EmergencyContact", "Address", "AlternateAddress", "MailingPreference"]
 
     @field_validator('mailing_preference')
@@ -51,6 +51,8 @@ class RentalTenantPutMessage(BaseModel):
         if value is None:
             return value
 
+        if isinstance(value, int):
+            return value  # CODEMOD: lenient enum
         if value not in set(['PrimaryAddress', 'AlternateAddress']):
             raise ValueError("must be one of enum values ('PrimaryAddress', 'AlternateAddress')")
         return value

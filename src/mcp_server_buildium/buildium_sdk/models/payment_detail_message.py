@@ -28,7 +28,7 @@ class PaymentDetailMessage(BaseModel):
     """
     This object represents payment details.
     """ # noqa: E501
-    payment_method: Optional[StrictStr] = Field(default=None, description="The payment method used for the transaction.", alias="PaymentMethod")
+    payment_method: Optional[Any] = Field(default=None, description="The payment method used for the transaction.", alias="PaymentMethod")
     payee: Optional[PayeeMessage] = Field(default=None, description="The payee of the transaction.", alias="Payee")
     is_internal_transaction: Optional[StrictBool] = Field(default=None, description="Whether the transaction is processed internally.", alias="IsInternalTransaction")
     internal_transaction_status: Optional[InternalTransactionStatusMessage] = Field(default=None, description="The status of the transaction. Note, this is only applicable for if `IsInternalTransaction` is `true`.", alias="InternalTransactionStatus")
@@ -40,6 +40,8 @@ class PaymentDetailMessage(BaseModel):
         if value is None:
             return value
 
+        if isinstance(value, int):
+            return value  # CODEMOD: lenient enum
         if value not in set(['None', 'Check', 'Cash', 'MoneyOrder', 'CashierCheck', 'DirectDeposit', 'CreditCard', 'ElectronicPayment', 'RetailCash']):
             raise ValueError("must be one of enum values ('None', 'Check', 'Cash', 'MoneyOrder', 'CashierCheck', 'DirectDeposit', 'CreditCard', 'ElectronicPayment', 'RetailCash')")
         return value

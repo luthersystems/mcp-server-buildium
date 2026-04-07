@@ -38,7 +38,7 @@ class CosignerMessage(BaseModel):
     created_date_time: Optional[datetime] = Field(default=None, description="Created date of this cosigner record.", alias="CreatedDateTime")
     address: Optional[AddressMessage] = Field(default=None, description="Address of the cosigner.", alias="Address")
     alternate_address: Optional[AddressMessage] = Field(default=None, description="Alternate address for the cosigner.", alias="AlternateAddress")
-    mailing_preference: Optional[StrictStr] = Field(default=None, description="Mailing preference for the cosigner.", alias="MailingPreference")
+    mailing_preference: Optional[Any] = Field(default=None, description="Mailing preference for the cosigner.", alias="MailingPreference")
     __properties: ClassVar[List[str]] = ["Id", "FirstName", "LastName", "Email", "AlternateEmail", "PhoneNumbers", "CreatedDateTime", "Address", "AlternateAddress", "MailingPreference"]
 
     @field_validator('mailing_preference')
@@ -47,6 +47,8 @@ class CosignerMessage(BaseModel):
         if value is None:
             return value
 
+        if isinstance(value, int):
+            return value  # CODEMOD: lenient enum
         if value not in set(['PrimaryAddress', 'AlternateAddress']):
             raise ValueError("must be one of enum values ('PrimaryAddress', 'AlternateAddress')")
         return value

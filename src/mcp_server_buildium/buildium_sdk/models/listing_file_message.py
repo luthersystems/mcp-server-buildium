@@ -26,7 +26,7 @@ class ListingFileMessage(BaseModel):
     """
     ListingFileMessage
     """ # noqa: E501
-    type: Optional[StrictStr] = Field(default=None, description="Indicates the media type of file.", alias="Type")
+    type: Optional[Any] = Field(default=None, description="Indicates the media type of file.", alias="Type")
     name: Optional[StrictStr] = Field(default=None, description="The name of the file.", alias="Name")
     url: Optional[StrictStr] = Field(default=None, description="The the full URL to access the file.", alias="Url")
     __properties: ClassVar[List[str]] = ["Type", "Name", "Url"]
@@ -37,6 +37,8 @@ class ListingFileMessage(BaseModel):
         if value is None:
             return value
 
+        if isinstance(value, int):
+            return value  # CODEMOD: lenient enum
         if value not in set(['Image', 'Video']):
             raise ValueError("must be one of enum values ('Image', 'Video')")
         return value

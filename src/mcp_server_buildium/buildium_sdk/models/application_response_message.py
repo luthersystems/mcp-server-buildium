@@ -28,7 +28,7 @@ class ApplicationResponseMessage(BaseModel):
     ApplicationResponseMessage
     """ # noqa: E501
     section_label: Optional[StrictStr] = Field(default=None, description="A user defined description of the application section.", alias="SectionLabel")
-    section_type: Optional[StrictStr] = Field(default=None, description="Indicates the application section type. The `SectionType` can be used to identify specific sections within the application.", alias="SectionType")
+    section_type: Optional[Any] = Field(default=None, description="Indicates the application section type. The `SectionType` can be used to identify specific sections within the application.", alias="SectionType")
     section_responses: Optional[List[ApplicationSectionResponseMessage]] = Field(default=None, description="A collection of form fields within the section.", alias="SectionResponses")
     __properties: ClassVar[List[str]] = ["SectionLabel", "SectionType", "SectionResponses"]
 
@@ -38,6 +38,8 @@ class ApplicationResponseMessage(BaseModel):
         if value is None:
             return value
 
+        if isinstance(value, int):
+            return value  # CODEMOD: lenient enum
         if value not in set(['ApplicantInformation', 'PropertyInformation', 'RentalHistory', 'Employment', 'References', 'Cosigners', 'AdditionalOccupants', 'Pets', 'Vehicles', 'TermsAndConditions', 'Other', 'CosignerInformation', 'CosignerEmploymentHistory', 'CosignerTermsAndConditions', 'CosignerOther', 'LocationOfInterest']):
             raise ValueError("must be one of enum values ('ApplicantInformation', 'PropertyInformation', 'RentalHistory', 'Employment', 'References', 'Cosigners', 'AdditionalOccupants', 'Pets', 'Vehicles', 'TermsAndConditions', 'Other', 'CosignerInformation', 'CosignerEmploymentHistory', 'CosignerTermsAndConditions', 'CosignerOther', 'LocationOfInterest')")
         return value

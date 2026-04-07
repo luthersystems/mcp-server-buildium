@@ -34,12 +34,12 @@ class WorkOrderMessage(BaseModel):
     task: Optional[WorkOrderTaskMessage] = Field(default=None, description="Task information related to the work order.", alias="Task")
     title: Optional[StrictStr] = Field(default=None, description="Work order title.", alias="Title")
     due_date: Optional[date] = Field(default=None, description="Work order due date.", alias="DueDate")
-    priority: Optional[StrictStr] = Field(default=None, description="Work order  priority.", alias="Priority")
-    status: Optional[StrictStr] = Field(default=None, description="Work order status.", alias="Status")
+    priority: Optional[Any] = Field(default=None, description="Work order  priority.", alias="Priority")
+    status: Optional[Any] = Field(default=None, description="Work order status.", alias="Status")
     work_details: Optional[StrictStr] = Field(default=None, description="Description of the work order.", alias="WorkDetails")
     invoice_number: Optional[StrictStr] = Field(default=None, description="The invoice or reference number that the vendor assigned to the invoice.", alias="InvoiceNumber")
     chargeable_to: Optional[StrictStr] = Field(default=None, description="A description of the entity that will be charged for the work.", alias="ChargeableTo")
-    entry_allowed: Optional[StrictStr] = Field(default=None, description="Indicates whether entry has been allowed to the unit.", alias="EntryAllowed")
+    entry_allowed: Optional[Any] = Field(default=None, description="Indicates whether entry has been allowed to the unit.", alias="EntryAllowed")
     entry_notes: Optional[StrictStr] = Field(default=None, description="Notes specific to entering the unit.", alias="EntryNotes")
     vendor_id: Optional[StrictInt] = Field(default=None, description="Vendor unique identifier.", alias="VendorId")
     vendor_notes: Optional[StrictStr] = Field(default=None, description="Notes specific to the vendor.", alias="VendorNotes")
@@ -57,6 +57,8 @@ class WorkOrderMessage(BaseModel):
         if value is None:
             return value
 
+        if isinstance(value, int):
+            return value  # CODEMOD: lenient enum
         if value not in set(['Unknown', 'Low', 'Normal', 'High']):
             raise ValueError("must be one of enum values ('Unknown', 'Low', 'Normal', 'High')")
         return value
@@ -67,6 +69,8 @@ class WorkOrderMessage(BaseModel):
         if value is None:
             return value
 
+        if isinstance(value, int):
+            return value  # CODEMOD: lenient enum
         if value not in set(['Unknown', 'New', 'InProgress', 'Completed', 'Deferred', 'Closed']):
             raise ValueError("must be one of enum values ('Unknown', 'New', 'InProgress', 'Completed', 'Deferred', 'Closed')")
         return value
@@ -77,6 +81,8 @@ class WorkOrderMessage(BaseModel):
         if value is None:
             return value
 
+        if isinstance(value, int):
+            return value  # CODEMOD: lenient enum
         if value not in set(['Unknown', 'Yes', 'No']):
             raise ValueError("must be one of enum values ('Unknown', 'Yes', 'No')")
         return value

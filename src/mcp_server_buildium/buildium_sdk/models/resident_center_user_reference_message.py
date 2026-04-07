@@ -29,7 +29,7 @@ class ResidentCenterUserReferenceMessage(BaseModel):
     id: Optional[StrictInt] = Field(default=None, description="Resident center user unique identifier.", alias="Id")
     first_name: Optional[StrictStr] = Field(default=None, description="First name of the resident center user.", alias="FirstName")
     last_name: Optional[StrictStr] = Field(default=None, description="Last name of the resident center user.", alias="LastName")
-    user_type: Optional[StrictStr] = Field(default=None, description="Indicates if the resident center user is a tenant or association owner", alias="UserType")
+    user_type: Optional[Any] = Field(default=None, description="Indicates if the resident center user is a tenant or association owner", alias="UserType")
     href: Optional[StrictStr] = Field(default=None, description="A link to the user resource.", alias="Href")
     __properties: ClassVar[List[str]] = ["Id", "FirstName", "LastName", "UserType", "Href"]
 
@@ -39,6 +39,8 @@ class ResidentCenterUserReferenceMessage(BaseModel):
         if value is None:
             return value
 
+        if isinstance(value, int):
+            return value  # CODEMOD: lenient enum
         if value not in set(['Tenant', 'AssociationOwner']):
             raise ValueError("must be one of enum values ('Tenant', 'AssociationOwner')")
         return value

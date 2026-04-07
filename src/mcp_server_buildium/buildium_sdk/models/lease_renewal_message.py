@@ -28,10 +28,10 @@ class LeaseRenewalMessage(BaseModel):
     LeaseRenewalMessage
     """ # noqa: E501
     id: Optional[StrictInt] = Field(default=None, description="Lease renewal unique identifier.", alias="Id")
-    lease_status: Optional[StrictStr] = Field(default=None, description="Indicates the status of the lease.", alias="LeaseStatus")
+    lease_status: Optional[Any] = Field(default=None, description="Indicates the status of the lease.", alias="LeaseStatus")
     lease_from_date: Optional[date] = Field(default=None, description="Start date of the lease.", alias="LeaseFromDate")
     lease_to_date: Optional[date] = Field(default=None, description="End date of the lease.", alias="LeaseToDate")
-    lease_type: Optional[StrictStr] = Field(default=None, description="Describes the type of lease.", alias="LeaseType")
+    lease_type: Optional[Any] = Field(default=None, description="Describes the type of lease.", alias="LeaseType")
     rent: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Rent for the lease.", alias="Rent")
     rent_id: Optional[StrictInt] = Field(default=None, description="The unique identifier of the scheduled Rent entity. If the renewal is not associated with a Rent entity then the value will be `NULL`.", alias="RentId")
     tenant_ids: Optional[List[StrictInt]] = Field(default=None, description="Unique identifiers of tenants on the lease.", alias="TenantIds")
@@ -43,6 +43,8 @@ class LeaseRenewalMessage(BaseModel):
         if value is None:
             return value
 
+        if isinstance(value, int):
+            return value  # CODEMOD: lenient enum
         if value not in set(['Active', 'Past', 'Future']):
             raise ValueError("must be one of enum values ('Active', 'Past', 'Future')")
         return value
@@ -53,6 +55,8 @@ class LeaseRenewalMessage(BaseModel):
         if value is None:
             return value
 
+        if isinstance(value, int):
+            return value  # CODEMOD: lenient enum
         if value not in set(['None', 'Fixed', 'FixedWithRollover', 'AtWill']):
             raise ValueError("must be one of enum values ('None', 'Fixed', 'FixedWithRollover', 'AtWill')")
         return value

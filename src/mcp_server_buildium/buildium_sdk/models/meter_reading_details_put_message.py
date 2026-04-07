@@ -29,7 +29,7 @@ class MeterReadingDetailsPutMessage(BaseModel):
     MeterReadingDetailsPutMessage
     """ # noqa: E501
     reading_date: date = Field(description="Date the meter reading occurred on. Date must be formatted as YYYY-MM-DD.", alias="ReadingDate")
-    meter_type: StrictStr = Field(description="Type of meter being read.", alias="MeterType")
+    meter_type: Any = Field(description="Type of meter being read.", alias="MeterType")
     details: List[MeterReadingDetailPutMessage] = Field(description="Collection of detailed meter readings. At least one item is required.", alias="Details")
     __properties: ClassVar[List[str]] = ["ReadingDate", "MeterType", "Details"]
 

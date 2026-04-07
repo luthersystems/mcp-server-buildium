@@ -30,7 +30,7 @@ class BudgetPostMessage(BaseModel):
     """ # noqa: E501
     name: Annotated[str, Field(min_length=1, strict=True)] = Field(description="Name of the budget.", alias="Name")
     property_id: StrictInt = Field(description="Property unique identifier that the budget belongs to.", alias="PropertyId")
-    start_month: StrictStr = Field(description="The month the fiscal year starts for the budget.", alias="StartMonth")
+    start_month: Any = Field(description="The month the fiscal year starts for the budget.", alias="StartMonth")
     fiscal_year: StrictInt = Field(description="The fiscal year for the budget. The value must be formatted as YYYY.", alias="FiscalYear")
     details: List[BudgetDetailsSaveMessage] = Field(description="The financial details associated with the budget.", alias="Details")
     __properties: ClassVar[List[str]] = ["Name", "PropertyId", "StartMonth", "FiscalYear", "Details"]

@@ -32,7 +32,7 @@ class LeaseRenewalPostMessage(BaseModel):
     """
     LeaseRenewalPostMessage
     """ # noqa: E501
-    lease_type: StrictStr = Field(description="Describes the type of lease.", alias="LeaseType")
+    lease_type: Any = Field(description="Describes the type of lease.", alias="LeaseType")
     lease_to_date: Optional[date] = Field(default=None, description="End date of the lease. This is required if `LeaseType` is `Fixed` or `FixedWithRollover`", alias="LeaseToDate")
     automatically_move_out_tenants: Optional[StrictBool] = Field(default=None, description="Indicates whether to automatically move out all tenants assigned to the lease and set the lease status to past when the lease ends.", alias="AutomaticallyMoveOutTenants")
     rent: LeaseRentPostMessage = Field(description="The rent for the lease.", alias="Rent")

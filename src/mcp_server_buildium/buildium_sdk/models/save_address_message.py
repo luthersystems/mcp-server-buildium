@@ -33,7 +33,7 @@ class SaveAddressMessage(BaseModel):
     city: Optional[StrictStr] = Field(default=None, description="City, district, suburb, town, or village. This value cannot exceed 100 characters.", alias="City")
     state: Optional[StrictStr] = Field(default=None, description="State, county, province, or region. When `Country` is set to `UnitedStates` this value must be a valid state name or abbreviation. If the value is `Canada` this value must be a valid Canadian province. For all other countries this field is optional and not validated.", alias="State")
     postal_code: Annotated[str, Field(min_length=1, strict=True)] = Field(description="ZIP or postal code.", alias="PostalCode")
-    country: StrictStr = Field(description="Country. Must be a valid `Country` enumeration value.", alias="Country")
+    country: Any = Field(description="Country. Must be a valid `Country` enumeration value.", alias="Country")
     __properties: ClassVar[List[str]] = ["AddressLine1", "AddressLine2", "AddressLine3", "City", "State", "PostalCode", "Country"]
 
     @field_validator('country')

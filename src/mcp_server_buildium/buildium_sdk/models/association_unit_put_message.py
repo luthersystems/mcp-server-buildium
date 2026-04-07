@@ -31,8 +31,8 @@ class AssociationUnitPutMessage(BaseModel):
     unit_number: Annotated[str, Field(min_length=1, strict=True)] = Field(description="Unit Number. Must be unique within the association and cannot exceed 30 characters.", alias="UnitNumber")
     unit_size: Optional[StrictInt] = Field(default=None, description="Size of the unit.", alias="UnitSize")
     address: SaveAddressMessage = Field(description="Unit address.", alias="Address")
-    unit_bedrooms: Optional[StrictStr] = Field(default=None, description="Number of bedrooms in the unit.", alias="UnitBedrooms")
-    unit_bathrooms: Optional[StrictStr] = Field(default=None, description="Number of bathrooms in the unit.", alias="UnitBathrooms")
+    unit_bedrooms: Optional[Any] = Field(default=None, description="Number of bedrooms in the unit.", alias="UnitBedrooms")
+    unit_bathrooms: Optional[Any] = Field(default=None, description="Number of bathrooms in the unit.", alias="UnitBathrooms")
     __properties: ClassVar[List[str]] = ["UnitNumber", "UnitSize", "Address", "UnitBedrooms", "UnitBathrooms"]
 
     @field_validator('unit_bedrooms')
@@ -41,6 +41,8 @@ class AssociationUnitPutMessage(BaseModel):
         if value is None:
             return value
 
+        if isinstance(value, int):
+            return value  # CODEMOD: lenient enum
         if value not in set(['NotSet', 'Studio', 'OneBed', 'TwoBed', 'ThreeBed', 'FourBed', 'FiveBed', 'SixBed', 'SevenBed', 'EightBed', 'NineBedPlus']):
             raise ValueError("must be one of enum values ('NotSet', 'Studio', 'OneBed', 'TwoBed', 'ThreeBed', 'FourBed', 'FiveBed', 'SixBed', 'SevenBed', 'EightBed', 'NineBedPlus')")
         return value
@@ -51,6 +53,8 @@ class AssociationUnitPutMessage(BaseModel):
         if value is None:
             return value
 
+        if isinstance(value, int):
+            return value  # CODEMOD: lenient enum
         if value not in set(['NotSet', 'OneBath', 'OnePointFiveBath', 'TwoBath', 'TwoPointFiveBath', 'ThreeBath', 'FourBath', 'FiveBath', 'FivePlusBath', 'ThreePointFiveBath', 'FourPointFiveBath']):
             raise ValueError("must be one of enum values ('NotSet', 'OneBath', 'OnePointFiveBath', 'TwoBath', 'TwoPointFiveBath', 'ThreeBath', 'FourBath', 'FiveBath', 'FivePlusBath', 'ThreePointFiveBath', 'FourPointFiveBath')")
         return value

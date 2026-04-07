@@ -37,10 +37,10 @@ class LeaseMessage(BaseModel):
     unit_number: Optional[StrictStr] = Field(default=None, description="Unit number specified in the lease.", alias="UnitNumber")
     lease_from_date: Optional[date] = Field(default=None, description="Start date of the lease.", alias="LeaseFromDate")
     lease_to_date: Optional[date] = Field(default=None, description="End date of the lease.", alias="LeaseToDate")
-    lease_type: Optional[StrictStr] = Field(default=None, description="Describes the type of lease.", alias="LeaseType")
-    lease_status: Optional[StrictStr] = Field(default=None, description="Indicates the status of the lease.", alias="LeaseStatus")
+    lease_type: Optional[Any] = Field(default=None, description="Describes the type of lease.", alias="LeaseType")
+    lease_status: Optional[Any] = Field(default=None, description="Indicates the status of the lease.", alias="LeaseStatus")
     is_eviction_pending: Optional[StrictBool] = Field(default=None, description="Indicates whether the lease has an eviction pending.", alias="IsEvictionPending")
-    term_type: Optional[StrictStr] = Field(default=None, description="Describes the term type of the lease.", alias="TermType")
+    term_type: Optional[Any] = Field(default=None, description="Describes the term type of the lease.", alias="TermType")
     renewal_offer_status: Optional[Any] = Field(default=None, description="Describes the status of the renewal offer. Null if no renewal offer exists. (Local patch: Buildium API sometimes returns int codes despite docs claiming string enum, so type is Any.)", alias="RenewalOfferStatus")
     current_tenants: Optional[List[TenantMessage]] = Field(default=None, description="List of the current tenants on the lease.", alias="CurrentTenants")
     current_number_of_occupants: Optional[StrictInt] = Field(default=None, description="Count of current tenants.", alias="CurrentNumberOfOccupants")
@@ -60,6 +60,8 @@ class LeaseMessage(BaseModel):
         if value is None:
             return value
 
+        if isinstance(value, int):
+            return value  # CODEMOD: lenient enum
         if value not in set(['None', 'Fixed', 'FixedWithRollover', 'AtWill']):
             raise ValueError("must be one of enum values ('None', 'Fixed', 'FixedWithRollover', 'AtWill')")
         return value
@@ -70,6 +72,8 @@ class LeaseMessage(BaseModel):
         if value is None:
             return value
 
+        if isinstance(value, int):
+            return value  # CODEMOD: lenient enum
         if value not in set(['Active', 'Past', 'Future']):
             raise ValueError("must be one of enum values ('Active', 'Past', 'Future')")
         return value
@@ -80,6 +84,8 @@ class LeaseMessage(BaseModel):
         if value is None:
             return value
 
+        if isinstance(value, int):
+            return value  # CODEMOD: lenient enum
         if value not in set(['MonthToMonth', 'Standard', 'Owner']):
             raise ValueError("must be one of enum values ('MonthToMonth', 'Standard', 'Owner')")
         return value

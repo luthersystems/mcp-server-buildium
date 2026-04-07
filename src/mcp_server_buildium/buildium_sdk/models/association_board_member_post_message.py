@@ -28,7 +28,7 @@ class AssociationBoardMemberPostMessage(BaseModel):
     This object represents the Board Member for an Association.
     """ # noqa: E501
     association_owner_id: StrictInt = Field(description="The association owner's unique identifier.", alias="AssociationOwnerId")
-    board_position_type: StrictStr = Field(description="Indicates the board position held by the association owner.", alias="BoardPositionType")
+    board_position_type: Any = Field(description="Indicates the board position held by the association owner.", alias="BoardPositionType")
     start_date: Optional[date] = Field(default=None, description="Start date of the association owners term as a board member. Must be formatted as `YYYY-MM-DD`.", alias="StartDate")
     end_date: Optional[date] = Field(default=None, description="End date of the association owners term as a board member. Must be formatted as `YYYY-MM-DD`.", alias="EndDate")
     __properties: ClassVar[List[str]] = ["AssociationOwnerId", "BoardPositionType", "StartDate", "EndDate"]

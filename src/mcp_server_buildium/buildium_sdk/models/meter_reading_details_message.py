@@ -29,7 +29,7 @@ class MeterReadingDetailsMessage(BaseModel):
     MeterReadingDetailsMessage
     """ # noqa: E501
     reading_date: Optional[date] = Field(default=None, description="Requested date for meter reading details. Details will be the most recent readings on or before this date.", alias="ReadingDate")
-    meter_type: Optional[StrictStr] = Field(default=None, description="Type of meter the reading is for.", alias="MeterType")
+    meter_type: Optional[Any] = Field(default=None, description="Type of meter the reading is for.", alias="MeterType")
     details: Optional[List[MeterReadingDetailMessage]] = Field(default=None, description="List of reading details for all units.", alias="Details")
     __properties: ClassVar[List[str]] = ["ReadingDate", "MeterType", "Details"]
 
@@ -39,6 +39,8 @@ class MeterReadingDetailsMessage(BaseModel):
         if value is None:
             return value
 
+        if isinstance(value, int):
+            return value  # CODEMOD: lenient enum
         if value not in set(['Unknown', 'Electric', 'Gas', 'Oil', 'Water', 'Sewer']):
             raise ValueError("must be one of enum values ('Unknown', 'Electric', 'Gas', 'Oil', 'Water', 'Sewer')")
         return value

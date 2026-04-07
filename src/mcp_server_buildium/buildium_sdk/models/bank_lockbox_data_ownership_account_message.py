@@ -31,7 +31,7 @@ class BankLockboxDataOwnershipAccountMessage(BaseModel):
     id: Optional[StrictInt] = Field(default=None, description="Association ownership account unique identifier.", alias="Id")
     unit_number: Optional[StrictStr] = Field(default=None, description="Unit number of the unit for this ownership account.", alias="UnitNumber")
     unit_address: Optional[AddressMessage] = Field(default=None, description="Address of the unit for this ownership account.", alias="UnitAddress")
-    delinquency_status: Optional[StrictStr] = Field(default=None, description="Indicates the delinquency status of the ownership account", alias="DelinquencyStatus")
+    delinquency_status: Optional[Any] = Field(default=None, description="Indicates the delinquency status of the ownership account", alias="DelinquencyStatus")
     association_owners: Optional[List[BankLockboxDataAssociationOwnerMessage]] = Field(default=None, description="Association owners for this ownership account.", alias="AssociationOwners")
     __properties: ClassVar[List[str]] = ["Id", "UnitNumber", "UnitAddress", "DelinquencyStatus", "AssociationOwners"]
 
@@ -41,6 +41,8 @@ class BankLockboxDataOwnershipAccountMessage(BaseModel):
         if value is None:
             return value
 
+        if isinstance(value, int):
+            return value  # CODEMOD: lenient enum
         if value not in set(['NoDelinquency', 'InCollections', 'InForeclosure', 'Foreclosed']):
             raise ValueError("must be one of enum values ('NoDelinquency', 'InCollections', 'InForeclosure', 'Foreclosed')")
         return value

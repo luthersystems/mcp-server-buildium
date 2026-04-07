@@ -27,7 +27,7 @@ class AssociationTaxInformationMessage(BaseModel):
     """
     Association tax information.
     """ # noqa: E501
-    tax_payer_id_type: Optional[StrictStr] = Field(default=None, description="Indicates the type of tax payer id being specified in the request.", alias="TaxPayerIdType")
+    tax_payer_id_type: Optional[Any] = Field(default=None, description="Indicates the type of tax payer id being specified in the request.", alias="TaxPayerIdType")
     tax_payer_id: Optional[StrictStr] = Field(default=None, description="The tax payer identifier.", alias="TaxPayerId")
     tax_payer_name1: Optional[StrictStr] = Field(default=None, description="Tax payer name line 1.", alias="TaxPayerName1")
     tax_payer_name2: Optional[StrictStr] = Field(default=None, description="Tax payer name line 2.", alias="TaxPayerName2")
@@ -40,6 +40,8 @@ class AssociationTaxInformationMessage(BaseModel):
         if value is None:
             return value
 
+        if isinstance(value, int):
+            return value  # CODEMOD: lenient enum
         if value not in set(['SSN', 'EIN']):
             raise ValueError("must be one of enum values ('SSN', 'EIN')")
         return value

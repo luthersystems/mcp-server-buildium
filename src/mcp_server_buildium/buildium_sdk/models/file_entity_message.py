@@ -27,7 +27,7 @@ class FileEntityMessage(BaseModel):
     The entity the file is associated to.
     """ # noqa: E501
     id: Optional[StrictInt] = Field(default=None, description="Entity unique identifier.", alias="Id")
-    entity_type: Optional[StrictStr] = Field(default=None, description="The entity type.", alias="EntityType")
+    entity_type: Optional[Any] = Field(default=None, description="The entity type.", alias="EntityType")
     href: Optional[StrictStr] = Field(default=None, description="A link to the entity resource.", alias="Href")
     __properties: ClassVar[List[str]] = ["Id", "EntityType", "Href"]
 
@@ -37,6 +37,8 @@ class FileEntityMessage(BaseModel):
         if value is None:
             return value
 
+        if isinstance(value, int):
+            return value  # CODEMOD: lenient enum
         if value not in set(['Unknown', 'Account', 'Association', 'AssociationOwner', 'AssociationUnit', 'Lease', 'OwnershipAccount', 'PublicAsset', 'Rental', 'RentalOwner', 'RentalUnit', 'Tenant', 'Vendor']):
             raise ValueError("must be one of enum values ('Unknown', 'Account', 'Association', 'AssociationOwner', 'AssociationUnit', 'Lease', 'OwnershipAccount', 'PublicAsset', 'Rental', 'RentalOwner', 'RentalUnit', 'Tenant', 'Vendor')")
         return value

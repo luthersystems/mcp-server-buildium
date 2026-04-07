@@ -27,7 +27,7 @@ class LeasePutMessage(BaseModel):
     """
     LeasePutMessage
     """ # noqa: E501
-    lease_type: StrictStr = Field(description="Describes the type of lease.", alias="LeaseType")
+    lease_type: Any = Field(description="Describes the type of lease.", alias="LeaseType")
     unit_id: StrictInt = Field(description="Unit unique identifier associated with the lease.", alias="UnitId")
     lease_from_date: date = Field(description="Start date of the lease.", alias="LeaseFromDate")
     lease_to_date: Optional[date] = Field(default=None, description="End date of the lease.", alias="LeaseToDate")

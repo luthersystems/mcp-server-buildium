@@ -30,7 +30,7 @@ class ApplicationTransactionMessage(BaseModel):
     """ # noqa: E501
     id: Optional[StrictInt] = Field(default=None, description="Transaction unique identifier.", alias="Id")
     var_date: Optional[date] = Field(default=None, description="Date of the transaction.", alias="Date")
-    transaction_type_enum: Optional[StrictStr] = Field(default=None, description="The type of transaction that occurred.", alias="TransactionTypeEnum")
+    transaction_type_enum: Optional[Any] = Field(default=None, description="The type of transaction that occurred.", alias="TransactionTypeEnum")
     total_amount: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Sum of all `Journal.Lines.Amount` entries in the transaction.", alias="TotalAmount")
     check_number: Optional[StrictStr] = Field(default=None, description="Check number associated with the transaction, if applicable.", alias="CheckNumber")
     application_id: Optional[StrictInt] = Field(default=None, description="Application unique identifier associated with the transaction, if applicable. Null if value is not set.", alias="ApplicationId")
@@ -45,6 +45,8 @@ class ApplicationTransactionMessage(BaseModel):
         if value is None:
             return value
 
+        if isinstance(value, int):
+            return value  # CODEMOD: lenient enum
         if value not in set(['Unknown', 'Charge', 'Payment', 'Refund', 'ReversePayment', 'UnreversedPayment']):
             raise ValueError("must be one of enum values ('Unknown', 'Charge', 'Payment', 'Refund', 'ReversePayment', 'UnreversedPayment')")
         return value

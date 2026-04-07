@@ -32,8 +32,8 @@ class ArchitecturalRequestsPostMessage(BaseModel):
     ownership_account_id: StrictInt = Field(description="The ID of the ownership account to tie the architectural request to.", alias="OwnershipAccountId")
     name: Annotated[str, Field(min_length=1, strict=True)] = Field(description="The name of the architectural request. Must be 30 characters or less.", alias="Name")
     submitted_date_time: datetime = Field(description="The date and time the architectural request was submitted. Must not be in the future.", alias="SubmittedDateTime")
-    status: Optional[StrictStr] = Field(default=None, description="The status of the architectural request. If no value is submitted the Status will be set to \"New\".", alias="Status")
-    decision: Optional[StrictStr] = Field(default=None, description="The decision of the architectural request. If no value is submitted the Decision will be set to \"Pending\".", alias="Decision")
+    status: Optional[Any] = Field(default=None, description="The status of the architectural request. If no value is submitted the Status will be set to \"New\".", alias="Status")
+    decision: Optional[Any] = Field(default=None, description="The decision of the architectural request. If no value is submitted the Decision will be set to \"Pending\".", alias="Decision")
     __properties: ClassVar[List[str]] = ["AssociationId", "OwnershipAccountId", "Name", "SubmittedDateTime", "Status", "Decision"]
 
     @field_validator('status')
@@ -42,6 +42,8 @@ class ArchitecturalRequestsPostMessage(BaseModel):
         if value is None:
             return value
 
+        if isinstance(value, int):
+            return value  # CODEMOD: lenient enum
         if value not in set(['New', 'InProgress', 'Completed']):
             raise ValueError("must be one of enum values ('New', 'InProgress', 'Completed')")
         return value
@@ -52,6 +54,8 @@ class ArchitecturalRequestsPostMessage(BaseModel):
         if value is None:
             return value
 
+        if isinstance(value, int):
+            return value  # CODEMOD: lenient enum
         if value not in set(['Pending', 'Approved', 'Denied']):
             raise ValueError("must be one of enum values ('Pending', 'Approved', 'Denied')")
         return value

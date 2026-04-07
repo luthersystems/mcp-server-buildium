@@ -36,9 +36,9 @@ class ClientLeadMessage(BaseModel):
     phone_number: Optional[StrictStr] = Field(default=None, description="The phone number of the lead.", alias="PhoneNumber")
     price_paid: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The price paid for the lead.", alias="PricePaid")
     address: Optional[AddressMessage] = Field(default=None, description="The address of the lead's property.", alias="Address")
-    property_type: Optional[StrictStr] = Field(default=None, description="The property type of the lead's property.", alias="PropertyType")
+    property_type: Optional[Any] = Field(default=None, description="The property type of the lead's property.", alias="PropertyType")
     comments: Optional[StrictStr] = Field(default=None, description="Additional comments submitted for the lead.", alias="Comments")
-    lead_status: Optional[StrictStr] = Field(default=None, description="The current status of the client lead.", alias="LeadStatus")
+    lead_status: Optional[Any] = Field(default=None, description="The current status of the client lead.", alias="LeadStatus")
     credit_request: Optional[ClientLeadCreditRequestMessage] = Field(default=None, description="The credit request of the lead. This will be null if no credit has been requested.", alias="CreditRequest")
     __properties: ClassVar[List[str]] = ["Id", "DateReceived", "Name", "Email", "PhoneNumber", "PricePaid", "Address", "PropertyType", "Comments", "LeadStatus", "CreditRequest"]
 
@@ -48,6 +48,8 @@ class ClientLeadMessage(BaseModel):
         if value is None:
             return value
 
+        if isinstance(value, int):
+            return value  # CODEMOD: lenient enum
         if value not in set(['SingleHomeUpToThreeHundredThousand', 'SingleHomeThreeHundredToFiveHundredThousand', 'SingleHomeFiveHundredThousandToOneMillion', 'SingleHomeOverOneMillion', 'MultiFamilyTwoToFourUnits', 'MultiFamilyFiveToNineteenUnits', 'MultiFamilyTwentyToFortyNineUnits', 'MultiFamilyOverOneHundredUnits', 'OfficeLessThanTenThousandSqFt', 'OfficeTenThousandToOneHundredThousandSqFt', 'OfficeOverOneHundredThousandSqFt', 'RetailLessThanTenThousandSqFt', 'RetailTenThousandToOneHundredThousandSqFt', 'RetailOverOneHundredThousandSqFt', 'LightManufacturingUpToOneHundredThousandSqFt', 'LightManufacturingOverOneHundredThousandSqFt', 'WarehouseUpToOneHundredThousandSqFt', 'WarehouseOverOneHundredThousandSqFt', 'VacationOneToTwoUnits', 'VacationOverThreeUnits', 'ParkingGarage', 'OtherAssociation', 'BiotechMissionCritical', 'HOATwoToFortyNineUnits', 'HOAFiftyToNinetyNineUnits', 'HOAOverOneHundredUnits', 'COATwoToFortyNineUnits', 'COAFiftyToNinetyNineUnits', 'COAOverOneHundredUnits', 'MobileHomeCommunity']):
             raise ValueError("must be one of enum values ('SingleHomeUpToThreeHundredThousand', 'SingleHomeThreeHundredToFiveHundredThousand', 'SingleHomeFiveHundredThousandToOneMillion', 'SingleHomeOverOneMillion', 'MultiFamilyTwoToFourUnits', 'MultiFamilyFiveToNineteenUnits', 'MultiFamilyTwentyToFortyNineUnits', 'MultiFamilyOverOneHundredUnits', 'OfficeLessThanTenThousandSqFt', 'OfficeTenThousandToOneHundredThousandSqFt', 'OfficeOverOneHundredThousandSqFt', 'RetailLessThanTenThousandSqFt', 'RetailTenThousandToOneHundredThousandSqFt', 'RetailOverOneHundredThousandSqFt', 'LightManufacturingUpToOneHundredThousandSqFt', 'LightManufacturingOverOneHundredThousandSqFt', 'WarehouseUpToOneHundredThousandSqFt', 'WarehouseOverOneHundredThousandSqFt', 'VacationOneToTwoUnits', 'VacationOverThreeUnits', 'ParkingGarage', 'OtherAssociation', 'BiotechMissionCritical', 'HOATwoToFortyNineUnits', 'HOAFiftyToNinetyNineUnits', 'HOAOverOneHundredUnits', 'COATwoToFortyNineUnits', 'COAFiftyToNinetyNineUnits', 'COAOverOneHundredUnits', 'MobileHomeCommunity')")
         return value
@@ -58,6 +60,8 @@ class ClientLeadMessage(BaseModel):
         if value is None:
             return value
 
+        if isinstance(value, int):
+            return value  # CODEMOD: lenient enum
         if value not in set(['Unknown', 'New', 'Contacting', 'Qualifying', 'Closing', 'ClosedWon', 'ClosedLost']):
             raise ValueError("must be one of enum values ('Unknown', 'New', 'Contacting', 'Qualifying', 'Closing', 'ClosedWon', 'ClosedLost')")
         return value

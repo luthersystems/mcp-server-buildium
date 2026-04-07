@@ -45,6 +45,8 @@ class ListingPropertyMessage(BaseModel):
         if value is None:
             return value
 
+        if isinstance(value, int):
+            return value  # CODEMOD: lenient enum
         for i in value:
             if i not in set(['LaundryRoom', 'WheelchairAccess', 'DoorAttendant', 'Elevator', 'Parking', 'StorageUnits', 'Pool', 'FitnessCenter', 'TennisCourt', 'ClubHouse', 'Power', 'ParkingCommercial', 'SprinklerSystem', 'DockHighDoorsOrLoadingAvailable', 'Availability24Hours', 'AccentWalls', 'BasketballCourt', 'Bilingual', 'BoatDocks', 'BusinessCenter', 'CarWashArea', 'ChildCare', 'ClubDiscount', 'ConferenceRoom', 'Concierge', 'FreeWeights', 'FurnishedAvailable', 'GamingStations', 'Garage', 'Gate', 'GroceryService', 'GroupExercise', 'GuestRoom', 'Housekeeping', 'HouseSitting', 'JoggingWalkingTrails', 'LakeFront', 'LakeAccess', 'Library', 'MealService', 'MediaRoom', 'MultiUseRoom', 'NightPatrol', 'OnSiteMaintenance', 'OnSiteManagement', 'PackageReceiving', 'PerDiemAccepted', 'PlayGround', 'Racquetball', 'RecRoom', 'Recycling', 'Sauna', 'ShortTermLease', 'SmokeFree', 'Spa', 'Sundeck', 'Transportation', 'TVLounge', 'ValetTrash', 'Vintage', 'VolleyballCourt', 'WirelessInternet', 'HighSpeedInternet']):
                 raise ValueError("each list item must be one of ('LaundryRoom', 'WheelchairAccess', 'DoorAttendant', 'Elevator', 'Parking', 'StorageUnits', 'Pool', 'FitnessCenter', 'TennisCourt', 'ClubHouse', 'Power', 'ParkingCommercial', 'SprinklerSystem', 'DockHighDoorsOrLoadingAvailable', 'Availability24Hours', 'AccentWalls', 'BasketballCourt', 'Bilingual', 'BoatDocks', 'BusinessCenter', 'CarWashArea', 'ChildCare', 'ClubDiscount', 'ConferenceRoom', 'Concierge', 'FreeWeights', 'FurnishedAvailable', 'GamingStations', 'Garage', 'Gate', 'GroceryService', 'GroupExercise', 'GuestRoom', 'Housekeeping', 'HouseSitting', 'JoggingWalkingTrails', 'LakeFront', 'LakeAccess', 'Library', 'MealService', 'MediaRoom', 'MultiUseRoom', 'NightPatrol', 'OnSiteMaintenance', 'OnSiteManagement', 'PackageReceiving', 'PerDiemAccepted', 'PlayGround', 'Racquetball', 'RecRoom', 'Recycling', 'Sauna', 'ShortTermLease', 'SmokeFree', 'Spa', 'Sundeck', 'Transportation', 'TVLounge', 'ValetTrash', 'Vintage', 'VolleyballCourt', 'WirelessInternet', 'HighSpeedInternet')")
@@ -56,6 +58,8 @@ class ListingPropertyMessage(BaseModel):
         if value is None:
             return value
 
+        if isinstance(value, int):
+            return value  # CODEMOD: lenient enum
         for i in value:
             if i not in set(['Gas', 'Electric', 'Trash', 'Water', 'HotWater', 'Telephone', 'Heat', 'Cable', 'AirCon', 'Satellite', 'Sewer', 'BroadbandInternet']):
                 raise ValueError("each list item must be one of ('Gas', 'Electric', 'Trash', 'Water', 'HotWater', 'Telephone', 'Heat', 'Cable', 'AirCon', 'Satellite', 'Sewer', 'BroadbandInternet')")

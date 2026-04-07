@@ -29,8 +29,8 @@ class TaskHistoryMessage(BaseModel):
     TaskHistoryMessage
     """ # noqa: E501
     id: Optional[StrictInt] = Field(default=None, description="Task history unique identifier.", alias="Id")
-    priority: Optional[StrictStr] = Field(default=None, description="Task priority.", alias="Priority")
-    task_status: Optional[StrictStr] = Field(default=None, description="Task status.", alias="TaskStatus")
+    priority: Optional[Any] = Field(default=None, description="Task priority.", alias="Priority")
+    task_status: Optional[Any] = Field(default=None, description="Task status.", alias="TaskStatus")
     assigned_to_user_id: Optional[StrictInt] = Field(default=None, description="The unique identifier of the staff user assigned to the task.", alias="AssignedToUserId")
     due_date: Optional[date] = Field(default=None, description="Task due date.", alias="DueDate")
     message: Optional[StrictStr] = Field(default=None, description="Description of the task update.", alias="Message")
@@ -48,6 +48,8 @@ class TaskHistoryMessage(BaseModel):
         if value is None:
             return value
 
+        if isinstance(value, int):
+            return value  # CODEMOD: lenient enum
         if value not in set(['Low', 'Normal', 'High']):
             raise ValueError("must be one of enum values ('Low', 'Normal', 'High')")
         return value
@@ -58,6 +60,8 @@ class TaskHistoryMessage(BaseModel):
         if value is None:
             return value
 
+        if isinstance(value, int):
+            return value  # CODEMOD: lenient enum
         if value not in set(['New', 'InProgress', 'Completed', 'Deferred', 'Closed']):
             raise ValueError("must be one of enum values ('New', 'InProgress', 'Completed', 'Deferred', 'Closed')")
         return value
@@ -68,6 +72,8 @@ class TaskHistoryMessage(BaseModel):
         if value is None:
             return value
 
+        if isinstance(value, int):
+            return value  # CODEMOD: lenient enum
         for i in value:
             if i not in set(['Residents', 'RentalOwners', 'AssociationBoardMembers']):
                 raise ValueError("each list item must be one of ('Residents', 'RentalOwners', 'AssociationBoardMembers')")

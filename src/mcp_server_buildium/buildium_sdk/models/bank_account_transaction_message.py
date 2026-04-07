@@ -31,11 +31,11 @@ class BankAccountTransactionMessage(BaseModel):
     """ # noqa: E501
     id: Optional[StrictInt] = Field(default=None, description="Transaction unique identifier.", alias="Id")
     entry_date: Optional[date] = Field(default=None, description="Date of the transaction.", alias="EntryDate")
-    transaction_type: Optional[StrictStr] = Field(default=None, description="Type of transaction.", alias="TransactionType")
+    transaction_type: Optional[Any] = Field(default=None, description="Type of transaction.", alias="TransactionType")
     check_number: Optional[StrictStr] = Field(default=None, description="Check number associated with the transaction, if applicable.", alias="CheckNumber")
     memo: Optional[StrictStr] = Field(default=None, description="Memo associated with the transaction, if applicable.", alias="Memo")
     amount: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The total amount of the transaction.", alias="Amount")
-    reconciliation_status: Optional[StrictStr] = Field(default=None, description="Indicates the reconciliation status of the transaction.", alias="ReconciliationStatus")
+    reconciliation_status: Optional[Any] = Field(default=None, description="Indicates the reconciliation status of the transaction.", alias="ReconciliationStatus")
     paid_by: Optional[List[PaidByMessage]] = Field(default=None, description="The entity that made the payment.", alias="PaidBy")
     paid_to: Optional[List[PayeeMessage]] = Field(default=None, description="The entity that received the payment.", alias="PaidTo")
     balance: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The bank account balance after this transaction was applied.", alias="Balance")
@@ -47,6 +47,8 @@ class BankAccountTransactionMessage(BaseModel):
         if value is None:
             return value
 
+        if isinstance(value, int):
+            return value  # CODEMOD: lenient enum
         if value not in set(['Bill', 'Check', 'Charge', 'Payment', 'Credit', 'Refund', 'ApplyDeposit', 'ElectronicFundsTransfer', 'Other', 'Deposit', 'GeneralJournalEntry', 'OwnerContribution', 'ReversePayment', 'ReverseElectronicFundsTransfer', 'VendorCredit', 'RentalApplicationFeePayment', 'ReverseRentalApplicationFeePayment', 'ReverseOwnerContribution', 'VendorRefund', 'UnreversedPayment', 'UnreversedElectronicFundsTransfer', 'UnreversedOwnerContribution', 'UnreversedRentalApplicationFeePayment', 'ReversedEftRefund']):
             raise ValueError("must be one of enum values ('Bill', 'Check', 'Charge', 'Payment', 'Credit', 'Refund', 'ApplyDeposit', 'ElectronicFundsTransfer', 'Other', 'Deposit', 'GeneralJournalEntry', 'OwnerContribution', 'ReversePayment', 'ReverseElectronicFundsTransfer', 'VendorCredit', 'RentalApplicationFeePayment', 'ReverseRentalApplicationFeePayment', 'ReverseOwnerContribution', 'VendorRefund', 'UnreversedPayment', 'UnreversedElectronicFundsTransfer', 'UnreversedOwnerContribution', 'UnreversedRentalApplicationFeePayment', 'ReversedEftRefund')")
         return value
@@ -57,6 +59,8 @@ class BankAccountTransactionMessage(BaseModel):
         if value is None:
             return value
 
+        if isinstance(value, int):
+            return value  # CODEMOD: lenient enum
         if value not in set(['Unknown', 'UnReconciled', 'Cleared', 'Reconciled']):
             raise ValueError("must be one of enum values ('Unknown', 'UnReconciled', 'Cleared', 'Reconciled')")
         return value

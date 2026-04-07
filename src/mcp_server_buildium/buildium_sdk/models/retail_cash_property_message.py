@@ -28,7 +28,7 @@ class RetailCashPropertyMessage(BaseModel):
     """ # noqa: E501
     id: Optional[StrictInt] = Field(default=None, description="The property unique identifier.", alias="Id")
     name: Optional[StrictStr] = Field(default=None, description="The property name.", alias="Name")
-    type: Optional[StrictStr] = Field(default=None, description="The property type.", alias="Type")
+    type: Optional[Any] = Field(default=None, description="The property type.", alias="Type")
     href: Optional[StrictStr] = Field(default=None, description="A link to the property entity resource.", alias="Href")
     __properties: ClassVar[List[str]] = ["Id", "Name", "Type", "Href"]
 
@@ -38,6 +38,8 @@ class RetailCashPropertyMessage(BaseModel):
         if value is None:
             return value
 
+        if isinstance(value, int):
+            return value  # CODEMOD: lenient enum
         if value not in set(['Association', 'Rental']):
             raise ValueError("must be one of enum values ('Association', 'Rental')")
         return value

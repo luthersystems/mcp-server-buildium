@@ -33,8 +33,8 @@ class RentalUnitsPostMessage(BaseModel):
     unit_size: Optional[StrictInt] = Field(default=None, description="Size of the unit.", alias="UnitSize")
     market_rent: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Market rent of the unit. This value is separate from the lease rent and is typically used for rental listings.", alias="MarketRent")
     address: SaveAddressMessage = Field(description="Rental unit address.", alias="Address")
-    unit_bedrooms: Optional[StrictStr] = Field(default=None, description="Number of bedrooms in the unit.", alias="UnitBedrooms")
-    unit_bathrooms: Optional[StrictStr] = Field(default=None, description="Number of bathrooms in the unit.", alias="UnitBathrooms")
+    unit_bedrooms: Optional[Any] = Field(default=None, description="Number of bedrooms in the unit.", alias="UnitBedrooms")
+    unit_bathrooms: Optional[Any] = Field(default=None, description="Number of bathrooms in the unit.", alias="UnitBathrooms")
     description: Optional[StrictStr] = Field(default=None, description="Description of the unit. The description cannot exceed 65,535 characters.", alias="Description")
     __properties: ClassVar[List[str]] = ["UnitNumber", "PropertyId", "UnitSize", "MarketRent", "Address", "UnitBedrooms", "UnitBathrooms", "Description"]
 
@@ -44,6 +44,8 @@ class RentalUnitsPostMessage(BaseModel):
         if value is None:
             return value
 
+        if isinstance(value, int):
+            return value  # CODEMOD: lenient enum
         if value not in set(['NotSet', 'Studio', 'OneBed', 'TwoBed', 'ThreeBed', 'FourBed', 'FiveBed', 'SixBed', 'SevenBed', 'EightBed', 'NineBedPlus']):
             raise ValueError("must be one of enum values ('NotSet', 'Studio', 'OneBed', 'TwoBed', 'ThreeBed', 'FourBed', 'FiveBed', 'SixBed', 'SevenBed', 'EightBed', 'NineBedPlus')")
         return value
@@ -54,6 +56,8 @@ class RentalUnitsPostMessage(BaseModel):
         if value is None:
             return value
 
+        if isinstance(value, int):
+            return value  # CODEMOD: lenient enum
         if value not in set(['NotSet', 'OneBath', 'OnePointFiveBath', 'TwoBath', 'TwoPointFiveBath', 'ThreeBath', 'FourBath', 'FiveBath', 'FivePlusBath', 'ThreePointFiveBath', 'FourPointFiveBath']):
             raise ValueError("must be one of enum values ('NotSet', 'OneBath', 'OnePointFiveBath', 'TwoBath', 'TwoPointFiveBath', 'ThreeBath', 'FourBath', 'FiveBath', 'FivePlusBath', 'ThreePointFiveBath', 'FourPointFiveBath')")
         return value

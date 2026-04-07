@@ -27,7 +27,7 @@ class BankAccountCheckAccountingEntitySaveMessage(BaseModel):
     BankAccountCheckAccountingEntitySaveMessage
     """ # noqa: E501
     id: StrictInt = Field(description="The accounting entity unique identifier.", alias="Id")
-    accounting_entity_type: StrictStr = Field(description="The type of accounting entity.", alias="AccountingEntityType")
+    accounting_entity_type: Any = Field(description="The type of accounting entity.", alias="AccountingEntityType")
     unit_id: Optional[StrictInt] = Field(default=None, description="The unit unique identifier for the accounting entity.", alias="UnitId")
     __properties: ClassVar[List[str]] = ["Id", "AccountingEntityType", "UnitId"]
 

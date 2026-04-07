@@ -28,7 +28,7 @@ class BudgetDetailsMessage(BaseModel):
     BudgetDetailsMessage
     """ # noqa: E501
     gl_account_id: Optional[StrictInt] = Field(default=None, description="The general ledger account unique identifier the budget is related to.", alias="GLAccountId")
-    gl_account_sub_type: Optional[StrictStr] = Field(default=None, description="Describes the subtype of the general ledger account.", alias="GLAccountSubType")
+    gl_account_sub_type: Optional[Any] = Field(default=None, description="Describes the subtype of the general ledger account.", alias="GLAccountSubType")
     total_amount: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Sum of all monthly amounts in the budget.", alias="TotalAmount")
     monthly_amounts: Optional[BudgetMonthlyAmountsMessage] = Field(default=None, description="The monthly amounts in the budget.", alias="MonthlyAmounts")
     __properties: ClassVar[List[str]] = ["GLAccountId", "GLAccountSubType", "TotalAmount", "MonthlyAmounts"]
@@ -39,6 +39,8 @@ class BudgetDetailsMessage(BaseModel):
         if value is None:
             return value
 
+        if isinstance(value, int):
+            return value  # CODEMOD: lenient enum
         if value not in set(['CurrentAsset', 'FixedAsset', 'CurrentLiability', 'LongTermLiability', 'Equity', 'Income', 'NonOperatingIncome', 'OperatingExpenses', 'NonOperatingExpenses']):
             raise ValueError("must be one of enum values ('CurrentAsset', 'FixedAsset', 'CurrentLiability', 'LongTermLiability', 'Equity', 'Income', 'NonOperatingIncome', 'OperatingExpenses', 'NonOperatingExpenses')")
         return value

@@ -35,8 +35,8 @@ class ToDoTaskPostMessage(BaseModel):
     property_id: Optional[StrictInt] = Field(default=None, description="The unique identifier of property associated with the request. The assigned property must be active.", alias="PropertyId")
     unit_id: Optional[StrictInt] = Field(default=None, description="The unique identifier of the unit associated with the request. The unit must be associated with the `PropertyId` specified.", alias="UnitId")
     assigned_to_user_id: StrictInt = Field(description="The unique identifier of the staff user assigned to the request. The user must be a `Staff` user type.", alias="AssignedToUserId")
-    task_status: StrictStr = Field(description="Request status.", alias="TaskStatus")
-    priority: StrictStr = Field(description="Request priority.", alias="Priority")
+    task_status: Any = Field(description="Request status.", alias="TaskStatus")
+    priority: Any = Field(description="Request priority.", alias="Priority")
     due_date: Optional[date] = Field(default=None, description="Request due date. The date must be formatted as YYYY-MM-DD.", alias="DueDate")
     __properties: ClassVar[List[str]] = ["Title", "Description", "CategoryId", "SubCategoryId", "PropertyId", "UnitId", "AssignedToUserId", "TaskStatus", "Priority", "DueDate"]
 

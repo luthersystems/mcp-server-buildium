@@ -31,7 +31,7 @@ class VendorRefundMessage(BaseModel):
     id: Optional[StrictInt] = Field(default=None, description="Transaction unique identifier.", alias="Id")
     entry_date: Optional[date] = Field(default=None, description="Date the refund was recorded.", alias="EntryDate")
     bank_account_id: Optional[StrictInt] = Field(default=None, description="Unique identifier of the bank account that the refund was deposited into.", alias="BankAccountId")
-    payment_method: Optional[StrictStr] = Field(default=None, description="The payment method used for the vendor refund.", alias="PaymentMethod")
+    payment_method: Optional[Any] = Field(default=None, description="The payment method used for the vendor refund.", alias="PaymentMethod")
     reference_number: Optional[StrictStr] = Field(default=None, description="Reference number for the vendor refund.", alias="ReferenceNumber")
     memo: Optional[StrictStr] = Field(default=None, description="Memo for the vendor refund.", alias="Memo")
     lines: Optional[List[VendorRefundLineMessage]] = Field(default=None, description="A collection of line items associated with the vendor refund.", alias="Lines")
@@ -43,6 +43,8 @@ class VendorRefundMessage(BaseModel):
         if value is None:
             return value
 
+        if isinstance(value, int):
+            return value  # CODEMOD: lenient enum
         if value not in set(['None', 'Check', 'Cash', 'MoneyOrder', 'CashierCheck', 'DirectDeposit', 'CreditCard', 'ElectronicPayment', 'RetailCash']):
             raise ValueError("must be one of enum values ('None', 'Check', 'Cash', 'MoneyOrder', 'CashierCheck', 'DirectDeposit', 'CreditCard', 'ElectronicPayment', 'RetailCash')")
         return value

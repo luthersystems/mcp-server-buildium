@@ -28,7 +28,7 @@ class ApplicationAutoAllocatedPaymentPostMessage(BaseModel):
     This is an object that represents an auto-allocated Payment made in a particular application ledger.
     """ # noqa: E501
     var_date: date = Field(description="The date of the transaction. The date must be formatted as YYYY-MM-DD.", alias="Date")
-    payment_method: StrictStr = Field(description="The payment method used for the transaction.", alias="PaymentMethod")
+    payment_method: Any = Field(description="The payment method used for the transaction.", alias="PaymentMethod")
     memo: Optional[StrictStr] = Field(default=None, description="A brief note describing the reason for the payment. The value cannot exceed 65 characters.", alias="Memo")
     reference_number: Optional[StrictStr] = Field(default=None, description="The reference Number of the transaction. The value cannot exceed 30 characters.", alias="ReferenceNumber")
     send_email_receipt: StrictBool = Field(description="An indicator for whether to send an email receipt to the payee. If the payee does not have an email address set, no email will be sent.", alias="SendEmailReceipt")

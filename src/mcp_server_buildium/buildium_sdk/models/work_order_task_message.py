@@ -29,13 +29,13 @@ class WorkOrderTaskMessage(BaseModel):
     Task information related to the work order.
     """ # noqa: E501
     id: Optional[StrictInt] = Field(default=None, description="Task unique identifier.", alias="Id")
-    type: Optional[StrictStr] = Field(default=None, description="The task type.", alias="Type")
+    type: Optional[Any] = Field(default=None, description="The task type.", alias="Type")
     unit_id: Optional[StrictInt] = Field(default=None, description="The unit unique identifier associated with the task.", alias="UnitId")
     unit_agreement: Optional[UnitAgreementMessage] = Field(default=None, description="The unit agreement that is associated with the task.", alias="UnitAgreement")
     title: Optional[StrictStr] = Field(default=None, description="Task title.", alias="Title")
     due_date: Optional[date] = Field(default=None, description="Task due date.", alias="DueDate")
-    priority: Optional[StrictStr] = Field(default=None, description="Task priority.", alias="Priority")
-    status: Optional[StrictStr] = Field(default=None, description="Task status.", alias="Status")
+    priority: Optional[Any] = Field(default=None, description="Task priority.", alias="Priority")
+    status: Optional[Any] = Field(default=None, description="Task status.", alias="Status")
     __properties: ClassVar[List[str]] = ["Id", "Type", "UnitId", "UnitAgreement", "Title", "DueDate", "Priority", "Status"]
 
     @field_validator('type')
@@ -44,6 +44,8 @@ class WorkOrderTaskMessage(BaseModel):
         if value is None:
             return value
 
+        if isinstance(value, int):
+            return value  # CODEMOD: lenient enum
         if value not in set(['ContactRequest', 'ResidentRequest', 'Todo', 'RentalOwnerRequest']):
             raise ValueError("must be one of enum values ('ContactRequest', 'ResidentRequest', 'Todo', 'RentalOwnerRequest')")
         return value
@@ -54,6 +56,8 @@ class WorkOrderTaskMessage(BaseModel):
         if value is None:
             return value
 
+        if isinstance(value, int):
+            return value  # CODEMOD: lenient enum
         if value not in set(['Low', 'Normal', 'High']):
             raise ValueError("must be one of enum values ('Low', 'Normal', 'High')")
         return value
@@ -64,6 +68,8 @@ class WorkOrderTaskMessage(BaseModel):
         if value is None:
             return value
 
+        if isinstance(value, int):
+            return value  # CODEMOD: lenient enum
         if value not in set(['New', 'InProgress', 'Completed', 'Deferred', 'Closed']):
             raise ValueError("must be one of enum values ('New', 'InProgress', 'Completed', 'Deferred', 'Closed')")
         return value

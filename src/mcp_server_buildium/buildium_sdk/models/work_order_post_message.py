@@ -31,7 +31,7 @@ class WorkOrderPostMessage(BaseModel):
     work_details: Optional[StrictStr] = Field(default=None, description="Description of the work order. The value cannot exceed 65,535 characters.", alias="WorkDetails")
     invoice_number: Optional[StrictStr] = Field(default=None, description="The invoice or reference number that the vendor assigned to the work order. The value cannot exceed 50 characters.", alias="InvoiceNumber")
     chargeable_to: Optional[StrictStr] = Field(default=None, description="A description of the entity that will be charged for the work. The value cannot exceed 100 characters.", alias="ChargeableTo")
-    entry_allowed: StrictStr = Field(description="Indicates whether entry has been allowed to the unit.", alias="EntryAllowed")
+    entry_allowed: Any = Field(description="Indicates whether entry has been allowed to the unit.", alias="EntryAllowed")
     entry_notes: Optional[StrictStr] = Field(default=None, description="Notes specific to entering the unit. The value cannot exceed 65,535 characters.", alias="EntryNotes")
     vendor_id: StrictInt = Field(description="Vendor unique identifier.", alias="VendorId")
     vendor_notes: Optional[StrictStr] = Field(default=None, description="Notes specific to the vendor. The value cannot exceed 65,535 characters.", alias="VendorNotes")

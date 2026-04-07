@@ -27,7 +27,7 @@ class AccountingEntityPatchMessage(BaseModel):
     AccountingEntityPatchMessage
     """ # noqa: E501
     id: Optional[StrictInt] = Field(default=None, description="The unique identifier of the accounting entity", alias="Id")
-    accounting_entity_type: Optional[StrictStr] = Field(default=None, description="The type of the accounting entity", alias="AccountingEntityType")
+    accounting_entity_type: Optional[Any] = Field(default=None, description="The type of the accounting entity", alias="AccountingEntityType")
     unit_id: Optional[StrictInt] = Field(default=None, description="The unit unique identifier for the accounting entity.", alias="UnitId")
     __properties: ClassVar[List[str]] = ["Id", "AccountingEntityType", "UnitId"]
 
@@ -37,6 +37,8 @@ class AccountingEntityPatchMessage(BaseModel):
         if value is None:
             return value
 
+        if isinstance(value, int):
+            return value  # CODEMOD: lenient enum
         if value not in set(['Association', 'Rental', 'Company']):
             raise ValueError("must be one of enum values ('Association', 'Rental', 'Company')")
         return value

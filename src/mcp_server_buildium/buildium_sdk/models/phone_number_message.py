@@ -27,7 +27,7 @@ class PhoneNumberMessage(BaseModel):
     This is an object that represents a phone number.
     """ # noqa: E501
     number: Optional[StrictStr] = Field(default=None, description="Phone number.", alias="Number")
-    type: Optional[StrictStr] = Field(default=None, description="Indicates the type of phone number.", alias="Type")
+    type: Optional[Any] = Field(default=None, description="Indicates the type of phone number.", alias="Type")
     __properties: ClassVar[List[str]] = ["Number", "Type"]
 
     @field_validator('type')
@@ -36,6 +36,8 @@ class PhoneNumberMessage(BaseModel):
         if value is None:
             return value
 
+        if isinstance(value, int):
+            return value  # CODEMOD: lenient enum
         if value not in set(['NotSet', 'Home', 'Office', 'Cell', 'Personal', 'Fax', 'Other']):
             raise ValueError("must be one of enum values ('NotSet', 'Home', 'Office', 'Cell', 'Personal', 'Fax', 'Other')")
         return value

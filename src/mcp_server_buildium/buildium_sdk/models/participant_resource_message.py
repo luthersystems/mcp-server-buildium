@@ -26,7 +26,7 @@ class ParticipantResourceMessage(BaseModel):
     """
     The participant in the phone call.
     """ # noqa: E501
-    type: Optional[StrictStr] = Field(default=None, description="Indicates the participant type.", alias="Type")
+    type: Optional[Any] = Field(default=None, description="Indicates the participant type.", alias="Type")
     href: Optional[StrictStr] = Field(default=None, description="A link to the participant resource.", alias="Href")
     __properties: ClassVar[List[str]] = ["Type", "Href"]
 
@@ -36,6 +36,8 @@ class ParticipantResourceMessage(BaseModel):
         if value is None:
             return value
 
+        if isinstance(value, int):
+            return value  # CODEMOD: lenient enum
         if value not in set(['Vendor', 'RentalOwner', 'RentalTenant', 'AssociationOwner']):
             raise ValueError("must be one of enum values ('Vendor', 'RentalOwner', 'RentalTenant', 'AssociationOwner')")
         return value

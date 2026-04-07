@@ -28,7 +28,7 @@ class ApplicantPayeeMessage(BaseModel):
     """ # noqa: E501
     id: Optional[StrictInt] = Field(default=None, description="The unique identifier of the applicant payee.", alias="Id")
     name: Optional[StrictStr] = Field(default=None, description="The name of the payee.", alias="Name")
-    type: Optional[StrictStr] = Field(default=None, description="The payee user entity type.", alias="Type")
+    type: Optional[Any] = Field(default=None, description="The payee user entity type.", alias="Type")
     href: Optional[StrictStr] = Field(default=None, description="A link to the resource endpoint associated with the payee.", alias="Href")
     __properties: ClassVar[List[str]] = ["Id", "Name", "Type", "Href"]
 
@@ -38,6 +38,8 @@ class ApplicantPayeeMessage(BaseModel):
         if value is None:
             return value
 
+        if isinstance(value, int):
+            return value  # CODEMOD: lenient enum
         if value not in set(['Tenant', 'AssociationTenant', 'AssociationOwner', 'RentalOwner', 'Vendor', 'Staff', 'Applicant']):
             raise ValueError("must be one of enum values ('Tenant', 'AssociationTenant', 'AssociationOwner', 'RentalOwner', 'Vendor', 'Staff', 'Applicant')")
         return value

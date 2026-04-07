@@ -30,7 +30,7 @@ class ResidentCenterUserMessage(BaseModel):
     """ # noqa: E501
     unit_agreement: Optional[UnitAgreementMessage] = Field(default=None, description="The user's unit agreement (lease or ownership account).", alias="UnitAgreement")
     user: Optional[ResidentCenterUserReferenceMessage] = Field(default=None, description="Information about the user.", alias="User")
-    resident_center_user_status: Optional[StrictStr] = Field(default=None, description="Resident center status for the user.", alias="ResidentCenterUserStatus")
+    resident_center_user_status: Optional[Any] = Field(default=None, description="Resident center status for the user.", alias="ResidentCenterUserStatus")
     is_auto_pay_enabled: Optional[StrictBool] = Field(default=None, description="Indicates if the user has an automatic payment scheduled for the future.", alias="IsAutoPayEnabled")
     __properties: ClassVar[List[str]] = ["UnitAgreement", "User", "ResidentCenterUserStatus", "IsAutoPayEnabled"]
 
@@ -40,6 +40,8 @@ class ResidentCenterUserMessage(BaseModel):
         if value is None:
             return value
 
+        if isinstance(value, int):
+            return value  # CODEMOD: lenient enum
         if value not in set(['AccountExistsButNoEmailSent', 'PasswordSent', 'EmailFailed', 'SignedIn', 'Blocked']):
             raise ValueError("must be one of enum values ('AccountExistsButNoEmailSent', 'PasswordSent', 'EmailFailed', 'SignedIn', 'Blocked')")
         return value

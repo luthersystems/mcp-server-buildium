@@ -30,7 +30,7 @@ class VendorTransactionMessage(BaseModel):
     id: Optional[StrictInt] = Field(default=None, description="Transaction unique identifier.", alias="Id")
     var_date: Optional[date] = Field(default=None, description="Date of the transaction.", alias="Date")
     total_amount: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Total amount of the transaction.", alias="TotalAmount")
-    transaction_type: Optional[StrictStr] = Field(default=None, description="Type of transaction.", alias="TransactionType")
+    transaction_type: Optional[Any] = Field(default=None, description="Type of transaction.", alias="TransactionType")
     reference_number: Optional[StrictStr] = Field(default=None, description="Reference number for the transaction.", alias="ReferenceNumber")
     memo: Optional[StrictStr] = Field(default=None, description="Memo for the transaction.", alias="Memo")
     __properties: ClassVar[List[str]] = ["Id", "Date", "TotalAmount", "TransactionType", "ReferenceNumber", "Memo"]
@@ -41,6 +41,8 @@ class VendorTransactionMessage(BaseModel):
         if value is None:
             return value
 
+        if isinstance(value, int):
+            return value  # CODEMOD: lenient enum
         if value not in set(['Bill', 'Check', 'Charge', 'Payment', 'Credit', 'Refund', 'ApplyDeposit', 'ElectronicFundsTransfer', 'Other', 'Deposit', 'GeneralJournalEntry', 'OwnerContribution', 'ReversePayment', 'ReverseElectronicFundsTransfer', 'VendorCredit', 'RentalApplicationFeePayment', 'ReverseRentalApplicationFeePayment', 'ReverseOwnerContribution', 'VendorRefund', 'UnreversedPayment', 'UnreversedElectronicFundsTransfer', 'UnreversedOwnerContribution', 'UnreversedRentalApplicationFeePayment', 'ReversedEftRefund']):
             raise ValueError("must be one of enum values ('Bill', 'Check', 'Charge', 'Payment', 'Credit', 'Refund', 'ApplyDeposit', 'ElectronicFundsTransfer', 'Other', 'Deposit', 'GeneralJournalEntry', 'OwnerContribution', 'ReversePayment', 'ReverseElectronicFundsTransfer', 'VendorCredit', 'RentalApplicationFeePayment', 'ReverseRentalApplicationFeePayment', 'ReverseOwnerContribution', 'VendorRefund', 'UnreversedPayment', 'UnreversedElectronicFundsTransfer', 'UnreversedOwnerContribution', 'UnreversedRentalApplicationFeePayment', 'ReversedEftRefund')")
         return value

@@ -26,7 +26,7 @@ class WorkOrderEntryContactResourceMessage(BaseModel):
     """
     Work order entry contact.
     """ # noqa: E501
-    type: Optional[StrictStr] = Field(default=None, description="Contact entity type.", alias="Type")
+    type: Optional[Any] = Field(default=None, description="Contact entity type.", alias="Type")
     href: Optional[StrictStr] = Field(default=None, description="Link to the contact resource.", alias="Href")
     __properties: ClassVar[List[str]] = ["Type", "Href"]
 
@@ -36,6 +36,8 @@ class WorkOrderEntryContactResourceMessage(BaseModel):
         if value is None:
             return value
 
+        if isinstance(value, int):
+            return value  # CODEMOD: lenient enum
         if value not in set(['RentalTenant', 'AssociationOwner', 'Staff', 'RentalOwner']):
             raise ValueError("must be one of enum values ('RentalTenant', 'AssociationOwner', 'Staff', 'RentalOwner')")
         return value

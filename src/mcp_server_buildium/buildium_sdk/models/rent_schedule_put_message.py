@@ -27,7 +27,7 @@ class RentSchedulePutMessage(BaseModel):
     """
     RentSchedulePutMessage
     """ # noqa: E501
-    rent_cycle: StrictStr = Field(description="Indicates the cadence of when rent charges will be applied.", alias="RentCycle")
+    rent_cycle: Any = Field(description="Indicates the cadence of when rent charges will be applied.", alias="RentCycle")
     backdate_charges: StrictBool = Field(description="Indicates if charges that should have posted prior to the date of Rent creation should be posted immediately with the appropriate dates.", alias="BackdateCharges")
     charges: List[RentScheduleChargePutMessage] = Field(description="List of charges to apply to the lease.", alias="Charges")
     __properties: ClassVar[List[str]] = ["RentCycle", "BackdateCharges", "Charges"]

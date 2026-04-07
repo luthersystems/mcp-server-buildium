@@ -28,7 +28,7 @@ class RentalApplianceServiceHistoryMessage(BaseModel):
     RentalApplianceServiceHistoryMessage
     """ # noqa: E501
     id: Optional[StrictInt] = Field(default=None, description="Appliance service history unique identifier.", alias="Id")
-    service_type: Optional[StrictStr] = Field(default=None, description="Type of service performed.", alias="ServiceType")
+    service_type: Optional[Any] = Field(default=None, description="Type of service performed.", alias="ServiceType")
     var_date: Optional[date] = Field(default=None, description="Date of the service.", alias="Date")
     details: Optional[StrictStr] = Field(default=None, description="Details of the service.", alias="Details")
     __properties: ClassVar[List[str]] = ["Id", "ServiceType", "Date", "Details"]
@@ -39,6 +39,8 @@ class RentalApplianceServiceHistoryMessage(BaseModel):
         if value is None:
             return value
 
+        if isinstance(value, int):
+            return value  # CODEMOD: lenient enum
         if value not in set(['Installed', 'Serviced', 'Uninstalled']):
             raise ValueError("must be one of enum values ('Installed', 'Serviced', 'Uninstalled')")
         return value

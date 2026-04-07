@@ -27,7 +27,7 @@ class RentalApplianceServiceHistoryPostMessage(BaseModel):
     """
     RentalApplianceServiceHistoryPostMessage
     """ # noqa: E501
-    service_type: StrictStr = Field(description="Specifies the type of service that occured.", alias="ServiceType")
+    service_type: Any = Field(description="Specifies the type of service that occured.", alias="ServiceType")
     var_date: date = Field(description="Date the service was performed. Must be formatted as `YYYY-MM-DD`.", alias="Date")
     details: Optional[StrictStr] = Field(default=None, description="The service history details associated with the appliance. The description cannot exceed 100 characters.", alias="Details")
     __properties: ClassVar[List[str]] = ["ServiceType", "Date", "Details"]

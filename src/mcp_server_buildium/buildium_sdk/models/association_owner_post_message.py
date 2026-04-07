@@ -44,7 +44,7 @@ class AssociationOwnerPostMessage(BaseModel):
     date_of_birth: Optional[date] = Field(default=None, description="Date Of Birth for the owner. Must be formatted as `YYYY-MM-DD`.", alias="DateOfBirth")
     emergency_contact: Optional[SaveEmergencyContactMessage] = Field(default=None, description="Emergency contact information associated with the owner.", alias="EmergencyContact")
     comment: Optional[StrictStr] = Field(default=None, description="Comments about the owner. The value cannot exceed 65,535 characters.", alias="Comment")
-    mailing_preference: Optional[StrictStr] = Field(default=None, description="Mailing preferences for the owner. If an alternate address exists and this value is not provided then the primary address will be set as the preferred address.", alias="MailingPreference")
+    mailing_preference: Optional[Any] = Field(default=None, description="Mailing preferences for the owner. If an alternate address exists and this value is not provided then the primary address will be set as the preferred address.", alias="MailingPreference")
     tax_id: Optional[StrictStr] = Field(default=None, description="Taxpayer identification number of the owner. Examples of United States identification numbers are Social Security number or a Employer Identification Number. Valid formats are: `12-1234567`, `123-12-1234`, `123456789`.", alias="TaxId")
     __properties: ClassVar[List[str]] = ["FirstName", "LastName", "PrimaryAddress", "AlternateAddress", "BoardMemberTerm", "IsOwnerOccupied", "Email", "AlternateEmail", "PhoneNumbers", "DateOfBirth", "EmergencyContact", "Comment", "MailingPreference", "TaxId"]
 
@@ -54,6 +54,8 @@ class AssociationOwnerPostMessage(BaseModel):
         if value is None:
             return value
 
+        if isinstance(value, int):
+            return value  # CODEMOD: lenient enum
         if value not in set(['PrimaryAddress', 'AlternateAddress']):
             raise ValueError("must be one of enum values ('PrimaryAddress', 'AlternateAddress')")
         return value

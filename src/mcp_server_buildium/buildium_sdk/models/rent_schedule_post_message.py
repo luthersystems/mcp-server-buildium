@@ -29,7 +29,7 @@ class RentSchedulePostMessage(BaseModel):
     RentSchedulePostMessage
     """ # noqa: E501
     start_date: Optional[date] = Field(default=None, description="Indicates the start of the rent schedule. The date must be formatted as YYYY-MM-DD.  If no rent schedules exist on a lease, this date must match the lease start date.", alias="StartDate")
-    rent_cycle: StrictStr = Field(description="Indicates the cadence of when rent charges will be applied.", alias="RentCycle")
+    rent_cycle: Any = Field(description="Indicates the cadence of when rent charges will be applied.", alias="RentCycle")
     backdate_charges: StrictBool = Field(description="Indicates if charges that should have posted prior to the date of Rent creation should be posted immediately with the appropriate dates.", alias="BackdateCharges")
     charges: List[RentScheduleChargePostMessage] = Field(description="List of charges to apply to the lease.", alias="Charges")
     __properties: ClassVar[List[str]] = ["StartDate", "RentCycle", "BackdateCharges", "Charges"]

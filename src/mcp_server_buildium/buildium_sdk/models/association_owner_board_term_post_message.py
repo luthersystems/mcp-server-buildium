@@ -27,7 +27,7 @@ class AssociationOwnerBoardTermPostMessage(BaseModel):
     """
     Board member term.
     """ # noqa: E501
-    board_position_type: StrictStr = Field(description="Indicates the board position held by the association owner.", alias="BoardPositionType")
+    board_position_type: Any = Field(description="Indicates the board position held by the association owner.", alias="BoardPositionType")
     start_date: Optional[date] = Field(default=None, description="Start date of the board member term. Must be formatted as `YYYY-MM-DD`.", alias="StartDate")
     end_date: Optional[date] = Field(default=None, description="End date of the board member term. Must be formatted as `YYYY-MM-DD`.", alias="EndDate")
     __properties: ClassVar[List[str]] = ["BoardPositionType", "StartDate", "EndDate"]

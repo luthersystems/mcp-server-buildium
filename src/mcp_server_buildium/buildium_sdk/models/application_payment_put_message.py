@@ -29,7 +29,7 @@ class ApplicationPaymentPutMessage(BaseModel):
     This is an object that represents a Payment made in a particular application ledger.
     """ # noqa: E501
     var_date: date = Field(description="The date of the transaction. The date must be formatted as YYYY-MM-DD.", alias="Date")
-    payment_method: StrictStr = Field(description="The payment method used for the transaction.", alias="PaymentMethod")
+    payment_method: Any = Field(description="The payment method used for the transaction.", alias="PaymentMethod")
     memo: Optional[StrictStr] = Field(default=None, description="Memo associated with the payment. The value cannot exceed 65 characters.", alias="Memo")
     reference_number: Optional[StrictStr] = Field(default=None, description="The reference Number of the transaction. The value cannot exceed 30 characters.", alias="ReferenceNumber")
     lines: List[ApplicationPaymentLineSaveMessage] = Field(description="A collection of line items included in the payment. At least one line item is required.", alias="Lines")

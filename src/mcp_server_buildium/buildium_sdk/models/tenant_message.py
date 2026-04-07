@@ -39,10 +39,10 @@ class TenantMessage(BaseModel):
     created_date_time: Optional[datetime] = Field(default=None, description="Created date of this tenant record.", alias="CreatedDateTime")
     emergency_contact: Optional[EmergencyContactMessage] = Field(default=None, description="Name of the tenants emergency contact.", alias="EmergencyContact")
     date_of_birth: Optional[date] = Field(default=None, description="Tenant date of birth.", alias="DateOfBirth")
-    sms_opt_in_status: Optional[StrictStr] = Field(default=None, description="Indicates the tenants SMS opt in status. Null if no status exists for the tenant.", alias="SMSOptInStatus")
+    sms_opt_in_status: Optional[Any] = Field(default=None, description="Indicates the tenants SMS opt in status. Null if no status exists for the tenant.", alias="SMSOptInStatus")
     address: Optional[AddressMessage] = Field(default=None, description="Address of the tenant.", alias="Address")
     alternate_address: Optional[AddressMessage] = Field(default=None, description="Alternate address for the tenant.", alias="AlternateAddress")
-    mailing_preference: Optional[StrictStr] = Field(default=None, description="Mailing preference for the tenant.", alias="MailingPreference")
+    mailing_preference: Optional[Any] = Field(default=None, description="Mailing preference for the tenant.", alias="MailingPreference")
     leases: Optional[List[LeaseMessage]] = Field(default=None, description="List of leases, regardless of status, that the tenant is associated with.", alias="Leases")
     comment: Optional[StrictStr] = Field(default=None, description="Comments about the tenant.", alias="Comment")
     tax_id: Optional[StrictStr] = Field(default=None, description="TaxId of the tenant.", alias="TaxId")
@@ -54,6 +54,8 @@ class TenantMessage(BaseModel):
         if value is None:
             return value
 
+        if isinstance(value, int):
+            return value  # CODEMOD: lenient enum
         if value not in set(['NotSet', 'RequestSent', 'OptedIn', 'OptedOut', 'Converted']):
             raise ValueError("must be one of enum values ('NotSet', 'RequestSent', 'OptedIn', 'OptedOut', 'Converted')")
         return value
@@ -64,6 +66,8 @@ class TenantMessage(BaseModel):
         if value is None:
             return value
 
+        if isinstance(value, int):
+            return value  # CODEMOD: lenient enum
         if value not in set(['PrimaryAddress', 'AlternateAddress']):
             raise ValueError("must be one of enum values ('PrimaryAddress', 'AlternateAddress')")
         return value

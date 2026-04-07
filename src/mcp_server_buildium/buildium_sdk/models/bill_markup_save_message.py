@@ -27,7 +27,7 @@ class BillMarkupSaveMessage(BaseModel):
     Bill mark up.
     """ # noqa: E501
     amount: Union[StrictFloat, StrictInt] = Field(description="The mark up amount. The value should be relative to the markup `Type`. If the mark up `Type` is `Percent` the value cannot exceed 100.", alias="Amount")
-    type: StrictStr = Field(description="The markup type.", alias="Type")
+    type: Any = Field(description="The markup type.", alias="Type")
     __properties: ClassVar[List[str]] = ["Amount", "Type"]
 
     @field_validator('type')

@@ -30,8 +30,8 @@ class WorkOrderTaskPostMessage(BaseModel):
     """ # noqa: E501
     title: Annotated[str, Field(min_length=1, strict=True)] = Field(description="Task title. The title can not exceed 127 characters.", alias="Title")
     due_date: Optional[date] = Field(default=None, description="Task due date. The date must be formatted as YYYY-MM-DD.", alias="DueDate")
-    priority: StrictStr = Field(description="Task priority.", alias="Priority")
-    status: StrictStr = Field(description="Task status.", alias="Status")
+    priority: Any = Field(description="Task priority.", alias="Priority")
+    status: Any = Field(description="Task status.", alias="Status")
     property_id: Optional[StrictInt] = Field(default=None, description="The unique identifier of property associated with the request. The assigned property must be active.", alias="PropertyId")
     unit_id: Optional[StrictInt] = Field(default=None, description="The unique identifier of the unit associated with the request. The unit must be associated with the `PropertyId` specified.", alias="UnitId")
     assigned_to_user_id: StrictInt = Field(description="The unique identifier of the staff user assigned to the request. The user must be a `Staff` user type.", alias="AssignedToUserId")

@@ -27,8 +27,8 @@ class ClientLeadCreditRequestMessage(BaseModel):
     """
     Lead credit request.
     """ # noqa: E501
-    credit_status: Optional[StrictStr] = Field(default=None, description="Indicates the current status of the credit.", alias="CreditStatus")
-    credit_reason: Optional[StrictStr] = Field(default=None, description="Indicates the reason a credit was requested.", alias="CreditReason")
+    credit_status: Optional[Any] = Field(default=None, description="Indicates the current status of the credit.", alias="CreditStatus")
+    credit_reason: Optional[Any] = Field(default=None, description="Indicates the reason a credit was requested.", alias="CreditReason")
     comments: Optional[StrictStr] = Field(default=None, description="Additional comments about the credit request.", alias="Comments")
     request_date: Optional[date] = Field(default=None, description="The date the credit was requested.", alias="RequestDate")
     __properties: ClassVar[List[str]] = ["CreditStatus", "CreditReason", "Comments", "RequestDate"]
@@ -39,6 +39,8 @@ class ClientLeadCreditRequestMessage(BaseModel):
         if value is None:
             return value
 
+        if isinstance(value, int):
+            return value  # CODEMOD: lenient enum
         if value not in set(['Approved', 'Declined', 'Requested']):
             raise ValueError("must be one of enum values ('Approved', 'Declined', 'Requested')")
         return value
@@ -49,6 +51,8 @@ class ClientLeadCreditRequestMessage(BaseModel):
         if value is None:
             return value
 
+        if isinstance(value, int):
+            return value  # CODEMOD: lenient enum
         if value not in set(['AccidentalFormSubmission', 'DuplicateLead', 'InvalidContactInformation', 'JobSeeker', 'Tenant', 'Vendor', 'WrongPropertyType', 'WrongZipCode', 'Other']):
             raise ValueError("must be one of enum values ('AccidentalFormSubmission', 'DuplicateLead', 'InvalidContactInformation', 'JobSeeker', 'Tenant', 'Vendor', 'WrongPropertyType', 'WrongZipCode', 'Other')")
         return value

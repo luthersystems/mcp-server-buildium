@@ -31,8 +31,8 @@ class ListingUnitMessage(BaseModel):
     id: Optional[StrictInt] = Field(default=None, description="Rental unit unique identifier.", alias="Id")
     unit_number: Optional[StrictStr] = Field(default=None, description="Unit number.", alias="UnitNumber")
     address: Optional[AddressMessage] = Field(default=None, description="Address of the unit.", alias="Address")
-    unit_bedrooms: Optional[StrictStr] = Field(default=None, description="Number of bedrooms in the unit. Null if no value is set.", alias="UnitBedrooms")
-    unit_bathrooms: Optional[StrictStr] = Field(default=None, description="Number of bathrooms in the unit. Null if no value is set.", alias="UnitBathrooms")
+    unit_bedrooms: Optional[Any] = Field(default=None, description="Number of bedrooms in the unit. Null if no value is set.", alias="UnitBedrooms")
+    unit_bathrooms: Optional[Any] = Field(default=None, description="Number of bathrooms in the unit. Null if no value is set.", alias="UnitBathrooms")
     unit_size: Optional[StrictInt] = Field(default=None, description="Size of the unit. Null if no value is set.", alias="UnitSize")
     description: Optional[StrictStr] = Field(default=None, description="Description of the unit.", alias="Description")
     market_rent: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Market rent of the unit. This value is separate from the lease rent and is typically used for rental listings. Null if no value is set.", alias="MarketRent")
@@ -46,6 +46,8 @@ class ListingUnitMessage(BaseModel):
         if value is None:
             return value
 
+        if isinstance(value, int):
+            return value  # CODEMOD: lenient enum
         if value not in set(['NotSet', 'Studio', 'OneBed', 'TwoBed', 'ThreeBed', 'FourBed', 'FiveBed', 'SixBed', 'SevenBed', 'EightBed', 'NineBedPlus']):
             raise ValueError("must be one of enum values ('NotSet', 'Studio', 'OneBed', 'TwoBed', 'ThreeBed', 'FourBed', 'FiveBed', 'SixBed', 'SevenBed', 'EightBed', 'NineBedPlus')")
         return value
@@ -56,6 +58,8 @@ class ListingUnitMessage(BaseModel):
         if value is None:
             return value
 
+        if isinstance(value, int):
+            return value  # CODEMOD: lenient enum
         if value not in set(['NotSet', 'OneBath', 'OnePointFiveBath', 'TwoBath', 'TwoPointFiveBath', 'ThreeBath', 'FourBath', 'FiveBath', 'FivePlusBath', 'ThreePointFiveBath', 'FourPointFiveBath']):
             raise ValueError("must be one of enum values ('NotSet', 'OneBath', 'OnePointFiveBath', 'TwoBath', 'TwoPointFiveBath', 'ThreeBath', 'FourBath', 'FiveBath', 'FivePlusBath', 'ThreePointFiveBath', 'FourPointFiveBath')")
         return value
@@ -66,6 +70,8 @@ class ListingUnitMessage(BaseModel):
         if value is None:
             return value
 
+        if isinstance(value, int):
+            return value  # CODEMOD: lenient enum
         for i in value:
             if i not in set(['CableReady', 'Microwave', 'HardwoodFloors', 'HighSpeedInternet', 'AirConditioning', 'Refrigerator', 'Dishwasher', 'WalkinClosets', 'BalconyOrDeckOrPatio', 'GarageParking', 'Carport', 'FencedYard', 'LaundryRoomOrHookups', 'Fireplace', 'CableReadyCommercial', 'HighSpeedInternetCommercial', 'AirConditioningCommercial', 'Heating', 'OvenOrRange', 'HeatElectric', 'HeatGas', 'HeatOil', 'PetsAllowed', 'Balcony', 'PrivateBalcony', 'PrivatePatio', 'Dryer', 'Heat', 'WD_Hookup', 'Washer', 'AdditionalStorage', 'Alarm', 'Carpet', 'CeilingFan', 'ControlledAccess', 'Courtyard', 'Disposal', 'DoubleSinkVanity', 'FramedMirrors', 'Furnished', 'Handrails', 'IndividualClimateControl', 'IslandKitchen', 'LinenCloset', 'Pantry', 'Satellite', 'Skylight', 'TileFlooring', 'VaultedCeiling', 'View', 'VinylFlooring', 'WheelChair', 'WindowCoverings', 'DogFriendly', 'CatFriendly']):
                 raise ValueError("each list item must be one of ('CableReady', 'Microwave', 'HardwoodFloors', 'HighSpeedInternet', 'AirConditioning', 'Refrigerator', 'Dishwasher', 'WalkinClosets', 'BalconyOrDeckOrPatio', 'GarageParking', 'Carport', 'FencedYard', 'LaundryRoomOrHookups', 'Fireplace', 'CableReadyCommercial', 'HighSpeedInternetCommercial', 'AirConditioningCommercial', 'Heating', 'OvenOrRange', 'HeatElectric', 'HeatGas', 'HeatOil', 'PetsAllowed', 'Balcony', 'PrivateBalcony', 'PrivatePatio', 'Dryer', 'Heat', 'WD_Hookup', 'Washer', 'AdditionalStorage', 'Alarm', 'Carpet', 'CeilingFan', 'ControlledAccess', 'Courtyard', 'Disposal', 'DoubleSinkVanity', 'FramedMirrors', 'Furnished', 'Handrails', 'IndividualClimateControl', 'IslandKitchen', 'LinenCloset', 'Pantry', 'Satellite', 'Skylight', 'TileFlooring', 'VaultedCeiling', 'View', 'VinylFlooring', 'WheelChair', 'WindowCoverings', 'DogFriendly', 'CatFriendly')")

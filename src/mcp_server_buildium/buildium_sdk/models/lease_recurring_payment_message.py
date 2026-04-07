@@ -32,15 +32,15 @@ class LeaseRecurringPaymentMessage(BaseModel):
     id: Optional[StrictInt] = Field(default=None, description="The unique identifier for the recurring payment schedule.", alias="Id")
     lease_id: Optional[StrictInt] = Field(default=None, description="The unique identifier of the lease that the recurring payment will be applied to.", alias="LeaseId")
     payer: Optional[PayeeMessage] = Field(default=None, description="User information for the resident making the payment.", alias="Payer")
-    payment_method: Optional[StrictStr] = Field(default=None, description="The method of payment for the transaction.", alias="PaymentMethod")
+    payment_method: Optional[Any] = Field(default=None, description="The method of payment for the transaction.", alias="PaymentMethod")
     lines: Optional[List[RecurringTransactionLineMessage]] = Field(default=None, description="Line items describing how the payment is to be allocated when the recurring transaction is processed.", alias="Lines")
     amount: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The total amount of the recurring payment based on sum of the `Lines.Amount`.", alias="Amount")
     occurrences_remaining: Optional[StrictInt] = Field(default=None, description="The number of remaining times this recurring payment will be processed.", alias="OccurrencesRemaining")
     first_occurrence_date: Optional[date] = Field(default=None, description="The date the first occurrence this payment was processed.", alias="FirstOccurrenceDate")
     next_occurrence_date: Optional[date] = Field(default=None, description="The next date the scheduled payment will be processed.", alias="NextOccurrenceDate")
     post_days_in_advance: Optional[StrictInt] = Field(default=None, description="Specifies the number of days ahead of the transaction date the payment will post on the lease ledger. This setting can be used to add the charge to the ledger ahead of the due date for visibility. For example, if the `FirstOccurrenceDate` is set to 8/10/2022 and this value is set to 5 then the charge will added to the ledger on 8/5/2022, but will have transaction date of 8/10/2022.", alias="PostDaysInAdvance")
-    frequency: Optional[StrictStr] = Field(default=None, description="Indicates the frequency at which the recurring payment is processed.", alias="Frequency")
-    duration: Optional[StrictStr] = Field(default=None, description="Specifies the period of time/occurrences the recurring payment will be processed. Note, if the `Frequency` field is set to `OneTime` this field should be set to `NULL` as any submitted value will be ignored.", alias="Duration")
+    frequency: Optional[Any] = Field(default=None, description="Indicates the frequency at which the recurring payment is processed.", alias="Frequency")
+    duration: Optional[Any] = Field(default=None, description="Specifies the period of time/occurrences the recurring payment will be processed. Note, if the `Frequency` field is set to `OneTime` this field should be set to `NULL` as any submitted value will be ignored.", alias="Duration")
     memo: Optional[StrictStr] = Field(default=None, description="Memo associated with the recurring payment.", alias="Memo")
     __properties: ClassVar[List[str]] = ["Id", "LeaseId", "Payer", "PaymentMethod", "Lines", "Amount", "OccurrencesRemaining", "FirstOccurrenceDate", "NextOccurrenceDate", "PostDaysInAdvance", "Frequency", "Duration", "Memo"]
 
@@ -50,6 +50,8 @@ class LeaseRecurringPaymentMessage(BaseModel):
         if value is None:
             return value
 
+        if isinstance(value, int):
+            return value  # CODEMOD: lenient enum
         if value not in set(['None', 'Check', 'Cash', 'MoneyOrder', 'CashierCheck', 'DirectDeposit', 'CreditCard', 'ElectronicPayment', 'RetailCash']):
             raise ValueError("must be one of enum values ('None', 'Check', 'Cash', 'MoneyOrder', 'CashierCheck', 'DirectDeposit', 'CreditCard', 'ElectronicPayment', 'RetailCash')")
         return value
@@ -60,6 +62,8 @@ class LeaseRecurringPaymentMessage(BaseModel):
         if value is None:
             return value
 
+        if isinstance(value, int):
+            return value  # CODEMOD: lenient enum
         if value not in set(['Monthly', 'Weekly', 'Every2Weeks', 'Quarterly', 'Yearly', 'Every2Months', 'Daily', 'Every6Months', 'OneTime']):
             raise ValueError("must be one of enum values ('Monthly', 'Weekly', 'Every2Weeks', 'Quarterly', 'Yearly', 'Every2Months', 'Daily', 'Every6Months', 'OneTime')")
         return value
@@ -70,6 +74,8 @@ class LeaseRecurringPaymentMessage(BaseModel):
         if value is None:
             return value
 
+        if isinstance(value, int):
+            return value  # CODEMOD: lenient enum
         if value not in set(['Unspecified', 'UntilEndOfTerm', 'SpecificNumber', 'SpecificDate']):
             raise ValueError("must be one of enum values ('Unspecified', 'UntilEndOfTerm', 'SpecificNumber', 'SpecificDate')")
         return value

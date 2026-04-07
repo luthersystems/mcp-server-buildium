@@ -27,7 +27,7 @@ class FileUploadPostMessage(BaseModel):
     """
     FileUploadPostMessage
     """ # noqa: E501
-    entity_type: StrictStr = Field(description="Specifies the type of entity that `EntityId` refers to.", alias="EntityType")
+    entity_type: Any = Field(description="Specifies the type of entity that `EntityId` refers to.", alias="EntityType")
     entity_id: Optional[StrictInt] = Field(default=None, description="Unique identified of the Entity Type.", alias="EntityId")
     file_name: Annotated[str, Field(min_length=1, strict=True)] = Field(description="Name of file being uploaded. The value can not exceed 255 characters.", alias="FileName")
     title: Annotated[str, Field(min_length=1, strict=True)] = Field(description="Title of file upload. The value can not exceed 255 characters.", alias="Title")

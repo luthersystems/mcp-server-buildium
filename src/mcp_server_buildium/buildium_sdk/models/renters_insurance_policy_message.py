@@ -30,7 +30,7 @@ class RentersInsurancePolicyMessage(BaseModel):
     """ # noqa: E501
     id: Optional[StrictInt] = Field(default=None, description="Renters insurance policy unique identifier.", alias="Id")
     insurance_company: Optional[StrictStr] = Field(default=None, description="The name of the insurance company that issued the policy.", alias="InsuranceCompany")
-    carrier_type: Optional[StrictStr] = Field(default=None, description="The carrier type for the policy.", alias="CarrierType")
+    carrier_type: Optional[Any] = Field(default=None, description="The carrier type for the policy.", alias="CarrierType")
     policy_identifier: Optional[StrictStr] = Field(default=None, description="The policy identifier.", alias="PolicyIdentifier")
     effective_date: Optional[date] = Field(default=None, description="The date that the policy becomes effective.", alias="EffectiveDate")
     expiration_date: Optional[date] = Field(default=None, description="The date that the policy expires.", alias="ExpirationDate")
@@ -44,6 +44,8 @@ class RentersInsurancePolicyMessage(BaseModel):
         if value is None:
             return value
 
+        if isinstance(value, int):
+            return value  # CODEMOD: lenient enum
         if value not in set(['Other', 'MSI']):
             raise ValueError("must be one of enum values ('Other', 'MSI')")
         return value

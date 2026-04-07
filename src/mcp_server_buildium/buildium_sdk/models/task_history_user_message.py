@@ -30,7 +30,7 @@ class TaskHistoryUserMessage(BaseModel):
     first_name: Optional[StrictStr] = Field(default=None, description="First name of the user.", alias="FirstName")
     last_name: Optional[StrictStr] = Field(default=None, description="Last name of the user.", alias="LastName")
     href: Optional[StrictStr] = Field(default=None, description="A link to the resource endpoint associated with the user.", alias="Href")
-    user_type: Optional[StrictStr] = Field(default=None, description="Describes the user type of the user", alias="UserType")
+    user_type: Optional[Any] = Field(default=None, description="Describes the user type of the user", alias="UserType")
     __properties: ClassVar[List[str]] = ["Id", "FirstName", "LastName", "Href", "UserType"]
 
     @field_validator('user_type')
@@ -39,6 +39,8 @@ class TaskHistoryUserMessage(BaseModel):
         if value is None:
             return value
 
+        if isinstance(value, int):
+            return value  # CODEMOD: lenient enum
         if value not in set(['Unknown', 'Tenant', 'AssociationOwner', 'AssociationTenant', 'Staff', 'Vendor', 'RentalOwner']):
             raise ValueError("must be one of enum values ('Unknown', 'Tenant', 'AssociationOwner', 'AssociationTenant', 'Staff', 'Vendor', 'RentalOwner')")
         return value

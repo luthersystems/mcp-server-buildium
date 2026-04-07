@@ -28,7 +28,7 @@ class LeaseTenantMessage(BaseModel):
     LeaseTenantMessage
     """ # noqa: E501
     id: Optional[StrictInt] = Field(default=None, description="Tenant unique identifier.", alias="Id")
-    status: Optional[StrictStr] = Field(default=None, description="Indicates the tenant's current status in relation to the lease.", alias="Status")
+    status: Optional[Any] = Field(default=None, description="Indicates the tenant's current status in relation to the lease.", alias="Status")
     move_in_date: Optional[date] = Field(default=None, description="Indicates the tenant's move-in date.", alias="MoveInDate")
     __properties: ClassVar[List[str]] = ["Id", "Status", "MoveInDate"]
 
@@ -38,6 +38,8 @@ class LeaseTenantMessage(BaseModel):
         if value is None:
             return value
 
+        if isinstance(value, int):
+            return value  # CODEMOD: lenient enum
         if value not in set(['MovedOut', 'Current', 'Future']):
             raise ValueError("must be one of enum values ('MovedOut', 'Current', 'Future')")
         return value

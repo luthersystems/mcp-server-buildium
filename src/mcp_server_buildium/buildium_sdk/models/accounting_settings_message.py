@@ -28,8 +28,8 @@ class AccountingSettingsMessage(BaseModel):
     """ # noqa: E501
     accounting_book_id: Optional[StrictInt] = Field(default=None, description="The accounting book entity unique identifier.", alias="AccountingBookId")
     default_bank_account_id: Optional[StrictInt] = Field(default=None, description="The default bank account unique identifier.", alias="DefaultBankAccountId")
-    default_accounting_basis: Optional[StrictStr] = Field(default=None, description="The default accounting basis.", alias="DefaultAccountingBasis")
-    trust_account_warning: Optional[StrictStr] = Field(default=None, description="Indicates the type of trust account warnings are enable within the account, if any.", alias="TrustAccountWarning")
+    default_accounting_basis: Optional[Any] = Field(default=None, description="The default accounting basis.", alias="DefaultAccountingBasis")
+    trust_account_warning: Optional[Any] = Field(default=None, description="Indicates the type of trust account warnings are enable within the account, if any.", alias="TrustAccountWarning")
     fiscal_year_end_month: Optional[StrictInt] = Field(default=None, description="The month the fiscal year ends.", alias="FiscalYearEndMonth")
     fiscal_year_end_day: Optional[StrictInt] = Field(default=None, description="The day the fiscal year ends.", alias="FiscalYearEndDay")
     __properties: ClassVar[List[str]] = ["AccountingBookId", "DefaultBankAccountId", "DefaultAccountingBasis", "TrustAccountWarning", "FiscalYearEndMonth", "FiscalYearEndDay"]
@@ -40,6 +40,8 @@ class AccountingSettingsMessage(BaseModel):
         if value is None:
             return value
 
+        if isinstance(value, int):
+            return value  # CODEMOD: lenient enum
         if value not in set(['Accrual', 'Cash']):
             raise ValueError("must be one of enum values ('Accrual', 'Cash')")
         return value
@@ -50,6 +52,8 @@ class AccountingSettingsMessage(BaseModel):
         if value is None:
             return value
 
+        if isinstance(value, int):
+            return value  # CODEMOD: lenient enum
         if value not in set(['Off', 'ByProperty', 'ByRentalOwner']):
             raise ValueError("must be one of enum values ('Off', 'ByProperty', 'ByRentalOwner')")
         return value

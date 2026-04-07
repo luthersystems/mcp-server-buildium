@@ -27,7 +27,7 @@ class PhoneLogParticipantUnitAgreementPostMessage(BaseModel):
     The unit agreement associated with the participant.
     """ # noqa: E501
     id: Optional[StrictInt] = Field(default=None, description="The unit agreement unique identifier. Note, if a value is provided in this field then `Type` must also be provided.", alias="Id")
-    type: Optional[StrictStr] = Field(default=None, description="The type of unit agreement. Note, this field is required if a value is provided for the `Id` field.", alias="Type")
+    type: Optional[Any] = Field(default=None, description="The type of unit agreement. Note, this field is required if a value is provided for the `Id` field.", alias="Type")
     __properties: ClassVar[List[str]] = ["Id", "Type"]
 
     @field_validator('type')
@@ -36,6 +36,8 @@ class PhoneLogParticipantUnitAgreementPostMessage(BaseModel):
         if value is None:
             return value
 
+        if isinstance(value, int):
+            return value  # CODEMOD: lenient enum
         if value not in set(['NotSet', 'Lease', 'OwnershipAccount']):
             raise ValueError("must be one of enum values ('NotSet', 'Lease', 'OwnershipAccount')")
         return value

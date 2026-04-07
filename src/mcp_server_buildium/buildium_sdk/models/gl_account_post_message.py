@@ -27,13 +27,13 @@ class GLAccountPostMessage(BaseModel):
     """
     GLAccountPostMessage
     """ # noqa: E501
-    sub_type: StrictStr = Field(description="Describes the subtype of the general ledger account.", alias="SubType")
+    sub_type: Any = Field(description="Describes the subtype of the general ledger account.", alias="SubType")
     is_cash_asset: Optional[StrictBool] = Field(default=None, description="Indicates if an account is a Cash Asset. Can only have a value if SubType is `CurrentAsset`", alias="IsCashAsset")
     name: Annotated[str, Field(min_length=1, strict=True)] = Field(description="Name of the general ledger account. The name cannot exceed 50 characters and must be unique across all general ledger accounts.", alias="Name")
     account_number: Annotated[str, Field(min_length=1, strict=True)] = Field(description="General ledger account number. The account number cannot exceed 12 characters and must be unique across all general ledger accounts.", alias="AccountNumber")
     description: Optional[StrictStr] = Field(default=None, description="Description of the general ledger account. The description cannot exceed 250 characters.", alias="Description")
     is_contra_account: Optional[StrictBool] = Field(default=None, description="Indicates whether the account is a contra account. Must be null if `IsCashAsset` field is set to true.", alias="IsContraAccount")
-    cash_flow_classification: Optional[StrictStr] = Field(default=None, description="Describes the cash flow classification for the general ledger account. Must be null if `IsCashAsset` field is set to true.", alias="CashFlowClassification")
+    cash_flow_classification: Optional[Any] = Field(default=None, description="Describes the cash flow classification for the general ledger account. Must be null if `IsCashAsset` field is set to true.", alias="CashFlowClassification")
     parent_gl_account_id: Optional[StrictInt] = Field(default=None, description="Unique identifier of the parent general ledger account. Indicates if this is a sub general ledger account.", alias="ParentGLAccountId")
     __properties: ClassVar[List[str]] = ["SubType", "IsCashAsset", "Name", "AccountNumber", "Description", "IsContraAccount", "CashFlowClassification", "ParentGLAccountId"]
 
@@ -50,6 +50,8 @@ class GLAccountPostMessage(BaseModel):
         if value is None:
             return value
 
+        if isinstance(value, int):
+            return value  # CODEMOD: lenient enum
         if value not in set(['OperatingActivities', 'InvestingActivities', 'FinancingActivities']):
             raise ValueError("must be one of enum values ('OperatingActivities', 'InvestingActivities', 'FinancingActivities')")
         return value

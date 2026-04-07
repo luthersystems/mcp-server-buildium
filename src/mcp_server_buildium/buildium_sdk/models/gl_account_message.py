@@ -30,13 +30,13 @@ class GLAccountMessage(BaseModel):
     account_number: Optional[StrictStr] = Field(default=None, description="General ledger account number.", alias="AccountNumber")
     name: Optional[StrictStr] = Field(default=None, description="Name of the general ledger account.", alias="Name")
     description: Optional[StrictStr] = Field(default=None, description="Description of the general ledger account.", alias="Description")
-    type: Optional[StrictStr] = Field(default=None, description="Describes the type of general ledger account.", alias="Type")
-    sub_type: Optional[StrictStr] = Field(default=None, description="Describes the subtype of the general ledger account.", alias="SubType")
+    type: Optional[Any] = Field(default=None, description="Describes the type of general ledger account.", alias="Type")
+    sub_type: Optional[Any] = Field(default=None, description="Describes the subtype of the general ledger account.", alias="SubType")
     is_default_gl_account: Optional[StrictBool] = Field(default=None, description="Indicates if the general ledger account is a default for auto populating fields.", alias="IsDefaultGLAccount")
     default_account_name: Optional[StrictStr] = Field(default=None, description="Indicates the original name of the general ledger account if it is a default account.", alias="DefaultAccountName")
     is_contra_account: Optional[StrictBool] = Field(default=None, description="Indicates whether the account is a contra account.", alias="IsContraAccount")
     is_bank_account: Optional[StrictBool] = Field(default=None, description="Indicates whether the account is a bank account.", alias="IsBankAccount")
-    cash_flow_classification: Optional[StrictStr] = Field(default=None, description="Describes the cash flow classification for the general ledger account.", alias="CashFlowClassification")
+    cash_flow_classification: Optional[Any] = Field(default=None, description="Describes the cash flow classification for the general ledger account.", alias="CashFlowClassification")
     exclude_from_cash_balances: Optional[StrictBool] = Field(default=None, description="Indicates whether transactions associated with the account should be excluded from cash balances.", alias="ExcludeFromCashBalances")
     sub_accounts: Optional[List[GLAccountMessage]] = Field(default=None, description="Children general ledger accounts. The relationship only goes one level deep.", alias="SubAccounts")
     is_active: Optional[StrictBool] = Field(default=None, description="Indicates whether the account is active.", alias="IsActive")
@@ -49,6 +49,8 @@ class GLAccountMessage(BaseModel):
         if value is None:
             return value
 
+        if isinstance(value, int):
+            return value  # CODEMOD: lenient enum
         if value not in set(['Asset', 'Liability', 'Equity', 'Income', 'Expense']):
             raise ValueError("must be one of enum values ('Asset', 'Liability', 'Equity', 'Income', 'Expense')")
         return value
@@ -59,6 +61,8 @@ class GLAccountMessage(BaseModel):
         if value is None:
             return value
 
+        if isinstance(value, int):
+            return value  # CODEMOD: lenient enum
         if value not in set(['CurrentAsset', 'FixedAsset', 'CurrentLiability', 'LongTermLiability', 'Equity', 'Income', 'NonOperatingIncome', 'OperatingExpenses', 'NonOperatingExpenses']):
             raise ValueError("must be one of enum values ('CurrentAsset', 'FixedAsset', 'CurrentLiability', 'LongTermLiability', 'Equity', 'Income', 'NonOperatingIncome', 'OperatingExpenses', 'NonOperatingExpenses')")
         return value
@@ -69,6 +73,8 @@ class GLAccountMessage(BaseModel):
         if value is None:
             return value
 
+        if isinstance(value, int):
+            return value  # CODEMOD: lenient enum
         if value not in set(['OperatingActivities', 'InvestingActivities', 'FinancingActivities']):
             raise ValueError("must be one of enum values ('OperatingActivities', 'InvestingActivities', 'FinancingActivities')")
         return value

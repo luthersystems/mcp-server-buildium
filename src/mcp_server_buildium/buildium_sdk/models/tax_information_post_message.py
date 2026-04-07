@@ -28,7 +28,7 @@ class TaxInformationPostMessage(BaseModel):
     Tax information.
     """ # noqa: E501
     tax_payer_id: Optional[StrictStr] = Field(default=None, description="The unique identifier of the tax payer. Required if `TaxPayerType` is set. Format the values based on the `TaxPayerIdType` that is specified in the request. `SSN` must be formatted as 123-45-6789. `EIN` must be formatted as 12-3456789.", alias="TaxPayerId")
-    tax_payer_type: Optional[StrictStr] = Field(default=None, description="The tax payer type. Required if `TaxPayerId` is set.", alias="TaxPayerType")
+    tax_payer_type: Optional[Any] = Field(default=None, description="The tax payer type. Required if `TaxPayerId` is set.", alias="TaxPayerType")
     tax_payer_name1: Optional[StrictStr] = Field(default=None, description="The tax payer name 1. The value cannot exceed 40 characters.", alias="TaxPayerName1")
     tax_payer_name2: Optional[StrictStr] = Field(default=None, description="The tax payer name 2. The value cannot exceed 40 characters.", alias="TaxPayerName2")
     address: Optional[SaveAddressMessage] = Field(default=None, description="Address of the tax payer if different from the vendor's primary address.", alias="Address")
@@ -40,6 +40,8 @@ class TaxInformationPostMessage(BaseModel):
         if value is None:
             return value
 
+        if isinstance(value, int):
+            return value  # CODEMOD: lenient enum
         if value not in set(['SSN', 'EIN']):
             raise ValueError("must be one of enum values ('SSN', 'EIN')")
         return value

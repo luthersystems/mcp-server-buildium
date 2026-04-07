@@ -27,7 +27,7 @@ class UnitAgreementMessage(BaseModel):
     Unit agreement.
     """ # noqa: E501
     id: Optional[StrictInt] = Field(default=None, description="Unit agreement unique identifier.", alias="Id")
-    type: Optional[StrictStr] = Field(default=None, description="The type of unit agreement.", alias="Type")
+    type: Optional[Any] = Field(default=None, description="The type of unit agreement.", alias="Type")
     href: Optional[StrictStr] = Field(default=None, description="A link to the unit agreement resource.", alias="Href")
     __properties: ClassVar[List[str]] = ["Id", "Type", "Href"]
 
@@ -37,6 +37,8 @@ class UnitAgreementMessage(BaseModel):
         if value is None:
             return value
 
+        if isinstance(value, int):
+            return value  # CODEMOD: lenient enum
         if value not in set(['NotSet', 'Lease', 'OwnershipAccount']):
             raise ValueError("must be one of enum values ('NotSet', 'Lease', 'OwnershipAccount')")
         return value

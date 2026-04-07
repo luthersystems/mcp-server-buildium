@@ -27,7 +27,7 @@ class BankAccountCheckPayeeMessage(BaseModel):
     BankAccountCheckPayeeMessage
     """ # noqa: E501
     id: Optional[StrictInt] = Field(default=None, description="The payee user identifier.", alias="Id")
-    type: Optional[StrictStr] = Field(default=None, description="The entity type for the payee.", alias="Type")
+    type: Optional[Any] = Field(default=None, description="The entity type for the payee.", alias="Type")
     href: Optional[StrictStr] = Field(default=None, description="A link to the resource endpoint associated with the payee.", alias="Href")
     __properties: ClassVar[List[str]] = ["Id", "Type", "Href"]
 
@@ -37,6 +37,8 @@ class BankAccountCheckPayeeMessage(BaseModel):
         if value is None:
             return value
 
+        if isinstance(value, int):
+            return value  # CODEMOD: lenient enum
         if value not in set(['Vendor', 'RentalOwner']):
             raise ValueError("must be one of enum values ('Vendor', 'RentalOwner')")
         return value

@@ -36,7 +36,7 @@ class BillMessage(BaseModel):
     vendor_id: Optional[StrictInt] = Field(default=None, description="Unique identifier of the vendor who submitted the bill.", alias="VendorId")
     work_order_id: Optional[StrictInt] = Field(default=None, description="Unique identifier of the work order associated with this bill.", alias="WorkOrderId")
     reference_number: Optional[StrictStr] = Field(default=None, description="The invoice or reference number that the vendor assigned to the invoice.", alias="ReferenceNumber")
-    approval_status: Optional[StrictStr] = Field(default=None, description="The current approval status for the bill.", alias="ApprovalStatus")
+    approval_status: Optional[Any] = Field(default=None, description="The current approval status for the bill.", alias="ApprovalStatus")
     lines: Optional[List[BillLineMessage]] = Field(default=None, description="A collection of line items associated with the bill.", alias="Lines")
     __properties: ClassVar[List[str]] = ["Id", "Date", "DueDate", "PaidDate", "Memo", "VendorId", "WorkOrderId", "ReferenceNumber", "ApprovalStatus", "Lines"]
 
@@ -46,6 +46,8 @@ class BillMessage(BaseModel):
         if value is None:
             return value
 
+        if isinstance(value, int):
+            return value  # CODEMOD: lenient enum
         if value not in set(['NotNeeded', 'ApprovalRequired', 'Approved', 'Pending', 'Rejected']):
             raise ValueError("must be one of enum values ('NotNeeded', 'ApprovalRequired', 'Approved', 'Pending', 'Rejected')")
         return value

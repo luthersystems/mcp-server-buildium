@@ -29,7 +29,7 @@ class MailingTemplateMessage(BaseModel):
     id: Optional[StrictInt] = Field(default=None, description="Unique identifier of the mailing template.", alias="Id")
     name: Optional[StrictStr] = Field(default=None, description="Name of the mailing template.", alias="Name")
     description: Optional[StrictStr] = Field(default=None, description="Description of the mailing template.", alias="Description")
-    recipient_type: Optional[StrictStr] = Field(default=None, description="Intended recipient type for mailings using the template.", alias="RecipientType")
+    recipient_type: Optional[Any] = Field(default=None, description="Intended recipient type for mailings using the template.", alias="RecipientType")
     __properties: ClassVar[List[str]] = ["Id", "Name", "Description", "RecipientType"]
 
     @field_validator('recipient_type')
@@ -38,6 +38,8 @@ class MailingTemplateMessage(BaseModel):
         if value is None:
             return value
 
+        if isinstance(value, int):
+            return value  # CODEMOD: lenient enum
         if value not in set(['Tenants', 'AssociationOwners', 'RentalOwners', 'Vendors', 'Applicants']):
             raise ValueError("must be one of enum values ('Tenants', 'AssociationOwners', 'RentalOwners', 'Vendors', 'Applicants')")
         return value

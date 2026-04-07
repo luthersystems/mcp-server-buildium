@@ -28,7 +28,7 @@ class CheckPrintingInfoPutMessage(BaseModel):
     """ # noqa: E501
     enable_remote_check_printing: StrictBool = Field(description="Indicates whether remote check printing is enabled.", alias="EnableRemoteCheckPrinting")
     enable_local_check_printing: StrictBool = Field(description="Indicates whether local check printing is enabled.", alias="EnableLocalCheckPrinting")
-    check_layout_type: StrictStr = Field(description="The check layout type.", alias="CheckLayoutType")
+    check_layout_type: Any = Field(description="The check layout type.", alias="CheckLayoutType")
     signature_heading: Optional[StrictStr] = Field(default=None, description="The signature heading.", alias="SignatureHeading")
     fractional_number: Optional[StrictStr] = Field(default=None, description="The fractional form of the routing number. Typically is used to identify the bank of the check in cases where the MICR is unreadable.", alias="FractionalNumber")
     bank_information_line1: Optional[StrictStr] = Field(default=None, description="Bank information line 1.", alias="BankInformationLine1")

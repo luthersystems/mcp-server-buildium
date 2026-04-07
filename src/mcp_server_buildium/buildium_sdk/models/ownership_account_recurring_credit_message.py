@@ -30,7 +30,7 @@ class OwnershipAccountRecurringCreditMessage(BaseModel):
     """ # noqa: E501
     id: Optional[StrictInt] = Field(default=None, description="The unique identifier of the recurring credit schedule.", alias="Id")
     ownership_account_id: Optional[StrictInt] = Field(default=None, description="The unique identifier of the ownership account that the recurring credit will be applied to.", alias="OwnershipAccountId")
-    credit_type: Optional[StrictStr] = Field(default=None, description="Indicates how the credit will be applied.  <ul><li>WaiveUnpaid - This credit type allows for reversing one or more charges without losing record of what has changed.</li><li>Exchange - This credit type allows for one of the following: 1) Reimburse a resident for a out-of-pocket expense, 2) Compensate for a service, 3) Write-off a resident balance considered uncollectable.</li><li>PreviouslyDeposited - This credit type allows for issuing a credit against payments that have already been deposited.</li></ul>", alias="CreditType")
+    credit_type: Optional[Any] = Field(default=None, description="Indicates how the credit will be applied.  <ul><li>WaiveUnpaid - This credit type allows for reversing one or more charges without losing record of what has changed.</li><li>Exchange - This credit type allows for one of the following: 1) Reimburse a resident for a out-of-pocket expense, 2) Compensate for a service, 3) Write-off a resident balance considered uncollectable.</li><li>PreviouslyDeposited - This credit type allows for issuing a credit against payments that have already been deposited.</li></ul>", alias="CreditType")
     offsetting_gl_account_id: Optional[StrictInt] = Field(default=None, description="Offsetting general ledger account identifier. The offsetting general ledger account acts as the expense account.", alias="OffsettingGLAccountId")
     posting_rule_gl_account_id: Optional[StrictInt] = Field(default=None, description="Indicates whether to apply a posting rule when processing the transaction that would only record the credit if a prior payment has been made.        Set the field value to the <b>Rent Income</b> general ledger account identifier if the credit should only be recorded when a payment was made and applied to the <b>Rent Income</b> general ledger account.        Set the field value to the <b>Accounts Receivable</b> general ledger account identifier if the credit should only be recorded when a payment was made and applied to *any* general ledger account.        Set the field value to <b>null</b> to always record the credit.", alias="PostingRuleGLAccountId")
     lines: Optional[List[RecurringTransactionLineMessage]] = Field(default=None, description="Line items describing how the credit is to be allocated when the recurring transaction is processed.", alias="Lines")
@@ -40,8 +40,8 @@ class OwnershipAccountRecurringCreditMessage(BaseModel):
     next_occurrence_date: Optional[date] = Field(default=None, description="The next date the scheduled credit will be processed.", alias="NextOccurrenceDate")
     post_days_in_advance: Optional[StrictInt] = Field(default=None, description="Specifies the number of days ahead of the transaction date the credit will post on the lease ledger. This setting can be used to add the credit to the ledger ahead of the due date for visibility. For example, if the `FirstOccurrenceDate` is set to 8/10/2022 and this value is set to 5 then the charge will added to the ledger on 8/5/2022, but will have transaction date of 8/10/2022.", alias="PostDaysInAdvance")
     memo: Optional[StrictStr] = Field(default=None, description="Memo associated with the recurring credit.", alias="Memo")
-    frequency: Optional[StrictStr] = Field(default=None, description="Indicates the frequency at which the recurring credit is processed.", alias="Frequency")
-    duration: Optional[StrictStr] = Field(default=None, description="Specifies the period of time/occurrences the recurring credit will be processed. Note, if the `Frequency` field is set to `OneTime` this field should be set to `NULL` as any submitted value will be ignored.", alias="Duration")
+    frequency: Optional[Any] = Field(default=None, description="Indicates the frequency at which the recurring credit is processed.", alias="Frequency")
+    duration: Optional[Any] = Field(default=None, description="Specifies the period of time/occurrences the recurring credit will be processed. Note, if the `Frequency` field is set to `OneTime` this field should be set to `NULL` as any submitted value will be ignored.", alias="Duration")
     __properties: ClassVar[List[str]] = ["Id", "OwnershipAccountId", "CreditType", "OffsettingGLAccountId", "PostingRuleGLAccountId", "Lines", "Amount", "OccurrencesRemaining", "FirstOccurrenceDate", "NextOccurrenceDate", "PostDaysInAdvance", "Memo", "Frequency", "Duration"]
 
     @field_validator('credit_type')
@@ -50,6 +50,8 @@ class OwnershipAccountRecurringCreditMessage(BaseModel):
         if value is None:
             return value
 
+        if isinstance(value, int):
+            return value  # CODEMOD: lenient enum
         if value not in set(['WaiveUnpaid', 'Exchange', 'PreviouslyDeposited']):
             raise ValueError("must be one of enum values ('WaiveUnpaid', 'Exchange', 'PreviouslyDeposited')")
         return value
@@ -60,6 +62,8 @@ class OwnershipAccountRecurringCreditMessage(BaseModel):
         if value is None:
             return value
 
+        if isinstance(value, int):
+            return value  # CODEMOD: lenient enum
         if value not in set(['Monthly', 'Weekly', 'Every2Weeks', 'Quarterly', 'Yearly', 'Every2Months', 'Daily', 'Every6Months', 'OneTime']):
             raise ValueError("must be one of enum values ('Monthly', 'Weekly', 'Every2Weeks', 'Quarterly', 'Yearly', 'Every2Months', 'Daily', 'Every6Months', 'OneTime')")
         return value
@@ -70,6 +74,8 @@ class OwnershipAccountRecurringCreditMessage(BaseModel):
         if value is None:
             return value
 
+        if isinstance(value, int):
+            return value  # CODEMOD: lenient enum
         if value not in set(['Unspecified', 'UntilEndOfTerm', 'SpecificNumber', 'SpecificDate']):
             raise ValueError("must be one of enum values ('Unspecified', 'UntilEndOfTerm', 'SpecificNumber', 'SpecificDate')")
         return value

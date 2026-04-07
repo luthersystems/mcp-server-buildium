@@ -32,7 +32,7 @@ class AllTasksMessage(BaseModel):
     This object represents a task.
     """ # noqa: E501
     id: Optional[StrictInt] = Field(default=None, description="Task unique identifier.", alias="Id")
-    task_type: Optional[StrictStr] = Field(default=None, description="The task type.", alias="TaskType")
+    task_type: Optional[Any] = Field(default=None, description="The task type.", alias="TaskType")
     category: Optional[TaskCategoryResponseMessage] = Field(default=None, description="Task category.", alias="Category")
     title: Optional[StrictStr] = Field(default=None, description="Task title.", alias="Title")
     description: Optional[StrictStr] = Field(default=None, description="Task description.", alias="Description")
@@ -41,8 +41,8 @@ class AllTasksMessage(BaseModel):
     unit_agreement: Optional[UnitAgreementMessage] = Field(default=None, description="The unit agreement that is associated with the task.", alias="UnitAgreement")
     requested_by_user_entity: Optional[RequestedByUserEntityMessage] = Field(default=None, description="The user entity that requested the task.", alias="RequestedByUserEntity")
     assigned_to_user_id: Optional[StrictInt] = Field(default=None, description="The unique identifier of the staff user assigned to the task.", alias="AssignedToUserId")
-    task_status: Optional[StrictStr] = Field(default=None, description="Task status.", alias="TaskStatus")
-    priority: Optional[StrictStr] = Field(default=None, description="Task priority.", alias="Priority")
+    task_status: Optional[Any] = Field(default=None, description="Task status.", alias="TaskStatus")
+    priority: Optional[Any] = Field(default=None, description="Task priority.", alias="Priority")
     due_date: Optional[date] = Field(default=None, description="Task due date.", alias="DueDate")
     created_date_time: Optional[datetime] = Field(default=None, description="The date and time the task was created.", alias="CreatedDateTime")
     last_updated_date_time: Optional[datetime] = Field(default=None, description="The date and time the task was last updated.", alias="LastUpdatedDateTime")
@@ -54,6 +54,8 @@ class AllTasksMessage(BaseModel):
         if value is None:
             return value
 
+        if isinstance(value, int):
+            return value  # CODEMOD: lenient enum
         if value not in set(['ContactRequest', 'ResidentRequest', 'Todo', 'RentalOwnerRequest']):
             raise ValueError("must be one of enum values ('ContactRequest', 'ResidentRequest', 'Todo', 'RentalOwnerRequest')")
         return value
@@ -64,6 +66,8 @@ class AllTasksMessage(BaseModel):
         if value is None:
             return value
 
+        if isinstance(value, int):
+            return value  # CODEMOD: lenient enum
         if value not in set(['New', 'InProgress', 'Completed', 'Deferred', 'Closed']):
             raise ValueError("must be one of enum values ('New', 'InProgress', 'Completed', 'Deferred', 'Closed')")
         return value
@@ -74,6 +78,8 @@ class AllTasksMessage(BaseModel):
         if value is None:
             return value
 
+        if isinstance(value, int):
+            return value  # CODEMOD: lenient enum
         if value not in set(['Low', 'Normal', 'High']):
             raise ValueError("must be one of enum values ('Low', 'Normal', 'High')")
         return value

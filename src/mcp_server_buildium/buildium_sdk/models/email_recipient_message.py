@@ -29,7 +29,7 @@ class EmailRecipientMessage(BaseModel):
     id: Optional[StrictInt] = Field(default=None, description="Recipient unique identifier.", alias="Id")
     name: Optional[StrictStr] = Field(default=None, description="Name of the recipient.", alias="Name")
     email: Optional[StrictStr] = Field(default=None, description="Email address of the recipient.", alias="Email")
-    recipient_type: Optional[StrictStr] = Field(default=None, description="The type of recipient.", alias="RecipientType")
+    recipient_type: Optional[Any] = Field(default=None, description="The type of recipient.", alias="RecipientType")
     href: Optional[StrictStr] = Field(default=None, description="A link to the resource associated with the recipient.", alias="Href")
     __properties: ClassVar[List[str]] = ["Id", "Name", "Email", "RecipientType", "Href"]
 
@@ -39,6 +39,8 @@ class EmailRecipientMessage(BaseModel):
         if value is None:
             return value
 
+        if isinstance(value, int):
+            return value  # CODEMOD: lenient enum
         if value not in set(['Tenant', 'AssociationOwner', 'RentalOwner', 'AssociationTenant', 'Applicant', 'Vendor', 'Staff', 'Unknown']):
             raise ValueError("must be one of enum values ('Tenant', 'AssociationOwner', 'RentalOwner', 'AssociationTenant', 'Applicant', 'Vendor', 'Staff', 'Unknown')")
         return value

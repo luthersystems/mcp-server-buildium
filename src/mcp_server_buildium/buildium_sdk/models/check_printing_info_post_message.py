@@ -28,7 +28,7 @@ class CheckPrintingInfoPostMessage(BaseModel):
     """ # noqa: E501
     enable_remote_check_printing: Optional[StrictBool] = Field(default=None, description="Indicates whether remote check printing is enabled.", alias="EnableRemoteCheckPrinting")
     enable_local_check_printing: Optional[StrictBool] = Field(default=None, description="Indicates whether local check printing is enabled.", alias="EnableLocalCheckPrinting")
-    check_layout_type: Optional[StrictStr] = Field(default=None, description="The check layout type. Defaults to `Voucher2StubsPrePrintedLayout` if not specified.", alias="CheckLayoutType")
+    check_layout_type: Optional[Any] = Field(default=None, description="The check layout type. Defaults to `Voucher2StubsPrePrintedLayout` if not specified.", alias="CheckLayoutType")
     signature_heading: Optional[StrictStr] = Field(default=None, description="The signature heading. Defaults to \"VOID AFTER 90 DAYS\" if not specified.", alias="SignatureHeading")
     fractional_number: Optional[StrictStr] = Field(default=None, description="The fractional form of the routing number. Typically is used to identify the bank of the check in cases where the MICR is unreadable.", alias="FractionalNumber")
     bank_information_line1: Optional[StrictStr] = Field(default=None, description="Bank information line 1.", alias="BankInformationLine1")
@@ -49,6 +49,8 @@ class CheckPrintingInfoPostMessage(BaseModel):
         if value is None:
             return value
 
+        if isinstance(value, int):
+            return value  # CODEMOD: lenient enum
         if value not in set(['Voucher1StubBottomMemo1Signature', 'Voucher2StubBottomMemo1Signature', 'Voucher2StubBottomMemo2Signatures', 'Voucher2StubTopMemo', 'Voucher2StubsPrePrintedLayout']):
             raise ValueError("must be one of enum values ('Voucher1StubBottomMemo1Signature', 'Voucher2StubBottomMemo1Signature', 'Voucher2StubBottomMemo2Signatures', 'Voucher2StubTopMemo', 'Voucher2StubsPrePrintedLayout')")
         return value

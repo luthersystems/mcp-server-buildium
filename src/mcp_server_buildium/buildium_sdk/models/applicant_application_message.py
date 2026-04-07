@@ -29,7 +29,7 @@ class ApplicantApplicationMessage(BaseModel):
     """ # noqa: E501
     id: Optional[StrictInt] = Field(default=None, description="Rental application unique identifier.", alias="Id")
     application_number: Optional[StrictStr] = Field(default=None, description="An alpha numeric value that can be used to uniquely identify the application. This is typically provided to an applicant to use as a reference when making inquiries about their application.", alias="ApplicationNumber")
-    application_status: Optional[StrictStr] = Field(default=None, description="Indicates the current application status.", alias="ApplicationStatus")
+    application_status: Optional[Any] = Field(default=None, description="Indicates the current application status.", alias="ApplicationStatus")
     application_submitted_date_time: Optional[datetime] = Field(default=None, description="Date and time the application was submitted.", alias="ApplicationSubmittedDateTime")
     __properties: ClassVar[List[str]] = ["Id", "ApplicationNumber", "ApplicationStatus", "ApplicationSubmittedDateTime"]
 
@@ -39,6 +39,8 @@ class ApplicantApplicationMessage(BaseModel):
         if value is None:
             return value
 
+        if isinstance(value, int):
+            return value  # CODEMOD: lenient enum
         if value not in set(['Unknown', 'Undecided', 'Approved', 'Rejected', 'AddedToLease', 'Cancelled', 'Deferred', 'New', 'Draft', 'AddedToDraftLease']):
             raise ValueError("must be one of enum values ('Unknown', 'Undecided', 'Approved', 'Rejected', 'AddedToLease', 'Cancelled', 'Deferred', 'New', 'Draft', 'AddedToDraftLease')")
         return value

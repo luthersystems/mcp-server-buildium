@@ -27,7 +27,7 @@ class PhoneLogParticipantPostMessage(BaseModel):
     """
     The participant in the phone call.
     """ # noqa: E501
-    entity_type: StrictStr = Field(description="The type of participant entity.", alias="EntityType")
+    entity_type: Any = Field(description="The type of participant entity.", alias="EntityType")
     entity_id: StrictInt = Field(description="The unique identifier for the participant entity.", alias="EntityId")
     unit_agreement: Optional[PhoneLogParticipantUnitAgreementPostMessage] = Field(default=None, description="The unit agreement associated with the participant.", alias="UnitAgreement")
     __properties: ClassVar[List[str]] = ["EntityType", "EntityId", "UnitAgreement"]

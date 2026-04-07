@@ -28,7 +28,7 @@ class GeneralJournalEntryLineSaveMessage(BaseModel):
     """ # noqa: E501
     gl_account_id: StrictInt = Field(description="The general ledger account identifier under which the line item amount will be recorded. Query the General Ledger Account endpoint <a href=\"#operation/AccountingExternalApi_GetAllGLAccounts\">Get All GLAccounts</a> for a listing of available accounts.", alias="GLAccountId")
     memo: Optional[StrictStr] = Field(default=None, description="Memo for the line item.", alias="Memo")
-    posting_type: StrictStr = Field(description="The posting type for the line item.", alias="PostingType")
+    posting_type: Any = Field(description="The posting type for the line item.", alias="PostingType")
     amount: Union[StrictFloat, StrictInt] = Field(description="Amount of the line item.", alias="Amount")
     __properties: ClassVar[List[str]] = ["GLAccountId", "Memo", "PostingType", "Amount"]
 

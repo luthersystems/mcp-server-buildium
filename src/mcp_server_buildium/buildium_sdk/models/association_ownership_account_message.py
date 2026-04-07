@@ -30,12 +30,12 @@ class AssociationOwnershipAccountMessage(BaseModel):
     id: Optional[StrictInt] = Field(default=None, description="Association ownership account unique identifier.", alias="Id")
     association_id: Optional[StrictInt] = Field(default=None, description="Association unique identifier that the ownership account belongs to.", alias="AssociationId")
     unit_id: Optional[StrictInt] = Field(default=None, description="Association unit unique identifier that the ownership account is related to.", alias="UnitId")
-    status: Optional[StrictStr] = Field(default=None, description="Indicates the status of the ownership account.", alias="Status")
+    status: Optional[Any] = Field(default=None, description="Indicates the status of the ownership account.", alias="Status")
     date_of_purchase: Optional[date] = Field(default=None, description="Date the unit(s) where purchased by the owner.", alias="DateOfPurchase")
     date_of_sale: Optional[date] = Field(default=None, description="Date the unit(s) where sold by the owner.", alias="DateOfSale")
     comments: Optional[StrictStr] = Field(default=None, description="Comments about the ownership account.", alias="Comments")
     association_owner_ids: Optional[List[StrictInt]] = Field(default=None, description="Association owners associated with the ownership account", alias="AssociationOwnerIds")
-    delinquency_status: Optional[StrictStr] = Field(default=None, description="Indicates the delinquency status of the ownership account", alias="DelinquencyStatus")
+    delinquency_status: Optional[Any] = Field(default=None, description="Indicates the delinquency status of the ownership account", alias="DelinquencyStatus")
     __properties: ClassVar[List[str]] = ["Id", "AssociationId", "UnitId", "Status", "DateOfPurchase", "DateOfSale", "Comments", "AssociationOwnerIds", "DelinquencyStatus"]
 
     @field_validator('status')
@@ -44,6 +44,8 @@ class AssociationOwnershipAccountMessage(BaseModel):
         if value is None:
             return value
 
+        if isinstance(value, int):
+            return value  # CODEMOD: lenient enum
         if value not in set(['Active', 'Past', 'Future']):
             raise ValueError("must be one of enum values ('Active', 'Past', 'Future')")
         return value
@@ -54,6 +56,8 @@ class AssociationOwnershipAccountMessage(BaseModel):
         if value is None:
             return value
 
+        if isinstance(value, int):
+            return value  # CODEMOD: lenient enum
         if value not in set(['NoDelinquency', 'InCollections', 'InForeclosure', 'Foreclosed']):
             raise ValueError("must be one of enum values ('NoDelinquency', 'InCollections', 'InForeclosure', 'Foreclosed')")
         return value

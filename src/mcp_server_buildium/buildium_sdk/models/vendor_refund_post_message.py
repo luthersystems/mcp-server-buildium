@@ -30,7 +30,7 @@ class VendorRefundPostMessage(BaseModel):
     """ # noqa: E501
     entry_date: date = Field(description="Date the vendor refund was made.", alias="EntryDate")
     bank_account_id: Optional[StrictInt] = Field(default=None, description="Unique identifier of the bank account that the refund was deposited into.", alias="BankAccountId")
-    payment_method: StrictStr = Field(description="The payment method used for the refund.", alias="PaymentMethod")
+    payment_method: Any = Field(description="The payment method used for the refund.", alias="PaymentMethod")
     reference_number: Optional[StrictStr] = Field(default=None, description="The invoice or reference number that the vendor assigned to the refund. Reference number cannot exceed 45 characters.", alias="ReferenceNumber")
     memo: Optional[StrictStr] = Field(default=None, description="Memo associated with the vendor refund, if applicable. Memo cannot exceed 65 characters", alias="Memo")
     lines: List[VendorRefundLinePostMessage] = Field(description="A collection of line items associated with the vendor refund.", alias="Lines")

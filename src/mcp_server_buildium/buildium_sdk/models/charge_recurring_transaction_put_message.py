@@ -33,8 +33,8 @@ class ChargeRecurringTransactionPutMessage(BaseModel):
     memo: Optional[StrictStr] = Field(default=None, description="Memo associated with the recurring charge. This value cannot exceed 65 characters.", alias="Memo")
     first_occurrence_date: date = Field(description="The date the charge will first be processed. This value along with the `Frequency` is also used as the basis for the date set on the transactions in future occurrences.", alias="FirstOccurrenceDate")
     post_days_in_advance: StrictInt = Field(description="Specifies the number of days ahead of the transaction date the charge will post on the lease ledger. This setting can be used to add the charge to the ledger ahead of the due date for visibility. For example, if the `FirstOccurrenceDate` is set to 8/10/2022 and this value is set to 5 then the charge will added to the ledger on 8/5/2022, but will have transaction date of 8/10/2022. Note, the value must be between 0 to 45 or set to 60, 75 or 90.", alias="PostDaysInAdvance")
-    frequency: StrictStr = Field(description="Specifies the frequency at which the recurring charge will be processed.", alias="Frequency")
-    duration: Optional[StrictStr] = Field(default=None, description="Specifies the period of time/occurrences the recurring payment will be processed. Note, if the `Frequency` field is set to `OneTime` this field should be set to `NULL` as any submitted value will be ignored.", alias="Duration")
+    frequency: Any = Field(description="Specifies the frequency at which the recurring charge will be processed.", alias="Frequency")
+    duration: Optional[Any] = Field(default=None, description="Specifies the period of time/occurrences the recurring payment will be processed. Note, if the `Frequency` field is set to `OneTime` this field should be set to `NULL` as any submitted value will be ignored.", alias="Duration")
     number_of_occurrences: Optional[StrictInt] = Field(default=None, description="Indicates the number of times the recurring transaction should be processed. This value is required if the `Duration` field is set to `SpecificNumber`. This value can not exceed 100.", alias="NumberOfOccurrences")
     __properties: ClassVar[List[str]] = ["Id", "GLAccountId", "Amount", "Memo", "FirstOccurrenceDate", "PostDaysInAdvance", "Frequency", "Duration", "NumberOfOccurrences"]
 
@@ -51,6 +51,8 @@ class ChargeRecurringTransactionPutMessage(BaseModel):
         if value is None:
             return value
 
+        if isinstance(value, int):
+            return value  # CODEMOD: lenient enum
         if value not in set(['UntilEndOfTerm', 'SpecificNumber']):
             raise ValueError("must be one of enum values ('UntilEndOfTerm', 'SpecificNumber')")
         return value

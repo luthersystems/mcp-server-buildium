@@ -28,7 +28,7 @@ class OwnershipAccountAutoAllocatedPaymentPostMessage(BaseModel):
     OwnershipAccountAutoAllocatedPaymentPostMessage
     """ # noqa: E501
     var_date: date = Field(description="The date of the transaction. The date must be formatted as YYYY-MM-DD.", alias="Date")
-    payment_method: StrictStr = Field(description="The payment method used for the transaction.", alias="PaymentMethod")
+    payment_method: Any = Field(description="The payment method used for the transaction.", alias="PaymentMethod")
     payee_user_id: Optional[StrictInt] = Field(default=None, description="The payee's user unique identifier.", alias="PayeeUserId")
     memo: Optional[StrictStr] = Field(default=None, description="A brief note describing the reason for the payment. The value cannot exceed 65 characters.", alias="Memo")
     reference_number: Optional[StrictStr] = Field(default=None, description="The reference Number of the transaction. The value cannot exceed 30 characters.", alias="ReferenceNumber")
