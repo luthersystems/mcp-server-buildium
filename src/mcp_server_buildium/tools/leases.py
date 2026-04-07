@@ -25,32 +25,51 @@ def register_lease_tools(mcp: FastMCP, client: BuildiumClient) -> None:
     ) -> dict[str, Any]:
         """List leases from Buildium.
 
+        LOCAL PATCH (2026-04-07): Original wrapper passed `propertyid` (singular)
+        but the SDK method requires `propertyids` (plural list). Also `unit_id` was
+        being passed as `unitid` which the SDK does not accept at all — Buildium's
+        underlying API has no unit_id filter on this endpoint. Now `unit_id` is
+        applied client-side after the fetch (fine for small portfolios; for very
+        large ones, fetch with property_id first to narrow the working set).
+
         Args:
-            property_id: Optional property ID to filter by.
-            unit_id: Optional unit ID to filter by.
+            property_id: Optional property ID to filter by (server-side).
+            unit_id: Optional unit ID to filter by (CLIENT-SIDE filter — Buildium API has no native support).
             lease_status: Optional lease status filter (e.g., "Active", "Future", "Past").
-            limit: Maximum number of results (default: 100).
+            limit: Maximum number of results (default: 100, max 1000).
             offset: Offset for pagination (default: 0).
 
         Returns:
             Dictionary with leases list and metadata.
         """
-        # Build kwargs, only including optional parameters if they have values
-        kwargs = {
+        kwargs: dict[str, Any] = {
             "limit": limit,
             "offset": offset,
         }
         if property_id is not None:
-            kwargs["propertyid"] = property_id
-        if unit_id is not None:
-            kwargs["unitid"] = unit_id
+            kwargs["propertyids"] = [property_id]  # SDK expects List[int], not int.
         if lease_status is not None:
             kwargs["leasestatuses"] = [lease_status]
 
         result = await client.leases_api.external_api_leases_get_leases(**kwargs)
-        if hasattr(result, "to_dict"):
-            return result.to_dict()
-        return result if isinstance(result, dict) else {"leases": result, "count": len(result)}
+
+        # Normalize result to a list of dicts.
+        if isinstance(result, list):
+            leases = [r.to_dict() if hasattr(r, "to_dict") else r for r in result]
+        elif hasattr(result, "to_dict"):
+            data = result.to_dict()
+            leases = data.get("leases", data) if isinstance(data, dict) else data
+        else:
+            leases = result if isinstance(result, list) else [result]
+
+        # Client-side unit_id filter (Buildium API does not support this server-side).
+        if unit_id is not None:
+            leases = [
+                lease for lease in leases
+                if (lease.get("UnitId") if isinstance(lease, dict) else getattr(lease, "unit_id", None)) == unit_id
+            ]
+
+        return {"leases": leases, "count": len(leases)}
 
     @mcp.tool()
     async def get_lease(lease_id: int) -> dict[str, Any]:
