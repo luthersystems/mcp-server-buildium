@@ -1,6 +1,6 @@
 """Lease management tools for Buildium."""
 
-from typing import Any
+from typing import Any, Optional
 
 from fastmcp import FastMCP
 
@@ -118,27 +118,47 @@ def register_lease_tools(mcp: FastMCP, client: BuildiumClient) -> None:
 
     @mcp.tool()
     async def list_lease_transactions(
-        lease_id: int, limit: int = 100, offset: int = 0
+        lease_id: int,
+        limit: int = 100,
+        offset: int = 0,
+        transactiondatefrom: Optional[str] = None,
+        transactiondateto: Optional[str] = None,
     ) -> dict[str, Any]:
-        """List transactions for a specific lease.
+        """List transactions for a specific lease (ledger entries: charges, payments, credits, etc).
+
+        LOCAL PATCH (2026-04-07): Original tool called a non-existent method on the SDK
+        (`external_api_lease_transactions_get_lease_transactions`). Corrected to call the
+        real method `external_api_lease_ledger_transactions_get_lease_ledgers`. Also added
+        optional date-range filters (transactiondatefrom / transactiondateto, YYYY-MM-DD)
+        which the underlying Buildium API supports.
 
         Args:
             lease_id: The lease ID.
-            limit: Maximum number of results (default: 100).
+            limit: Maximum number of results (default: 100, max 1000).
             offset: Offset for pagination (default: 0).
+            transactiondatefrom: Optional start date (YYYY-MM-DD) to filter transactions.
+            transactiondateto: Optional end date (YYYY-MM-DD) to filter transactions.
 
         Returns:
             Dictionary with transactions list.
         """
-        # Use LeaseTransactionsApi from client
+        from datetime import date as _date
         from mcp_server_buildium.buildium_sdk.api.lease_transactions_api import LeaseTransactionsApi
 
         transactions_api = LeaseTransactionsApi(client._api_client)
-        result = await transactions_api.external_api_lease_transactions_get_lease_transactions(
-            lease_id=lease_id, limit=limit, offset=offset
-        )
+        kwargs: dict[str, Any] = {"lease_id": lease_id, "limit": limit, "offset": offset}
+        if transactiondatefrom:
+            kwargs["transactiondatefrom"] = _date.fromisoformat(transactiondatefrom)
+        if transactiondateto:
+            kwargs["transactiondateto"] = _date.fromisoformat(transactiondateto)
+
+        result = await transactions_api.external_api_lease_ledger_transactions_get_lease_ledgers(**kwargs)
+
+        if isinstance(result, list):
+            return {
+                "transactions": [r.to_dict() if hasattr(r, "to_dict") else r for r in result],
+                "count": len(result),
+            }
         if hasattr(result, "to_dict"):
             return result.to_dict()
-        return (
-            result if isinstance(result, dict) else {"transactions": result, "count": len(result)}
-        )
+        return result if isinstance(result, dict) else {"transactions": result}

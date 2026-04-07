@@ -1,6 +1,6 @@
 """Bank account management tools for Buildium."""
 
-from typing import Any
+from typing import Any, Optional
 
 from fastmcp import FastMCP
 
@@ -79,17 +79,43 @@ def register_bank_account_tools(mcp: FastMCP, client: BuildiumClient) -> None:
 
     @mcp.tool()
     async def list_bank_account_transactions(
-        bank_account_id: int, limit: int = 100, offset: int = 0
+        bank_account_id: int,
+        startdate: str,
+        enddate: str,
+        limit: int = 100,
+        offset: int = 0,
     ) -> dict[str, Any]:
-        """List transactions for a specific bank account."""
+        """List transactions for a specific bank account.
+
+        LOCAL PATCH (2026-04-07): Added required `startdate` and `enddate` params.
+        Buildium's underlying API requires both for this endpoint, but the original
+        MCP tool wrapper omitted them, causing every call to fail with a missing
+        required argument error.
+
+        Args:
+            bank_account_id: The bank account ID.
+            startdate: Filter transactions on or after this date (YYYY-MM-DD). Required.
+            enddate: Filter transactions on or before this date (YYYY-MM-DD). Required.
+            limit: Maximum number of results (default: 100, max 1000).
+            offset: Offset for pagination (default: 0).
+        """
+        from datetime import date as _date
+
         result = await client.bank_accounts_api.external_api_bank_account_transactions_get_bank_account_transactions(
-            bank_account_id=bank_account_id, limit=limit, offset=offset
+            bank_account_id=bank_account_id,
+            startdate=_date.fromisoformat(startdate),
+            enddate=_date.fromisoformat(enddate),
+            limit=limit,
+            offset=offset,
         )
+        if isinstance(result, list):
+            return {
+                "transactions": [r.to_dict() if hasattr(r, "to_dict") else r for r in result],
+                "count": len(result),
+            }
         if hasattr(result, "to_dict"):
             return result.to_dict()
-        return (
-            result if isinstance(result, dict) else {"transactions": result, "count": len(result)}
-        )
+        return result if isinstance(result, dict) else {"transactions": result}
 
     @mcp.tool()
     async def get_bank_account_transaction(
