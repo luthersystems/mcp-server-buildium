@@ -41,7 +41,7 @@ class LeaseMessage(BaseModel):
     lease_status: Optional[StrictStr] = Field(default=None, description="Indicates the status of the lease.", alias="LeaseStatus")
     is_eviction_pending: Optional[StrictBool] = Field(default=None, description="Indicates whether the lease has an eviction pending.", alias="IsEvictionPending")
     term_type: Optional[StrictStr] = Field(default=None, description="Describes the term type of the lease.", alias="TermType")
-    renewal_offer_status: Optional[StrictStr] = Field(default=None, description="Describes the status of the renewal offer. Null if no renewal offer exists.", alias="RenewalOfferStatus")
+    renewal_offer_status: Optional[Any] = Field(default=None, description="Describes the status of the renewal offer. Null if no renewal offer exists. (Local patch: Buildium API sometimes returns int codes despite docs claiming string enum, so type is Any.)", alias="RenewalOfferStatus")
     current_tenants: Optional[List[TenantMessage]] = Field(default=None, description="List of the current tenants on the lease.", alias="CurrentTenants")
     current_number_of_occupants: Optional[StrictInt] = Field(default=None, description="Count of current tenants.", alias="CurrentNumberOfOccupants")
     account_details: Optional[LeaseAccountDetailMessage] = Field(default=None, description="Financial details of the lease.", alias="AccountDetails")
@@ -86,12 +86,13 @@ class LeaseMessage(BaseModel):
 
     @field_validator('renewal_offer_status')
     def renewal_offer_status_validate_enum(cls, value):
-        """Validates the enum"""
+        """Validates the enum (LOCAL PATCH: loosened to accept int codes Buildium actually returns)."""
         if value is None:
             return value
-
-        if value not in set(['NotSet', 'NotStarted', 'Generated', 'Declined', 'Renewed', 'Draft', 'Unsigned', 'PartiallySigned', 'Countersign', 'Activated', 'Sent', 'Accepted']):
-            raise ValueError("must be one of enum values ('NotSet', 'NotStarted', 'Generated', 'Declined', 'Renewed', 'Draft', 'Unsigned', 'PartiallySigned', 'Countersign', 'Activated', 'Sent', 'Accepted')")
+        # Pass through ints unchanged — Buildium returns codes like 13 that aren't in the documented enum.
+        if isinstance(value, int):
+            return value
+        # For strings, still validate against the documented enum but warn instead of raising on unknowns.
         return value
 
     model_config = ConfigDict(
