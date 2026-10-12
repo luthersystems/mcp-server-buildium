@@ -1,4 +1,4 @@
-.PHONY: generate-sdk clean install dev-install test test-integration lint typecheck audit check format
+.PHONY: generate-sdk patch-sdk clean install dev-install test test-integration lint typecheck audit check format
 
 PIP_AUDIT_VERSION ?= 2.10.1
 
@@ -12,9 +12,14 @@ generate-sdk:
 		-p packageName=buildium_sdk,projectName=buildium-sdk,packageVersion=0.1.0,library=httpx,generateSourceCodeOnly=true \
 		--skip-validate-spec
 	@echo "SDK generated in buildium_sdk/ directory"
-	@echo "Then run: uv run python scripts/lenient_response_enums.py"
+	@echo "Then run: make patch-sdk"
 	@echo "Installing generated SDK..."
 	@cd buildium_sdk && uv pip install -e .
+
+# Let response models accept enum values Buildium sends that the spec omits.
+# Run after every SDK regeneration; tests/test_sdk_enums.py fails until it is.
+patch-sdk:
+	uv run python scripts/lenient_response_enums.py
 
 # Clean generated files
 clean:

@@ -8,6 +8,15 @@ from mcp_server_buildium.config import DEFAULT_BASE_URL, BuildiumConfig
 from .conftest import TEST_SECRET
 
 
+@pytest.fixture(autouse=True)
+def _no_buildium_env(monkeypatch: pytest.MonkeyPatch) -> None:
+    """Keep BUILDIUM_* variables from the shell out of these tests."""
+    import os
+
+    for name in [n for n in os.environ if n.startswith("BUILDIUM_")]:
+        monkeypatch.delenv(name)
+
+
 def make(**kwargs: object) -> BuildiumConfig:
     values: dict[str, object] = {"client_id": "id", "client_secret": TEST_SECRET}
     values.update(kwargs)
@@ -59,3 +68,12 @@ def test_categories() -> None:
     assert cfg.get_enabled_categories() == {"leases", "rentals"}
     assert cfg.is_category_enabled("LEASES")
     assert not cfg.is_category_enabled("bills")
+
+
+@pytest.mark.parametrize("value", [None, "", " ", ",", " , "])
+def test_blank_categories_mean_all(value: str | None) -> None:
+    assert make(categories=value).get_enabled_categories() is None
+
+
+def test_categories_are_normalized() -> None:
+    assert make(categories=" Leases, ,vendors ").get_enabled_categories() == {"leases", "vendors"}

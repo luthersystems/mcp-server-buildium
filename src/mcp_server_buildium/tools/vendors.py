@@ -54,9 +54,11 @@ def register_vendor_tools(mcp: FastMCP, client: BuildiumClient) -> None:
         return to_result(result)
 
     @mcp.tool()
-    async def list_vendor_categories() -> dict[str, Any]:
+    async def list_vendor_categories(limit: int = 100, offset: int = 0) -> dict[str, Any]:
         """List vendor categories from Buildium."""
-        result = await client.vendors_api.external_api_vendor_categories_get_all_vendor_categories()
+        result = await client.vendors_api.external_api_vendor_categories_get_all_vendor_categories(
+            limit=limit, offset=offset
+        )
         return to_result(result, "categories")
 
     @mcp.tool()

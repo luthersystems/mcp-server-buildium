@@ -54,11 +54,15 @@ def register_lease_tools(mcp: FastMCP, client: BuildiumClient) -> None:
             )
             return to_result(result, "leases")
 
+        if limit < 1 or offset < 0:
+            raise ValueError("limit must be at least 1 and offset at least 0")
         matches: list[LeaseMessage] = []
         for page in range(UNIT_SCAN_MAX_PAGES):
             batch = await client.leases_api.external_api_leases_get_leases(
                 propertyids=propertyids,
                 leasestatuses=leasestatuses,
+                # A fixed order keeps the pages from overlapping or skipping leases.
+                orderby="Id",
                 limit=UNIT_SCAN_PAGE_SIZE,
                 offset=page * UNIT_SCAN_PAGE_SIZE,
             )
@@ -66,7 +70,7 @@ def register_lease_tools(mcp: FastMCP, client: BuildiumClient) -> None:
             if len(batch) < UNIT_SCAN_PAGE_SIZE:
                 return to_result(matches[offset : offset + limit], "leases")
         raise ValueError(
-            f"more than {UNIT_SCAN_MAX_PAGES * UNIT_SCAN_PAGE_SIZE} leases to search for "
+            f"at least {UNIT_SCAN_MAX_PAGES * UNIT_SCAN_PAGE_SIZE} leases to search for "
             "unit_id; pass property_id to narrow the search"
         )
 

@@ -85,9 +85,9 @@ class BuildiumConfig(BaseSettings):
         Returns:
             Set of category names if categories are specified, None if all should be enabled.
         """
-        if not self.categories:
-            return None  # None means all categories enabled
-        return {cat.strip().lower() for cat in self.categories.split(",") if cat.strip()}
+        names = {cat.strip().lower() for cat in (self.categories or "").split(",") if cat.strip()}
+        # None means all categories; a blank or comma-only value counts as unset.
+        return names or None
 
     def is_category_enabled(self, category: str) -> bool:
         """Check if a category is enabled.

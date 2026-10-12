@@ -59,10 +59,10 @@ def register_bill_tools(mcp: FastMCP, client: BuildiumClient) -> None:
         return to_result(result)
 
     @mcp.tool()
-    async def list_bill_payments(bill_id: int) -> dict[str, Any]:
+    async def list_bill_payments(bill_id: int, limit: int = 100, offset: int = 0) -> dict[str, Any]:
         """List payments for a specific bill."""
         result = await client.bills_api.external_api_bill_payments_read_get_bill_payments(
-            bill_id=bill_id
+            bill_id=bill_id, limit=limit, offset=offset
         )
         return to_result(result, "payments")
 
