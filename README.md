@@ -272,23 +272,26 @@ Query leases with optional filters (property, unit, status).
 }
 ```
 
+List tools return `{"<items>": [...], "count": n}`. Records use Buildium's
+field names, as in its API reference; the examples below show only some fields.
+
 **Example Response:**
 ```json
 {
   "leases": [
     {
-      "id": 12345,
-      "propertyId": 123,
-      "unitId": 456,
-      "leaseType": "Fixed",
-      "leaseFromDate": "2024-01-01",
-      "leaseToDate": "2024-12-31",
-      "status": "Active",
-      "tenants": [
+      "Id": 12345,
+      "PropertyId": 123,
+      "UnitId": 456,
+      "LeaseType": "Fixed",
+      "LeaseFromDate": "2024-01-01",
+      "LeaseToDate": "2024-12-31",
+      "Status": "Active",
+      "Tenants": [
         {
-          "id": 789,
-          "firstName": "John",
-          "lastName": "Doe"
+          "Id": 789,
+          "FirstName": "John",
+          "LastName": "Doe"
         }
       ]
     }
@@ -317,29 +320,29 @@ Retrieve details of a specific lease by ID.
 **Example Response:**
 ```json
 {
-  "id": 12345,
-  "propertyId": 123,
-  "unitId": 456,
-  "leaseType": "Fixed",
-  "leaseFromDate": "2024-01-01",
-  "leaseToDate": "2024-12-31",
-  "status": "Active",
-  "rentCycle": "Monthly",
-  "rentAmount": 2000.00,
-  "securityDepositAmount": 2000.00,
-  "tenants": [
+  "Id": 12345,
+  "PropertyId": 123,
+  "UnitId": 456,
+  "LeaseType": "Fixed",
+  "LeaseFromDate": "2024-01-01",
+  "LeaseToDate": "2024-12-31",
+  "Status": "Active",
+  "RentCycle": "Monthly",
+  "RentAmount": 2000.00,
+  "SecurityDepositAmount": 2000.00,
+  "Tenants": [
     {
-      "id": 789,
-      "firstName": "John",
-      "lastName": "Doe",
-      "email": "john.doe@example.com",
-      "phoneNumbers": {
-        "home": "555-0100"
+      "Id": 789,
+      "FirstName": "John",
+      "LastName": "Doe",
+      "Email": "john.doe@example.com",
+      "PhoneNumbers": {
+        "Home": "555-0100"
       }
     }
   ],
-  "createdDateTime": "2024-01-01T10:00:00Z",
-  "lastModifiedDateTime": "2024-01-01T10:00:00Z"
+  "CreatedDateTime": "2024-01-01T10:00:00Z",
+  "LastModifiedDateTime": "2024-01-01T10:00:00Z"
 }
 ```
 
@@ -430,25 +433,25 @@ Create a new lease agreement.
 **Example Response:**
 ```json
 {
-  "id": 12346,
-  "propertyId": 123,
-  "unitId": 456,
-  "leaseType": "Fixed",
-  "leaseFromDate": "2025-01-01",
-  "leaseToDate": "2025-12-31",
-  "status": "Active",
-  "rentCycle": "Monthly",
-  "rentAmount": 2000.00,
-  "securityDepositAmount": 2000.00,
-  "tenants": [
+  "Id": 12346,
+  "PropertyId": 123,
+  "UnitId": 456,
+  "LeaseType": "Fixed",
+  "LeaseFromDate": "2025-01-01",
+  "LeaseToDate": "2025-12-31",
+  "Status": "Active",
+  "RentCycle": "Monthly",
+  "RentAmount": 2000.00,
+  "SecurityDepositAmount": 2000.00,
+  "Tenants": [
     {
-      "id": 790,
-      "firstName": "Jane",
-      "lastName": "Smith",
-      "email": "jane.smith@example.com"
+      "Id": 790,
+      "FirstName": "Jane",
+      "LastName": "Smith",
+      "Email": "jane.smith@example.com"
     }
   ],
-  "createdDateTime": "2024-11-07T00:00:00Z"
+  "CreatedDateTime": "2024-11-07T00:00:00Z"
 }
 ```
 
@@ -550,11 +553,6 @@ Integration tests validate real Buildium API authentication. They are **skipped 
    uv run pytest tests/test_integration.py -v
    ```
 
-**Test Credentials (Sandbox):**
-- Client ID: `54f6ac5b-5629-4934-a930-d2c8174fcf4a`
-- Client Secret: `tHXJx7mFoCEXtqCvBL3oV1Fv6hHb5WVokKHIvT1cUIA=`
-- Base URL: `https://apisandbox.buildium.com/`
-
 ### CI/CD Setup (GitHub Actions)
 
 To run integration tests in GitHub Actions:
@@ -568,14 +566,12 @@ To run integration tests in GitHub Actions:
 
 2. **The CI workflow will automatically run integration tests** when these secrets are present
 
-**Note**: The integration tests will be skipped in PRs from forks (for security), but will run on pushes to main/develop branches.
+**Note**: The integration tests are skipped in pull requests from forks, which get no secrets, and run on pushes to `main` and on pull requests from this repository.
 
 **What the integration tests verify:**
 
 * ✅ API key authentication works with your credentials
-* ✅ Access token can be obtained successfully
 * ✅ API calls work (tests `list_associations`, `list_rentals`, `list_leases`)
-* ✅ Token refresh mechanism works
 
 **Note**: Integration tests require a Buildium developer account (sandbox environment recommended).
 

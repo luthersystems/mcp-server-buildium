@@ -2,10 +2,15 @@
 
 from urllib.parse import urlsplit
 
+from dotenv import load_dotenv
 from pydantic import Field, SecretStr, field_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 DEFAULT_BASE_URL = "https://api.buildium.com"
+
+# Load a .env file into the environment if one exists (found by walking up from
+# this package, then the working directory). Variables already set win.
+load_dotenv()
 
 
 class BuildiumConfig(BaseSettings):

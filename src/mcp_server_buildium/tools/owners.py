@@ -93,7 +93,13 @@ def register_owner_tools(mcp: FastMCP, client: BuildiumClient) -> None:
 
     @mcp.tool()
     async def create_association_owner(owner_data: dict[str, Any]) -> dict[str, Any]:
-        """Create a new association owner."""
+        """Add an owner to an existing association ownership account.
+
+        Args:
+            owner_data: AssociationOwnerToExistingOwnershipAccountPostMessage fields. Required:
+                OwnershipAccountId, SendWelcomeEmail, PrimaryAddress, FirstName, LastName,
+                IsOwnerOccupied.
+        """
         owner_message = AssociationOwnerToExistingOwnershipAccountPostMessage(**owner_data)
 
         result = await client.association_owners_api.external_api_association_owners_create_association_owner(

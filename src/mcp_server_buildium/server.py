@@ -49,6 +49,12 @@ def create_server(
         The configured FastMCP server.
     """
     config = config or BuildiumConfig.from_env()
+    unknown = (config.get_enabled_categories() or set()) - CATEGORIES.keys()
+    if unknown:
+        raise ValueError(
+            f"BUILDIUM_CATEGORIES has unknown categories {sorted(unknown)}; "
+            f"known categories are {sorted(CATEGORIES)}"
+        )
     client = client or BuildiumClient(config=config)
     mcp = FastMCP("buildium")
     for category, register in CATEGORIES.items():
