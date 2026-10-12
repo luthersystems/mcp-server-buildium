@@ -2,84 +2,112 @@ name: CI
 
 on:
   push:
-    branches: [main, develop]
+    branches: [main]
   pull_request:
-    branches: [main, develop]
+    branches: ["**"]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  UV_VERSION: "0.11.32"
 
 jobs:
-  lint-and-test:
+  lint:
+    name: Lint and type-check
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        python-version: ["3.11", "3.12"]
-
+    timeout-minutes: 10
     steps:
-      - uses: actions/checkout@v4
-
-      - name: Install uv
-        uses: astral-sh/setup-uv@v3
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
         with:
-          version: "latest"
+          persist-credentials: false
+      - uses: astral-sh/setup-uv@37802adc94f370d6bfd71619e3f0bf239e1f3b78  # v7.6.0
+        with:
+          version: ${{ env.UV_VERSION }}
+          python-version: "3.11"
+      # --locked fails when uv.lock is out of date with pyproject.toml.
+      - name: Install
+        run: uv sync --locked --extra dev
+      - name: ruff check
+        run: uv run ruff check .
+      - name: ruff format
+        run: uv run ruff format --check .
+      - name: mypy
+        run: uv run mypy
 
-      - name: Set up Python ${{ matrix.python-version }}
-        run: uv python install ${{ matrix.python-version }}
-
-      - name: Create virtual environment
-        run: uv venv --python ${{ matrix.python-version }}
-
-      # SDK is checked into repo and loaded via sys.path in sdk_imports.py
-      # No installation needed!
-
-      - name: Install dependencies
-        run: |
-          uv pip install -e ".[dev]"
-
-      - name: Run ruff linter
-        run: |
-          uv run ruff check .
-
-      - name: Run ruff formatter check
-        run: |
-          uv run ruff format --check .
-
-      - name: Run unit tests with pytest
-        continue-on-error: true
-        run: |
-          # No unit tests currently (only integration tests)
-          echo "Skipping unit tests - only integration tests exist"
-
-      - name: Run integration tests (if secrets available)
-        if: env.BUILDIUM_CLIENT_ID != ''
-        env:
-          BUILDIUM_BASE_URL: ${{ secrets.BUILDIUM_BASE_URL || 'https://api.buildium.com' }}
-          BUILDIUM_CLIENT_ID: ${{ secrets.BUILDIUM_CLIENT_ID }}
-          BUILDIUM_CLIENT_SECRET: ${{ secrets.BUILDIUM_CLIENT_SECRET }}
-        run: |
-          uv run pytest tests/test_integration.py -v
+  test:
+    name: Unit tests (Python ${{ matrix.python-version }})
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.11", "3.12", "3.13"]
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: astral-sh/setup-uv@37802adc94f370d6bfd71619e3f0bf239e1f3b78  # v7.6.0
+        with:
+          version: ${{ env.UV_VERSION }}
+          python-version: ${{ matrix.python-version }}
+      - name: Install
+        run: uv sync --locked --extra dev
+      # The integration tests skip themselves without Buildium credentials.
+      - name: pytest
+        run: uv run pytest --ignore=tests/test_integration.py
 
   build:
+    name: Build package
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
-      - uses: actions/checkout@v4
-
-      - name: Install uv
-        uses: astral-sh/setup-uv@v3
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
         with:
-          version: "latest"
-
-      - name: Set up Python
-        run: uv python install 3.11
-
-      - name: Create virtual environment
-        run: uv venv --python 3.11
-
-      - name: Build package
+          persist-credentials: false
+      - uses: astral-sh/setup-uv@37802adc94f370d6bfd71619e3f0bf239e1f3b78  # v7.6.0
+        with:
+          version: ${{ env.UV_VERSION }}
+          python-version: "3.11"
+      - name: Build
+        run: uv build
+      # connectorhub runs the server with `uvx --from git+...`; check that the
+      # built wheel installs and its entry point imports.
+      - name: Smoke-test the wheel
         run: |
-          uv pip install build
-          uv run python -m build
+          uv venv /tmp/wheel-venv
+          VIRTUAL_ENV=/tmp/wheel-venv uv pip install dist/*.whl
+          /tmp/wheel-venv/bin/python -c "import mcp_server_buildium.server as s; assert len(s.CATEGORIES) == 12"
 
-      - name: Check package
+  # Runs against the real Buildium API only where the repository's secrets
+  # are available (pushes to main and same-repository pull requests).
+  integration:
+    name: Integration tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    if: github.event_name == 'push' || github.event.pull_request.head.repo.full_name == github.repository
+    env:
+      BUILDIUM_BASE_URL: ${{ secrets.BUILDIUM_BASE_URL }}
+      BUILDIUM_CLIENT_ID: ${{ secrets.BUILDIUM_CLIENT_ID }}
+      BUILDIUM_CLIENT_SECRET: ${{ secrets.BUILDIUM_CLIENT_SECRET }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: astral-sh/setup-uv@37802adc94f370d6bfd71619e3f0bf239e1f3b78  # v7.6.0
+        with:
+          version: ${{ env.UV_VERSION }}
+          python-version: "3.11"
+      - name: Install
+        run: uv sync --locked --extra dev
+      - name: pytest (integration)
         run: |
-          uv pip install twine
-          uv run twine check dist/*
-
+          if [ -z "$BUILDIUM_CLIENT_ID" ] || [ -z "$BUILDIUM_CLIENT_SECRET" ]; then
+            echo "::notice::Buildium credentials are not configured; skipping the integration tests."
+            exit 0
+          fi
+          uv run pytest tests/test_integration.py --no-cov -v

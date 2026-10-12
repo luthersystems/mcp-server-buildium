@@ -58,6 +58,10 @@ BUILDIUM_CLIENT_SECRET=your-client-secret
 BUILDIUM_CATEGORIES=associations,leases,rentals
 ```
 
+`BUILDIUM_BASE_URL` must be an `https://` URL without credentials, a query or a
+fragment, because every request carries the client secret in a header. The
+server refuses to start otherwise. An empty value means the production URL.
+
 ### Tool Categories
 
 Control which tool categories are enabled using the `BUILDIUM_CATEGORIES` environment variable:
@@ -230,7 +234,7 @@ Add to your Claude Desktop config (`~/Library/Application Support/Claude/claude_
 * `get_bank_account` - Get bank account details by ID
 * `create_bank_account` - Create a new bank account
 * `update_bank_account` - Update a bank account
-* `list_bank_account_transactions` - List transactions for a bank account
+* `list_bank_account_transactions` - List transactions for a bank account in a date range (`start_date`, `end_date`; default: the last 30 days)
 * `get_bank_account_transaction` - Get bank account transaction details by ID
 
 ## Tool Request/Response Examples
@@ -488,25 +492,40 @@ cd mcp-server-buildium
 # Install uv if needed
 curl -LsSf https://astral.sh/uv/install.sh | sh
 
-# Install dependencies
-uv pip install -e ".[dev]"
+# Install dependencies (from uv.lock)
+uv sync --extra dev
 ```
 
 ### Running Tests
 
 ```bash
-# Run unit tests (no credentials needed)
-uv run pytest tests/ --ignore=tests/test_integration.py
-
-# Run with coverage
-uv run pytest --cov=mcp_server_buildium --cov-report=html
-
-# Run linter
-uv run ruff check .
-
-# Format code
-uv run ruff format .
+make check       # everything CI runs, except the integration tests
+make test        # offline unit tests (no credentials, no network)
+make lint        # ruff: style, bugbear and bandit security rules
+make typecheck   # mypy --strict
+make audit       # pip-audit over uv.lock
+make format      # apply ruff's formatting and fixes
 ```
+
+The unit tests replace the SDK's HTTP client, so they check the method, path
+and query each tool sends without calling Buildium. The type checker matters
+here: it is what proves each tool calls an SDK method, with keyword arguments
+and a request model, that the generated SDK actually has.
+
+### CI
+
+`.github/workflows/ci.yml` runs lint, mypy, the unit tests on Python 3.11 to
+3.13, a package build with a wheel smoke test, and the integration tests where
+the repository's Buildium secrets are available.
+`.github/workflows/vulnerability-scan.yml` runs pip-audit on every pull
+request, on `main` and daily. Dependabot keeps the Python dependencies and the
+SHA-pinned GitHub Actions current.
+
+When pip-audit reports a vulnerable dependency, upgrade it
+(`uv lock --upgrade-package NAME`) and, if the vulnerable version still meets
+the floor in `pyproject.toml`, raise the floor too: connectorhub installs this
+server with `uvx --from git+...`, which resolves from `pyproject.toml`, not
+`uv.lock`.
 
 ### Integration Tests (Optional)
 
@@ -553,7 +572,7 @@ To run integration tests in GitHub Actions:
 
 **What the integration tests verify:**
 
-* ✅ OAuth authentication works with your credentials
+* ✅ API key authentication works with your credentials
 * ✅ Access token can be obtained successfully
 * ✅ API calls work (tests `list_associations`, `list_rentals`, `list_leases`)
 * ✅ Token refresh mechanism works
@@ -581,32 +600,28 @@ mcp-server-buildium/
 │   ├── __init__.py
 │   ├── server.py           # Main FastMCP server
 │   ├── config.py           # Configuration management
-│   ├── buildium_client.py  # OAuth auth & API client
-│   └── tools/
-│       ├── associations.py # Association tools
-│       ├── leases.py       # Lease tools
-│       └── rentals.py      # Rental tools
+│   ├── buildium_client.py  # SDK client with the API key headers
+│   ├── buildium_sdk/       # Generated from specs/buildium-openapi.json; not linted
+│   └── tools/              # One module per tool category
 ├── tests/
-│   ├── test_buildium_client.py
-│   └── test_integration.py
+│   ├── test_config.py
+│   ├── test_client.py
+│   ├── test_tools.py       # Offline request checks for every tool
+│   └── test_integration.py # Real API; needs credentials
 ├── pyproject.toml
 └── README.md
 ```
 
 ## Troubleshooting
 
-### "Failed to obtain access token"
+### "base_url must be an https:// URL with a host"
 
-* Verify client ID and secret are correct
-* Check base URL is correct (sandbox vs production)
-* Ensure token URL is accessible
-* Verify scopes are correct
+* Set `BUILDIUM_BASE_URL` to `https://api.buildium.com` or `https://apisandbox.buildium.com`
 
 ### "401 Unauthorized"
 
-* Check credentials are valid
-* Verify API endpoint URLs
-* Ensure OAuth scopes include required permissions
+* Check the client ID and secret are valid for that environment (sandbox keys do not work in production)
+* Check the API key has access to the resource in Buildium's API settings
 
 ### "Connection timeout"
 
@@ -624,7 +639,7 @@ mcp-server-buildium/
 1. **Never commit credentials** - Use `.gitignore` and environment variables
 2. **Use secrets management** - Store credentials in secure vaults (AWS Secrets Manager, etc.)
 3. **Rotate credentials regularly** - Generate new client secrets periodically
-4. **Limit token lifetime** - Use shorter expiration for sensitive operations
+4. **Use least privilege** - Give the API key only the Buildium permissions and set `BUILDIUM_CATEGORIES` to the tool categories you need
 5. **Monitor API usage** - Check Buildium dashboard for unusual activity
 6. **Use sandbox environment** - Test with sandbox accounts before production
 
@@ -632,17 +647,16 @@ mcp-server-buildium/
 
 * **Language**: Python 3.11+
 * **Framework**: FastMCP
-* **Auth**: OAuth 2.0 client credentials flow
+* **Auth**: API key headers (`x-buildium-client-id`, `x-buildium-client-secret`)
 * **Transport**: stdio (MCP protocol)
 * **HTTP Client**: httpx
-* **Testing**: pytest with mocks
+* **Testing**: pytest with a mocked HTTP transport; mypy --strict; ruff
 
 ## References
 
 * [Buildium Developer Documentation](https://developer.buildium.com/)
 * [Model Context Protocol](https://modelcontextprotocol.io)
 * [FastMCP Framework](https://github.com/jlowin/fastmcp)
-* [OAuth 2.0 Client Credentials Flow](https://oauth.net/2/grant-types/client-credentials/)
 
 ## License
 
