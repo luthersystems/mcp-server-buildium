@@ -30,7 +30,7 @@ class BulkOwnershipAccountRecurringTransactionMessage(BaseModel):
     """ # noqa: E501
     id: Optional[StrictInt] = Field(default=None, description="The unique identifier for the recurring transaction schedule.", alias="Id")
     ownership_account_id: Optional[StrictInt] = Field(default=None, description="The unique identifier of the corresponding Ownership Account", alias="OwnershipAccountId")
-    transaction_type: Optional[StrictStr] = Field(default=None, description="Indicates the type of transaction to be applied to the ledger.", alias="TransactionType")
+    transaction_type: Optional[Union[StrictStr, StrictInt]] = Field(default=None, description="Indicates the type of transaction to be applied to the ledger.", alias="TransactionType")
     is_expired: Optional[StrictBool] = Field(default=None, description="Indicates if the recurring transaction schedule has expired.", alias="IsExpired")
     rent_id: Optional[StrictInt] = Field(default=None, description="The unique identifier of the scheduled Rent entity. This field is only applicable for `Charge` transaction types.", alias="RentId")
     offsetting_gl_account_id: Optional[StrictInt] = Field(default=None, description="Offsetting general ledger account identifier. The offsetting general ledger account acts as the expense account. Note, this field is only applicable for `Credit` transaction types.", alias="OffsettingGLAccountId")
@@ -40,8 +40,8 @@ class BulkOwnershipAccountRecurringTransactionMessage(BaseModel):
     first_occurrence_date: Optional[date] = Field(default=None, description="The date the first occurrence of this transaction was processed.", alias="FirstOccurrenceDate")
     next_occurrence_date: Optional[date] = Field(default=None, description="The next date the scheduled transaction will be processed.", alias="NextOccurrenceDate")
     post_days_in_advance: Optional[StrictInt] = Field(default=None, description="The number of days ahead of the transaction date the transaction will post on the lease ledger. This setting is used to add the transaction to the ledger ahead of it's due date for visibility. For example, if the `FirstOccurrenceDate` is set to 8/10/2022 and this value is set to 5 then the charge will added to the ledger on 8/5/2022, but will have transaction date of 8/10/2022.", alias="PostDaysInAdvance")
-    frequency: Optional[StrictStr] = Field(default=None, description="Indicates the frequency at which the recurring transaction is processed.", alias="Frequency")
-    duration: Optional[StrictStr] = Field(default=None, description="Specifies the period of time/occurrences the recurring transaction will be processed. Note, if the `Frequency` field is set to `OneTime` this field should be set to `NULL` as any submitted value will be ignored.", alias="Duration")
+    frequency: Optional[Union[StrictStr, StrictInt]] = Field(default=None, description="Indicates the frequency at which the recurring transaction is processed.", alias="Frequency")
+    duration: Optional[Union[StrictStr, StrictInt]] = Field(default=None, description="Specifies the period of time/occurrences the recurring transaction will be processed. Note, if the `Frequency` field is set to `OneTime` this field should be set to `NULL` as any submitted value will be ignored.", alias="Duration")
     created_date_time: Optional[datetime] = Field(default=None, description="The date the transaction was created.", alias="CreatedDateTime")
     last_updated_date_time: Optional[datetime] = Field(default=None, description="The date the transaction was last updated.", alias="LastUpdatedDateTime")
     __properties: ClassVar[List[str]] = ["Id", "OwnershipAccountId", "TransactionType", "IsExpired", "RentId", "OffsettingGLAccountId", "Lines", "Amount", "Memo", "FirstOccurrenceDate", "NextOccurrenceDate", "PostDaysInAdvance", "Frequency", "Duration", "CreatedDateTime", "LastUpdatedDateTime"]
@@ -49,6 +49,7 @@ class BulkOwnershipAccountRecurringTransactionMessage(BaseModel):
     @field_validator('transaction_type')
     def transaction_type_validate_enum(cls, value):
         """Validates the enum"""
+        return value  # lenient response enum
         if value is None:
             return value
 
@@ -59,6 +60,7 @@ class BulkOwnershipAccountRecurringTransactionMessage(BaseModel):
     @field_validator('frequency')
     def frequency_validate_enum(cls, value):
         """Validates the enum"""
+        return value  # lenient response enum
         if value is None:
             return value
 
@@ -69,6 +71,7 @@ class BulkOwnershipAccountRecurringTransactionMessage(BaseModel):
     @field_validator('duration')
     def duration_validate_enum(cls, value):
         """Validates the enum"""
+        return value  # lenient response enum
         if value is None:
             return value
 

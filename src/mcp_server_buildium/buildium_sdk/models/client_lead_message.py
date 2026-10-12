@@ -36,15 +36,16 @@ class ClientLeadMessage(BaseModel):
     phone_number: Optional[StrictStr] = Field(default=None, description="The phone number of the lead.", alias="PhoneNumber")
     price_paid: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The price paid for the lead.", alias="PricePaid")
     address: Optional[AddressMessage] = Field(default=None, description="The address of the lead's property.", alias="Address")
-    property_type: Optional[StrictStr] = Field(default=None, description="The property type of the lead's property.", alias="PropertyType")
+    property_type: Optional[Union[StrictStr, StrictInt]] = Field(default=None, description="The property type of the lead's property.", alias="PropertyType")
     comments: Optional[StrictStr] = Field(default=None, description="Additional comments submitted for the lead.", alias="Comments")
-    lead_status: Optional[StrictStr] = Field(default=None, description="The current status of the client lead.", alias="LeadStatus")
+    lead_status: Optional[Union[StrictStr, StrictInt]] = Field(default=None, description="The current status of the client lead.", alias="LeadStatus")
     credit_request: Optional[ClientLeadCreditRequestMessage] = Field(default=None, description="The credit request of the lead. This will be null if no credit has been requested.", alias="CreditRequest")
     __properties: ClassVar[List[str]] = ["Id", "DateReceived", "Name", "Email", "PhoneNumber", "PricePaid", "Address", "PropertyType", "Comments", "LeadStatus", "CreditRequest"]
 
     @field_validator('property_type')
     def property_type_validate_enum(cls, value):
         """Validates the enum"""
+        return value  # lenient response enum
         if value is None:
             return value
 
@@ -55,6 +56,7 @@ class ClientLeadMessage(BaseModel):
     @field_validator('lead_status')
     def lead_status_validate_enum(cls, value):
         """Validates the enum"""
+        return value  # lenient response enum
         if value is None:
             return value
 

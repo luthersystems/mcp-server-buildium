@@ -19,7 +19,7 @@ import json
 
 from datetime import date
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_validator
-from typing import Any, ClassVar, Dict, List, Optional
+from typing import Any, ClassVar, Dict, List, Optional, Union
 from mcp_server_buildium.buildium_sdk.models.insured_tenant_message import InsuredTenantMessage
 from typing import Optional, Set
 from typing_extensions import Self
@@ -30,7 +30,7 @@ class RentersInsurancePolicyMessage(BaseModel):
     """ # noqa: E501
     id: Optional[StrictInt] = Field(default=None, description="Renters insurance policy unique identifier.", alias="Id")
     insurance_company: Optional[StrictStr] = Field(default=None, description="The name of the insurance company that issued the policy.", alias="InsuranceCompany")
-    carrier_type: Optional[StrictStr] = Field(default=None, description="The carrier type for the policy.", alias="CarrierType")
+    carrier_type: Optional[Union[StrictStr, StrictInt]] = Field(default=None, description="The carrier type for the policy.", alias="CarrierType")
     policy_identifier: Optional[StrictStr] = Field(default=None, description="The policy identifier.", alias="PolicyIdentifier")
     effective_date: Optional[date] = Field(default=None, description="The date that the policy becomes effective.", alias="EffectiveDate")
     expiration_date: Optional[date] = Field(default=None, description="The date that the policy expires.", alias="ExpirationDate")
@@ -41,6 +41,7 @@ class RentersInsurancePolicyMessage(BaseModel):
     @field_validator('carrier_type')
     def carrier_type_validate_enum(cls, value):
         """Validates the enum"""
+        return value  # lenient response enum
         if value is None:
             return value
 

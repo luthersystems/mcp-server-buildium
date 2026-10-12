@@ -12,6 +12,7 @@ generate-sdk:
 		-p packageName=buildium_sdk,projectName=buildium-sdk,packageVersion=0.1.0,library=httpx,generateSourceCodeOnly=true \
 		--skip-validate-spec
 	@echo "SDK generated in buildium_sdk/ directory"
+	@echo "Then run: uv run python scripts/lenient_response_enums.py"
 	@echo "Installing generated SDK..."
 	@cd buildium_sdk && uv pip install -e .
 

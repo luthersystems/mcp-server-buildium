@@ -31,7 +31,7 @@ class LeaseTransactionMessage(BaseModel):
     id: Optional[StrictInt] = Field(default=None, description="Transaction unique identifier.", alias="Id")
     var_date: Optional[date] = Field(default=None, description="Date of the transaction.", alias="Date")
     transaction_type: Optional[StrictStr] = Field(default=None, description="Type of transaction that occurred.", alias="TransactionType")
-    transaction_type_enum: Optional[StrictStr] = Field(default=None, description="The type of transaction that occurred.", alias="TransactionTypeEnum")
+    transaction_type_enum: Optional[Union[StrictStr, StrictInt]] = Field(default=None, description="The type of transaction that occurred.", alias="TransactionTypeEnum")
     total_amount: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Sum of all `Journal.Lines.Amount` entries in the transaction.", alias="TotalAmount")
     check_number: Optional[StrictStr] = Field(default=None, description="Check number associated with the transaction, if applicable.", alias="CheckNumber")
     lease_id: Optional[StrictInt] = Field(default=None, description="Lease unique identifier associated with the transaction, if applicable. Null if value is not set.", alias="LeaseId")
@@ -43,6 +43,7 @@ class LeaseTransactionMessage(BaseModel):
     @field_validator('transaction_type_enum')
     def transaction_type_enum_validate_enum(cls, value):
         """Validates the enum"""
+        return value  # lenient response enum
         if value is None:
             return value
 

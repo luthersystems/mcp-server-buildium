@@ -1,5 +1,6 @@
 """Lease management tools for Buildium."""
 
+from datetime import date
 from typing import Any
 
 from fastmcp import FastMCP
@@ -119,12 +120,18 @@ def register_lease_tools(mcp: FastMCP, client: BuildiumClient) -> None:
 
     @mcp.tool()
     async def list_lease_transactions(
-        lease_id: int, limit: int = 100, offset: int = 0
+        lease_id: int,
+        transaction_date_from: date | None = None,
+        transaction_date_to: date | None = None,
+        limit: int = 100,
+        offset: int = 0,
     ) -> dict[str, Any]:
-        """List transactions for a specific lease.
+        """List ledger transactions for a specific lease.
 
         Args:
             lease_id: The lease ID.
+            transaction_date_from: Optional earliest transaction date (YYYY-MM-DD).
+            transaction_date_to: Optional latest transaction date (YYYY-MM-DD).
             limit: Maximum number of results (default: 100).
             offset: Offset for pagination (default: 0).
 
@@ -133,6 +140,10 @@ def register_lease_tools(mcp: FastMCP, client: BuildiumClient) -> None:
         """
         api = client.lease_transactions_api
         result = await api.external_api_lease_ledger_transactions_get_lease_ledgers(
-            lease_id=lease_id, limit=limit, offset=offset
+            lease_id=lease_id,
+            transactiondatefrom=transaction_date_from,
+            transactiondateto=transaction_date_to,
+            limit=limit,
+            offset=offset,
         )
         return to_result(result, "transactions")

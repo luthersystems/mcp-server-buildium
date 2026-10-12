@@ -18,7 +18,7 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_validator
-from typing import Any, ClassVar, Dict, List, Optional
+from typing import Any, ClassVar, Dict, List, Optional, Union
 from mcp_server_buildium.buildium_sdk.models.address_message import AddressMessage
 from typing import Optional, Set
 from typing_extensions import Self
@@ -32,14 +32,15 @@ class AssociationUnitMessage(BaseModel):
     association_name: Optional[StrictStr] = Field(default=None, description="Association name that the unit belongs to.", alias="AssociationName")
     unit_number: Optional[StrictStr] = Field(default=None, description="Unit number.", alias="UnitNumber")
     address: Optional[AddressMessage] = Field(default=None, description="Unit address.", alias="Address")
-    unit_bedrooms: Optional[StrictStr] = Field(default=None, description="Number of bedrooms in the unit.", alias="UnitBedrooms")
-    unit_bathrooms: Optional[StrictStr] = Field(default=None, description="Number of bathrooms in the unit.", alias="UnitBathrooms")
+    unit_bedrooms: Optional[Union[StrictStr, StrictInt]] = Field(default=None, description="Number of bedrooms in the unit.", alias="UnitBedrooms")
+    unit_bathrooms: Optional[Union[StrictStr, StrictInt]] = Field(default=None, description="Number of bathrooms in the unit.", alias="UnitBathrooms")
     unit_size: Optional[StrictInt] = Field(default=None, description="Size of the unit.", alias="UnitSize")
     __properties: ClassVar[List[str]] = ["Id", "AssociationId", "AssociationName", "UnitNumber", "Address", "UnitBedrooms", "UnitBathrooms", "UnitSize"]
 
     @field_validator('unit_bedrooms')
     def unit_bedrooms_validate_enum(cls, value):
         """Validates the enum"""
+        return value  # lenient response enum
         if value is None:
             return value
 
@@ -50,6 +51,7 @@ class AssociationUnitMessage(BaseModel):
     @field_validator('unit_bathrooms')
     def unit_bathrooms_validate_enum(cls, value):
         """Validates the enum"""
+        return value  # lenient response enum
         if value is None:
             return value
 

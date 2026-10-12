@@ -19,7 +19,7 @@ import json
 
 from datetime import date
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_validator
-from typing import Any, ClassVar, Dict, List, Optional
+from typing import Any, ClassVar, Dict, List, Optional, Union
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -28,13 +28,14 @@ class LeaseTenantMessage(BaseModel):
     LeaseTenantMessage
     """ # noqa: E501
     id: Optional[StrictInt] = Field(default=None, description="Tenant unique identifier.", alias="Id")
-    status: Optional[StrictStr] = Field(default=None, description="Indicates the tenant's current status in relation to the lease.", alias="Status")
+    status: Optional[Union[StrictStr, StrictInt]] = Field(default=None, description="Indicates the tenant's current status in relation to the lease.", alias="Status")
     move_in_date: Optional[date] = Field(default=None, description="Indicates the tenant's move-in date.", alias="MoveInDate")
     __properties: ClassVar[List[str]] = ["Id", "Status", "MoveInDate"]
 
     @field_validator('status')
     def status_validate_enum(cls, value):
         """Validates the enum"""
+        return value  # lenient response enum
         if value is None:
             return value
 

@@ -17,8 +17,8 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
-from typing import Any, ClassVar, Dict, List, Optional
+from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator, StrictInt
+from typing import Any, ClassVar, Dict, List, Optional, Union
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -27,12 +27,13 @@ class PhoneNumberMessage(BaseModel):
     This is an object that represents a phone number.
     """ # noqa: E501
     number: Optional[StrictStr] = Field(default=None, description="Phone number.", alias="Number")
-    type: Optional[StrictStr] = Field(default=None, description="Indicates the type of phone number.", alias="Type")
+    type: Optional[Union[StrictStr, StrictInt]] = Field(default=None, description="Indicates the type of phone number.", alias="Type")
     __properties: ClassVar[List[str]] = ["Number", "Type"]
 
     @field_validator('type')
     def type_validate_enum(cls, value):
         """Validates the enum"""
+        return value  # lenient response enum
         if value is None:
             return value
 

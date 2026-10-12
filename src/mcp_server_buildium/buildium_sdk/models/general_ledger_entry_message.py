@@ -33,13 +33,14 @@ class GeneralLedgerEntryMessage(BaseModel):
     description: Optional[StrictStr] = Field(default=None, description="Transaction description.", alias="Description")
     amount: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Entry amount.", alias="Amount")
     balance: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The general ledger account balance after this entry was recorded.", alias="Balance")
-    transaction_type: Optional[StrictStr] = Field(default=None, description="Indicates the type of transaction that occurred.", alias="TransactionType")
+    transaction_type: Optional[Union[StrictStr, StrictInt]] = Field(default=None, description="Indicates the type of transaction that occurred.", alias="TransactionType")
     accounting_entity: Optional[AccountingEntityMessage] = Field(default=None, description="The accounting entity associated with the transaction.", alias="AccountingEntity")
     __properties: ClassVar[List[str]] = ["Id", "Date", "Description", "Amount", "Balance", "TransactionType", "AccountingEntity"]
 
     @field_validator('transaction_type')
     def transaction_type_validate_enum(cls, value):
         """Validates the enum"""
+        return value  # lenient response enum
         if value is None:
             return value
 

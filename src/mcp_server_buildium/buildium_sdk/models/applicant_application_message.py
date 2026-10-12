@@ -19,7 +19,7 @@ import json
 
 from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_validator
-from typing import Any, ClassVar, Dict, List, Optional
+from typing import Any, ClassVar, Dict, List, Optional, Union
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -29,13 +29,14 @@ class ApplicantApplicationMessage(BaseModel):
     """ # noqa: E501
     id: Optional[StrictInt] = Field(default=None, description="Rental application unique identifier.", alias="Id")
     application_number: Optional[StrictStr] = Field(default=None, description="An alpha numeric value that can be used to uniquely identify the application. This is typically provided to an applicant to use as a reference when making inquiries about their application.", alias="ApplicationNumber")
-    application_status: Optional[StrictStr] = Field(default=None, description="Indicates the current application status.", alias="ApplicationStatus")
+    application_status: Optional[Union[StrictStr, StrictInt]] = Field(default=None, description="Indicates the current application status.", alias="ApplicationStatus")
     application_submitted_date_time: Optional[datetime] = Field(default=None, description="Date and time the application was submitted.", alias="ApplicationSubmittedDateTime")
     __properties: ClassVar[List[str]] = ["Id", "ApplicationNumber", "ApplicationStatus", "ApplicationSubmittedDateTime"]
 
     @field_validator('application_status')
     def application_status_validate_enum(cls, value):
         """Validates the enum"""
+        return value  # lenient response enum
         if value is None:
             return value
 

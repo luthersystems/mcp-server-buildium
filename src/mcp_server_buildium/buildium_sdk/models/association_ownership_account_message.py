@@ -19,7 +19,7 @@ import json
 
 from datetime import date
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_validator
-from typing import Any, ClassVar, Dict, List, Optional
+from typing import Any, ClassVar, Dict, List, Optional, Union
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -30,17 +30,18 @@ class AssociationOwnershipAccountMessage(BaseModel):
     id: Optional[StrictInt] = Field(default=None, description="Association ownership account unique identifier.", alias="Id")
     association_id: Optional[StrictInt] = Field(default=None, description="Association unique identifier that the ownership account belongs to.", alias="AssociationId")
     unit_id: Optional[StrictInt] = Field(default=None, description="Association unit unique identifier that the ownership account is related to.", alias="UnitId")
-    status: Optional[StrictStr] = Field(default=None, description="Indicates the status of the ownership account.", alias="Status")
+    status: Optional[Union[StrictStr, StrictInt]] = Field(default=None, description="Indicates the status of the ownership account.", alias="Status")
     date_of_purchase: Optional[date] = Field(default=None, description="Date the unit(s) where purchased by the owner.", alias="DateOfPurchase")
     date_of_sale: Optional[date] = Field(default=None, description="Date the unit(s) where sold by the owner.", alias="DateOfSale")
     comments: Optional[StrictStr] = Field(default=None, description="Comments about the ownership account.", alias="Comments")
     association_owner_ids: Optional[List[StrictInt]] = Field(default=None, description="Association owners associated with the ownership account", alias="AssociationOwnerIds")
-    delinquency_status: Optional[StrictStr] = Field(default=None, description="Indicates the delinquency status of the ownership account", alias="DelinquencyStatus")
+    delinquency_status: Optional[Union[StrictStr, StrictInt]] = Field(default=None, description="Indicates the delinquency status of the ownership account", alias="DelinquencyStatus")
     __properties: ClassVar[List[str]] = ["Id", "AssociationId", "UnitId", "Status", "DateOfPurchase", "DateOfSale", "Comments", "AssociationOwnerIds", "DelinquencyStatus"]
 
     @field_validator('status')
     def status_validate_enum(cls, value):
         """Validates the enum"""
+        return value  # lenient response enum
         if value is None:
             return value
 
@@ -51,6 +52,7 @@ class AssociationOwnershipAccountMessage(BaseModel):
     @field_validator('delinquency_status')
     def delinquency_status_validate_enum(cls, value):
         """Validates the enum"""
+        return value  # lenient response enum
         if value is None:
             return value
 

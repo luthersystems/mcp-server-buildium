@@ -18,7 +18,7 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_validator
-from typing import Any, ClassVar, Dict, List, Optional
+from typing import Any, ClassVar, Dict, List, Optional, Union
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -29,13 +29,14 @@ class ResidentCenterUserReferenceMessage(BaseModel):
     id: Optional[StrictInt] = Field(default=None, description="Resident center user unique identifier.", alias="Id")
     first_name: Optional[StrictStr] = Field(default=None, description="First name of the resident center user.", alias="FirstName")
     last_name: Optional[StrictStr] = Field(default=None, description="Last name of the resident center user.", alias="LastName")
-    user_type: Optional[StrictStr] = Field(default=None, description="Indicates if the resident center user is a tenant or association owner", alias="UserType")
+    user_type: Optional[Union[StrictStr, StrictInt]] = Field(default=None, description="Indicates if the resident center user is a tenant or association owner", alias="UserType")
     href: Optional[StrictStr] = Field(default=None, description="A link to the user resource.", alias="Href")
     __properties: ClassVar[List[str]] = ["Id", "FirstName", "LastName", "UserType", "Href"]
 
     @field_validator('user_type')
     def user_type_validate_enum(cls, value):
         """Validates the enum"""
+        return value  # lenient response enum
         if value is None:
             return value
 

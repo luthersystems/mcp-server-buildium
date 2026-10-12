@@ -34,7 +34,7 @@ class GeneralLedgerTransactionMessage(BaseModel):
     """ # noqa: E501
     id: Optional[StrictInt] = Field(default=None, description="Transaction unique identifier.", alias="Id")
     var_date: Optional[date] = Field(default=None, description="Date of the transaction.", alias="Date")
-    transaction_type: Optional[StrictStr] = Field(default=None, description="Type of transaction that occurred", alias="TransactionType")
+    transaction_type: Optional[Union[StrictStr, StrictInt]] = Field(default=None, description="Type of transaction that occurred", alias="TransactionType")
     total_amount: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Sum of all `Journal.Lines.Amount` entries in the transaction.", alias="TotalAmount")
     check_number: Optional[StrictStr] = Field(default=None, description="Check number associated with the transaction, if applicable.", alias="CheckNumber")
     unit_agreement: Optional[UnitAgreementMessage] = Field(default=None, description="The unit agreement associated with the transaction, if applicable. Null if value is not set.", alias="UnitAgreement")
@@ -50,6 +50,7 @@ class GeneralLedgerTransactionMessage(BaseModel):
     @field_validator('transaction_type')
     def transaction_type_validate_enum(cls, value):
         """Validates the enum"""
+        return value  # lenient response enum
         if value is None:
             return value
 

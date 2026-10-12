@@ -19,7 +19,7 @@ import json
 
 from datetime import date, datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_validator
-from typing import Any, ClassVar, Dict, List, Optional
+from typing import Any, ClassVar, Dict, List, Optional, Union
 from mcp_server_buildium.buildium_sdk.models.task_history_user_message import TaskHistoryUserMessage
 from typing import Optional, Set
 from typing_extensions import Self
@@ -29,12 +29,12 @@ class TaskHistoryMessage(BaseModel):
     TaskHistoryMessage
     """ # noqa: E501
     id: Optional[StrictInt] = Field(default=None, description="Task history unique identifier.", alias="Id")
-    priority: Optional[StrictStr] = Field(default=None, description="Task priority.", alias="Priority")
-    task_status: Optional[StrictStr] = Field(default=None, description="Task status.", alias="TaskStatus")
+    priority: Optional[Union[StrictStr, StrictInt]] = Field(default=None, description="Task priority.", alias="Priority")
+    task_status: Optional[Union[StrictStr, StrictInt]] = Field(default=None, description="Task status.", alias="TaskStatus")
     assigned_to_user_id: Optional[StrictInt] = Field(default=None, description="The unique identifier of the staff user assigned to the task.", alias="AssignedToUserId")
     due_date: Optional[date] = Field(default=None, description="Task due date.", alias="DueDate")
     message: Optional[StrictStr] = Field(default=None, description="Description of the task update.", alias="Message")
-    shared_with: Optional[List[StrictStr]] = Field(default=None, description="Indicates the who the task update was shared with.", alias="SharedWith")
+    shared_with: Optional[List[Union[StrictStr, StrictInt]]] = Field(default=None, description="Indicates the who the task update was shared with.", alias="SharedWith")
     file_ids: Optional[List[StrictInt]] = Field(default=None, description="List of file unique identifiers associated with the task history. These identifiers can be used to retrieve the file metadata and/or download the files.", alias="FileIds")
     created_date_t_ime: Optional[datetime] = Field(default=None, description="The date and time the task history was created.", alias="CreatedDateTIme")
     created_by_user: Optional[TaskHistoryUserMessage] = Field(default=None, description="User that created this task history.", alias="CreatedByUser")
@@ -45,6 +45,7 @@ class TaskHistoryMessage(BaseModel):
     @field_validator('priority')
     def priority_validate_enum(cls, value):
         """Validates the enum"""
+        return value  # lenient response enum
         if value is None:
             return value
 
@@ -55,6 +56,7 @@ class TaskHistoryMessage(BaseModel):
     @field_validator('task_status')
     def task_status_validate_enum(cls, value):
         """Validates the enum"""
+        return value  # lenient response enum
         if value is None:
             return value
 
@@ -65,6 +67,7 @@ class TaskHistoryMessage(BaseModel):
     @field_validator('shared_with')
     def shared_with_validate_enum(cls, value):
         """Validates the enum"""
+        return value  # lenient response enum
         if value is None:
             return value
 

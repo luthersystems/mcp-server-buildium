@@ -18,7 +18,7 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_validator
-from typing import Any, ClassVar, Dict, List, Optional
+from typing import Any, ClassVar, Dict, List, Optional, Union
 from mcp_server_buildium.buildium_sdk.models.address_message import AddressMessage
 from mcp_server_buildium.buildium_sdk.models.bank_lockbox_data_association_owner_message import BankLockboxDataAssociationOwnerMessage
 from typing import Optional, Set
@@ -31,13 +31,14 @@ class BankLockboxDataOwnershipAccountMessage(BaseModel):
     id: Optional[StrictInt] = Field(default=None, description="Association ownership account unique identifier.", alias="Id")
     unit_number: Optional[StrictStr] = Field(default=None, description="Unit number of the unit for this ownership account.", alias="UnitNumber")
     unit_address: Optional[AddressMessage] = Field(default=None, description="Address of the unit for this ownership account.", alias="UnitAddress")
-    delinquency_status: Optional[StrictStr] = Field(default=None, description="Indicates the delinquency status of the ownership account", alias="DelinquencyStatus")
+    delinquency_status: Optional[Union[StrictStr, StrictInt]] = Field(default=None, description="Indicates the delinquency status of the ownership account", alias="DelinquencyStatus")
     association_owners: Optional[List[BankLockboxDataAssociationOwnerMessage]] = Field(default=None, description="Association owners for this ownership account.", alias="AssociationOwners")
     __properties: ClassVar[List[str]] = ["Id", "UnitNumber", "UnitAddress", "DelinquencyStatus", "AssociationOwners"]
 
     @field_validator('delinquency_status')
     def delinquency_status_validate_enum(cls, value):
         """Validates the enum"""
+        return value  # lenient response enum
         if value is None:
             return value
 

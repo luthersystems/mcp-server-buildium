@@ -19,7 +19,7 @@ import json
 
 from datetime import date, datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_validator
-from typing import Any, ClassVar, Dict, List, Optional
+from typing import Any, ClassVar, Dict, List, Optional, Union
 from mcp_server_buildium.buildium_sdk.models.address_message import AddressMessage
 from mcp_server_buildium.buildium_sdk.models.emergency_contact_message import EmergencyContactMessage
 from mcp_server_buildium.buildium_sdk.models.phone_number_message import PhoneNumberMessage
@@ -39,10 +39,10 @@ class TenantMessage(BaseModel):
     created_date_time: Optional[datetime] = Field(default=None, description="Created date of this tenant record.", alias="CreatedDateTime")
     emergency_contact: Optional[EmergencyContactMessage] = Field(default=None, description="Name of the tenants emergency contact.", alias="EmergencyContact")
     date_of_birth: Optional[date] = Field(default=None, description="Tenant date of birth.", alias="DateOfBirth")
-    sms_opt_in_status: Optional[StrictStr] = Field(default=None, description="Indicates the tenants SMS opt in status. Null if no status exists for the tenant.", alias="SMSOptInStatus")
+    sms_opt_in_status: Optional[Union[StrictStr, StrictInt]] = Field(default=None, description="Indicates the tenants SMS opt in status. Null if no status exists for the tenant.", alias="SMSOptInStatus")
     address: Optional[AddressMessage] = Field(default=None, description="Address of the tenant.", alias="Address")
     alternate_address: Optional[AddressMessage] = Field(default=None, description="Alternate address for the tenant.", alias="AlternateAddress")
-    mailing_preference: Optional[StrictStr] = Field(default=None, description="Mailing preference for the tenant.", alias="MailingPreference")
+    mailing_preference: Optional[Union[StrictStr, StrictInt]] = Field(default=None, description="Mailing preference for the tenant.", alias="MailingPreference")
     leases: Optional[List[LeaseMessage]] = Field(default=None, description="List of leases, regardless of status, that the tenant is associated with.", alias="Leases")
     comment: Optional[StrictStr] = Field(default=None, description="Comments about the tenant.", alias="Comment")
     tax_id: Optional[StrictStr] = Field(default=None, description="TaxId of the tenant.", alias="TaxId")
@@ -51,6 +51,7 @@ class TenantMessage(BaseModel):
     @field_validator('sms_opt_in_status')
     def sms_opt_in_status_validate_enum(cls, value):
         """Validates the enum"""
+        return value  # lenient response enum
         if value is None:
             return value
 
@@ -61,6 +62,7 @@ class TenantMessage(BaseModel):
     @field_validator('mailing_preference')
     def mailing_preference_validate_enum(cls, value):
         """Validates the enum"""
+        return value  # lenient response enum
         if value is None:
             return value
 

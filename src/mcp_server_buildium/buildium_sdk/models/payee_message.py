@@ -18,7 +18,7 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_validator
-from typing import Any, ClassVar, Dict, List, Optional
+from typing import Any, ClassVar, Dict, List, Optional, Union
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -28,13 +28,14 @@ class PayeeMessage(BaseModel):
     """ # noqa: E501
     id: Optional[StrictInt] = Field(default=None, description="The payer user unique identifier.", alias="Id")
     name: Optional[StrictStr] = Field(default=None, description="The name of the payer.", alias="Name")
-    type: Optional[StrictStr] = Field(default=None, description="The payer user entity type.", alias="Type")
+    type: Optional[Union[StrictStr, StrictInt]] = Field(default=None, description="The payer user entity type.", alias="Type")
     href: Optional[StrictStr] = Field(default=None, description="A link to the resource endpoint associated with the payer.", alias="Href")
     __properties: ClassVar[List[str]] = ["Id", "Name", "Type", "Href"]
 
     @field_validator('type')
     def type_validate_enum(cls, value):
         """Validates the enum"""
+        return value  # lenient response enum
         if value is None:
             return value
 

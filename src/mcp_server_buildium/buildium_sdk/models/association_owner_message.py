@@ -19,7 +19,7 @@ import json
 
 from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr, field_validator
-from typing import Any, ClassVar, Dict, List, Optional
+from typing import Any, ClassVar, Dict, List, Optional, Union
 from mcp_server_buildium.buildium_sdk.models.address_message import AddressMessage
 from mcp_server_buildium.buildium_sdk.models.association_owner_board_term_message import AssociationOwnerBoardTermMessage
 from mcp_server_buildium.buildium_sdk.models.association_ownership_account_message import AssociationOwnershipAccountMessage
@@ -44,18 +44,19 @@ class AssociationOwnerMessage(BaseModel):
     comment: Optional[StrictStr] = Field(default=None, description="General comments.", alias="Comment")
     emergency_contact: Optional[EmergencyContactMessage] = Field(default=None, description="Emergency contact information.", alias="EmergencyContact")
     ownership_accounts: Optional[List[AssociationOwnershipAccountMessage]] = Field(default=None, description="List of associated ownership accounts.", alias="OwnershipAccounts")
-    mailing_preference: Optional[StrictStr] = Field(default=None, description="Indicates the association owner's mailing preference.", alias="MailingPreference")
+    mailing_preference: Optional[Union[StrictStr, StrictInt]] = Field(default=None, description="Indicates the association owner's mailing preference.", alias="MailingPreference")
     vehicles: Optional[List[VehicleMessage]] = Field(default=None, description="List of vehicles associated with the association owner.", alias="Vehicles")
     occupies_unit: Optional[StrictBool] = Field(default=None, description="Indicates if the association owner occupies a unit(s) within the association.", alias="OccupiesUnit")
     board_member_terms: Optional[List[AssociationOwnerBoardTermMessage]] = Field(default=None, description="List of Board Member Terms for the given Association Owner(s)", alias="BoardMemberTerms")
     created_date_time: Optional[datetime] = Field(default=None, description="Date and time the association owner was created.", alias="CreatedDateTime")
     tax_id: Optional[StrictStr] = Field(default=None, description="Taxpayer identification number. Examples of United States identification numbers are Social Security number or a Employer Identification Number.", alias="TaxId")
-    delinquency_status: Optional[StrictStr] = Field(default=None, description="Indicates the delinquency status of the association owner.", alias="DelinquencyStatus")
+    delinquency_status: Optional[Union[StrictStr, StrictInt]] = Field(default=None, description="Indicates the delinquency status of the association owner.", alias="DelinquencyStatus")
     __properties: ClassVar[List[str]] = ["Id", "FirstName", "LastName", "Email", "AlternateEmail", "PhoneNumbers", "PrimaryAddress", "AlternateAddress", "Comment", "EmergencyContact", "OwnershipAccounts", "MailingPreference", "Vehicles", "OccupiesUnit", "BoardMemberTerms", "CreatedDateTime", "TaxId", "DelinquencyStatus"]
 
     @field_validator('mailing_preference')
     def mailing_preference_validate_enum(cls, value):
         """Validates the enum"""
+        return value  # lenient response enum
         if value is None:
             return value
 
@@ -66,6 +67,7 @@ class AssociationOwnerMessage(BaseModel):
     @field_validator('delinquency_status')
     def delinquency_status_validate_enum(cls, value):
         """Validates the enum"""
+        return value  # lenient response enum
         if value is None:
             return value
 
