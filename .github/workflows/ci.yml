@@ -90,10 +90,6 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     if: github.event_name == 'push' || github.event.pull_request.head.repo.full_name == github.repository
-    env:
-      BUILDIUM_BASE_URL: ${{ secrets.BUILDIUM_BASE_URL }}
-      BUILDIUM_CLIENT_ID: ${{ secrets.BUILDIUM_CLIENT_ID }}
-      BUILDIUM_CLIENT_SECRET: ${{ secrets.BUILDIUM_CLIENT_SECRET }}
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
         with:
@@ -104,7 +100,13 @@ jobs:
           python-version: "3.11"
       - name: Install
         run: uv sync --locked --extra dev
+      # The credentials are set on this step only, so the install step (which
+      # builds the package and runs dependency code) never sees them.
       - name: pytest (integration)
+        env:
+          BUILDIUM_BASE_URL: ${{ secrets.BUILDIUM_BASE_URL }}
+          BUILDIUM_CLIENT_ID: ${{ secrets.BUILDIUM_CLIENT_ID }}
+          BUILDIUM_CLIENT_SECRET: ${{ secrets.BUILDIUM_CLIENT_SECRET }}
         run: |
           if [ -z "$BUILDIUM_CLIENT_ID" ] || [ -z "$BUILDIUM_CLIENT_SECRET" ]; then
             echo "::notice::Buildium credentials are not configured; skipping the integration tests."
