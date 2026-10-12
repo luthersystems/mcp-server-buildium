@@ -48,7 +48,7 @@ def create_server(
     Returns:
         The configured FastMCP server.
     """
-    config = config or BuildiumConfig.from_env()
+    config = config or (client.config if client else BuildiumConfig.from_env())
     unknown = (config.get_enabled_categories() or set()) - CATEGORIES.keys()
     if unknown:
         raise ValueError(

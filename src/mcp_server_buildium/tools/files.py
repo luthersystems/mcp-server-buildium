@@ -73,9 +73,11 @@ def register_file_tools(mcp: FastMCP, client: BuildiumClient) -> None:
         return to_result(result)
 
     @mcp.tool()
-    async def list_file_categories() -> dict[str, Any]:
+    async def list_file_categories(limit: int = 100, offset: int = 0) -> dict[str, Any]:
         """List file categories from Buildium."""
-        result = await client.files_api.external_api_file_categories_get_file_categories()
+        result = await client.files_api.external_api_file_categories_get_file_categories(
+            limit=limit, offset=offset
+        )
         return to_result(result, "categories")
 
     @mcp.tool()

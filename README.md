@@ -286,8 +286,8 @@ field names, as in its API reference; the examples below show only some fields.
       "LeaseType": "Fixed",
       "LeaseFromDate": "2024-01-01",
       "LeaseToDate": "2024-12-31",
-      "Status": "Active",
-      "Tenants": [
+      "LeaseStatus": "Active",
+      "CurrentTenants": [
         {
           "Id": 789,
           "FirstName": "John",
@@ -326,23 +326,17 @@ Retrieve details of a specific lease by ID.
   "LeaseType": "Fixed",
   "LeaseFromDate": "2024-01-01",
   "LeaseToDate": "2024-12-31",
-  "Status": "Active",
-  "RentCycle": "Monthly",
-  "RentAmount": 2000.00,
-  "SecurityDepositAmount": 2000.00,
-  "Tenants": [
+  "LeaseStatus": "Active",
+  "CurrentTenants": [
     {
       "Id": 789,
       "FirstName": "John",
       "LastName": "Doe",
-      "Email": "john.doe@example.com",
-      "PhoneNumbers": {
-        "Home": "555-0100"
-      }
+      "Email": "john.doe@example.com"
     }
   ],
   "CreatedDateTime": "2024-01-01T10:00:00Z",
-  "LastModifiedDateTime": "2024-01-01T10:00:00Z"
+  "LastUpdatedDateTime": "2024-01-01T10:00:00Z"
 }
 ```
 
@@ -439,11 +433,8 @@ Create a new lease agreement.
   "LeaseType": "Fixed",
   "LeaseFromDate": "2025-01-01",
   "LeaseToDate": "2025-12-31",
-  "Status": "Active",
-  "RentCycle": "Monthly",
-  "RentAmount": 2000.00,
-  "SecurityDepositAmount": 2000.00,
-  "Tenants": [
+  "LeaseStatus": "Active",
+  "CurrentTenants": [
     {
       "Id": 790,
       "FirstName": "Jane",
@@ -580,11 +571,17 @@ To run integration tests in GitHub Actions:
 If you want to generate a Python SDK from the Buildium OpenAPI spec:
 
 ```bash
-# Generate SDK (requires Java for OpenAPI Generator)
+# Generate SDK (runs OpenAPI Generator in Docker)
 make generate-sdk
 
-# The generated SDK will be in buildium_sdk/ directory
+# Then let response models accept enum values the spec does not list
+make patch-sdk
 ```
+
+Buildium returns some enum fields as integers or as values its spec omits, and
+the generated validators reject them. `make patch-sdk` relaxes the validators
+of response models only; request models stay strict. `tests/test_sdk_enums.py`
+fails if the SDK is regenerated without it.
 
 See `Makefile` for more details.
 

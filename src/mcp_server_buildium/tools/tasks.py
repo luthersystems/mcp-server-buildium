@@ -41,9 +41,11 @@ def register_task_tools(mcp: FastMCP, client: BuildiumClient) -> None:
         return to_result(result)
 
     @mcp.tool()
-    async def list_task_categories() -> dict[str, Any]:
+    async def list_task_categories(limit: int = 100, offset: int = 0) -> dict[str, Any]:
         """List task categories from Buildium."""
-        result = await client.tasks_api.external_api_task_categories_get_all_task_categories()
+        result = await client.tasks_api.external_api_task_categories_get_all_task_categories(
+            limit=limit, offset=offset
+        )
         return to_result(result, "categories")
 
     @mcp.tool()

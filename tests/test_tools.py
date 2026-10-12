@@ -35,7 +35,7 @@ READ_TOOLS: list[tuple[str, dict[str, Any], str, str, dict[str, str]]] = [
     ("list_unit_listings", {}, "GET", "/v1/rentals/units/listings", PAGE),
     ("list_applicants", {}, "GET", "/v1/applicants", PAGE),
     ("get_applicant", {"applicant_id": 7}, "GET", "/v1/applicants/7", {}),
-    ("list_applicant_applications", {"applicant_id": 7}, "GET", "/v1/applicants/7/applications", {}),
+    ("list_applicant_applications", {"applicant_id": 7}, "GET", "/v1/applicants/7/applications", PAGE),
     ("get_application", {"applicant_id": 7, "application_id": 8}, "GET", "/v1/applicants/7/applications/8", {}),
     ("list_applicant_groups", {}, "GET", "/v1/applicants/groups", PAGE),
     ("list_rental_tenants", {}, "GET", "/v1/leases/tenants", PAGE),
@@ -50,18 +50,18 @@ READ_TOOLS: list[tuple[str, dict[str, Any], str, str, dict[str, str]]] = [
     ("list_association_units", {}, "GET", "/v1/associations/units", PAGE),
     ("list_vendors", {}, "GET", "/v1/vendors", PAGE),
     ("get_vendor", {"vendor_id": 7}, "GET", "/v1/vendors/7", {}),
-    ("list_vendor_categories", {}, "GET", "/v1/vendors/categories", {}),
+    ("list_vendor_categories", {}, "GET", "/v1/vendors/categories", PAGE),
     ("list_tasks", {}, "GET", "/v1/tasks", PAGE),
     ("get_task", {"task_id": 7}, "GET", "/v1/tasks/7", {}),
-    ("list_task_categories", {}, "GET", "/v1/tasks/categories", {}),
+    ("list_task_categories", {}, "GET", "/v1/tasks/categories", PAGE),
     ("list_bills", {}, "GET", "/v1/bills", PAGE),
     ("get_bill", {"bill_id": 7}, "GET", "/v1/bills/7", {}),
-    ("list_bill_payments", {"bill_id": 7}, "GET", "/v1/bills/7/payments", {}),
+    ("list_bill_payments", {"bill_id": 7}, "GET", "/v1/bills/7/payments", PAGE),
     ("get_bill_payment", {"bill_id": 7, "payment_id": 8}, "GET", "/v1/bills/7/payments/8", {}),
     ("list_files", {}, "GET", "/v1/files", PAGE),
     ("get_file", {"file_id": 7}, "GET", "/v1/files/7", {}),
     ("create_file_download_request", {"file_id": 7}, "POST", "/v1/files/7/downloadrequest", {}),
-    ("list_file_categories", {}, "GET", "/v1/files/categories", {}),
+    ("list_file_categories", {}, "GET", "/v1/files/categories", PAGE),
     ("list_bank_accounts", {}, "GET", "/v1/bankaccounts", PAGE),
     ("get_bank_account", {"bank_account_id": 7}, "GET", "/v1/bankaccounts/7", {}),
     ("list_bank_account_transactions", {"bank_account_id": 7, "start_date": "2026-01-01", "end_date": "2026-01-31"}, "GET", "/v1/bankaccounts/7/transactions", {"startdate": "2026-01-01", "enddate": "2026-01-31", **PAGE}),
@@ -159,7 +159,31 @@ async def test_list_leases_unit_filter_reads_every_page(
     assert [(lease["Id"], lease["UnitId"]) for lease in body["leases"]] == [(1000, 4), (2000, 4)]
     assert [r.url.params["offset"] for r in recorder.requests] == ["0", "1000", "2000"]
     assert {r.url.params["propertyids"] for r in recorder.requests} == {"9"}
+    assert {r.url.params["orderby"] for r in recorder.requests} == {"Id"}
     assert "unitid" not in recorder.requests[0].url.params
+
+
+@pytest.mark.asyncio
+@pytest.mark.parametrize("paging", [{"limit": 0}, {"offset": -1}])
+async def test_list_leases_unit_filter_refuses_bad_paging(
+    recorded_client: tuple[BuildiumClient, Recorder], paging: dict[str, int]
+) -> None:
+    result, requests = await call(recorded_client, "list_leases", {"unit_id": 4, **paging})
+    assert result.is_error
+    assert requests == []
+
+
+@pytest.mark.asyncio
+async def test_list_leases_unit_filter_gives_up_after_max_pages(
+    recorded_client: tuple[BuildiumClient, Recorder],
+) -> None:
+    client, recorder = recorded_client
+    recorder.respond = lambda _req: httpx.Response(200, json=[{"Id": 1, "UnitId": 5}] * 1000)
+    async with Client(create_server(client.config, client)) as mcp:
+        result = await mcp.call_tool("list_leases", {"unit_id": 4}, raise_on_error=False)
+    assert result.is_error
+    assert "property_id" in result.content[0].text
+    assert len(recorder.requests) == 20
 
 
 @pytest.mark.asyncio
@@ -188,6 +212,18 @@ async def test_bank_transactions_refuse_reversed_dates(
     )
     assert result.is_error
     assert requests == []
+
+
+@pytest.mark.asyncio
+async def test_server_uses_the_client_config(config: BuildiumConfig) -> None:
+    client = BuildiumClient(config=config.model_copy(update={"categories": "leases"}))
+    try:
+        async with Client(create_server(client=client)) as mcp:
+            names = {tool.name for tool in await mcp.list_tools()}
+    finally:
+        await client.close()
+    assert "list_leases" in names
+    assert "list_vendors" not in names
 
 
 def test_unknown_category_is_refused(config: BuildiumConfig) -> None:

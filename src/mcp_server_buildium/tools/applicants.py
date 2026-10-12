@@ -93,17 +93,21 @@ def register_applicant_tools(mcp: FastMCP, client: BuildiumClient) -> None:
         return to_result(result)
 
     @mcp.tool()
-    async def list_applicant_applications(applicant_id: int) -> dict[str, Any]:
+    async def list_applicant_applications(
+        applicant_id: int, limit: int = 100, offset: int = 0
+    ) -> dict[str, Any]:
         """List applications for a specific applicant.
 
         Args:
             applicant_id: The applicant ID.
+            limit: Maximum number of results (default: 100).
+            offset: Offset for pagination (default: 0).
 
         Returns:
             Dictionary with applications list.
         """
         result = await client.applicants_api.external_api_applicant_applications_get_applications_for_applicant(
-            applicant_id=applicant_id
+            applicant_id=applicant_id, limit=limit, offset=offset
         )
         return to_result(result, "applications")
 
