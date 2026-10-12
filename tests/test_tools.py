@@ -135,18 +135,63 @@ async def test_filters(
 
 
 @pytest.mark.asyncio
-async def test_list_leases_unit_filter_keeps_matching_leases(
+async def test_list_leases_unit_filter_reads_every_page(
     recorded_client: tuple[BuildiumClient, Recorder],
 ) -> None:
     client, recorder = recorded_client
-    async with Client(create_server(client.config, client)) as mcp:
-        recorder.respond = lambda _req: httpx.Response(
-            200, json=[{"Id": 1, "UnitId": 4}, {"Id": 2, "UnitId": 5}]
+
+    def pages(request: httpx.Request) -> httpx.Response:
+        # Two full pages and a short one; unit 4 has one lease on each.
+        start = int(request.url.params["offset"])
+        size = 1000 if start < 2000 else 10
+        return httpx.Response(
+            200, json=[{"Id": start + i, "UnitId": 4 if i == 0 else 5} for i in range(size)]
         )
-        result = await mcp.call_tool("list_leases", {"unit_id": 4})
+
+    recorder.respond = pages
+    async with Client(create_server(client.config, client)) as mcp:
+        result = await mcp.call_tool(
+            "list_leases", {"unit_id": 4, "property_id": 9, "offset": 1, "limit": 5}
+        )
+    body = json.loads(result.content[0].text)
+    assert body["count"] == 2
+    assert [(lease["Id"], lease["UnitId"]) for lease in body["leases"]] == [(1000, 4), (2000, 4)]
+    assert [r.url.params["offset"] for r in recorder.requests] == ["0", "1000", "2000"]
+    assert {r.url.params["propertyids"] for r in recorder.requests} == {"9"}
+    assert "unitid" not in recorder.requests[0].url.params
+
+
+@pytest.mark.asyncio
+async def test_list_items_use_buildium_field_names(
+    recorded_client: tuple[BuildiumClient, Recorder],
+) -> None:
+    client, recorder = recorded_client
+    recorder.respond = lambda _req: httpx.Response(200, json=[{"Id": 1, "UnitId": 4}])
+    async with Client(create_server(client.config, client)) as mcp:
+        result = await mcp.call_tool("list_leases", {})
     body = json.loads(result.content[0].text)
     assert body["count"] == 1
-    assert "unitid" not in recorder.requests[0].url.params
+    (lease,) = body["leases"]
+    assert (lease["Id"], lease["UnitId"]) == (1, 4)
+    assert "unit_id" not in lease
+
+
+@pytest.mark.asyncio
+async def test_bank_transactions_refuse_reversed_dates(
+    recorded_client: tuple[BuildiumClient, Recorder],
+) -> None:
+    result, requests = await call(
+        recorded_client,
+        "list_bank_account_transactions",
+        {"bank_account_id": 7, "start_date": "2026-02-01", "end_date": "2026-01-01"},
+    )
+    assert result.is_error
+    assert requests == []
+
+
+def test_unknown_category_is_refused(config: BuildiumConfig) -> None:
+    with pytest.raises(ValueError, match="bank-accounts"):
+        create_server(config.model_copy(update={"categories": "leases,bank-accounts"}))
 
 
 @pytest.mark.asyncio

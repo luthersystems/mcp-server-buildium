@@ -7,7 +7,7 @@ import pytest
 import pytest_asyncio
 
 from mcp_server_buildium.buildium_client import BuildiumClient
-from mcp_server_buildium.config import BuildiumConfig
+from mcp_server_buildium.config import BuildiumConfig  # loads .env, so import before the check
 
 # Skip all tests in this module unless credentials are available
 INTEGRATION_TESTS_ENABLED = bool(

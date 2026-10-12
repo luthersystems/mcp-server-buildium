@@ -78,6 +78,8 @@ def register_bank_account_tools(mcp: FastMCP, client: BuildiumClient) -> None:
         """
         end = end_date or datetime.now(UTC).date()
         start = start_date or end - timedelta(days=30)
+        if start > end:
+            raise ValueError(f"start_date {start} is after end_date {end}")
         api = client.bank_accounts_api
         result = await api.external_api_bank_account_transactions_get_bank_account_transactions(
             bank_account_id=bank_account_id,

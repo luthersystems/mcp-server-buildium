@@ -5,9 +5,14 @@ from typing import Any
 from fastmcp import FastMCP
 
 from ..buildium_client import BuildiumClient
+from ..buildium_sdk.models.lease_message import LeaseMessage
 from ..buildium_sdk.models.lease_post_message import LeasePostMessage
 from ..buildium_sdk.models.lease_put_message import LeasePutMessage
 from ._result import to_result
+
+# Buildium's largest page, and how many pages a unit_id search may read.
+UNIT_SCAN_PAGE_SIZE = 1000
+UNIT_SCAN_MAX_PAGES = 20
 
 
 def register_lease_tools(mcp: FastMCP, client: BuildiumClient) -> None:
@@ -30,8 +35,9 @@ def register_lease_tools(mcp: FastMCP, client: BuildiumClient) -> None:
 
         Args:
             property_id: Optional property ID to filter by.
-            unit_id: Optional unit ID. The Buildium endpoint has no unit filter, so this
-                keeps only the matching leases of the returned page.
+            unit_id: Optional unit ID to filter by. Buildium's leases endpoint has no unit
+                filter, so this reads every matching lease (pass property_id to keep that
+                small) and applies limit and offset to the leases of the unit.
             lease_status: Optional lease status filter (e.g., "Active", "Future", "Past").
             limit: Maximum number of results (default: 100).
             offset: Offset for pagination (default: 0).
@@ -39,16 +45,29 @@ def register_lease_tools(mcp: FastMCP, client: BuildiumClient) -> None:
         Returns:
             Dictionary with leases list and metadata.
         """
-        result = await client.leases_api.external_api_leases_get_leases(
-            propertyids=[property_id] if property_id is not None else None,
-            leasestatuses=[lease_status] if lease_status is not None else None,
-            limit=limit,
-            offset=offset,
+        propertyids = [property_id] if property_id is not None else None
+        leasestatuses = [lease_status] if lease_status is not None else None
+        if unit_id is None:
+            result = await client.leases_api.external_api_leases_get_leases(
+                propertyids=propertyids, leasestatuses=leasestatuses, limit=limit, offset=offset
+            )
+            return to_result(result, "leases")
+
+        matches: list[LeaseMessage] = []
+        for page in range(UNIT_SCAN_MAX_PAGES):
+            batch = await client.leases_api.external_api_leases_get_leases(
+                propertyids=propertyids,
+                leasestatuses=leasestatuses,
+                limit=UNIT_SCAN_PAGE_SIZE,
+                offset=page * UNIT_SCAN_PAGE_SIZE,
+            )
+            matches.extend(lease for lease in batch if lease.unit_id == unit_id)
+            if len(batch) < UNIT_SCAN_PAGE_SIZE:
+                return to_result(matches[offset : offset + limit], "leases")
+        raise ValueError(
+            f"more than {UNIT_SCAN_MAX_PAGES * UNIT_SCAN_PAGE_SIZE} leases to search for "
+            "unit_id; pass property_id to narrow the search"
         )
-        if unit_id is not None:
-            # The leases endpoint has no unit filter; filter the page here.
-            result = [lease for lease in result if lease.unit_id == unit_id]
-        return to_result(result, "leases")
 
     @mcp.tool()
     async def get_lease(lease_id: int) -> dict[str, Any]:
