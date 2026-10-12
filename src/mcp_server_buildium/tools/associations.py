@@ -5,24 +5,9 @@ from typing import Any
 from fastmcp import FastMCP
 
 from ..buildium_client import BuildiumClient
-
-# Import SDK models - they're imported via sdk_imports path setup
-try:
-    from mcp_server_buildium.buildium_sdk.models.association_post_message import (
-        AssociationPostMessage,
-    )
-    from mcp_server_buildium.buildium_sdk.models.association_put_message import (
-        AssociationPutMessage,
-    )
-except ImportError:
-    # Fallback: define minimal model classes if SDK not available
-    class AssociationPostMessage:
-        def __init__(self, **kwargs):
-            self.__dict__.update(kwargs)
-
-    class AssociationPutMessage:
-        def __init__(self, **kwargs):
-            self.__dict__.update(kwargs)
+from ..buildium_sdk.models.association_post_message import AssociationPostMessage
+from ..buildium_sdk.models.association_put_message import AssociationPutMessage
+from ._result import to_result
 
 
 def register_association_tools(mcp: FastMCP, client: BuildiumClient) -> None:
@@ -48,11 +33,7 @@ def register_association_tools(mcp: FastMCP, client: BuildiumClient) -> None:
             limit=limit, offset=offset
         )
         # Convert SDK model to dict
-        if hasattr(result, "to_dict"):
-            return result.to_dict()
-        return (
-            result if isinstance(result, dict) else {"associations": result, "count": len(result)}
-        )
+        return to_result(result, "associations")
 
     @mcp.tool()
     async def get_association(association_id: int) -> dict[str, Any]:
@@ -67,9 +48,7 @@ def register_association_tools(mcp: FastMCP, client: BuildiumClient) -> None:
         result = await client.associations_api.external_api_associations_get_association_by_id(
             association_id=association_id
         )
-        if hasattr(result, "to_dict"):
-            return result.to_dict()
-        return result if isinstance(result, dict) else result
+        return to_result(result)
 
     @mcp.tool()
     async def create_association(association_data: dict[str, Any]) -> dict[str, Any]:
@@ -86,9 +65,7 @@ def register_association_tools(mcp: FastMCP, client: BuildiumClient) -> None:
         result = await client.associations_api.external_api_associations_create_association(
             association_post_message=association_message
         )
-        if hasattr(result, "to_dict"):
-            return result.to_dict()
-        return result if isinstance(result, dict) else result
+        return to_result(result)
 
     @mcp.tool()
     async def update_association(
@@ -107,9 +84,7 @@ def register_association_tools(mcp: FastMCP, client: BuildiumClient) -> None:
         result = await client.associations_api.external_api_associations_update_association(
             association_id=association_id, association_put_message=association_message
         )
-        if hasattr(result, "to_dict"):
-            return result.to_dict()
-        return result if isinstance(result, dict) else result
+        return to_result(result)
 
     @mcp.tool()
     async def list_association_board_members(
@@ -125,14 +100,10 @@ def register_association_tools(mcp: FastMCP, client: BuildiumClient) -> None:
         Returns:
             Dictionary with board members list.
         """
-        result = await client.associations_api.external_api_associations_get_board_members_for_association_by_id(
+        result = await client.board_members_api.external_api_association_board_members_get_all_association_board_members(
             association_id=association_id, limit=limit, offset=offset
         )
-        if hasattr(result, "to_dict"):
-            return result.to_dict()
-        return (
-            result if isinstance(result, dict) else {"boardMembers": result, "count": len(result)}
-        )
+        return to_result(result, "boardMembers")
 
     @mcp.tool()
     async def list_association_ownership_accounts(
@@ -148,13 +119,7 @@ def register_association_tools(mcp: FastMCP, client: BuildiumClient) -> None:
         Returns:
             Dictionary with ownership accounts list.
         """
-        result = await client.associations_api.external_api_associations_get_ownership_accounts_for_association_by_id(
-            association_id=association_id, limit=limit, offset=offset
+        result = await client.ownership_accounts_api.external_api_ownership_accounts_get_all_ownership_accounts(
+            associationids=[association_id], limit=limit, offset=offset
         )
-        if hasattr(result, "to_dict"):
-            return result.to_dict()
-        return (
-            result
-            if isinstance(result, dict)
-            else {"ownershipAccounts": result, "count": len(result)}
-        )
+        return to_result(result, "ownershipAccounts")

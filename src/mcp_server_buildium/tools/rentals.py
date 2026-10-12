@@ -5,6 +5,9 @@ from typing import Any
 from fastmcp import FastMCP
 
 from ..buildium_client import BuildiumClient
+from ..buildium_sdk.models.rental_property_post_message import RentalPropertyPostMessage
+from ..buildium_sdk.models.rental_property_put_message import RentalPropertyPutMessage
+from ._result import to_result
 
 
 def register_rental_tools(mcp: FastMCP, client: BuildiumClient) -> None:
@@ -29,9 +32,7 @@ def register_rental_tools(mcp: FastMCP, client: BuildiumClient) -> None:
         result = await client.rentals_api.external_api_rentals_get_all_rentals(
             limit=limit, offset=offset
         )
-        if hasattr(result, "to_dict"):
-            return result.to_dict()
-        return result if isinstance(result, dict) else {"rentals": result, "count": len(result)}
+        return to_result(result, "rentals")
 
     @mcp.tool()
     async def get_rental(property_id: int) -> dict[str, Any]:
@@ -46,9 +47,7 @@ def register_rental_tools(mcp: FastMCP, client: BuildiumClient) -> None:
         result = await client.rentals_api.external_api_rentals_get_rental_by_id(
             property_id=property_id
         )
-        if hasattr(result, "to_dict"):
-            return result.to_dict()
-        return result if isinstance(result, dict) else result
+        return to_result(result)
 
     @mcp.tool()
     async def create_rental(rental_data: dict[str, Any]) -> dict[str, Any]:
@@ -60,21 +59,12 @@ def register_rental_tools(mcp: FastMCP, client: BuildiumClient) -> None:
         Returns:
             Created rental property details.
         """
-        try:
-            from mcp_server_buildium.buildium_sdk.models.rental_property_post_message import (
-                RentalPropertyPostMessage,
-            )
-
-            rental_message = RentalPropertyPostMessage(**rental_data)
-        except ImportError:
-            rental_message = rental_data
+        rental_message = RentalPropertyPostMessage(**rental_data)
 
         result = await client.rentals_api.external_api_rentals_create_rental_property(
             rental_property_post_message=rental_message
         )
-        if hasattr(result, "to_dict"):
-            return result.to_dict()
-        return result if isinstance(result, dict) else result
+        return to_result(result)
 
     @mcp.tool()
     async def update_rental(property_id: int, rental_data: dict[str, Any]) -> dict[str, Any]:
@@ -87,21 +77,12 @@ def register_rental_tools(mcp: FastMCP, client: BuildiumClient) -> None:
         Returns:
             Updated rental property details.
         """
-        try:
-            from mcp_server_buildium.buildium_sdk.models.rental_property_put_message import (
-                RentalPropertyPutMessage,
-            )
-
-            rental_message = RentalPropertyPutMessage(**rental_data)
-        except ImportError:
-            rental_message = rental_data
+        rental_message = RentalPropertyPutMessage(**rental_data)
 
         result = await client.rentals_api.external_api_rentals_update_rental_property(
             property_id=property_id, rental_property_put_message=rental_message
         )
-        if hasattr(result, "to_dict"):
-            return result.to_dict()
-        return result if isinstance(result, dict) else result
+        return to_result(result)
 
     @mcp.tool()
     async def list_unit_listings(limit: int = 100, offset: int = 0) -> dict[str, Any]:
@@ -114,12 +95,7 @@ def register_rental_tools(mcp: FastMCP, client: BuildiumClient) -> None:
         Returns:
             Dictionary with listings list.
         """
-        from mcp_server_buildium.buildium_sdk.api.listings_api import ListingsApi
-
-        listings_api = ListingsApi(client._api_client)
-        result = await listings_api.external_api_listings_get_unit_listings(
+        result = await client.listings_api.external_api_listings_get_listings_async(
             limit=limit, offset=offset
         )
-        if hasattr(result, "to_dict"):
-            return result.to_dict()
-        return result if isinstance(result, dict) else {"listings": result, "count": len(result)}
+        return to_result(result, "listings")
