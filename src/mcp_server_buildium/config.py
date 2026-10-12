@@ -23,6 +23,9 @@ class BuildiumConfig(BaseSettings):
         env_file_encoding="utf-8",
         # Ignore extra fields like the old BUILDIUM_SCOPE and BUILDIUM_TOKEN_URL.
         extra="ignore",
+        # A validation error must not echo the input: it would print the client
+        # secret (or a password in base_url) to stderr.
+        hide_input_in_errors=True,
     )
 
     base_url: str = Field(

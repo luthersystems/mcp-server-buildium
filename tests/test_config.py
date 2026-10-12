@@ -49,6 +49,21 @@ def test_base_url_must_be_plain_https(value: str) -> None:
         make(base_url=value)
 
 
+def test_errors_do_not_echo_the_secret(monkeypatch: pytest.MonkeyPatch) -> None:
+    # A missing client ID with the secret set used to print the secret in
+    # the error's input_value.
+    monkeypatch.setenv("BUILDIUM_CLIENT_SECRET", TEST_SECRET)
+    with pytest.raises(ValidationError) as excinfo:
+        BuildiumConfig(_env_file=None)
+    assert TEST_SECRET not in str(excinfo.value)
+
+
+def test_errors_do_not_echo_a_base_url_password() -> None:
+    with pytest.raises(ValidationError) as excinfo:
+        make(base_url="https://user:hunter2@api.buildium.com")
+    assert "hunter2" not in str(excinfo.value)
+
+
 def test_sandbox_base_url_is_accepted() -> None:
     assert make(base_url="https://apisandbox.buildium.com/").base_url == (
         "https://apisandbox.buildium.com/"
