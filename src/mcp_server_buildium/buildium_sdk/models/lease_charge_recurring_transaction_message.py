@@ -37,13 +37,14 @@ class LeaseChargeRecurringTransactionMessage(BaseModel):
     first_occurrence_date: Optional[date] = Field(default=None, description="The date the first occurence this charge was processed.", alias="FirstOccurrenceDate")
     next_occurrence_date: Optional[date] = Field(default=None, description="The next date the scheduled charge will be processed.", alias="NextOccurrenceDate")
     post_days_in_advance: Optional[StrictInt] = Field(default=None, description="The number of days ahead of the transaction date the charge will post on the lease ledger. This setting is used to add the charge to the ledger ahead of it's due date for visibility. For example, if the `FirstOccurrenceDate` is set to 8/10/2022 and this value is set to 5 then the charge will added to the ledger on 8/5/2022, but will have transaction date of 8/10/2022.", alias="PostDaysInAdvance")
-    frequency: Optional[StrictStr] = Field(default=None, description="Specifies the frequency at which the recurring charge will be processed.", alias="Frequency")
-    duration: Optional[StrictStr] = Field(default=None, description="Specifies the period of time/occurrences the recurring charge will be processed. Note, if the `Frequency` field is set to `OneTime` this field should be set to `NULL` as any submitted value will be ignored.", alias="Duration")
+    frequency: Optional[Union[StrictStr, StrictInt]] = Field(default=None, description="Specifies the frequency at which the recurring charge will be processed.", alias="Frequency")
+    duration: Optional[Union[StrictStr, StrictInt]] = Field(default=None, description="Specifies the period of time/occurrences the recurring charge will be processed. Note, if the `Frequency` field is set to `OneTime` this field should be set to `NULL` as any submitted value will be ignored.", alias="Duration")
     __properties: ClassVar[List[str]] = ["Id", "LeaseId", "GLAccountId", "RentId", "Amount", "Memo", "OccurrencesRemaining", "FirstOccurrenceDate", "NextOccurrenceDate", "PostDaysInAdvance", "Frequency", "Duration"]
 
     @field_validator('frequency')
     def frequency_validate_enum(cls, value):
         """Validates the enum"""
+        return value  # lenient response enum
         if value is None:
             return value
 
@@ -54,6 +55,7 @@ class LeaseChargeRecurringTransactionMessage(BaseModel):
     @field_validator('duration')
     def duration_validate_enum(cls, value):
         """Validates the enum"""
+        return value  # lenient response enum
         if value is None:
             return value
 

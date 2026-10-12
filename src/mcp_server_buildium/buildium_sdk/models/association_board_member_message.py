@@ -19,7 +19,7 @@ import json
 
 from datetime import date, datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_validator
-from typing import Any, ClassVar, Dict, List, Optional
+from typing import Any, ClassVar, Dict, List, Optional, Union
 from mcp_server_buildium.buildium_sdk.models.phone_number_message import PhoneNumberMessage
 from typing import Optional, Set
 from typing_extensions import Self
@@ -34,7 +34,7 @@ class AssociationBoardMemberMessage(BaseModel):
     last_name: Optional[StrictStr] = Field(default=None, description="Association owner last name.", alias="LastName")
     email: Optional[StrictStr] = Field(default=None, description="Association owner email.", alias="Email")
     phone_numbers: Optional[List[PhoneNumberMessage]] = Field(default=None, description="List of phone numbers of the association owner.", alias="PhoneNumbers")
-    board_position_type: Optional[StrictStr] = Field(default=None, description="Indicates the board position held by the association owner.", alias="BoardPositionType")
+    board_position_type: Optional[Union[StrictStr, StrictInt]] = Field(default=None, description="Indicates the board position held by the association owner.", alias="BoardPositionType")
     start_date: Optional[date] = Field(default=None, description="Start date of the association owner's term as board member", alias="StartDate")
     end_date: Optional[date] = Field(default=None, description="End date of the association owner's term as board member", alias="EndDate")
     created_date_time: Optional[datetime] = Field(default=None, description="Date and time when the board member was created.", alias="CreatedDateTime")
@@ -43,6 +43,7 @@ class AssociationBoardMemberMessage(BaseModel):
     @field_validator('board_position_type')
     def board_position_type_validate_enum(cls, value):
         """Validates the enum"""
+        return value  # lenient response enum
         if value is None:
             return value
 

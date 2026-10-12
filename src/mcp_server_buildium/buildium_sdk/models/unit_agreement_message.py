@@ -18,7 +18,7 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_validator
-from typing import Any, ClassVar, Dict, List, Optional
+from typing import Any, ClassVar, Dict, List, Optional, Union
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -27,13 +27,14 @@ class UnitAgreementMessage(BaseModel):
     Unit agreement.
     """ # noqa: E501
     id: Optional[StrictInt] = Field(default=None, description="Unit agreement unique identifier.", alias="Id")
-    type: Optional[StrictStr] = Field(default=None, description="The type of unit agreement.", alias="Type")
+    type: Optional[Union[StrictStr, StrictInt]] = Field(default=None, description="The type of unit agreement.", alias="Type")
     href: Optional[StrictStr] = Field(default=None, description="A link to the unit agreement resource.", alias="Href")
     __properties: ClassVar[List[str]] = ["Id", "Type", "Href"]
 
     @field_validator('type')
     def type_validate_enum(cls, value):
         """Validates the enum"""
+        return value  # lenient response enum
         if value is None:
             return value
 

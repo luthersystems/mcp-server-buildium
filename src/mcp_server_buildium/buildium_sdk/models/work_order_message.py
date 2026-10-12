@@ -34,12 +34,12 @@ class WorkOrderMessage(BaseModel):
     task: Optional[WorkOrderTaskMessage] = Field(default=None, description="Task information related to the work order.", alias="Task")
     title: Optional[StrictStr] = Field(default=None, description="Work order title.", alias="Title")
     due_date: Optional[date] = Field(default=None, description="Work order due date.", alias="DueDate")
-    priority: Optional[StrictStr] = Field(default=None, description="Work order  priority.", alias="Priority")
-    status: Optional[StrictStr] = Field(default=None, description="Work order status.", alias="Status")
+    priority: Optional[Union[StrictStr, StrictInt]] = Field(default=None, description="Work order  priority.", alias="Priority")
+    status: Optional[Union[StrictStr, StrictInt]] = Field(default=None, description="Work order status.", alias="Status")
     work_details: Optional[StrictStr] = Field(default=None, description="Description of the work order.", alias="WorkDetails")
     invoice_number: Optional[StrictStr] = Field(default=None, description="The invoice or reference number that the vendor assigned to the invoice.", alias="InvoiceNumber")
     chargeable_to: Optional[StrictStr] = Field(default=None, description="A description of the entity that will be charged for the work.", alias="ChargeableTo")
-    entry_allowed: Optional[StrictStr] = Field(default=None, description="Indicates whether entry has been allowed to the unit.", alias="EntryAllowed")
+    entry_allowed: Optional[Union[StrictStr, StrictInt]] = Field(default=None, description="Indicates whether entry has been allowed to the unit.", alias="EntryAllowed")
     entry_notes: Optional[StrictStr] = Field(default=None, description="Notes specific to entering the unit.", alias="EntryNotes")
     vendor_id: Optional[StrictInt] = Field(default=None, description="Vendor unique identifier.", alias="VendorId")
     vendor_notes: Optional[StrictStr] = Field(default=None, description="Notes specific to the vendor.", alias="VendorNotes")
@@ -54,6 +54,7 @@ class WorkOrderMessage(BaseModel):
     @field_validator('priority')
     def priority_validate_enum(cls, value):
         """Validates the enum"""
+        return value  # lenient response enum
         if value is None:
             return value
 
@@ -64,6 +65,7 @@ class WorkOrderMessage(BaseModel):
     @field_validator('status')
     def status_validate_enum(cls, value):
         """Validates the enum"""
+        return value  # lenient response enum
         if value is None:
             return value
 
@@ -74,6 +76,7 @@ class WorkOrderMessage(BaseModel):
     @field_validator('entry_allowed')
     def entry_allowed_validate_enum(cls, value):
         """Validates the enum"""
+        return value  # lenient response enum
         if value is None:
             return value
 

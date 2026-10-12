@@ -17,8 +17,8 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr, field_validator
-from typing import Any, ClassVar, Dict, List, Optional
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr, field_validator, StrictInt
+from typing import Any, ClassVar, Dict, List, Optional, Union
 from mcp_server_buildium.buildium_sdk.models.address_message import AddressMessage
 from typing import Optional, Set
 from typing_extensions import Self
@@ -27,7 +27,7 @@ class RentalOwnerTaxInformationMessage(BaseModel):
     """
     Rental owner tax information.
     """ # noqa: E501
-    tax_payer_id_type: Optional[StrictStr] = Field(default=None, description="Indicates the type of tax payer id being specified in the request.", alias="TaxPayerIdType")
+    tax_payer_id_type: Optional[Union[StrictStr, StrictInt]] = Field(default=None, description="Indicates the type of tax payer id being specified in the request.", alias="TaxPayerIdType")
     tax_payer_id: Optional[StrictStr] = Field(default=None, description="The tax payer identifier.", alias="TaxPayerId")
     tax_payer_name1: Optional[StrictStr] = Field(default=None, description="Tax payer name line 1.", alias="TaxPayerName1")
     tax_payer_name2: Optional[StrictStr] = Field(default=None, description="Tax payer name line 2.", alias="TaxPayerName2")
@@ -38,6 +38,7 @@ class RentalOwnerTaxInformationMessage(BaseModel):
     @field_validator('tax_payer_id_type')
     def tax_payer_id_type_validate_enum(cls, value):
         """Validates the enum"""
+        return value  # lenient response enum
         if value is None:
             return value
 

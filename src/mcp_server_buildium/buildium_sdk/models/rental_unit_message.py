@@ -34,8 +34,8 @@ class RentalUnitMessage(BaseModel):
     description: Optional[StrictStr] = Field(default=None, description="Description of the unit.", alias="Description")
     market_rent: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Market rent of the unit. This value is separate from the lease rent and is typically used for rental listings. Null if no value is set.", alias="MarketRent")
     address: Optional[AddressMessage] = Field(default=None, description="Address of the unit.", alias="Address")
-    unit_bedrooms: Optional[StrictStr] = Field(default=None, description="Number of bedrooms in the unit. Null if no value is set.", alias="UnitBedrooms")
-    unit_bathrooms: Optional[StrictStr] = Field(default=None, description="Number of bathrooms in the unit. Null if no value is set.", alias="UnitBathrooms")
+    unit_bedrooms: Optional[Union[StrictStr, StrictInt]] = Field(default=None, description="Number of bedrooms in the unit. Null if no value is set.", alias="UnitBedrooms")
+    unit_bathrooms: Optional[Union[StrictStr, StrictInt]] = Field(default=None, description="Number of bathrooms in the unit. Null if no value is set.", alias="UnitBathrooms")
     unit_size: Optional[StrictInt] = Field(default=None, description="Size of the unit. Null if no value is set.", alias="UnitSize")
     is_unit_listed: Optional[StrictBool] = Field(default=None, description="Whether the unit is currently listed for rent.                Note: this value is transient and determined at query time based on whether an active listing exists for the unit. Because this value is not persisted in the database, changes to value are not reflected in the last updated date for the unit.", alias="IsUnitListed")
     is_unit_occupied: Optional[StrictBool] = Field(default=None, description="Whether the unit is currently being rented by a tenent.                Note: this value is transient and determined at query time based on whether an active lease exists for the unit. Because this value is not persisted in the database, changes to value are not reflected in the last updated date for the unit.", alias="IsUnitOccupied")
@@ -44,6 +44,7 @@ class RentalUnitMessage(BaseModel):
     @field_validator('unit_bedrooms')
     def unit_bedrooms_validate_enum(cls, value):
         """Validates the enum"""
+        return value  # lenient response enum
         if value is None:
             return value
 
@@ -54,6 +55,7 @@ class RentalUnitMessage(BaseModel):
     @field_validator('unit_bathrooms')
     def unit_bathrooms_validate_enum(cls, value):
         """Validates the enum"""
+        return value  # lenient response enum
         if value is None:
             return value
 

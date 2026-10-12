@@ -17,8 +17,8 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
-from typing import Any, ClassVar, Dict, List, Optional
+from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator, StrictInt
+from typing import Any, ClassVar, Dict, List, Optional, Union
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -26,13 +26,14 @@ class WorkOrderEntryContactResourceMessage(BaseModel):
     """
     Work order entry contact.
     """ # noqa: E501
-    type: Optional[StrictStr] = Field(default=None, description="Contact entity type.", alias="Type")
+    type: Optional[Union[StrictStr, StrictInt]] = Field(default=None, description="Contact entity type.", alias="Type")
     href: Optional[StrictStr] = Field(default=None, description="Link to the contact resource.", alias="Href")
     __properties: ClassVar[List[str]] = ["Type", "Href"]
 
     @field_validator('type')
     def type_validate_enum(cls, value):
         """Validates the enum"""
+        return value  # lenient response enum
         if value is None:
             return value
 

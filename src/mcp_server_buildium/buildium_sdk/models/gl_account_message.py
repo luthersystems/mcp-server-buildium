@@ -18,7 +18,7 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr, field_validator
-from typing import Any, ClassVar, Dict, List, Optional
+from typing import Any, ClassVar, Dict, List, Optional, Union
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -30,13 +30,13 @@ class GLAccountMessage(BaseModel):
     account_number: Optional[StrictStr] = Field(default=None, description="General ledger account number.", alias="AccountNumber")
     name: Optional[StrictStr] = Field(default=None, description="Name of the general ledger account.", alias="Name")
     description: Optional[StrictStr] = Field(default=None, description="Description of the general ledger account.", alias="Description")
-    type: Optional[StrictStr] = Field(default=None, description="Describes the type of general ledger account.", alias="Type")
-    sub_type: Optional[StrictStr] = Field(default=None, description="Describes the subtype of the general ledger account.", alias="SubType")
+    type: Optional[Union[StrictStr, StrictInt]] = Field(default=None, description="Describes the type of general ledger account.", alias="Type")
+    sub_type: Optional[Union[StrictStr, StrictInt]] = Field(default=None, description="Describes the subtype of the general ledger account.", alias="SubType")
     is_default_gl_account: Optional[StrictBool] = Field(default=None, description="Indicates if the general ledger account is a default for auto populating fields.", alias="IsDefaultGLAccount")
     default_account_name: Optional[StrictStr] = Field(default=None, description="Indicates the original name of the general ledger account if it is a default account.", alias="DefaultAccountName")
     is_contra_account: Optional[StrictBool] = Field(default=None, description="Indicates whether the account is a contra account.", alias="IsContraAccount")
     is_bank_account: Optional[StrictBool] = Field(default=None, description="Indicates whether the account is a bank account.", alias="IsBankAccount")
-    cash_flow_classification: Optional[StrictStr] = Field(default=None, description="Describes the cash flow classification for the general ledger account.", alias="CashFlowClassification")
+    cash_flow_classification: Optional[Union[StrictStr, StrictInt]] = Field(default=None, description="Describes the cash flow classification for the general ledger account.", alias="CashFlowClassification")
     exclude_from_cash_balances: Optional[StrictBool] = Field(default=None, description="Indicates whether transactions associated with the account should be excluded from cash balances.", alias="ExcludeFromCashBalances")
     sub_accounts: Optional[List[GLAccountMessage]] = Field(default=None, description="Children general ledger accounts. The relationship only goes one level deep.", alias="SubAccounts")
     is_active: Optional[StrictBool] = Field(default=None, description="Indicates whether the account is active.", alias="IsActive")
@@ -46,6 +46,7 @@ class GLAccountMessage(BaseModel):
     @field_validator('type')
     def type_validate_enum(cls, value):
         """Validates the enum"""
+        return value  # lenient response enum
         if value is None:
             return value
 
@@ -56,6 +57,7 @@ class GLAccountMessage(BaseModel):
     @field_validator('sub_type')
     def sub_type_validate_enum(cls, value):
         """Validates the enum"""
+        return value  # lenient response enum
         if value is None:
             return value
 
@@ -66,6 +68,7 @@ class GLAccountMessage(BaseModel):
     @field_validator('cash_flow_classification')
     def cash_flow_classification_validate_enum(cls, value):
         """Validates the enum"""
+        return value  # lenient response enum
         if value is None:
             return value
 

@@ -19,7 +19,7 @@ import json
 
 from datetime import date
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_validator
-from typing import Any, ClassVar, Dict, List, Optional
+from typing import Any, ClassVar, Dict, List, Optional, Union
 from mcp_server_buildium.buildium_sdk.models.announcement_sender_message import AnnouncementSenderMessage
 from typing import Optional, Set
 from typing_extensions import Self
@@ -33,13 +33,14 @@ class AnnouncementMessage(BaseModel):
     body: Optional[StrictStr] = Field(default=None, description="Content of the announcement.", alias="Body")
     announcement_date: Optional[date] = Field(default=None, description="Date the announcement was published.", alias="AnnouncementDate")
     expiration_date: Optional[date] = Field(default=None, description="Indicates the date on which the announcement will be removed from the Resident Center.", alias="ExpirationDate")
-    channels: Optional[List[StrictStr]] = Field(default=None, description="List of the distribution channels the announcement was sent through.", alias="Channels")
+    channels: Optional[List[Union[StrictStr, StrictInt]]] = Field(default=None, description="List of the distribution channels the announcement was sent through.", alias="Channels")
     sender: Optional[AnnouncementSenderMessage] = Field(default=None, description="The Buildium user who published the announcement.", alias="Sender")
     __properties: ClassVar[List[str]] = ["Id", "Subject", "Body", "AnnouncementDate", "ExpirationDate", "Channels", "Sender"]
 
     @field_validator('channels')
     def channels_validate_enum(cls, value):
         """Validates the enum"""
+        return value  # lenient response enum
         if value is None:
             return value
 

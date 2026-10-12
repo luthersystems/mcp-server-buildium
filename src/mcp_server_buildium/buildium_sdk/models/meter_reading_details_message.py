@@ -18,8 +18,8 @@ import re  # noqa: F401
 import json
 
 from datetime import date
-from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
-from typing import Any, ClassVar, Dict, List, Optional
+from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator, StrictInt
+from typing import Any, ClassVar, Dict, List, Optional, Union
 from mcp_server_buildium.buildium_sdk.models.meter_reading_detail_message import MeterReadingDetailMessage
 from typing import Optional, Set
 from typing_extensions import Self
@@ -29,13 +29,14 @@ class MeterReadingDetailsMessage(BaseModel):
     MeterReadingDetailsMessage
     """ # noqa: E501
     reading_date: Optional[date] = Field(default=None, description="Requested date for meter reading details. Details will be the most recent readings on or before this date.", alias="ReadingDate")
-    meter_type: Optional[StrictStr] = Field(default=None, description="Type of meter the reading is for.", alias="MeterType")
+    meter_type: Optional[Union[StrictStr, StrictInt]] = Field(default=None, description="Type of meter the reading is for.", alias="MeterType")
     details: Optional[List[MeterReadingDetailMessage]] = Field(default=None, description="List of reading details for all units.", alias="Details")
     __properties: ClassVar[List[str]] = ["ReadingDate", "MeterType", "Details"]
 
     @field_validator('meter_type')
     def meter_type_validate_enum(cls, value):
         """Validates the enum"""
+        return value  # lenient response enum
         if value is None:
             return value
 

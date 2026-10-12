@@ -19,7 +19,7 @@ import json
 
 from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr, field_validator
-from typing import Any, ClassVar, Dict, List, Optional
+from typing import Any, ClassVar, Dict, List, Optional, Union
 from mcp_server_buildium.buildium_sdk.models.phone_number_message import PhoneNumberMessage
 from mcp_server_buildium.buildium_sdk.models.user_role_message import UserRoleMessage
 from typing import Optional, Set
@@ -30,7 +30,7 @@ class UserMessage(BaseModel):
     Buildium user account.
     """ # noqa: E501
     id: Optional[StrictInt] = Field(default=None, description="User unique identifier.", alias="Id")
-    user_types: Optional[List[StrictStr]] = Field(default=None, description="The user type assigned to the user account.", alias="UserTypes")
+    user_types: Optional[List[Union[StrictStr, StrictInt]]] = Field(default=None, description="The user type assigned to the user account.", alias="UserTypes")
     is_active: Optional[StrictBool] = Field(default=None, description="Indicates whether the user account is still active.", alias="IsActive")
     last_login: Optional[datetime] = Field(default=None, description="Date and time the user last logged into Buildium. This value will be `NULL` if the user has never logged into Buildium.", alias="LastLogin")
     first_name: Optional[StrictStr] = Field(default=None, description="First name of the user.", alias="FirstName")
@@ -46,6 +46,7 @@ class UserMessage(BaseModel):
     @field_validator('user_types')
     def user_types_validate_enum(cls, value):
         """Validates the enum"""
+        return value  # lenient response enum
         if value is None:
             return value
 

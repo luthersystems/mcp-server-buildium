@@ -18,8 +18,8 @@ import re  # noqa: F401
 import json
 
 from datetime import date
-from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
-from typing import Any, ClassVar, Dict, List, Optional
+from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator, StrictInt
+from typing import Any, ClassVar, Dict, List, Optional, Union
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -27,8 +27,8 @@ class ClientLeadCreditRequestMessage(BaseModel):
     """
     Lead credit request.
     """ # noqa: E501
-    credit_status: Optional[StrictStr] = Field(default=None, description="Indicates the current status of the credit.", alias="CreditStatus")
-    credit_reason: Optional[StrictStr] = Field(default=None, description="Indicates the reason a credit was requested.", alias="CreditReason")
+    credit_status: Optional[Union[StrictStr, StrictInt]] = Field(default=None, description="Indicates the current status of the credit.", alias="CreditStatus")
+    credit_reason: Optional[Union[StrictStr, StrictInt]] = Field(default=None, description="Indicates the reason a credit was requested.", alias="CreditReason")
     comments: Optional[StrictStr] = Field(default=None, description="Additional comments about the credit request.", alias="Comments")
     request_date: Optional[date] = Field(default=None, description="The date the credit was requested.", alias="RequestDate")
     __properties: ClassVar[List[str]] = ["CreditStatus", "CreditReason", "Comments", "RequestDate"]
@@ -36,6 +36,7 @@ class ClientLeadCreditRequestMessage(BaseModel):
     @field_validator('credit_status')
     def credit_status_validate_enum(cls, value):
         """Validates the enum"""
+        return value  # lenient response enum
         if value is None:
             return value
 
@@ -46,6 +47,7 @@ class ClientLeadCreditRequestMessage(BaseModel):
     @field_validator('credit_reason')
     def credit_reason_validate_enum(cls, value):
         """Validates the enum"""
+        return value  # lenient response enum
         if value is None:
             return value
 

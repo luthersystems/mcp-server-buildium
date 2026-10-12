@@ -17,8 +17,8 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
-from typing import Any, ClassVar, Dict, List, Optional
+from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator, StrictInt
+from typing import Any, ClassVar, Dict, List, Optional, Union
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -26,7 +26,7 @@ class ListingFileMessage(BaseModel):
     """
     ListingFileMessage
     """ # noqa: E501
-    type: Optional[StrictStr] = Field(default=None, description="Indicates the media type of file.", alias="Type")
+    type: Optional[Union[StrictStr, StrictInt]] = Field(default=None, description="Indicates the media type of file.", alias="Type")
     name: Optional[StrictStr] = Field(default=None, description="The name of the file.", alias="Name")
     url: Optional[StrictStr] = Field(default=None, description="The the full URL to access the file.", alias="Url")
     __properties: ClassVar[List[str]] = ["Type", "Name", "Url"]
@@ -34,6 +34,7 @@ class ListingFileMessage(BaseModel):
     @field_validator('type')
     def type_validate_enum(cls, value):
         """Validates the enum"""
+        return value  # lenient response enum
         if value is None:
             return value
 

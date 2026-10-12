@@ -17,8 +17,8 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
-from typing import Any, ClassVar, Dict, List, Optional
+from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator, StrictInt
+from typing import Any, ClassVar, Dict, List, Optional, Union
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -32,12 +32,13 @@ class AddressMessage(BaseModel):
     city: Optional[StrictStr] = Field(default=None, description="City, district, suburb, town, or village.", alias="City")
     state: Optional[StrictStr] = Field(default=None, description="State, county, province, or region.", alias="State")
     postal_code: Optional[StrictStr] = Field(default=None, description="ZIP or postal code.", alias="PostalCode")
-    country: Optional[StrictStr] = Field(default=None, description="Country.", alias="Country")
+    country: Optional[Union[StrictStr, StrictInt]] = Field(default=None, description="Country.", alias="Country")
     __properties: ClassVar[List[str]] = ["AddressLine1", "AddressLine2", "AddressLine3", "City", "State", "PostalCode", "Country"]
 
     @field_validator('country')
     def country_validate_enum(cls, value):
         """Validates the enum"""
+        return value  # lenient response enum
         if value is None:
             return value
 

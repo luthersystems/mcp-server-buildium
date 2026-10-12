@@ -19,7 +19,7 @@ import json
 
 from datetime import date, datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_validator
-from typing import Any, ClassVar, Dict, List, Optional
+from typing import Any, ClassVar, Dict, List, Optional, Union
 from mcp_server_buildium.buildium_sdk.models.property_message import PropertyMessage
 from mcp_server_buildium.buildium_sdk.models.requested_by_user_entity_message import RequestedByUserEntityMessage
 from mcp_server_buildium.buildium_sdk.models.task_category_response_message import TaskCategoryResponseMessage
@@ -38,8 +38,8 @@ class RentalOwnerRequestTaskMessage(BaseModel):
     unit_id: Optional[StrictInt] = Field(default=None, description="The unit unique identifier associated with the request.", alias="UnitId")
     requested_by_user_entity: Optional[RequestedByUserEntityMessage] = Field(default=None, description="The contact details for the rental owner who submitted the request.", alias="RequestedByUserEntity")
     assigned_to_user_id: Optional[StrictInt] = Field(default=None, description="The unique identifier of the staff user assigned to the request.", alias="AssignedToUserId")
-    task_status: Optional[StrictStr] = Field(default=None, description="Request status.", alias="TaskStatus")
-    priority: Optional[StrictStr] = Field(default=None, description="Request priority.", alias="Priority")
+    task_status: Optional[Union[StrictStr, StrictInt]] = Field(default=None, description="Request status.", alias="TaskStatus")
+    priority: Optional[Union[StrictStr, StrictInt]] = Field(default=None, description="Request priority.", alias="Priority")
     due_date: Optional[date] = Field(default=None, description="Request due date.", alias="DueDate")
     created_date_time: Optional[datetime] = Field(default=None, description="Date and time the request was created.", alias="CreatedDateTime")
     last_updated_date_time: Optional[datetime] = Field(default=None, description="Date and time the request was last updated.", alias="LastUpdatedDateTime")
@@ -48,6 +48,7 @@ class RentalOwnerRequestTaskMessage(BaseModel):
     @field_validator('task_status')
     def task_status_validate_enum(cls, value):
         """Validates the enum"""
+        return value  # lenient response enum
         if value is None:
             return value
 
@@ -58,6 +59,7 @@ class RentalOwnerRequestTaskMessage(BaseModel):
     @field_validator('priority')
     def priority_validate_enum(cls, value):
         """Validates the enum"""
+        return value  # lenient response enum
         if value is None:
             return value
 

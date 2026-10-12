@@ -19,7 +19,7 @@ import json
 
 from datetime import date
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_validator
-from typing import Any, ClassVar, Dict, List, Optional
+from typing import Any, ClassVar, Dict, List, Optional, Union
 from mcp_server_buildium.buildium_sdk.models.bill_line_message import BillLineMessage
 from typing import Optional, Set
 from typing_extensions import Self
@@ -36,13 +36,14 @@ class BillMessage(BaseModel):
     vendor_id: Optional[StrictInt] = Field(default=None, description="Unique identifier of the vendor who submitted the bill.", alias="VendorId")
     work_order_id: Optional[StrictInt] = Field(default=None, description="Unique identifier of the work order associated with this bill.", alias="WorkOrderId")
     reference_number: Optional[StrictStr] = Field(default=None, description="The invoice or reference number that the vendor assigned to the invoice.", alias="ReferenceNumber")
-    approval_status: Optional[StrictStr] = Field(default=None, description="The current approval status for the bill.", alias="ApprovalStatus")
+    approval_status: Optional[Union[StrictStr, StrictInt]] = Field(default=None, description="The current approval status for the bill.", alias="ApprovalStatus")
     lines: Optional[List[BillLineMessage]] = Field(default=None, description="A collection of line items associated with the bill.", alias="Lines")
     __properties: ClassVar[List[str]] = ["Id", "Date", "DueDate", "PaidDate", "Memo", "VendorId", "WorkOrderId", "ReferenceNumber", "ApprovalStatus", "Lines"]
 
     @field_validator('approval_status')
     def approval_status_validate_enum(cls, value):
         """Validates the enum"""
+        return value  # lenient response enum
         if value is None:
             return value
 

@@ -18,7 +18,7 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_validator
-from typing import Any, ClassVar, Dict, List, Optional
+from typing import Any, ClassVar, Dict, List, Optional, Union
 from mcp_server_buildium.buildium_sdk.models.address_message import AddressMessage
 from mcp_server_buildium.buildium_sdk.models.listing_file_message import ListingFileMessage
 from typing import Optional, Set
@@ -34,14 +34,15 @@ class ListingPropertyMessage(BaseModel):
     number_units: Optional[StrictInt] = Field(default=None, description="Number of units in the rental property.", alias="NumberUnits")
     structure_description: Optional[StrictStr] = Field(default=None, description="Description of the rental property structure.", alias="StructureDescription")
     year_built: Optional[StrictInt] = Field(default=None, description="Year the rental property was built.", alias="YearBuilt")
-    features: Optional[List[StrictStr]] = Field(default=None, description="List of features for the property.", alias="Features")
-    included_in_rent: Optional[List[StrictStr]] = Field(default=None, description="The list of amenities included in rent the property has.", alias="IncludedInRent")
+    features: Optional[List[Union[StrictStr, StrictInt]]] = Field(default=None, description="List of features for the property.", alias="Features")
+    included_in_rent: Optional[List[Union[StrictStr, StrictInt]]] = Field(default=None, description="The list of amenities included in rent the property has.", alias="IncludedInRent")
     files: Optional[List[ListingFileMessage]] = Field(default=None, description="List of media files associated with the property.", alias="Files")
     __properties: ClassVar[List[str]] = ["Id", "Name", "Address", "NumberUnits", "StructureDescription", "YearBuilt", "Features", "IncludedInRent", "Files"]
 
     @field_validator('features')
     def features_validate_enum(cls, value):
         """Validates the enum"""
+        return value  # lenient response enum
         if value is None:
             return value
 
@@ -53,6 +54,7 @@ class ListingPropertyMessage(BaseModel):
     @field_validator('included_in_rent')
     def included_in_rent_validate_enum(cls, value):
         """Validates the enum"""
+        return value  # lenient response enum
         if value is None:
             return value
 

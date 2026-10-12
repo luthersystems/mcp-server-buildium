@@ -18,7 +18,7 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr, field_validator
-from typing import Any, ClassVar, Dict, List, Optional
+from typing import Any, ClassVar, Dict, List, Optional, Union
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -29,13 +29,14 @@ class RentalImageMessage(BaseModel):
     id: Optional[StrictInt] = Field(default=None, description="Rental image unique identifier.", alias="Id")
     description: Optional[StrictStr] = Field(default=None, description="Description of the image.", alias="Description")
     physical_file_name: Optional[StrictStr] = Field(default=None, description="Physical name of the file on the server.", alias="PhysicalFileName")
-    provider: Optional[StrictStr] = Field(default=None, description="The provider for the image. If an external provider is not used to host the image, this will be set to `None`.", alias="Provider")
+    provider: Optional[Union[StrictStr, StrictInt]] = Field(default=None, description="The provider for the image. If an external provider is not used to host the image, this will be set to `None`.", alias="Provider")
     show_in_listing: Optional[StrictBool] = Field(default=None, description="Indicates whether the image will be shown in listings for this rental.", alias="ShowInListing")
     __properties: ClassVar[List[str]] = ["Id", "Description", "PhysicalFileName", "Provider", "ShowInListing"]
 
     @field_validator('provider')
     def provider_validate_enum(cls, value):
         """Validates the enum"""
+        return value  # lenient response enum
         if value is None:
             return value
 

@@ -19,7 +19,7 @@ import json
 
 from datetime import date, datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_validator
-from typing import Any, ClassVar, Dict, List, Optional
+from typing import Any, ClassVar, Dict, List, Optional, Union
 from mcp_server_buildium.buildium_sdk.models.property_message import PropertyMessage
 from mcp_server_buildium.buildium_sdk.models.requested_by_user_entity_message import RequestedByUserEntityMessage
 from mcp_server_buildium.buildium_sdk.models.task_category_response_message import TaskCategoryResponseMessage
@@ -32,7 +32,7 @@ class AllTasksMessage(BaseModel):
     This object represents a task.
     """ # noqa: E501
     id: Optional[StrictInt] = Field(default=None, description="Task unique identifier.", alias="Id")
-    task_type: Optional[StrictStr] = Field(default=None, description="The task type.", alias="TaskType")
+    task_type: Optional[Union[StrictStr, StrictInt]] = Field(default=None, description="The task type.", alias="TaskType")
     category: Optional[TaskCategoryResponseMessage] = Field(default=None, description="Task category.", alias="Category")
     title: Optional[StrictStr] = Field(default=None, description="Task title.", alias="Title")
     description: Optional[StrictStr] = Field(default=None, description="Task description.", alias="Description")
@@ -41,8 +41,8 @@ class AllTasksMessage(BaseModel):
     unit_agreement: Optional[UnitAgreementMessage] = Field(default=None, description="The unit agreement that is associated with the task.", alias="UnitAgreement")
     requested_by_user_entity: Optional[RequestedByUserEntityMessage] = Field(default=None, description="The user entity that requested the task.", alias="RequestedByUserEntity")
     assigned_to_user_id: Optional[StrictInt] = Field(default=None, description="The unique identifier of the staff user assigned to the task.", alias="AssignedToUserId")
-    task_status: Optional[StrictStr] = Field(default=None, description="Task status.", alias="TaskStatus")
-    priority: Optional[StrictStr] = Field(default=None, description="Task priority.", alias="Priority")
+    task_status: Optional[Union[StrictStr, StrictInt]] = Field(default=None, description="Task status.", alias="TaskStatus")
+    priority: Optional[Union[StrictStr, StrictInt]] = Field(default=None, description="Task priority.", alias="Priority")
     due_date: Optional[date] = Field(default=None, description="Task due date.", alias="DueDate")
     created_date_time: Optional[datetime] = Field(default=None, description="The date and time the task was created.", alias="CreatedDateTime")
     last_updated_date_time: Optional[datetime] = Field(default=None, description="The date and time the task was last updated.", alias="LastUpdatedDateTime")
@@ -51,6 +51,7 @@ class AllTasksMessage(BaseModel):
     @field_validator('task_type')
     def task_type_validate_enum(cls, value):
         """Validates the enum"""
+        return value  # lenient response enum
         if value is None:
             return value
 
@@ -61,6 +62,7 @@ class AllTasksMessage(BaseModel):
     @field_validator('task_status')
     def task_status_validate_enum(cls, value):
         """Validates the enum"""
+        return value  # lenient response enum
         if value is None:
             return value
 
@@ -71,6 +73,7 @@ class AllTasksMessage(BaseModel):
     @field_validator('priority')
     def priority_validate_enum(cls, value):
         """Validates the enum"""
+        return value  # lenient response enum
         if value is None:
             return value
 

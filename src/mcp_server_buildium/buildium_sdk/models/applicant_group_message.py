@@ -18,7 +18,7 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_validator
-from typing import Any, ClassVar, Dict, List, Optional
+from typing import Any, ClassVar, Dict, List, Optional, Union
 from mcp_server_buildium.buildium_sdk.models.applicant_message import ApplicantMessage
 from typing import Optional, Set
 from typing_extensions import Self
@@ -30,13 +30,14 @@ class ApplicantGroupMessage(BaseModel):
     id: Optional[StrictInt] = Field(default=None, description="Applicant group unique identifier.", alias="Id")
     property_id: Optional[StrictInt] = Field(default=None, description="Rental property unique identifier that the applicant group is associated with.", alias="PropertyId")
     unit_id: Optional[StrictInt] = Field(default=None, description="Rental property unit unique identifier that the applicant group is associated with.", alias="UnitId")
-    application_group_status: Optional[StrictStr] = Field(default=None, description="Indicates the current applicant group status. Note, this status is independent from individual application statuses within the group.", alias="ApplicationGroupStatus")
+    application_group_status: Optional[Union[StrictStr, StrictInt]] = Field(default=None, description="Indicates the current applicant group status. Note, this status is independent from individual application statuses within the group.", alias="ApplicationGroupStatus")
     applicants: Optional[List[ApplicantMessage]] = Field(default=None, description="A collection of applicants in the group.", alias="Applicants")
     __properties: ClassVar[List[str]] = ["Id", "PropertyId", "UnitId", "ApplicationGroupStatus", "Applicants"]
 
     @field_validator('application_group_status')
     def application_group_status_validate_enum(cls, value):
         """Validates the enum"""
+        return value  # lenient response enum
         if value is None:
             return value
 

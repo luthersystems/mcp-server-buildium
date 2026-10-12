@@ -17,8 +17,8 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
-from typing import Any, ClassVar, Dict, List, Optional
+from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator, StrictInt
+from typing import Any, ClassVar, Dict, List, Optional, Union
 from mcp_server_buildium.buildium_sdk.models.application_section_response_message import ApplicationSectionResponseMessage
 from typing import Optional, Set
 from typing_extensions import Self
@@ -28,13 +28,14 @@ class ApplicationResponseMessage(BaseModel):
     ApplicationResponseMessage
     """ # noqa: E501
     section_label: Optional[StrictStr] = Field(default=None, description="A user defined description of the application section.", alias="SectionLabel")
-    section_type: Optional[StrictStr] = Field(default=None, description="Indicates the application section type. The `SectionType` can be used to identify specific sections within the application.", alias="SectionType")
+    section_type: Optional[Union[StrictStr, StrictInt]] = Field(default=None, description="Indicates the application section type. The `SectionType` can be used to identify specific sections within the application.", alias="SectionType")
     section_responses: Optional[List[ApplicationSectionResponseMessage]] = Field(default=None, description="A collection of form fields within the section.", alias="SectionResponses")
     __properties: ClassVar[List[str]] = ["SectionLabel", "SectionType", "SectionResponses"]
 
     @field_validator('section_type')
     def section_type_validate_enum(cls, value):
         """Validates the enum"""
+        return value  # lenient response enum
         if value is None:
             return value
 

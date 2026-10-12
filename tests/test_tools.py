@@ -80,6 +80,7 @@ FILTERS: list[tuple[str, dict[str, Any], dict[str, str]]] = [
     ("list_tasks", {"task_type": "ToDo", "assigned_to_user_id": 5}, {"type": "ToDo", "assignedtoid": "5"}),
     ("list_bills", {"vendor_id": 3, "status": "Unpaid"}, {"vendorid": "3", "paidstatus": "Unpaid"}),
     ("list_applicants", {"email": "a@example.com"}, {"email": "a@example.com"}),
+    ("list_lease_transactions", {"lease_id": 7, "transaction_date_from": "2026-01-01", "transaction_date_to": "2026-01-31"}, {"transactiondatefrom": "2026-01-01", "transactiondateto": "2026-01-31"}),
     ("list_files", {"entity_type": "Rental", "entity_id": 3, "category_id": 4}, {"entitytype": "Rental", "entityid": "3", "categoryid": "4"}),
 ]  # fmt: skip
 

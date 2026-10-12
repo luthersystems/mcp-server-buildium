@@ -36,7 +36,7 @@ class BankAccountMessage(BaseModel):
     name: Optional[StrictStr] = Field(default=None, description="Bank Account name.", alias="Name")
     description: Optional[StrictStr] = Field(default=None, description="Bank account description.", alias="Description")
     bank_account_type: Optional[StrictStr] = Field(default=None, description="Type of bank account. Values are `Checking` or `Savings`.", alias="BankAccountType")
-    country: Optional[StrictStr] = Field(default=None, description="The country the bank account is in.", alias="Country")
+    country: Optional[Union[StrictStr, StrictInt]] = Field(default=None, description="The country the bank account is in.", alias="Country")
     account_number: Optional[StrictStr] = Field(default=None, description="Bank account number.", alias="AccountNumber")
     routing_number: Optional[StrictStr] = Field(default=None, description="Bank routing number.", alias="RoutingNumber")
     is_active: Optional[StrictBool] = Field(default=None, description="Bank Account Status", alias="IsActive")
@@ -47,6 +47,7 @@ class BankAccountMessage(BaseModel):
     @field_validator('country')
     def country_validate_enum(cls, value):
         """Validates the enum"""
+        return value  # lenient response enum
         if value is None:
             return value
 
