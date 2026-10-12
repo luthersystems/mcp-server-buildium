@@ -5,6 +5,12 @@ from typing import Any
 from fastmcp import FastMCP
 
 from ..buildium_client import BuildiumClient
+from ..buildium_sdk.models.applicant_group_post_message import ApplicantGroupPostMessage
+from ..buildium_sdk.models.applicant_group_put_message import ApplicantGroupPutMessage
+from ..buildium_sdk.models.applicant_post_message import ApplicantPostMessage
+from ..buildium_sdk.models.applicant_put_message import ApplicantPutMessage
+from ..buildium_sdk.models.application_put_message import ApplicationPutMessage
+from ._result import to_result
 
 
 def register_applicant_tools(mcp: FastMCP, client: BuildiumClient) -> None:
@@ -31,18 +37,10 @@ def register_applicant_tools(mcp: FastMCP, client: BuildiumClient) -> None:
         Returns:
             Dictionary with applicants list and metadata.
         """
-        # Build kwargs, only including optional parameters if they have values
-        kwargs = {
-            "limit": limit,
-            "offset": offset,
-        }
-        if email is not None:
-            kwargs["email"] = email
-
-        result = await client.applicants_api.external_api_applicants_get_applicants(**kwargs)
-        if hasattr(result, "to_dict"):
-            return result.to_dict()
-        return result if isinstance(result, dict) else {"applicants": result, "count": len(result)}
+        result = await client.applicants_api.external_api_applicants_get_applicants(
+            email=email, limit=limit, offset=offset
+        )
+        return to_result(result, "applicants")
 
     @mcp.tool()
     async def get_applicant(applicant_id: int) -> dict[str, Any]:
@@ -57,9 +55,7 @@ def register_applicant_tools(mcp: FastMCP, client: BuildiumClient) -> None:
         result = await client.applicants_api.external_api_applicants_get_applicant_by_id(
             applicant_id=applicant_id
         )
-        if hasattr(result, "to_dict"):
-            return result.to_dict()
-        return result if isinstance(result, dict) else result
+        return to_result(result)
 
     @mcp.tool()
     async def create_applicant(applicant_data: dict[str, Any]) -> dict[str, Any]:
@@ -71,21 +67,12 @@ def register_applicant_tools(mcp: FastMCP, client: BuildiumClient) -> None:
         Returns:
             Created applicant details.
         """
-        try:
-            from mcp_server_buildium.buildium_sdk.models.applicant_post_message import (
-                ApplicantPostMessage,
-            )
-
-            applicant_message = ApplicantPostMessage(**applicant_data)
-        except ImportError:
-            applicant_message = applicant_data
+        applicant_message = ApplicantPostMessage(**applicant_data)
 
         result = await client.applicants_api.external_api_applicants_create_applicant(
             applicant_post_message=applicant_message
         )
-        if hasattr(result, "to_dict"):
-            return result.to_dict()
-        return result if isinstance(result, dict) else result
+        return to_result(result)
 
     @mcp.tool()
     async def update_applicant(applicant_id: int, applicant_data: dict[str, Any]) -> dict[str, Any]:
@@ -98,21 +85,12 @@ def register_applicant_tools(mcp: FastMCP, client: BuildiumClient) -> None:
         Returns:
             Updated applicant details.
         """
-        try:
-            from mcp_server_buildium.buildium_sdk.models.applicant_put_message import (
-                ApplicantPutMessage,
-            )
-
-            applicant_message = ApplicantPutMessage(**applicant_data)
-        except ImportError:
-            applicant_message = applicant_data
+        applicant_message = ApplicantPutMessage(**applicant_data)
 
         result = await client.applicants_api.external_api_applicants_update_applicant(
             applicant_id=applicant_id, applicant_put_message=applicant_message
         )
-        if hasattr(result, "to_dict"):
-            return result.to_dict()
-        return result if isinstance(result, dict) else result
+        return to_result(result)
 
     @mcp.tool()
     async def list_applicant_applications(applicant_id: int) -> dict[str, Any]:
@@ -127,11 +105,7 @@ def register_applicant_tools(mcp: FastMCP, client: BuildiumClient) -> None:
         result = await client.applicants_api.external_api_applicant_applications_get_applications_for_applicant(
             applicant_id=applicant_id
         )
-        if hasattr(result, "to_dict"):
-            return result.to_dict()
-        return (
-            result if isinstance(result, dict) else {"applications": result, "count": len(result)}
-        )
+        return to_result(result, "applications")
 
     @mcp.tool()
     async def get_application(applicant_id: int, application_id: int) -> dict[str, Any]:
@@ -147,9 +121,7 @@ def register_applicant_tools(mcp: FastMCP, client: BuildiumClient) -> None:
         result = await client.applicants_api.external_api_applicant_applications_get_application_for_applicant_by_id(
             applicant_id=applicant_id, application_id=application_id
         )
-        if hasattr(result, "to_dict"):
-            return result.to_dict()
-        return result if isinstance(result, dict) else result
+        return to_result(result)
 
     @mcp.tool()
     async def update_application(
@@ -165,23 +137,14 @@ def register_applicant_tools(mcp: FastMCP, client: BuildiumClient) -> None:
         Returns:
             Updated application details.
         """
-        try:
-            from mcp_server_buildium.buildium_sdk.models.application_put_message import (
-                ApplicationPutMessage,
-            )
-
-            application_message = ApplicationPutMessage(**application_data)
-        except ImportError:
-            application_message = application_data
+        application_message = ApplicationPutMessage(**application_data)
 
         result = await client.applicants_api.external_api_applicant_applications_update_application(
             applicant_id=applicant_id,
             application_id=application_id,
             application_put_message=application_message,
         )
-        if hasattr(result, "to_dict"):
-            return result.to_dict()
-        return result if isinstance(result, dict) else result
+        return to_result(result)
 
     @mcp.tool()
     async def list_applicant_groups(limit: int = 100, offset: int = 0) -> dict[str, Any]:
@@ -197,13 +160,7 @@ def register_applicant_tools(mcp: FastMCP, client: BuildiumClient) -> None:
         result = await client.applicants_api.external_api_applicant_groups_get_applicant_groups(
             limit=limit, offset=offset
         )
-        if hasattr(result, "to_dict"):
-            return result.to_dict()
-        return (
-            result
-            if isinstance(result, dict)
-            else {"applicantGroups": result, "count": len(result)}
-        )
+        return to_result(result, "applicantGroups")
 
     @mcp.tool()
     async def create_applicant_group(group_data: dict[str, Any]) -> dict[str, Any]:
@@ -215,21 +172,12 @@ def register_applicant_tools(mcp: FastMCP, client: BuildiumClient) -> None:
         Returns:
             Created applicant group details.
         """
-        try:
-            from mcp_server_buildium.buildium_sdk.models.applicant_group_post_message import (
-                ApplicantGroupPostMessage,
-            )
-
-            group_message = ApplicantGroupPostMessage(**group_data)
-        except ImportError:
-            group_message = group_data
+        group_message = ApplicantGroupPostMessage(**group_data)
 
         result = await client.applicants_api.external_api_applicant_groups_create_applicant_group(
             applicant_group_post_message=group_message
         )
-        if hasattr(result, "to_dict"):
-            return result.to_dict()
-        return result if isinstance(result, dict) else result
+        return to_result(result)
 
     @mcp.tool()
     async def update_applicant_group(group_id: int, group_data: dict[str, Any]) -> dict[str, Any]:
@@ -242,18 +190,9 @@ def register_applicant_tools(mcp: FastMCP, client: BuildiumClient) -> None:
         Returns:
             Updated applicant group details.
         """
-        try:
-            from mcp_server_buildium.buildium_sdk.models.applicant_group_put_message import (
-                ApplicantGroupPutMessage,
-            )
-
-            group_message = ApplicantGroupPutMessage(**group_data)
-        except ImportError:
-            group_message = group_data
+        group_message = ApplicantGroupPutMessage(**group_data)
 
         result = await client.applicants_api.external_api_applicant_groups_update_applicant_group(
             applicant_group_id=group_id, applicant_group_put_message=group_message
         )
-        if hasattr(result, "to_dict"):
-            return result.to_dict()
-        return result if isinstance(result, dict) else result
+        return to_result(result)

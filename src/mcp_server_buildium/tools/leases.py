@@ -5,6 +5,9 @@ from typing import Any
 from fastmcp import FastMCP
 
 from ..buildium_client import BuildiumClient
+from ..buildium_sdk.models.lease_post_message import LeasePostMessage
+from ..buildium_sdk.models.lease_put_message import LeasePutMessage
+from ._result import to_result
 
 
 def register_lease_tools(mcp: FastMCP, client: BuildiumClient) -> None:
@@ -27,7 +30,8 @@ def register_lease_tools(mcp: FastMCP, client: BuildiumClient) -> None:
 
         Args:
             property_id: Optional property ID to filter by.
-            unit_id: Optional unit ID to filter by.
+            unit_id: Optional unit ID. The Buildium endpoint has no unit filter, so this
+                keeps only the matching leases of the returned page.
             lease_status: Optional lease status filter (e.g., "Active", "Future", "Past").
             limit: Maximum number of results (default: 100).
             offset: Offset for pagination (default: 0).
@@ -35,22 +39,16 @@ def register_lease_tools(mcp: FastMCP, client: BuildiumClient) -> None:
         Returns:
             Dictionary with leases list and metadata.
         """
-        # Build kwargs, only including optional parameters if they have values
-        kwargs = {
-            "limit": limit,
-            "offset": offset,
-        }
-        if property_id is not None:
-            kwargs["propertyid"] = property_id
+        result = await client.leases_api.external_api_leases_get_leases(
+            propertyids=[property_id] if property_id is not None else None,
+            leasestatuses=[lease_status] if lease_status is not None else None,
+            limit=limit,
+            offset=offset,
+        )
         if unit_id is not None:
-            kwargs["unitid"] = unit_id
-        if lease_status is not None:
-            kwargs["leasestatuses"] = [lease_status]
-
-        result = await client.leases_api.external_api_leases_get_leases(**kwargs)
-        if hasattr(result, "to_dict"):
-            return result.to_dict()
-        return result if isinstance(result, dict) else {"leases": result, "count": len(result)}
+            # The leases endpoint has no unit filter; filter the page here.
+            result = [lease for lease in result if lease.unit_id == unit_id]
+        return to_result(result, "leases")
 
     @mcp.tool()
     async def get_lease(lease_id: int) -> dict[str, Any]:
@@ -63,9 +61,7 @@ def register_lease_tools(mcp: FastMCP, client: BuildiumClient) -> None:
             Lease details as dictionary.
         """
         result = await client.leases_api.external_api_leases_get_lease_by_id(lease_id=lease_id)
-        if hasattr(result, "to_dict"):
-            return result.to_dict()
-        return result if isinstance(result, dict) else result
+        return to_result(result)
 
     @mcp.tool()
     async def create_lease(lease_data: dict[str, Any]) -> dict[str, Any]:
@@ -77,19 +73,12 @@ def register_lease_tools(mcp: FastMCP, client: BuildiumClient) -> None:
         Returns:
             Created lease details.
         """
-        try:
-            from mcp_server_buildium.buildium_sdk.models.lease_post_message import LeasePostMessage
-
-            lease_message = LeasePostMessage(**lease_data)
-        except ImportError:
-            lease_message = lease_data
+        lease_message = LeasePostMessage(**lease_data)
 
         result = await client.leases_api.external_api_leases_create_lease(
             lease_post_message=lease_message
         )
-        if hasattr(result, "to_dict"):
-            return result.to_dict()
-        return result if isinstance(result, dict) else result
+        return to_result(result)
 
     @mcp.tool()
     async def update_lease(lease_id: int, lease_data: dict[str, Any]) -> dict[str, Any]:
@@ -102,19 +91,12 @@ def register_lease_tools(mcp: FastMCP, client: BuildiumClient) -> None:
         Returns:
             Updated lease details.
         """
-        try:
-            from mcp_server_buildium.buildium_sdk.models.lease_put_message import LeasePutMessage
-
-            lease_message = LeasePutMessage(**lease_data)
-        except ImportError:
-            lease_message = lease_data
+        lease_message = LeasePutMessage(**lease_data)
 
         result = await client.leases_api.external_api_leases_update_lease(
             lease_id=lease_id, lease_put_message=lease_message
         )
-        if hasattr(result, "to_dict"):
-            return result.to_dict()
-        return result if isinstance(result, dict) else result
+        return to_result(result)
 
     @mcp.tool()
     async def list_lease_transactions(
@@ -130,15 +112,8 @@ def register_lease_tools(mcp: FastMCP, client: BuildiumClient) -> None:
         Returns:
             Dictionary with transactions list.
         """
-        # Use LeaseTransactionsApi from client
-        from mcp_server_buildium.buildium_sdk.api.lease_transactions_api import LeaseTransactionsApi
-
-        transactions_api = LeaseTransactionsApi(client._api_client)
-        result = await transactions_api.external_api_lease_transactions_get_lease_transactions(
+        api = client.lease_transactions_api
+        result = await api.external_api_lease_ledger_transactions_get_lease_ledgers(
             lease_id=lease_id, limit=limit, offset=offset
         )
-        if hasattr(result, "to_dict"):
-            return result.to_dict()
-        return (
-            result if isinstance(result, dict) else {"transactions": result, "count": len(result)}
-        )
+        return to_result(result, "transactions")

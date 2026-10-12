@@ -5,6 +5,11 @@ from typing import Any
 from fastmcp import FastMCP
 
 from ..buildium_client import BuildiumClient
+from ..buildium_sdk.models.association_tenant_post_message import AssociationTenantPostMessage
+from ..buildium_sdk.models.association_tenant_put_message import AssociationTenantPutMessage
+from ..buildium_sdk.models.rental_tenant_post_message import RentalTenantPostMessage
+from ..buildium_sdk.models.rental_tenant_put_message import RentalTenantPutMessage
+from ._result import to_result
 
 
 def register_tenant_tools(mcp: FastMCP, client: BuildiumClient) -> None:
@@ -25,24 +30,14 @@ def register_tenant_tools(mcp: FastMCP, client: BuildiumClient) -> None:
         offset: int = 0,
     ) -> dict[str, Any]:
         """List rental tenants from Buildium."""
-        # Build kwargs, only including optional parameters if they have values
-        kwargs = {
-            "limit": limit,
-            "offset": offset,
-        }
-        if property_id is not None:
-            kwargs["propertyid"] = property_id
-        if unit_id is not None:
-            kwargs["unitid"] = unit_id
-        if status is not None:
-            kwargs["status"] = status
-
         result = await client.rental_tenants_api.external_api_rental_tenants_get_all_tenants(
-            **kwargs
+            propertyids=[property_id] if property_id is not None else None,
+            unitids=[unit_id] if unit_id is not None else None,
+            leasetermstatuses=[status] if status is not None else None,
+            limit=limit,
+            offset=offset,
         )
-        if hasattr(result, "to_dict"):
-            return result.to_dict()
-        return result if isinstance(result, dict) else {"tenants": result, "count": len(result)}
+        return to_result(result, "tenants")
 
     @mcp.tool()
     async def get_rental_tenant(tenant_id: int) -> dict[str, Any]:
@@ -50,47 +45,27 @@ def register_tenant_tools(mcp: FastMCP, client: BuildiumClient) -> None:
         result = await client.rental_tenants_api.external_api_rental_tenants_get_tenant_by_id(
             tenant_id=tenant_id
         )
-        if hasattr(result, "to_dict"):
-            return result.to_dict()
-        return result if isinstance(result, dict) else result
+        return to_result(result)
 
     @mcp.tool()
     async def create_rental_tenant(tenant_data: dict[str, Any]) -> dict[str, Any]:
         """Create a new rental tenant."""
-        try:
-            from mcp_server_buildium.buildium_sdk.models.rental_tenant_post_message import (
-                RentalTenantPostMessage,
-            )
-
-            tenant_message = RentalTenantPostMessage(**tenant_data)
-        except ImportError:
-            tenant_message = tenant_data
+        tenant_message = RentalTenantPostMessage(**tenant_data)
 
         result = await client.rental_tenants_api.external_api_rental_tenants_create_rental_tenant(
             rental_tenant_post_message=tenant_message
         )
-        if hasattr(result, "to_dict"):
-            return result.to_dict()
-        return result if isinstance(result, dict) else result
+        return to_result(result)
 
     @mcp.tool()
     async def update_rental_tenant(tenant_id: int, tenant_data: dict[str, Any]) -> dict[str, Any]:
         """Update an existing rental tenant."""
-        try:
-            from mcp_server_buildium.buildium_sdk.models.rental_tenant_put_message import (
-                RentalTenantPutMessage,
-            )
-
-            tenant_message = RentalTenantPutMessage(**tenant_data)
-        except ImportError:
-            tenant_message = tenant_data
+        tenant_message = RentalTenantPutMessage(**tenant_data)
 
         result = await client.rental_tenants_api.external_api_rental_tenants_update_rental_tenant(
             tenant_id=tenant_id, rental_tenant_put_message=tenant_message
         )
-        if hasattr(result, "to_dict"):
-            return result.to_dict()
-        return result if isinstance(result, dict) else result
+        return to_result(result)
 
     # Association Tenants
     @mcp.tool()
@@ -101,59 +76,33 @@ def register_tenant_tools(mcp: FastMCP, client: BuildiumClient) -> None:
         offset: int = 0,
     ) -> dict[str, Any]:
         """List association tenants from Buildium."""
-        # Build kwargs, only including optional parameters if they have values
-        kwargs = {
-            "limit": limit,
-            "offset": offset,
-        }
-        if property_id is not None:
-            kwargs["propertyid"] = property_id
-        if status is not None:
-            kwargs["status"] = status
-
-        result = await client.association_tenants_api.external_api_association_tenants_get_association_tenants(
-            **kwargs
+        api = client.association_tenants_api
+        result = await api.external_api_association_tenants_get_association_tenants(
+            associationids=[property_id] if property_id is not None else None,
+            statuses=[status] if status is not None else None,
+            limit=limit,
+            offset=offset,
         )
-        if hasattr(result, "to_dict"):
-            return result.to_dict()
-        return result if isinstance(result, dict) else {"tenants": result, "count": len(result)}
+        return to_result(result, "tenants")
 
     @mcp.tool()
     async def create_association_tenant(tenant_data: dict[str, Any]) -> dict[str, Any]:
         """Create a new association tenant."""
-        try:
-            from mcp_server_buildium.buildium_sdk.models.association_tenant_post_message import (
-                AssociationTenantPostMessage,
-            )
-
-            tenant_message = AssociationTenantPostMessage(**tenant_data)
-        except ImportError:
-            tenant_message = tenant_data
+        tenant_message = AssociationTenantPostMessage(**tenant_data)
 
         result = await client.association_tenants_api.external_api_association_tenants_create_association_tenant(
             association_tenant_post_message=tenant_message
         )
-        if hasattr(result, "to_dict"):
-            return result.to_dict()
-        return result if isinstance(result, dict) else result
+        return to_result(result)
 
     @mcp.tool()
     async def update_association_tenant(
         tenant_id: int, tenant_data: dict[str, Any]
     ) -> dict[str, Any]:
         """Update an existing association tenant."""
-        try:
-            from mcp_server_buildium.buildium_sdk.models.association_tenant_put_message import (
-                AssociationTenantPutMessage,
-            )
-
-            tenant_message = AssociationTenantPutMessage(**tenant_data)
-        except ImportError:
-            tenant_message = tenant_data
+        tenant_message = AssociationTenantPutMessage(**tenant_data)
 
         result = await client.association_tenants_api.external_api_association_tenants_update_association_tenant(
             tenant_id=tenant_id, association_tenant_put_message=tenant_message
         )
-        if hasattr(result, "to_dict"):
-            return result.to_dict()
-        return result if isinstance(result, dict) else result
+        return to_result(result)

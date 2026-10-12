@@ -1,42 +1,77 @@
 """Configuration management for Buildium MCP Server."""
 
-from dotenv import load_dotenv
-from pydantic import Field
-from pydantic_settings import BaseSettings
+from urllib.parse import urlsplit
 
-# Load .env file if it exists
-load_dotenv()
+from pydantic import Field, SecretStr, field_validator
+from pydantic_settings import BaseSettings, SettingsConfigDict
+
+DEFAULT_BASE_URL = "https://api.buildium.com"
 
 
 class BuildiumConfig(BaseSettings):
     """Buildium API key configuration (API key headers, not OAuth)."""
 
+    model_config = SettingsConfigDict(
+        env_prefix="BUILDIUM_",
+        case_sensitive=False,
+        env_file=".env",
+        env_file_encoding="utf-8",
+        # Ignore extra fields like the old BUILDIUM_SCOPE and BUILDIUM_TOKEN_URL.
+        extra="ignore",
+    )
+
     base_url: str = Field(
-        default="https://api.buildium.com",
-        description="Buildium API base URL without /v1 (prod: https://api.buildium.com, sandbox: https://apisandbox.buildium.com). The SDK adds /v1 to paths automatically.",
+        default=DEFAULT_BASE_URL,
+        description=(
+            "Buildium API base URL without /v1 (prod: https://api.buildium.com, "
+            "sandbox: https://apisandbox.buildium.com). The SDK adds /v1 to paths. "
+            "Must use https, because every request carries the client secret."
+        ),
     )
     client_id: str = Field(
-        ..., description="Buildium API client ID (used as x-buildium-client-id header)"
+        ..., min_length=1, description="Buildium API client ID (x-buildium-client-id header)"
     )
-    client_secret: str = Field(
-        ..., description="Buildium API client secret (used as x-buildium-client-secret header)"
+    client_secret: SecretStr = Field(
+        ..., description="Buildium API client secret (x-buildium-client-secret header)"
     )
     categories: str | None = Field(
         default=None,
-        description="Comma-separated list of tool categories to enable (e.g., 'associations,leases,rentals'). If not specified, all categories are enabled.",
+        description=(
+            "Comma-separated list of tool categories to enable "
+            "(e.g., 'associations,leases,rentals'). If not set, all categories are enabled."
+        ),
     )
 
-    model_config = {
-        "env_prefix": "BUILDIUM_",
-        "case_sensitive": False,
-        "env_file": ".env",
-        "env_file_encoding": "utf-8",
-        "extra": "ignore",  # Ignore extra fields like old BUILDIUM_SCOPE, BUILDIUM_TOKEN_CACHE_ENABLED
-    }
+    @field_validator("base_url", mode="before")
+    @classmethod
+    def _default_empty_base_url(cls, value: object) -> object:
+        # Deployments that template the variable (connectorhub) set it to ""
+        # when no URL is configured; treat that as unset.
+        if isinstance(value, str) and not value.strip():
+            return DEFAULT_BASE_URL
+        return value
+
+    @field_validator("base_url")
+    @classmethod
+    def _require_https(cls, value: str) -> str:
+        value = value.strip()
+        parts = urlsplit(value)
+        if parts.scheme != "https" or not parts.hostname:
+            raise ValueError("base_url must be an https:// URL with a host")
+        if parts.username or parts.password or parts.query or parts.fragment:
+            raise ValueError("base_url must not contain credentials, a query or a fragment")
+        return value
+
+    @field_validator("client_secret")
+    @classmethod
+    def _require_secret(cls, value: SecretStr) -> SecretStr:
+        if not value.get_secret_value():
+            raise ValueError("client_secret must not be empty")
+        return value
 
     @classmethod
     def from_env(cls) -> "BuildiumConfig":
-        """Load configuration from environment variables."""
+        """Load configuration from environment variables (and a .env file, if present)."""
         return cls()
 
     def get_enabled_categories(self) -> set[str] | None:
