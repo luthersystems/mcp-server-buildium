@@ -5,6 +5,10 @@ on:
     branches: [main]
   pull_request:
     branches: ["**"]
+  # Weekly, so an expired or rotated Buildium key shows up without a push.
+  schedule:
+    - cron: "17 6 * * 1"
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -83,13 +87,16 @@ jobs:
           VIRTUAL_ENV=/tmp/wheel-venv uv pip install dist/*.whl
           /tmp/wheel-venv/bin/python -c "import mcp_server_buildium.server as s; assert len(s.CATEGORIES) == 12"
 
-  # Runs against the real Buildium API only where the repository's secrets
-  # are available (pushes to main and same-repository pull requests).
+  # Runs against the live Buildium API with the repository's key, on main,
+  # weekly and by hand. Pull requests do not run it: whether a PR can merge
+  # should not depend on a third-party account's key, and the offline tests
+  # above check the requests each tool sends. Run it on a PR's branch with
+  # "Run workflow" when a change needs a live check.
   integration:
     name: Integration tests
     runs-on: ubuntu-latest
     timeout-minutes: 10
-    if: github.event_name == 'push' || github.event.pull_request.head.repo.full_name == github.repository
+    if: github.event_name != 'pull_request'
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
         with:
