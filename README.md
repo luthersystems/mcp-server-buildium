@@ -509,8 +509,8 @@ and a request model, that the generated SDK actually has.
 ### CI
 
 `.github/workflows/ci.yml` runs lint, mypy, the unit tests on Python 3.11 to
-3.13, a package build with a wheel smoke test, and the integration tests where
-the repository's Buildium secrets are available.
+3.13, a package build with a wheel smoke test, and, on `main`, weekly and by
+hand, the integration tests against the live Buildium API.
 `.github/workflows/vulnerability-scan.yml` runs pip-audit on every pull
 request, on `main` and daily. Dependabot keeps the Python dependencies and the
 SHA-pinned GitHub Actions current.
@@ -555,9 +555,13 @@ To run integration tests in GitHub Actions:
      * `BUILDIUM_CLIENT_ID`: Your client ID
      * `BUILDIUM_CLIENT_SECRET`: Your client secret
 
-2. **The CI workflow will automatically run integration tests** when these secrets are present
+2. **The CI workflow runs the integration tests** on pushes to `main`, every
+   Monday, and when started by hand (**Actions** → **CI** → **Run workflow**,
+   which also works on a pull request's branch). Without the secrets they skip.
 
-**Note**: The integration tests are skipped in pull requests from forks, which get no secrets, and run on pushes to `main` and on pull requests from this repository.
+**Note**: Pull requests do not run the integration tests, so a merge never
+waits on the Buildium key. The offline unit tests check the request every tool
+sends.
 
 **What the integration tests verify:**
 
