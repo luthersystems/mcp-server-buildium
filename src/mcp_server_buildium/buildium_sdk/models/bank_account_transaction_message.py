@@ -31,11 +31,11 @@ class BankAccountTransactionMessage(BaseModel):
     """ # noqa: E501
     id: Optional[StrictInt] = Field(default=None, description="Transaction unique identifier.", alias="Id")
     entry_date: Optional[date] = Field(default=None, description="Date of the transaction.", alias="EntryDate")
-    transaction_type: Optional[StrictStr] = Field(default=None, description="Type of transaction.", alias="TransactionType")
+    transaction_type: Optional[Union[StrictStr, StrictInt]] = Field(default=None, description="Type of transaction.", alias="TransactionType")
     check_number: Optional[StrictStr] = Field(default=None, description="Check number associated with the transaction, if applicable.", alias="CheckNumber")
     memo: Optional[StrictStr] = Field(default=None, description="Memo associated with the transaction, if applicable.", alias="Memo")
     amount: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The total amount of the transaction.", alias="Amount")
-    reconciliation_status: Optional[StrictStr] = Field(default=None, description="Indicates the reconciliation status of the transaction.", alias="ReconciliationStatus")
+    reconciliation_status: Optional[Union[StrictStr, StrictInt]] = Field(default=None, description="Indicates the reconciliation status of the transaction.", alias="ReconciliationStatus")
     paid_by: Optional[List[PaidByMessage]] = Field(default=None, description="The entity that made the payment.", alias="PaidBy")
     paid_to: Optional[List[PayeeMessage]] = Field(default=None, description="The entity that received the payment.", alias="PaidTo")
     balance: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The bank account balance after this transaction was applied.", alias="Balance")
@@ -44,6 +44,7 @@ class BankAccountTransactionMessage(BaseModel):
     @field_validator('transaction_type')
     def transaction_type_validate_enum(cls, value):
         """Validates the enum"""
+        return value  # lenient response enum
         if value is None:
             return value
 
@@ -54,6 +55,7 @@ class BankAccountTransactionMessage(BaseModel):
     @field_validator('reconciliation_status')
     def reconciliation_status_validate_enum(cls, value):
         """Validates the enum"""
+        return value  # lenient response enum
         if value is None:
             return value
 

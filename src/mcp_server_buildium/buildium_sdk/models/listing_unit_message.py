@@ -31,18 +31,19 @@ class ListingUnitMessage(BaseModel):
     id: Optional[StrictInt] = Field(default=None, description="Rental unit unique identifier.", alias="Id")
     unit_number: Optional[StrictStr] = Field(default=None, description="Unit number.", alias="UnitNumber")
     address: Optional[AddressMessage] = Field(default=None, description="Address of the unit.", alias="Address")
-    unit_bedrooms: Optional[StrictStr] = Field(default=None, description="Number of bedrooms in the unit. Null if no value is set.", alias="UnitBedrooms")
-    unit_bathrooms: Optional[StrictStr] = Field(default=None, description="Number of bathrooms in the unit. Null if no value is set.", alias="UnitBathrooms")
+    unit_bedrooms: Optional[Union[StrictStr, StrictInt]] = Field(default=None, description="Number of bedrooms in the unit. Null if no value is set.", alias="UnitBedrooms")
+    unit_bathrooms: Optional[Union[StrictStr, StrictInt]] = Field(default=None, description="Number of bathrooms in the unit. Null if no value is set.", alias="UnitBathrooms")
     unit_size: Optional[StrictInt] = Field(default=None, description="Size of the unit. Null if no value is set.", alias="UnitSize")
     description: Optional[StrictStr] = Field(default=None, description="Description of the unit.", alias="Description")
     market_rent: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Market rent of the unit. This value is separate from the lease rent and is typically used for rental listings. Null if no value is set.", alias="MarketRent")
-    features: Optional[List[StrictStr]] = Field(default=None, description="List of features for the unit.", alias="Features")
+    features: Optional[List[Union[StrictStr, StrictInt]]] = Field(default=None, description="List of features for the unit.", alias="Features")
     files: Optional[List[ListingFileMessage]] = Field(default=None, description="List of media files associated with the unit.", alias="Files")
     __properties: ClassVar[List[str]] = ["Id", "UnitNumber", "Address", "UnitBedrooms", "UnitBathrooms", "UnitSize", "Description", "MarketRent", "Features", "Files"]
 
     @field_validator('unit_bedrooms')
     def unit_bedrooms_validate_enum(cls, value):
         """Validates the enum"""
+        return value  # lenient response enum
         if value is None:
             return value
 
@@ -53,6 +54,7 @@ class ListingUnitMessage(BaseModel):
     @field_validator('unit_bathrooms')
     def unit_bathrooms_validate_enum(cls, value):
         """Validates the enum"""
+        return value  # lenient response enum
         if value is None:
             return value
 
@@ -63,6 +65,7 @@ class ListingUnitMessage(BaseModel):
     @field_validator('features')
     def features_validate_enum(cls, value):
         """Validates the enum"""
+        return value  # lenient response enum
         if value is None:
             return value
 

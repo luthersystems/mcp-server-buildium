@@ -1,7 +1,10 @@
 """Buildium API client using the generated SDK."""
 
+import logging
+from types import TracebackType
+
 from .config import BuildiumConfig
-from .sdk_imports import (  # noqa: E402
+from .sdk_imports import (
     ApiClient,
     ApplicantsApi,
     AssociationOwnersApi,
@@ -10,9 +13,13 @@ from .sdk_imports import (  # noqa: E402
     AssociationUnitsApi,
     BankAccountsApi,
     BillsApi,
+    BoardMembersApi,
     Configuration,
     FilesApi,
     LeasesApi,
+    LeaseTransactionsApi,
+    ListingsApi,
+    OwnershipAccountsApi,
     RentalOwnersApi,
     RentalPropertiesApi,
     RentalTenantsApi,
@@ -20,6 +27,8 @@ from .sdk_imports import (  # noqa: E402
     TasksApi,
     VendorsApi,
 )
+
+logger = logging.getLogger(__name__)
 
 
 class BuildiumClient:
@@ -32,15 +41,23 @@ class BuildiumClient:
             config: Buildium configuration. If None, loads from environment.
         """
         self.config = config or BuildiumConfig.from_env()
-        self._sdk_config: Configuration | None = None
-        self._api_client: ApiClient | None = None
-
-        # Initialize SDK configuration and API client
-        self._initialize_sdk()
+        self._sdk_config = self._build_sdk_config()
+        self._api_client = ApiClient(self._sdk_config)
+        # Buildium authenticates with API key headers, not OAuth.
+        self._api_client.set_default_header("x-buildium-client-id", self.config.client_id)
+        self._api_client.set_default_header(
+            "x-buildium-client-secret", self.config.client_secret.get_secret_value()
+        )
+        # Never log the default headers: they hold the client secret.
+        logger.debug("Initialized Buildium client for %s", self._sdk_config.host)
 
         # Initialize API clients
         self.associations_api = AssociationsApi(self._api_client)
         self.leases_api = LeasesApi(self._api_client)
+        self.lease_transactions_api = LeaseTransactionsApi(self._api_client)
+        self.listings_api = ListingsApi(self._api_client)
+        self.board_members_api = BoardMembersApi(self._api_client)
+        self.ownership_accounts_api = OwnershipAccountsApi(self._api_client)
         self.rentals_api = RentalPropertiesApi(self._api_client)
         self.applicants_api = ApplicantsApi(self._api_client)
         self.rental_tenants_api = RentalTenantsApi(self._api_client)
@@ -55,38 +72,29 @@ class BuildiumClient:
         self.files_api = FilesApi(self._api_client)
         self.bank_accounts_api = BankAccountsApi(self._api_client)
 
-    def _initialize_sdk(self) -> None:
-        """Initialize the SDK configuration and API client with API key headers."""
-        # The SDK's generated paths already include /v1, so base_url should NOT include /v1
-        # e.g., base_url should be https://apisandbox.buildium.com (not .../v1)
+    def _build_sdk_config(self) -> Configuration:
+        """Build the SDK configuration.
+
+        The SDK's generated paths already include /v1, so the host must not.
+        """
         base_url = self.config.base_url.rstrip("/")
-        # Remove /v1 if it's in the base_url (the SDK paths already include it)
-        if base_url.endswith("/v1"):
-            base_url = base_url[:-3]  # Remove /v1
-
-        self._sdk_config = Configuration(host=base_url)
-        self._api_client = ApiClient(self._sdk_config)
-        # Set API key headers as default headers (Buildium uses headers, not OAuth)
-        self._api_client.set_default_header("x-buildium-client-id", self.config.client_id)
-        self._api_client.set_default_header("x-buildium-client-secret", self.config.client_secret)
-
-        # Log initialization details
-        import logging
-
-        logger = logging.getLogger(__name__)
-        logger.debug("Initialized Buildium client:")
-        logger.debug("  Base URL: %s", base_url)
-        logger.debug("  Default headers: %s", self._api_client.default_headers)
+        base_url = base_url.removesuffix("/v1")
+        return Configuration(host=base_url)
 
     async def close(self) -> None:
         """Close the API client."""
         if self._api_client:
             await self._api_client.close()
 
-    def __enter__(self):
-        """Context manager entry."""
+    async def __aenter__(self) -> "BuildiumClient":
+        """Async context manager entry."""
         return self
 
-    def __exit__(self, exc_type, exc_val, exc_tb):
-        """Context manager exit."""
-        self.close()
+    async def __aexit__(
+        self,
+        exc_type: type[BaseException] | None,
+        exc_val: BaseException | None,
+        exc_tb: TracebackType | None,
+    ) -> None:
+        """Async context manager exit: close the HTTP client."""
+        await self.close()

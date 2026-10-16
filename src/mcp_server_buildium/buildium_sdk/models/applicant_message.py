@@ -19,7 +19,7 @@ import json
 
 from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_validator
-from typing import Any, ClassVar, Dict, List, Optional
+from typing import Any, ClassVar, Dict, List, Optional, Union
 from mcp_server_buildium.buildium_sdk.models.applicant_application_message import ApplicantApplicationMessage
 from mcp_server_buildium.buildium_sdk.models.phone_number_message import PhoneNumberMessage
 from typing import Optional, Set
@@ -38,7 +38,7 @@ class ApplicantMessage(BaseModel):
     last_name: Optional[StrictStr] = Field(default=None, description="Applicant last name.", alias="LastName")
     email: Optional[StrictStr] = Field(default=None, description="Applicant email address.", alias="Email")
     phone_numbers: Optional[List[PhoneNumberMessage]] = Field(default=None, description="Applicant phone numbers.", alias="PhoneNumbers")
-    status: Optional[StrictStr] = Field(default=None, description="Applicant status.", alias="Status")
+    status: Optional[Union[StrictStr, StrictInt]] = Field(default=None, description="Applicant status.", alias="Status")
     applications: Optional[List[ApplicantApplicationMessage]] = Field(default=None, description="A collection of applications associated with the applicant.", alias="Applications")
     last_updated_date_time: Optional[datetime] = Field(default=None, description="Date and time the applicant was last updated.", alias="LastUpdatedDateTime")
     __properties: ClassVar[List[str]] = ["Id", "ApplicantGroupId", "PropertyId", "UnitId", "TenantId", "FirstName", "LastName", "Email", "PhoneNumbers", "Status", "Applications", "LastUpdatedDateTime"]
@@ -46,6 +46,7 @@ class ApplicantMessage(BaseModel):
     @field_validator('status')
     def status_validate_enum(cls, value):
         """Validates the enum"""
+        return value  # lenient response enum
         if value is None:
             return value
 

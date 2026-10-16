@@ -17,8 +17,8 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
-from typing import Any, ClassVar, Dict, List, Optional
+from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator, StrictInt
+from typing import Any, ClassVar, Dict, List, Optional, Union
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -26,8 +26,8 @@ class ApplicationResponseFieldMessage(BaseModel):
     """
     ApplicationResponseFieldMessage
     """ # noqa: E501
-    field_category_type: Optional[StrictStr] = Field(default=None, description="Indicates the field category type the field is assigned. The `FieldCategoryType` can be used to identify specific data points within the application. For example, to identify the fields that contain the applicants full name you would filter the fields within the application where the `FieldCategoryType` is equal to `ApplicantName`.", alias="FieldCategoryType")
-    field_type: Optional[StrictStr] = Field(default=None, description="Indicates the fields expected input value format and/or data type. For example, a field can be assigned a `FieldType` of `DateDayMonthYear` which indicates the input value must be a date containing a day, month and year.", alias="FieldType")
+    field_category_type: Optional[Union[StrictStr, StrictInt]] = Field(default=None, description="Indicates the field category type the field is assigned. The `FieldCategoryType` can be used to identify specific data points within the application. For example, to identify the fields that contain the applicants full name you would filter the fields within the application where the `FieldCategoryType` is equal to `ApplicantName`.", alias="FieldCategoryType")
+    field_type: Optional[Union[StrictStr, StrictInt]] = Field(default=None, description="Indicates the fields expected input value format and/or data type. For example, a field can be assigned a `FieldType` of `DateDayMonthYear` which indicates the input value must be a date containing a day, month and year.", alias="FieldType")
     field_label: Optional[StrictStr] = Field(default=None, description="A user defined description of the field. This value is typically displayed as the form field label on the application.", alias="FieldLabel")
     value: Optional[StrictStr] = Field(default=None, description="The field input value from the applicant.", alias="Value")
     __properties: ClassVar[List[str]] = ["FieldCategoryType", "FieldType", "FieldLabel", "Value"]
@@ -35,6 +35,7 @@ class ApplicationResponseFieldMessage(BaseModel):
     @field_validator('field_category_type')
     def field_category_type_validate_enum(cls, value):
         """Validates the enum"""
+        return value  # lenient response enum
         if value is None:
             return value
 
@@ -45,6 +46,7 @@ class ApplicationResponseFieldMessage(BaseModel):
     @field_validator('field_type')
     def field_type_validate_enum(cls, value):
         """Validates the enum"""
+        return value  # lenient response enum
         if value is None:
             return value
 

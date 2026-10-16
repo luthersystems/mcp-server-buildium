@@ -19,7 +19,7 @@ import json
 
 from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_validator
-from typing import Any, ClassVar, Dict, List, Optional
+from typing import Any, ClassVar, Dict, List, Optional, Union
 from mcp_server_buildium.buildium_sdk.models.created_by_user_message import CreatedByUserMessage
 from mcp_server_buildium.buildium_sdk.models.last_updated_by_user_message import LastUpdatedByUserMessage
 from typing import Optional, Set
@@ -34,8 +34,8 @@ class AssociationArchitecturalRequestMessage(BaseModel):
     ownership_account_id: Optional[StrictInt] = Field(default=None, description="Ownership account unique identifier.", alias="OwnershipAccountId")
     name: Optional[StrictStr] = Field(default=None, description="Architectural request name.", alias="Name")
     submitted_date_time: Optional[datetime] = Field(default=None, description="Date and time the architectural request was submitted.", alias="SubmittedDateTime")
-    status: Optional[StrictStr] = Field(default=None, description="Status of the architectural request.", alias="Status")
-    decision: Optional[StrictStr] = Field(default=None, description="Decision of the architectural request.", alias="Decision")
+    status: Optional[Union[StrictStr, StrictInt]] = Field(default=None, description="Status of the architectural request.", alias="Status")
+    decision: Optional[Union[StrictStr, StrictInt]] = Field(default=None, description="Decision of the architectural request.", alias="Decision")
     created_date_time: Optional[datetime] = Field(default=None, description="Date and time the architectural request was created.", alias="CreatedDateTime")
     created_by_user: Optional[CreatedByUserMessage] = Field(default=None, description="User who created the architectural request.", alias="CreatedByUser")
     last_updated_date_time: Optional[datetime] = Field(default=None, description="Date and time the architectural request was last updated.", alias="LastUpdatedDateTime")
@@ -45,6 +45,7 @@ class AssociationArchitecturalRequestMessage(BaseModel):
     @field_validator('status')
     def status_validate_enum(cls, value):
         """Validates the enum"""
+        return value  # lenient response enum
         if value is None:
             return value
 
@@ -55,6 +56,7 @@ class AssociationArchitecturalRequestMessage(BaseModel):
     @field_validator('decision')
     def decision_validate_enum(cls, value):
         """Validates the enum"""
+        return value  # lenient response enum
         if value is None:
             return value
 

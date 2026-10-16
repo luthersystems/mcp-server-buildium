@@ -17,8 +17,8 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
-from typing import Any, ClassVar, Dict, List, Optional
+from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator, StrictInt
+from typing import Any, ClassVar, Dict, List, Optional, Union
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -26,13 +26,14 @@ class RentalFeaturesMessage(BaseModel):
     """
     Rental property amenities.
     """ # noqa: E501
-    features: Optional[List[StrictStr]] = Field(default=None, description="A list of overall property amenities.", alias="Features")
-    included_in_rent: Optional[List[StrictStr]] = Field(default=None, description="A list of amenities that are included in rent.", alias="IncludedInRent")
+    features: Optional[List[Union[StrictStr, StrictInt]]] = Field(default=None, description="A list of overall property amenities.", alias="Features")
+    included_in_rent: Optional[List[Union[StrictStr, StrictInt]]] = Field(default=None, description="A list of amenities that are included in rent.", alias="IncludedInRent")
     __properties: ClassVar[List[str]] = ["Features", "IncludedInRent"]
 
     @field_validator('features')
     def features_validate_enum(cls, value):
         """Validates the enum"""
+        return value  # lenient response enum
         if value is None:
             return value
 
@@ -44,6 +45,7 @@ class RentalFeaturesMessage(BaseModel):
     @field_validator('included_in_rent')
     def included_in_rent_validate_enum(cls, value):
         """Validates the enum"""
+        return value  # lenient response enum
         if value is None:
             return value
 

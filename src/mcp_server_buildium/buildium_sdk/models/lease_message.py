@@ -19,7 +19,7 @@ import json
 
 from datetime import date, datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr, field_validator
-from typing import Any, ClassVar, Dict, List, Optional
+from typing import Any, ClassVar, Dict, List, Optional, Union
 from mcp_server_buildium.buildium_sdk.models.cosigner_message import CosignerMessage
 from mcp_server_buildium.buildium_sdk.models.lease_account_detail_message import LeaseAccountDetailMessage
 from mcp_server_buildium.buildium_sdk.models.lease_move_out_data_message import LeaseMoveOutDataMessage
@@ -37,11 +37,11 @@ class LeaseMessage(BaseModel):
     unit_number: Optional[StrictStr] = Field(default=None, description="Unit number specified in the lease.", alias="UnitNumber")
     lease_from_date: Optional[date] = Field(default=None, description="Start date of the lease.", alias="LeaseFromDate")
     lease_to_date: Optional[date] = Field(default=None, description="End date of the lease.", alias="LeaseToDate")
-    lease_type: Optional[StrictStr] = Field(default=None, description="Describes the type of lease.", alias="LeaseType")
-    lease_status: Optional[StrictStr] = Field(default=None, description="Indicates the status of the lease.", alias="LeaseStatus")
+    lease_type: Optional[Union[StrictStr, StrictInt]] = Field(default=None, description="Describes the type of lease.", alias="LeaseType")
+    lease_status: Optional[Union[StrictStr, StrictInt]] = Field(default=None, description="Indicates the status of the lease.", alias="LeaseStatus")
     is_eviction_pending: Optional[StrictBool] = Field(default=None, description="Indicates whether the lease has an eviction pending.", alias="IsEvictionPending")
-    term_type: Optional[StrictStr] = Field(default=None, description="Describes the term type of the lease.", alias="TermType")
-    renewal_offer_status: Optional[StrictStr] = Field(default=None, description="Describes the status of the renewal offer. Null if no renewal offer exists.", alias="RenewalOfferStatus")
+    term_type: Optional[Union[StrictStr, StrictInt]] = Field(default=None, description="Describes the term type of the lease.", alias="TermType")
+    renewal_offer_status: Optional[Union[StrictStr, StrictInt]] = Field(default=None, description="Describes the status of the renewal offer. Null if no renewal offer exists.", alias="RenewalOfferStatus")
     current_tenants: Optional[List[TenantMessage]] = Field(default=None, description="List of the current tenants on the lease.", alias="CurrentTenants")
     current_number_of_occupants: Optional[StrictInt] = Field(default=None, description="Count of current tenants.", alias="CurrentNumberOfOccupants")
     account_details: Optional[LeaseAccountDetailMessage] = Field(default=None, description="Financial details of the lease.", alias="AccountDetails")
@@ -57,6 +57,7 @@ class LeaseMessage(BaseModel):
     @field_validator('lease_type')
     def lease_type_validate_enum(cls, value):
         """Validates the enum"""
+        return value  # lenient response enum
         if value is None:
             return value
 
@@ -67,6 +68,7 @@ class LeaseMessage(BaseModel):
     @field_validator('lease_status')
     def lease_status_validate_enum(cls, value):
         """Validates the enum"""
+        return value  # lenient response enum
         if value is None:
             return value
 
@@ -77,6 +79,7 @@ class LeaseMessage(BaseModel):
     @field_validator('term_type')
     def term_type_validate_enum(cls, value):
         """Validates the enum"""
+        return value  # lenient response enum
         if value is None:
             return value
 
@@ -87,6 +90,7 @@ class LeaseMessage(BaseModel):
     @field_validator('renewal_offer_status')
     def renewal_offer_status_validate_enum(cls, value):
         """Validates the enum"""
+        return value  # lenient response enum
         if value is None:
             return value
 

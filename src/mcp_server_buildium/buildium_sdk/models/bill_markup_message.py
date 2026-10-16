@@ -27,12 +27,13 @@ class BillMarkupMessage(BaseModel):
     Bill mark up.
     """ # noqa: E501
     amount: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The mark up amount.", alias="Amount")
-    type: Optional[StrictStr] = Field(default=None, description="The markup type.", alias="Type")
+    type: Optional[Union[StrictStr, StrictInt]] = Field(default=None, description="The markup type.", alias="Type")
     __properties: ClassVar[List[str]] = ["Amount", "Type"]
 
     @field_validator('type')
     def type_validate_enum(cls, value):
         """Validates the enum"""
+        return value  # lenient response enum
         if value is None:
             return value
 

@@ -18,7 +18,7 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_validator
-from typing import Any, ClassVar, Dict, List, Optional
+from typing import Any, ClassVar, Dict, List, Optional, Union
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -27,13 +27,14 @@ class BillPaymentAccountingEntityMessage(BaseModel):
     The accounting entity associated with the payment line item.
     """ # noqa: E501
     id: Optional[StrictInt] = Field(default=None, description="The accounting entity unique identifier.", alias="Id")
-    accounting_entity_type: Optional[StrictStr] = Field(default=None, description="Indicates the type of the accounting entity.", alias="AccountingEntityType")
+    accounting_entity_type: Optional[Union[StrictStr, StrictInt]] = Field(default=None, description="Indicates the type of the accounting entity.", alias="AccountingEntityType")
     unit_id: Optional[StrictInt] = Field(default=None, description="The unit unique identifier for the accounting entity", alias="UnitId")
     __properties: ClassVar[List[str]] = ["Id", "AccountingEntityType", "UnitId"]
 
     @field_validator('accounting_entity_type')
     def accounting_entity_type_validate_enum(cls, value):
         """Validates the enum"""
+        return value  # lenient response enum
         if value is None:
             return value
 

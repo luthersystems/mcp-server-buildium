@@ -18,7 +18,7 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_validator
-from typing import Any, ClassVar, Dict, List, Optional
+from typing import Any, ClassVar, Dict, List, Optional, Union
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -31,13 +31,14 @@ class RetailCashUserDataMessage(BaseModel):
     last_name: Optional[StrictStr] = Field(default=None, description="User last name.", alias="LastName")
     email: Optional[StrictStr] = Field(default=None, description="User email address.", alias="Email")
     phone: Optional[StrictStr] = Field(default=None, description="User phone number.", alias="Phone")
-    user_type: Optional[StrictStr] = Field(default=None, description="User type.", alias="UserType")
+    user_type: Optional[Union[StrictStr, StrictInt]] = Field(default=None, description="User type.", alias="UserType")
     href: Optional[StrictStr] = Field(default=None, description="A link to the resource endpoint associated with the user.", alias="Href")
     __properties: ClassVar[List[str]] = ["Id", "FirstName", "LastName", "Email", "Phone", "UserType", "Href"]
 
     @field_validator('user_type')
     def user_type_validate_enum(cls, value):
         """Validates the enum"""
+        return value  # lenient response enum
         if value is None:
             return value
 

@@ -32,14 +32,14 @@ class OwnershipAccountRecurringPaymentMessage(BaseModel):
     id: Optional[StrictInt] = Field(default=None, description="The unique identifier of the recurring payment schedule.", alias="Id")
     ownership_account_id: Optional[StrictInt] = Field(default=None, description="The unique identifier of the ownership account that the recurring payment will be applied to.", alias="OwnershipAccountId")
     payer: Optional[PayeeMessage] = Field(default=None, description="User information for the resident making the payment.", alias="Payer")
-    payment_method: Optional[StrictStr] = Field(default=None, description="The method of payment for the transaction.", alias="PaymentMethod")
+    payment_method: Optional[Union[StrictStr, StrictInt]] = Field(default=None, description="The method of payment for the transaction.", alias="PaymentMethod")
     lines: Optional[List[RecurringTransactionLineMessage]] = Field(default=None, description="Line items describing how the payment is to be allocated when the recurring transaction is processed.", alias="Lines")
     amount: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The total amount of the recurring payment based on sum of the `Lines.Amount`.", alias="Amount")
     first_occurrence_date: Optional[date] = Field(default=None, description="The date the first occurence this payment was processed.", alias="FirstOccurrenceDate")
     next_occurrence_date: Optional[date] = Field(default=None, description="The next date the scheduled payment will be processed.", alias="NextOccurrenceDate")
     post_days_in_advance: Optional[StrictInt] = Field(default=None, description="Specifies the number of days ahead of the transaction date the payment will post on the lease ledger. This setting can be used to add the payment to the ledger ahead of the due date for visibility. For example, if the `FirstOccurrenceDate` is set to 8/10/2022 and this value is set to 5 then the charge will added to the ledger on 8/5/2022, but will have transaction date of 8/10/2022.", alias="PostDaysInAdvance")
-    frequency: Optional[StrictStr] = Field(default=None, description="Specifies the frequency at which the recurring payment will be processed.", alias="Frequency")
-    duration: Optional[StrictStr] = Field(default=None, description="Specifies the period of time/occurrences the recurring payment will be processed. Note, if the `Frequency` field is set to `OneTime` this field should be set to `NULL` as any submitted value will be ignored.", alias="Duration")
+    frequency: Optional[Union[StrictStr, StrictInt]] = Field(default=None, description="Specifies the frequency at which the recurring payment will be processed.", alias="Frequency")
+    duration: Optional[Union[StrictStr, StrictInt]] = Field(default=None, description="Specifies the period of time/occurrences the recurring payment will be processed. Note, if the `Frequency` field is set to `OneTime` this field should be set to `NULL` as any submitted value will be ignored.", alias="Duration")
     occurrences_remaining: Optional[StrictInt] = Field(default=None, description="The number of remaining times this recurring payment will be processed.", alias="OccurrencesRemaining")
     memo: Optional[StrictStr] = Field(default=None, description="Memo associated with the recurring payment.", alias="Memo")
     __properties: ClassVar[List[str]] = ["Id", "OwnershipAccountId", "Payer", "PaymentMethod", "Lines", "Amount", "FirstOccurrenceDate", "NextOccurrenceDate", "PostDaysInAdvance", "Frequency", "Duration", "OccurrencesRemaining", "Memo"]
@@ -47,6 +47,7 @@ class OwnershipAccountRecurringPaymentMessage(BaseModel):
     @field_validator('payment_method')
     def payment_method_validate_enum(cls, value):
         """Validates the enum"""
+        return value  # lenient response enum
         if value is None:
             return value
 
@@ -57,6 +58,7 @@ class OwnershipAccountRecurringPaymentMessage(BaseModel):
     @field_validator('frequency')
     def frequency_validate_enum(cls, value):
         """Validates the enum"""
+        return value  # lenient response enum
         if value is None:
             return value
 
@@ -67,6 +69,7 @@ class OwnershipAccountRecurringPaymentMessage(BaseModel):
     @field_validator('duration')
     def duration_validate_enum(cls, value):
         """Validates the enum"""
+        return value  # lenient response enum
         if value is None:
             return value
 

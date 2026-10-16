@@ -18,7 +18,7 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr, field_validator
-from typing import Any, ClassVar, Dict, List, Optional
+from typing import Any, ClassVar, Dict, List, Optional, Union
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -26,7 +26,7 @@ class RequestedByUserEntityMessage(BaseModel):
     """
     Entity information for the user that submitted the task request.
     """ # noqa: E501
-    type: Optional[StrictStr] = Field(default=None, description="Entity type.", alias="Type")
+    type: Optional[Union[StrictStr, StrictInt]] = Field(default=None, description="Entity type.", alias="Type")
     id: Optional[StrictInt] = Field(default=None, description="Entity identifier.", alias="Id")
     first_name: Optional[StrictStr] = Field(default=None, description="First name.", alias="FirstName")
     last_name: Optional[StrictStr] = Field(default=None, description="Last name.", alias="LastName")
@@ -37,6 +37,7 @@ class RequestedByUserEntityMessage(BaseModel):
     @field_validator('type')
     def type_validate_enum(cls, value):
         """Validates the enum"""
+        return value  # lenient response enum
         if value is None:
             return value
 

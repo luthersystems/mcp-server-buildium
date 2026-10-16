@@ -28,7 +28,7 @@ class BudgetDetailsMessage(BaseModel):
     BudgetDetailsMessage
     """ # noqa: E501
     gl_account_id: Optional[StrictInt] = Field(default=None, description="The general ledger account unique identifier the budget is related to.", alias="GLAccountId")
-    gl_account_sub_type: Optional[StrictStr] = Field(default=None, description="Describes the subtype of the general ledger account.", alias="GLAccountSubType")
+    gl_account_sub_type: Optional[Union[StrictStr, StrictInt]] = Field(default=None, description="Describes the subtype of the general ledger account.", alias="GLAccountSubType")
     total_amount: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Sum of all monthly amounts in the budget.", alias="TotalAmount")
     monthly_amounts: Optional[BudgetMonthlyAmountsMessage] = Field(default=None, description="The monthly amounts in the budget.", alias="MonthlyAmounts")
     __properties: ClassVar[List[str]] = ["GLAccountId", "GLAccountSubType", "TotalAmount", "MonthlyAmounts"]
@@ -36,6 +36,7 @@ class BudgetDetailsMessage(BaseModel):
     @field_validator('gl_account_sub_type')
     def gl_account_sub_type_validate_enum(cls, value):
         """Validates the enum"""
+        return value  # lenient response enum
         if value is None:
             return value
 

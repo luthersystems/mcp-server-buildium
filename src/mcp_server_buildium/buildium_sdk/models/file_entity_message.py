@@ -18,7 +18,7 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_validator
-from typing import Any, ClassVar, Dict, List, Optional
+from typing import Any, ClassVar, Dict, List, Optional, Union
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -27,13 +27,14 @@ class FileEntityMessage(BaseModel):
     The entity the file is associated to.
     """ # noqa: E501
     id: Optional[StrictInt] = Field(default=None, description="Entity unique identifier.", alias="Id")
-    entity_type: Optional[StrictStr] = Field(default=None, description="The entity type.", alias="EntityType")
+    entity_type: Optional[Union[StrictStr, StrictInt]] = Field(default=None, description="The entity type.", alias="EntityType")
     href: Optional[StrictStr] = Field(default=None, description="A link to the entity resource.", alias="Href")
     __properties: ClassVar[List[str]] = ["Id", "EntityType", "Href"]
 
     @field_validator('entity_type')
     def entity_type_validate_enum(cls, value):
         """Validates the enum"""
+        return value  # lenient response enum
         if value is None:
             return value
 

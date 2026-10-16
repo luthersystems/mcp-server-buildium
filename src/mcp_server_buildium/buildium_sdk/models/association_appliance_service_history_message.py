@@ -19,7 +19,7 @@ import json
 
 from datetime import date
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_validator
-from typing import Any, ClassVar, Dict, List, Optional
+from typing import Any, ClassVar, Dict, List, Optional, Union
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -28,7 +28,7 @@ class AssociationApplianceServiceHistoryMessage(BaseModel):
     AssociationApplianceServiceHistoryMessage
     """ # noqa: E501
     id: Optional[StrictInt] = Field(default=None, description="Appliance service history unique identifier.", alias="Id")
-    service_type: Optional[StrictStr] = Field(default=None, description="Type of service performed.", alias="ServiceType")
+    service_type: Optional[Union[StrictStr, StrictInt]] = Field(default=None, description="Type of service performed.", alias="ServiceType")
     var_date: Optional[date] = Field(default=None, description="Date of the service.", alias="Date")
     details: Optional[StrictStr] = Field(default=None, description="Details of the service.", alias="Details")
     __properties: ClassVar[List[str]] = ["Id", "ServiceType", "Date", "Details"]
@@ -36,6 +36,7 @@ class AssociationApplianceServiceHistoryMessage(BaseModel):
     @field_validator('service_type')
     def service_type_validate_enum(cls, value):
         """Validates the enum"""
+        return value  # lenient response enum
         if value is None:
             return value
 

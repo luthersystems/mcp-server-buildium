@@ -29,10 +29,10 @@ class LeaseRenewalHistoryMessage(BaseModel):
     """ # noqa: E501
     id: Optional[StrictInt] = Field(default=None, description="Lease renewal unique identifier.", alias="Id")
     lease_id: Optional[StrictInt] = Field(default=None, description="Lease unique identifier.", alias="LeaseId")
-    lease_status: Optional[StrictStr] = Field(default=None, description="Indicates the status of the lease.", alias="LeaseStatus")
+    lease_status: Optional[Union[StrictStr, StrictInt]] = Field(default=None, description="Indicates the status of the lease.", alias="LeaseStatus")
     lease_from_date: Optional[date] = Field(default=None, description="Start date of the lease.", alias="LeaseFromDate")
     lease_to_date: Optional[date] = Field(default=None, description="End date of the lease.", alias="LeaseToDate")
-    lease_type: Optional[StrictStr] = Field(default=None, description="Describes the type of lease.", alias="LeaseType")
+    lease_type: Optional[Union[StrictStr, StrictInt]] = Field(default=None, description="Describes the type of lease.", alias="LeaseType")
     rent: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Rent for the lease.", alias="Rent")
     rent_id: Optional[StrictInt] = Field(default=None, description="The unique identifier of the scheduled Rent entity. If the renewal is not associated with a Rent entity then the value will be `NULL`.", alias="RentId")
     tenant_ids: Optional[List[StrictInt]] = Field(default=None, description="Unique identifiers of tenants on the lease.", alias="TenantIds")
@@ -43,6 +43,7 @@ class LeaseRenewalHistoryMessage(BaseModel):
     @field_validator('lease_status')
     def lease_status_validate_enum(cls, value):
         """Validates the enum"""
+        return value  # lenient response enum
         if value is None:
             return value
 
@@ -53,6 +54,7 @@ class LeaseRenewalHistoryMessage(BaseModel):
     @field_validator('lease_type')
     def lease_type_validate_enum(cls, value):
         """Validates the enum"""
+        return value  # lenient response enum
         if value is None:
             return value
 
