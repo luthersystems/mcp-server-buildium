@@ -30,10 +30,10 @@ class BankAccountReconciliationTransactionMessage(BaseModel):
     id: Optional[StrictInt] = Field(default=None, description="Reconciliation transaction unique identifier.", alias="Id")
     entry_date: Optional[date] = Field(default=None, description="Date the reconciliation transaction entered.", alias="EntryDate")
     total_amount: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Total amount of the reconciliation transaction.", alias="TotalAmount")
-    reconciliation_status: Optional[StrictStr] = Field(default=None, description="Status of the reconciliation transaction.", alias="ReconciliationStatus")
-    transaction_type: Optional[StrictStr] = Field(default=None, description="Type of transaction.", alias="TransactionType")
+    reconciliation_status: Optional[Union[StrictStr, StrictInt]] = Field(default=None, description="Status of the reconciliation transaction.", alias="ReconciliationStatus")
+    transaction_type: Optional[Union[StrictStr, StrictInt]] = Field(default=None, description="Type of transaction.", alias="TransactionType")
     memo: Optional[StrictStr] = Field(default=None, description="Memo associated with the transaction, if applicable.", alias="Memo")
-    payment_method: Optional[StrictStr] = Field(default=None, description="The payment method used for the transaction.", alias="PaymentMethod")
+    payment_method: Optional[Union[StrictStr, StrictInt]] = Field(default=None, description="The payment method used for the transaction.", alias="PaymentMethod")
     check_number: Optional[StrictStr] = Field(default=None, description="Check number associated with the transaction, if applicable.", alias="CheckNumber")
     payee_user_id: Optional[StrictInt] = Field(default=None, description="The payee's user unique identifier.", alias="PayeeUserId")
     __properties: ClassVar[List[str]] = ["Id", "EntryDate", "TotalAmount", "ReconciliationStatus", "TransactionType", "Memo", "PaymentMethod", "CheckNumber", "PayeeUserId"]
@@ -41,6 +41,7 @@ class BankAccountReconciliationTransactionMessage(BaseModel):
     @field_validator('reconciliation_status')
     def reconciliation_status_validate_enum(cls, value):
         """Validates the enum"""
+        return value  # lenient response enum
         if value is None:
             return value
 
@@ -51,6 +52,7 @@ class BankAccountReconciliationTransactionMessage(BaseModel):
     @field_validator('transaction_type')
     def transaction_type_validate_enum(cls, value):
         """Validates the enum"""
+        return value  # lenient response enum
         if value is None:
             return value
 
@@ -61,6 +63,7 @@ class BankAccountReconciliationTransactionMessage(BaseModel):
     @field_validator('payment_method')
     def payment_method_validate_enum(cls, value):
         """Validates the enum"""
+        return value  # lenient response enum
         if value is None:
             return value
 

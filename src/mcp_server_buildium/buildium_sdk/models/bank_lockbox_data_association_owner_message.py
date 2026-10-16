@@ -18,7 +18,7 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_validator
-from typing import Any, ClassVar, Dict, List, Optional
+from typing import Any, ClassVar, Dict, List, Optional, Union
 from mcp_server_buildium.buildium_sdk.models.address_message import AddressMessage
 from mcp_server_buildium.buildium_sdk.models.phone_number_message import PhoneNumberMessage
 from typing import Optional, Set
@@ -34,15 +34,16 @@ class BankLockboxDataAssociationOwnerMessage(BaseModel):
     email: Optional[StrictStr] = Field(default=None, description="Association owner email.", alias="Email")
     alternate_email: Optional[StrictStr] = Field(default=None, description="Association owner alternate email.", alias="AlternateEmail")
     phone_numbers: Optional[List[PhoneNumberMessage]] = Field(default=None, description="List of phone numbers associated with the association owner.", alias="PhoneNumbers")
-    delinquency_status: Optional[StrictStr] = Field(default=None, description="Indicates the delinquency status of the association owner.", alias="DelinquencyStatus")
+    delinquency_status: Optional[Union[StrictStr, StrictInt]] = Field(default=None, description="Indicates the delinquency status of the association owner.", alias="DelinquencyStatus")
     primary_address: Optional[AddressMessage] = Field(default=None, description="Primary address.", alias="PrimaryAddress")
     alternate_address: Optional[AddressMessage] = Field(default=None, description="Alternate address.", alias="AlternateAddress")
-    mailing_preference: Optional[StrictStr] = Field(default=None, description="Indicates the association owner's mailing preference.", alias="MailingPreference")
+    mailing_preference: Optional[Union[StrictStr, StrictInt]] = Field(default=None, description="Indicates the association owner's mailing preference.", alias="MailingPreference")
     __properties: ClassVar[List[str]] = ["Id", "FirstName", "LastName", "Email", "AlternateEmail", "PhoneNumbers", "DelinquencyStatus", "PrimaryAddress", "AlternateAddress", "MailingPreference"]
 
     @field_validator('delinquency_status')
     def delinquency_status_validate_enum(cls, value):
         """Validates the enum"""
+        return value  # lenient response enum
         if value is None:
             return value
 
@@ -53,6 +54,7 @@ class BankLockboxDataAssociationOwnerMessage(BaseModel):
     @field_validator('mailing_preference')
     def mailing_preference_validate_enum(cls, value):
         """Validates the enum"""
+        return value  # lenient response enum
         if value is None:
             return value
 

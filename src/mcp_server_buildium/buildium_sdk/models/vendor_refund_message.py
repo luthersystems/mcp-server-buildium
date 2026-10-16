@@ -19,7 +19,7 @@ import json
 
 from datetime import date
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_validator
-from typing import Any, ClassVar, Dict, List, Optional
+from typing import Any, ClassVar, Dict, List, Optional, Union
 from mcp_server_buildium.buildium_sdk.models.vendor_refund_line_message import VendorRefundLineMessage
 from typing import Optional, Set
 from typing_extensions import Self
@@ -31,7 +31,7 @@ class VendorRefundMessage(BaseModel):
     id: Optional[StrictInt] = Field(default=None, description="Transaction unique identifier.", alias="Id")
     entry_date: Optional[date] = Field(default=None, description="Date the refund was recorded.", alias="EntryDate")
     bank_account_id: Optional[StrictInt] = Field(default=None, description="Unique identifier of the bank account that the refund was deposited into.", alias="BankAccountId")
-    payment_method: Optional[StrictStr] = Field(default=None, description="The payment method used for the vendor refund.", alias="PaymentMethod")
+    payment_method: Optional[Union[StrictStr, StrictInt]] = Field(default=None, description="The payment method used for the vendor refund.", alias="PaymentMethod")
     reference_number: Optional[StrictStr] = Field(default=None, description="Reference number for the vendor refund.", alias="ReferenceNumber")
     memo: Optional[StrictStr] = Field(default=None, description="Memo for the vendor refund.", alias="Memo")
     lines: Optional[List[VendorRefundLineMessage]] = Field(default=None, description="A collection of line items associated with the vendor refund.", alias="Lines")
@@ -40,6 +40,7 @@ class VendorRefundMessage(BaseModel):
     @field_validator('payment_method')
     def payment_method_validate_enum(cls, value):
         """Validates the enum"""
+        return value  # lenient response enum
         if value is None:
             return value
 

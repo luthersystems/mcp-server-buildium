@@ -17,8 +17,8 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr, field_validator
-from typing import Any, ClassVar, Dict, List, Optional
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr, field_validator, StrictInt
+from typing import Any, ClassVar, Dict, List, Optional, Union
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -28,7 +28,7 @@ class CheckPrintingInfoMessage(BaseModel):
     """ # noqa: E501
     enable_remote_check_printing: Optional[StrictBool] = Field(default=None, description="Indicates whether remote check printing is enabled.", alias="EnableRemoteCheckPrinting")
     enable_local_check_printing: Optional[StrictBool] = Field(default=None, description="Indicates whether local check printing is enabled.", alias="EnableLocalCheckPrinting")
-    check_layout_type: Optional[StrictStr] = Field(default=None, description="The check layout type.", alias="CheckLayoutType")
+    check_layout_type: Optional[Union[StrictStr, StrictInt]] = Field(default=None, description="The check layout type.", alias="CheckLayoutType")
     signature_heading: Optional[StrictStr] = Field(default=None, description="The check signature heading.", alias="SignatureHeading")
     fractional_number: Optional[StrictStr] = Field(default=None, description="The fractional form of the routing number. Typically is used to identify the bank of the check in cases where the MICR is unreadable.", alias="FractionalNumber")
     bank_information_line1: Optional[StrictStr] = Field(default=None, description="Bank information line 1.", alias="BankInformationLine1")
@@ -46,6 +46,7 @@ class CheckPrintingInfoMessage(BaseModel):
     @field_validator('check_layout_type')
     def check_layout_type_validate_enum(cls, value):
         """Validates the enum"""
+        return value  # lenient response enum
         if value is None:
             return value
 

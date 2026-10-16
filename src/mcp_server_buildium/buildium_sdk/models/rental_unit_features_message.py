@@ -17,8 +17,8 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
-from typing import Any, ClassVar, Dict, List, Optional
+from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator, StrictInt
+from typing import Any, ClassVar, Dict, List, Optional, Union
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -26,12 +26,13 @@ class RentalUnitFeaturesMessage(BaseModel):
     """
     Rental unit amenities.
     """ # noqa: E501
-    features: Optional[List[StrictStr]] = Field(default=None, description="A list of unit amenities.", alias="Features")
+    features: Optional[List[Union[StrictStr, StrictInt]]] = Field(default=None, description="A list of unit amenities.", alias="Features")
     __properties: ClassVar[List[str]] = ["Features"]
 
     @field_validator('features')
     def features_validate_enum(cls, value):
         """Validates the enum"""
+        return value  # lenient response enum
         if value is None:
             return value
 

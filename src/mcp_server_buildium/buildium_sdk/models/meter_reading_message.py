@@ -19,7 +19,7 @@ import json
 
 from datetime import date
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr, field_validator
-from typing import Any, ClassVar, Dict, List, Optional
+from typing import Any, ClassVar, Dict, List, Optional, Union
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -28,7 +28,7 @@ class MeterReadingMessage(BaseModel):
     MeterReadingMessage
     """ # noqa: E501
     reading_date: Optional[date] = Field(default=None, description="Date the meter reading was recorded.", alias="ReadingDate")
-    response_meter_type: Optional[StrictStr] = Field(default=None, description="Meter type for the meter reading.", alias="ResponseMeterType")
+    response_meter_type: Optional[Union[StrictStr, StrictInt]] = Field(default=None, description="Meter type for the meter reading.", alias="ResponseMeterType")
     value: Optional[StrictInt] = Field(default=None, description="Total value across all units for the meter reading.", alias="Value")
     usage: Optional[StrictInt] = Field(default=None, description="The amount used between the prior reading and this reading, calculated by subtracting prior value from value. Usage will be the basis used when charging tenants for a reading.", alias="Usage")
     charges_created: Optional[StrictBool] = Field(default=None, description="Indicates if charges were created for the meter reading.", alias="ChargesCreated")
@@ -37,6 +37,7 @@ class MeterReadingMessage(BaseModel):
     @field_validator('response_meter_type')
     def response_meter_type_validate_enum(cls, value):
         """Validates the enum"""
+        return value  # lenient response enum
         if value is None:
             return value
 

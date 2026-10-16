@@ -33,7 +33,7 @@ class RentMessage(BaseModel):
     start_date: Optional[date] = Field(default=None, description="Start date of the rent.", alias="StartDate")
     end_date: Optional[date] = Field(default=None, description="End date of the rent.", alias="EndDate")
     total_amount: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Total amount of the rent.", alias="TotalAmount")
-    rent_cycle: Optional[StrictStr] = Field(default=None, description="Determines the frequency at which rent is charged.", alias="RentCycle")
+    rent_cycle: Optional[Union[StrictStr, StrictInt]] = Field(default=None, description="Determines the frequency at which rent is charged.", alias="RentCycle")
     backdate_charges: Optional[StrictBool] = Field(default=None, description="Indicates whether backdated charges should be created when creating or editing rents. This field will always return false, even if backdated charges exist.", alias="BackdateCharges")
     created_date_time: Optional[datetime] = Field(default=None, description="The date and time the rent was created.", alias="CreatedDateTime")
     created_by_user_id: Optional[StrictInt] = Field(default=None, description="Unique identifier of user that created the rent.", alias="CreatedByUserId")
@@ -44,6 +44,7 @@ class RentMessage(BaseModel):
     @field_validator('rent_cycle')
     def rent_cycle_validate_enum(cls, value):
         """Validates the enum"""
+        return value  # lenient response enum
         if value is None:
             return value
 

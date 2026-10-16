@@ -18,7 +18,7 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_validator
-from typing import Any, ClassVar, Dict, List, Optional
+from typing import Any, ClassVar, Dict, List, Optional, Union
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -29,13 +29,14 @@ class EmailRecipientMessage(BaseModel):
     id: Optional[StrictInt] = Field(default=None, description="Recipient unique identifier.", alias="Id")
     name: Optional[StrictStr] = Field(default=None, description="Name of the recipient.", alias="Name")
     email: Optional[StrictStr] = Field(default=None, description="Email address of the recipient.", alias="Email")
-    recipient_type: Optional[StrictStr] = Field(default=None, description="The type of recipient.", alias="RecipientType")
+    recipient_type: Optional[Union[StrictStr, StrictInt]] = Field(default=None, description="The type of recipient.", alias="RecipientType")
     href: Optional[StrictStr] = Field(default=None, description="A link to the resource associated with the recipient.", alias="Href")
     __properties: ClassVar[List[str]] = ["Id", "Name", "Email", "RecipientType", "Href"]
 
     @field_validator('recipient_type')
     def recipient_type_validate_enum(cls, value):
         """Validates the enum"""
+        return value  # lenient response enum
         if value is None:
             return value
 

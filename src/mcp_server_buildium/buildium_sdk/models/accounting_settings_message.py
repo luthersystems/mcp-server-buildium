@@ -18,7 +18,7 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_validator
-from typing import Any, ClassVar, Dict, List, Optional
+from typing import Any, ClassVar, Dict, List, Optional, Union
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -28,8 +28,8 @@ class AccountingSettingsMessage(BaseModel):
     """ # noqa: E501
     accounting_book_id: Optional[StrictInt] = Field(default=None, description="The accounting book entity unique identifier.", alias="AccountingBookId")
     default_bank_account_id: Optional[StrictInt] = Field(default=None, description="The default bank account unique identifier.", alias="DefaultBankAccountId")
-    default_accounting_basis: Optional[StrictStr] = Field(default=None, description="The default accounting basis.", alias="DefaultAccountingBasis")
-    trust_account_warning: Optional[StrictStr] = Field(default=None, description="Indicates the type of trust account warnings are enable within the account, if any.", alias="TrustAccountWarning")
+    default_accounting_basis: Optional[Union[StrictStr, StrictInt]] = Field(default=None, description="The default accounting basis.", alias="DefaultAccountingBasis")
+    trust_account_warning: Optional[Union[StrictStr, StrictInt]] = Field(default=None, description="Indicates the type of trust account warnings are enable within the account, if any.", alias="TrustAccountWarning")
     fiscal_year_end_month: Optional[StrictInt] = Field(default=None, description="The month the fiscal year ends.", alias="FiscalYearEndMonth")
     fiscal_year_end_day: Optional[StrictInt] = Field(default=None, description="The day the fiscal year ends.", alias="FiscalYearEndDay")
     __properties: ClassVar[List[str]] = ["AccountingBookId", "DefaultBankAccountId", "DefaultAccountingBasis", "TrustAccountWarning", "FiscalYearEndMonth", "FiscalYearEndDay"]
@@ -37,6 +37,7 @@ class AccountingSettingsMessage(BaseModel):
     @field_validator('default_accounting_basis')
     def default_accounting_basis_validate_enum(cls, value):
         """Validates the enum"""
+        return value  # lenient response enum
         if value is None:
             return value
 
@@ -47,6 +48,7 @@ class AccountingSettingsMessage(BaseModel):
     @field_validator('trust_account_warning')
     def trust_account_warning_validate_enum(cls, value):
         """Validates the enum"""
+        return value  # lenient response enum
         if value is None:
             return value
 

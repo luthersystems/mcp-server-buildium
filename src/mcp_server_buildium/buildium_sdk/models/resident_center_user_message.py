@@ -17,8 +17,8 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr, field_validator
-from typing import Any, ClassVar, Dict, List, Optional
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr, field_validator, StrictInt
+from typing import Any, ClassVar, Dict, List, Optional, Union
 from mcp_server_buildium.buildium_sdk.models.resident_center_user_reference_message import ResidentCenterUserReferenceMessage
 from mcp_server_buildium.buildium_sdk.models.unit_agreement_message import UnitAgreementMessage
 from typing import Optional, Set
@@ -30,13 +30,14 @@ class ResidentCenterUserMessage(BaseModel):
     """ # noqa: E501
     unit_agreement: Optional[UnitAgreementMessage] = Field(default=None, description="The user's unit agreement (lease or ownership account).", alias="UnitAgreement")
     user: Optional[ResidentCenterUserReferenceMessage] = Field(default=None, description="Information about the user.", alias="User")
-    resident_center_user_status: Optional[StrictStr] = Field(default=None, description="Resident center status for the user.", alias="ResidentCenterUserStatus")
+    resident_center_user_status: Optional[Union[StrictStr, StrictInt]] = Field(default=None, description="Resident center status for the user.", alias="ResidentCenterUserStatus")
     is_auto_pay_enabled: Optional[StrictBool] = Field(default=None, description="Indicates if the user has an automatic payment scheduled for the future.", alias="IsAutoPayEnabled")
     __properties: ClassVar[List[str]] = ["UnitAgreement", "User", "ResidentCenterUserStatus", "IsAutoPayEnabled"]
 
     @field_validator('resident_center_user_status')
     def resident_center_user_status_validate_enum(cls, value):
         """Validates the enum"""
+        return value  # lenient response enum
         if value is None:
             return value
 

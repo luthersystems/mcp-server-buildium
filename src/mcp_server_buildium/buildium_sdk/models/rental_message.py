@@ -37,14 +37,15 @@ class RentalMessage(BaseModel):
     reserve: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="A property reserve is cash that a property manager keeps on hand in case of unexpected expenses. It is available cash that isn't disbursed in an owner draw.", alias="Reserve")
     address: Optional[AddressMessage] = Field(default=None, description="Address of the rental property.", alias="Address")
     year_built: Optional[StrictInt] = Field(default=None, description="Year the rental property was built.", alias="YearBuilt")
-    rental_type: Optional[StrictStr] = Field(default=None, description="Indicates the type of rental property.", alias="RentalType")
-    rental_sub_type: Optional[StrictStr] = Field(default=None, description="Indicates the sub type of the rental property.", alias="RentalSubType")
+    rental_type: Optional[Union[StrictStr, StrictInt]] = Field(default=None, description="Indicates the type of rental property.", alias="RentalType")
+    rental_sub_type: Optional[Union[StrictStr, StrictInt]] = Field(default=None, description="Indicates the sub type of the rental property.", alias="RentalSubType")
     rental_manager: Optional[PropertyManagerMessage] = Field(default=None, description="Property manager associated with rental property.", alias="RentalManager")
     __properties: ClassVar[List[str]] = ["Id", "Name", "StructureDescription", "NumberUnits", "IsActive", "OperatingBankAccountId", "Reserve", "Address", "YearBuilt", "RentalType", "RentalSubType", "RentalManager"]
 
     @field_validator('rental_type')
     def rental_type_validate_enum(cls, value):
         """Validates the enum"""
+        return value  # lenient response enum
         if value is None:
             return value
 
@@ -55,6 +56,7 @@ class RentalMessage(BaseModel):
     @field_validator('rental_sub_type')
     def rental_sub_type_validate_enum(cls, value):
         """Validates the enum"""
+        return value  # lenient response enum
         if value is None:
             return value
 

@@ -17,8 +17,8 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr, field_validator
-from typing import Any, ClassVar, Dict, List, Optional
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr, field_validator, StrictInt
+from typing import Any, ClassVar, Dict, List, Optional, Union
 from mcp_server_buildium.buildium_sdk.models.internal_transaction_status_message import InternalTransactionStatusMessage
 from mcp_server_buildium.buildium_sdk.models.payee_message import PayeeMessage
 from typing import Optional, Set
@@ -28,7 +28,7 @@ class PaymentDetailMessage(BaseModel):
     """
     This object represents payment details.
     """ # noqa: E501
-    payment_method: Optional[StrictStr] = Field(default=None, description="The payment method used for the transaction.", alias="PaymentMethod")
+    payment_method: Optional[Union[StrictStr, StrictInt]] = Field(default=None, description="The payment method used for the transaction.", alias="PaymentMethod")
     payee: Optional[PayeeMessage] = Field(default=None, description="The payee of the transaction.", alias="Payee")
     is_internal_transaction: Optional[StrictBool] = Field(default=None, description="Whether the transaction is processed internally.", alias="IsInternalTransaction")
     internal_transaction_status: Optional[InternalTransactionStatusMessage] = Field(default=None, description="The status of the transaction. Note, this is only applicable for if `IsInternalTransaction` is `true`.", alias="InternalTransactionStatus")
@@ -37,6 +37,7 @@ class PaymentDetailMessage(BaseModel):
     @field_validator('payment_method')
     def payment_method_validate_enum(cls, value):
         """Validates the enum"""
+        return value  # lenient response enum
         if value is None:
             return value
 

@@ -19,7 +19,7 @@ import json
 
 from datetime import date
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_validator
-from typing import Any, ClassVar, Dict, List, Optional
+from typing import Any, ClassVar, Dict, List, Optional, Union
 from mcp_server_buildium.buildium_sdk.models.unit_agreement_message import UnitAgreementMessage
 from typing import Optional, Set
 from typing_extensions import Self
@@ -29,18 +29,19 @@ class WorkOrderTaskMessage(BaseModel):
     Task information related to the work order.
     """ # noqa: E501
     id: Optional[StrictInt] = Field(default=None, description="Task unique identifier.", alias="Id")
-    type: Optional[StrictStr] = Field(default=None, description="The task type.", alias="Type")
+    type: Optional[Union[StrictStr, StrictInt]] = Field(default=None, description="The task type.", alias="Type")
     unit_id: Optional[StrictInt] = Field(default=None, description="The unit unique identifier associated with the task.", alias="UnitId")
     unit_agreement: Optional[UnitAgreementMessage] = Field(default=None, description="The unit agreement that is associated with the task.", alias="UnitAgreement")
     title: Optional[StrictStr] = Field(default=None, description="Task title.", alias="Title")
     due_date: Optional[date] = Field(default=None, description="Task due date.", alias="DueDate")
-    priority: Optional[StrictStr] = Field(default=None, description="Task priority.", alias="Priority")
-    status: Optional[StrictStr] = Field(default=None, description="Task status.", alias="Status")
+    priority: Optional[Union[StrictStr, StrictInt]] = Field(default=None, description="Task priority.", alias="Priority")
+    status: Optional[Union[StrictStr, StrictInt]] = Field(default=None, description="Task status.", alias="Status")
     __properties: ClassVar[List[str]] = ["Id", "Type", "UnitId", "UnitAgreement", "Title", "DueDate", "Priority", "Status"]
 
     @field_validator('type')
     def type_validate_enum(cls, value):
         """Validates the enum"""
+        return value  # lenient response enum
         if value is None:
             return value
 
@@ -51,6 +52,7 @@ class WorkOrderTaskMessage(BaseModel):
     @field_validator('priority')
     def priority_validate_enum(cls, value):
         """Validates the enum"""
+        return value  # lenient response enum
         if value is None:
             return value
 
@@ -61,6 +63,7 @@ class WorkOrderTaskMessage(BaseModel):
     @field_validator('status')
     def status_validate_enum(cls, value):
         """Validates the enum"""
+        return value  # lenient response enum
         if value is None:
             return value
 

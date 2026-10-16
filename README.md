@@ -58,6 +58,10 @@ BUILDIUM_CLIENT_SECRET=your-client-secret
 BUILDIUM_CATEGORIES=associations,leases,rentals
 ```
 
+`BUILDIUM_BASE_URL` must be an `https://` URL without credentials, a query or a
+fragment, because every request carries the client secret in a header. The
+server refuses to start otherwise. An empty value means the production URL.
+
 ### Tool Categories
 
 Control which tool categories are enabled using the `BUILDIUM_CATEGORIES` environment variable:
@@ -230,7 +234,7 @@ Add to your Claude Desktop config (`~/Library/Application Support/Claude/claude_
 * `get_bank_account` - Get bank account details by ID
 * `create_bank_account` - Create a new bank account
 * `update_bank_account` - Update a bank account
-* `list_bank_account_transactions` - List transactions for a bank account
+* `list_bank_account_transactions` - List transactions for a bank account in a date range (`start_date`, `end_date`; default: the last 30 days)
 * `get_bank_account_transaction` - Get bank account transaction details by ID
 
 ## Tool Request/Response Examples
@@ -268,23 +272,26 @@ Query leases with optional filters (property, unit, status).
 }
 ```
 
+List tools return `{"<items>": [...], "count": n}`. Records use Buildium's
+field names, as in its API reference; the examples below show only some fields.
+
 **Example Response:**
 ```json
 {
   "leases": [
     {
-      "id": 12345,
-      "propertyId": 123,
-      "unitId": 456,
-      "leaseType": "Fixed",
-      "leaseFromDate": "2024-01-01",
-      "leaseToDate": "2024-12-31",
-      "status": "Active",
-      "tenants": [
+      "Id": 12345,
+      "PropertyId": 123,
+      "UnitId": 456,
+      "LeaseType": "Fixed",
+      "LeaseFromDate": "2024-01-01",
+      "LeaseToDate": "2024-12-31",
+      "LeaseStatus": "Active",
+      "CurrentTenants": [
         {
-          "id": 789,
-          "firstName": "John",
-          "lastName": "Doe"
+          "Id": 789,
+          "FirstName": "John",
+          "LastName": "Doe"
         }
       ]
     }
@@ -313,29 +320,23 @@ Retrieve details of a specific lease by ID.
 **Example Response:**
 ```json
 {
-  "id": 12345,
-  "propertyId": 123,
-  "unitId": 456,
-  "leaseType": "Fixed",
-  "leaseFromDate": "2024-01-01",
-  "leaseToDate": "2024-12-31",
-  "status": "Active",
-  "rentCycle": "Monthly",
-  "rentAmount": 2000.00,
-  "securityDepositAmount": 2000.00,
-  "tenants": [
+  "Id": 12345,
+  "PropertyId": 123,
+  "UnitId": 456,
+  "LeaseType": "Fixed",
+  "LeaseFromDate": "2024-01-01",
+  "LeaseToDate": "2024-12-31",
+  "LeaseStatus": "Active",
+  "CurrentTenants": [
     {
-      "id": 789,
-      "firstName": "John",
-      "lastName": "Doe",
-      "email": "john.doe@example.com",
-      "phoneNumbers": {
-        "home": "555-0100"
-      }
+      "Id": 789,
+      "FirstName": "John",
+      "LastName": "Doe",
+      "Email": "john.doe@example.com"
     }
   ],
-  "createdDateTime": "2024-01-01T10:00:00Z",
-  "lastModifiedDateTime": "2024-01-01T10:00:00Z"
+  "CreatedDateTime": "2024-01-01T10:00:00Z",
+  "LastUpdatedDateTime": "2024-01-01T10:00:00Z"
 }
 ```
 
@@ -426,25 +427,22 @@ Create a new lease agreement.
 **Example Response:**
 ```json
 {
-  "id": 12346,
-  "propertyId": 123,
-  "unitId": 456,
-  "leaseType": "Fixed",
-  "leaseFromDate": "2025-01-01",
-  "leaseToDate": "2025-12-31",
-  "status": "Active",
-  "rentCycle": "Monthly",
-  "rentAmount": 2000.00,
-  "securityDepositAmount": 2000.00,
-  "tenants": [
+  "Id": 12346,
+  "PropertyId": 123,
+  "UnitId": 456,
+  "LeaseType": "Fixed",
+  "LeaseFromDate": "2025-01-01",
+  "LeaseToDate": "2025-12-31",
+  "LeaseStatus": "Active",
+  "CurrentTenants": [
     {
-      "id": 790,
-      "firstName": "Jane",
-      "lastName": "Smith",
-      "email": "jane.smith@example.com"
+      "Id": 790,
+      "FirstName": "Jane",
+      "LastName": "Smith",
+      "Email": "jane.smith@example.com"
     }
   ],
-  "createdDateTime": "2024-11-07T00:00:00Z"
+  "CreatedDateTime": "2024-11-07T00:00:00Z"
 }
 ```
 
@@ -488,25 +486,40 @@ cd mcp-server-buildium
 # Install uv if needed
 curl -LsSf https://astral.sh/uv/install.sh | sh
 
-# Install dependencies
-uv pip install -e ".[dev]"
+# Install dependencies (from uv.lock)
+uv sync --extra dev
 ```
 
 ### Running Tests
 
 ```bash
-# Run unit tests (no credentials needed)
-uv run pytest tests/ --ignore=tests/test_integration.py
-
-# Run with coverage
-uv run pytest --cov=mcp_server_buildium --cov-report=html
-
-# Run linter
-uv run ruff check .
-
-# Format code
-uv run ruff format .
+make check       # everything CI runs, except the integration tests
+make test        # offline unit tests (no credentials, no network)
+make lint        # ruff: style, bugbear and bandit security rules
+make typecheck   # mypy --strict
+make audit       # pip-audit over uv.lock
+make format      # apply ruff's formatting and fixes
 ```
+
+The unit tests replace the SDK's HTTP client, so they check the method, path
+and query each tool sends without calling Buildium. The type checker matters
+here: it is what proves each tool calls an SDK method, with keyword arguments
+and a request model, that the generated SDK actually has.
+
+### CI
+
+`.github/workflows/ci.yml` runs lint, mypy, the unit tests on Python 3.11 to
+3.13, a package build with a wheel smoke test, and, on `main`, weekly and by
+hand, the integration tests against the live Buildium API.
+`.github/workflows/vulnerability-scan.yml` runs pip-audit on every pull
+request, on `main` and daily. Dependabot keeps the Python dependencies and the
+SHA-pinned GitHub Actions current.
+
+When pip-audit reports a vulnerable dependency, upgrade it
+(`uv lock --upgrade-package NAME`) and, if the vulnerable version still meets
+the floor in `pyproject.toml`, raise the floor too: connectorhub installs this
+server with `uvx --from git+...`, which resolves from `pyproject.toml`, not
+`uv.lock`.
 
 ### Integration Tests (Optional)
 
@@ -531,11 +544,6 @@ Integration tests validate real Buildium API authentication. They are **skipped 
    uv run pytest tests/test_integration.py -v
    ```
 
-**Test Credentials (Sandbox):**
-- Client ID: `<redacted>`
-- Client Secret: `<redacted>`
-- Base URL: `https://apisandbox.buildium.com/`
-
 ### CI/CD Setup (GitHub Actions)
 
 To run integration tests in GitHub Actions:
@@ -547,16 +555,18 @@ To run integration tests in GitHub Actions:
      * `BUILDIUM_CLIENT_ID`: Your client ID
      * `BUILDIUM_CLIENT_SECRET`: Your client secret
 
-2. **The CI workflow will automatically run integration tests** when these secrets are present
+2. **The CI workflow runs the integration tests** on pushes to `main`, every
+   Monday, and when started by hand (**Actions** → **CI** → **Run workflow**,
+   which also works on a pull request's branch). Without the secrets they skip.
 
-**Note**: The integration tests will be skipped in PRs from forks (for security), but will run on pushes to main/develop branches.
+**Note**: Pull requests do not run the integration tests, so a merge never
+waits on the Buildium key. The offline unit tests check the request every tool
+sends.
 
 **What the integration tests verify:**
 
-* ✅ OAuth authentication works with your credentials
-* ✅ Access token can be obtained successfully
+* ✅ API key authentication works with your credentials
 * ✅ API calls work (tests `list_associations`, `list_rentals`, `list_leases`)
-* ✅ Token refresh mechanism works
 
 **Note**: Integration tests require a Buildium developer account (sandbox environment recommended).
 
@@ -565,11 +575,17 @@ To run integration tests in GitHub Actions:
 If you want to generate a Python SDK from the Buildium OpenAPI spec:
 
 ```bash
-# Generate SDK (requires Java for OpenAPI Generator)
+# Generate SDK (runs OpenAPI Generator in Docker)
 make generate-sdk
 
-# The generated SDK will be in buildium_sdk/ directory
+# Then let response models accept enum values the spec does not list
+make patch-sdk
 ```
+
+Buildium returns some enum fields as integers or as values its spec omits, and
+the generated validators reject them. `make patch-sdk` relaxes the validators
+of response models only; request models stay strict. `tests/test_sdk_enums.py`
+fails if the SDK is regenerated without it.
 
 See `Makefile` for more details.
 
@@ -581,32 +597,28 @@ mcp-server-buildium/
 │   ├── __init__.py
 │   ├── server.py           # Main FastMCP server
 │   ├── config.py           # Configuration management
-│   ├── buildium_client.py  # OAuth auth & API client
-│   └── tools/
-│       ├── associations.py # Association tools
-│       ├── leases.py       # Lease tools
-│       └── rentals.py      # Rental tools
+│   ├── buildium_client.py  # SDK client with the API key headers
+│   ├── buildium_sdk/       # Generated from specs/buildium-openapi.json; not linted
+│   └── tools/              # One module per tool category
 ├── tests/
-│   ├── test_buildium_client.py
-│   └── test_integration.py
+│   ├── test_config.py
+│   ├── test_client.py
+│   ├── test_tools.py       # Offline request checks for every tool
+│   └── test_integration.py # Real API; needs credentials
 ├── pyproject.toml
 └── README.md
 ```
 
 ## Troubleshooting
 
-### "Failed to obtain access token"
+### "base_url must be an https:// URL with a host"
 
-* Verify client ID and secret are correct
-* Check base URL is correct (sandbox vs production)
-* Ensure token URL is accessible
-* Verify scopes are correct
+* Set `BUILDIUM_BASE_URL` to `https://api.buildium.com` or `https://apisandbox.buildium.com`
 
 ### "401 Unauthorized"
 
-* Check credentials are valid
-* Verify API endpoint URLs
-* Ensure OAuth scopes include required permissions
+* Check the client ID and secret are valid for that environment (sandbox keys do not work in production)
+* Check the API key has access to the resource in Buildium's API settings
 
 ### "Connection timeout"
 
@@ -624,7 +636,7 @@ mcp-server-buildium/
 1. **Never commit credentials** - Use `.gitignore` and environment variables
 2. **Use secrets management** - Store credentials in secure vaults (AWS Secrets Manager, etc.)
 3. **Rotate credentials regularly** - Generate new client secrets periodically
-4. **Limit token lifetime** - Use shorter expiration for sensitive operations
+4. **Use least privilege** - Give the API key only the Buildium permissions and set `BUILDIUM_CATEGORIES` to the tool categories you need
 5. **Monitor API usage** - Check Buildium dashboard for unusual activity
 6. **Use sandbox environment** - Test with sandbox accounts before production
 
@@ -632,17 +644,16 @@ mcp-server-buildium/
 
 * **Language**: Python 3.11+
 * **Framework**: FastMCP
-* **Auth**: OAuth 2.0 client credentials flow
+* **Auth**: API key headers (`x-buildium-client-id`, `x-buildium-client-secret`)
 * **Transport**: stdio (MCP protocol)
 * **HTTP Client**: httpx
-* **Testing**: pytest with mocks
+* **Testing**: pytest with a mocked HTTP transport; mypy --strict; ruff
 
 ## References
 
 * [Buildium Developer Documentation](https://developer.buildium.com/)
 * [Model Context Protocol](https://modelcontextprotocol.io)
 * [FastMCP Framework](https://github.com/jlowin/fastmcp)
-* [OAuth 2.0 Client Credentials Flow](https://oauth.net/2/grant-types/client-credentials/)
 
 ## License
 
